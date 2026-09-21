@@ -1,0 +1,107 @@
+<!doctype html><html lang="zh-CN"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Discovery of Partial Differential Equations from Highly Noisy and Sparse Data with Physics-Informed Information Criterion · 物理规律发现</title><link rel="stylesheet" href="../style.css"><link rel="stylesheet" href="../public.css"></head><body><main class="doc"><div class="links"><a href="../">返回课程</a><a href="../spectrum/">三维谱图</a></div><h1>P27 · Discovery of Partial Differential Equations from Highly Noisy and Sparse Data with Physics-Informed Information Criterion</h1>
+<p>Hao Xu; Junsheng Zeng; Dongxiao Zhang. Discovery of Partial Differential Equations from Highly Noisy and Sparse Data with Physics-Informed Information Criterion. Research, 2023, 6. DOI: 10.34133/research.0147</p>
+<p><a href="https://doi.org/10.34133/research.0147">出版页面</a> · 第 10 天 · 神经代理与导数</p>
+<h2>研究问题</h2>
+<p>在极少点和强噪声下从开放候选结构中筛选PDE，并从颗粒输运微观模拟提取宏观方程。</p>
+<h2>规律表示</h2>
+<p>广义遗传算法产生的候选PDE项集合；PIC以移动窗口系数稳定性和PINN物理一致性共同评价整个组合。</p>
+<h2>方法</h2>
+<p>先用GA形成初步库；对所有项组合，移动时间窗回归计算冗余损失，并比较PINN与无物理ANN的误差形成精度损失，乘积最小者获选。</p>
+<h2>假设</h2>
+<p>• PDE项的遗传语法
+• 稀疏结构
+• 真实项系数跨移动窗口应稳定
+• 正确PDE作为PINN约束应改善场重建</p>
+<h2>必做推导</h2>
+<p>逐项抄录并解释 PIC 的原文定义和实现，区分经验模型选择评分与统计信息准则定理。</p>
+<h2>复现目标</h2>
+<p>在作者代码中选一个支持核心结论的案例：• 七类典型ODE/PDE
+• 二维Burgers
+• Navier-Stokes
+• 支撑剂输运微观模拟。先运行小样例，再恢复该案例原文配置；运行前登记原文指标/目标图、统计量和容差，运行后交付结构或等价结构、系数/统计量、留出预测、耗时和日志。</p>
+<h2>单因素检验</h2>
+<p>只改变候选结构的复杂度，固定代理与数据。</p>
+<h2>适用范围与限制</h2>
+<p>• PIC需要训练多个网络，计算成本高；N项组合可达2^N，候选库大时呈指数增长。
+• 噪声容忍度会随噪声类型变化。</p>
+<h2>闭卷自测</h2>
+<h3>1. P27 实际辨识的未知对象是什么，哪些对象预先给定？</h3>
+<details><summary>先作答，再展开核对</summary>
+
+
+在极少点和强噪声下从开放候选结构中筛选PDE，并从颗粒输运微观模拟提取宏观方程。
+表示：广义遗传算法产生的候选PDE项集合；PIC以移动窗口系数稳定性和PINN物理一致性共同评价整个组合。
+
+
+</details>
+
+<h3>2. P27 从数据到模型采用什么路线？按顺序解释各步骤。</h3>
+<details><summary>先作答，再展开核对</summary>
+
+
+先用GA形成初步库；对所有项组合，移动时间窗回归计算冗余损失，并比较PINN与无物理ANN的误差形成精度损失，乘积最小者获选。
+
+
+</details>
+
+<h3>3. P27 哪些假设或限制使结果不能直接推广？至少说出两项。</h3>
+<details><summary>先作答，再展开核对</summary>
+
+
+• PDE项的遗传语法
+• 稀疏结构
+• 真实项系数跨移动窗口应稳定
+• 正确PDE作为PINN约束应改善场重建
+• PIC需要训练多个网络，计算成本高；N项组合可达2^N，候选库大时呈指数增长。
+• 噪声容忍度会随噪声类型变化。
+
+
+</details>
+
+<h3>4. 怎样设计这项单因素检验：只改变候选结构的复杂度，固定代理与数据。</h3>
+<details><summary>先作答，再展开核对</summary>
+
+
+只改变指定因素，固定数据划分与其余参数；用结构、系数/统计量和留出预测评价，并将结果联系到以下方法边界：
+• PIC需要训练多个网络，计算成本高；N项组合可达2^N，候选库大时呈指数增长。
+• 噪声容忍度会随噪声类型变化。
+
+
+</details>
+
+<h2>作者代码与核查</h2>
+<p>代码信息为课程构建时的核查快照，可访问不等于已复现；没有定位到代码不等于作者没有公开。</p>
+<ul>
+<li><a href="https://github.com/woshixuhao/PIC_code">https://github.com/woshixuhao/PIC_code</a></li>
+</ul>
+<pre><code class="language-json">{
+  &quot;verified_status&quot;: &quot;public_verified&quot;,
+  &quot;entrypoints&quot;: [],
+  &quot;environment&quot;: [],
+  &quot;blockers&quot;: [
+    &quot;paper-result T2 reproduction not run; public access or README inspection is not reproduction&quot;,
+    &quot;no concrete execution entrypoint established by current root/README inspection&quot;,
+    &quot;dependency/environment specification unverified&quot;
+  ],
+  &quot;follow_up_actions&quot;: []
+}
+</code></pre>
+<h2>原文定位</h2>
+<p>以下为课程整理的结论和原文页码 / 块号索引，全文通过出版页面访问。</p>
+<ul>
+<li>
+<p>PIC由代理ANN、遗传初步库、移动窗口冗余损失和PINN精度损失组成。（PDF 页 3；块号 P003-B001）</p>
+</li>
+<li>
+<p>七个典型方程测试至200%高斯噪声；Klein-Gordon在200%噪声、10种子下中位系数误差4.21%。（PDF 页 4；块号 P004-B001, P004-B002, P004-B003, P004-B004）</p>
+</li>
+<li>
+<p>二维Burgers用20万点可在75%噪声下正确识别；Navier-Stokes用40万点、50%噪声时系数误差约5%。（PDF 页 8；块号 P008-B001, P008-B002, P008-B003）</p>
+</li>
+<li>
+<p>支撑剂微观模拟数据得到两条宏观PDE，重建误差1.42%和2.10%，并以对称性解释项。（PDF 页 10；块号 P010-B001, P010-B002）</p>
+</li>
+<li>
+<p>代码在公开GitHub仓库提供。（PDF 页 12；块号 P012-B007, P012-B008）</p>
+</li>
+</ul></main></body></html>

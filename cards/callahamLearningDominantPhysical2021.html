@@ -1,0 +1,131 @@
+<!doctype html><html lang="zh-CN"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Learning dominant physical processes with data-driven balance models · 物理规律发现</title><link rel="stylesheet" href="../style.css"><link rel="stylesheet" href="../public.css"></head><body><main class="doc"><div class="links"><a href="../">返回课程</a><a href="../spectrum/">三维谱图</a></div><h1>P67 · Learning dominant physical processes with data-driven balance models</h1>
+<p>Jared L. Callaham; James V. Koch; Bingni W. Brunton; J. Nathan Kutz; Steven L. Brunton. Learning dominant physical processes with data-driven balance models. Nature Communications, 2021, 12(1): 1016. DOI: 10.1038/s41467-021-21331-z</p>
+<p><a href="https://doi.org/10.1038/s41467-021-21331-z">出版页面</a> · 第 27 天 · 物理机制与真实场</p>
+<h2>研究问题</h2>
+<p>识别同一已知控制方程在不同时空区域的局部主导项平衡。</p>
+<h2>规律表示</h2>
+<p>把每个方程项的数值视为方程空间坐标，局部平衡对应低维子空间。</p>
+<h2>方法</h2>
+<p>Gaussian mixture聚类分区，再用稀疏主成分提取每个簇中的主导平衡。</p>
+<h2>假设</h2>
+<p>• 完整候选方程已知
+• 局部主导平衡稀疏</p>
+<h2>必做推导</h2>
+<p>把已知方程各项作为坐标并构造局部低维平衡，说明这与发现未知方程不同。</p>
+<h2>复现目标</h2>
+<p>在作者代码中选一个支持核心结论的案例：• 边界层
+• 墨西哥湾流
+• 非线性光学
+• 燃烧
+• 神经元。先运行小样例，再恢复该案例原文配置；运行前登记原文指标/目标图、统计量和容差，运行后交付结构或等价结构、系数/统计量、留出预测、耗时和日志。</p>
+<h2>单因素检验</h2>
+<p>只改变各项的归一化尺度。</p>
+<h2>适用范围与限制</h2>
+<p>• 依赖完整方程及各项可计算
+• 聚类数量和缩放影响分区
+• 所得局部平衡需要机理解释</p>
+<h2>闭卷自测</h2>
+<h3>1. P67 实际辨识的未知对象是什么，哪些对象预先给定？</h3>
+<details><summary>先作答，再展开核对</summary>
+
+
+识别同一已知控制方程在不同时空区域的局部主导项平衡。
+表示：把每个方程项的数值视为方程空间坐标，局部平衡对应低维子空间。
+
+
+</details>
+
+<h3>2. P67 从数据到模型采用什么路线？按顺序解释各步骤。</h3>
+<details><summary>先作答，再展开核对</summary>
+
+
+Gaussian mixture聚类分区，再用稀疏主成分提取每个簇中的主导平衡。
+
+
+</details>
+
+<h3>3. P67 哪些假设或限制使结果不能直接推广？至少说出两项。</h3>
+<details><summary>先作答，再展开核对</summary>
+
+
+• 完整候选方程已知
+• 局部主导平衡稀疏
+• 依赖完整方程及各项可计算
+• 聚类数量和缩放影响分区
+• 所得局部平衡需要机理解释
+
+
+</details>
+
+<h3>4. 怎样设计这项单因素检验：只改变各项的归一化尺度。</h3>
+<details><summary>先作答，再展开核对</summary>
+
+
+只改变指定因素，固定数据划分与其余参数；用结构、系数/统计量和留出预测评价，并将结果联系到以下方法边界：
+• 依赖完整方程及各项可计算
+• 聚类数量和缩放影响分区
+• 所得局部平衡需要机理解释
+
+
+</details>
+
+<h2>作者代码与核查</h2>
+<p>代码信息为课程构建时的核查快照，可访问不等于已复现；没有定位到代码不等于作者没有公开。</p>
+<ul>
+<li><a href="https://github.com/dynamicslab/dominant-balance">https://github.com/dynamicslab/dominant-balance</a></li>
+</ul>
+<pre><code class="language-json">{
+  &quot;verified_status&quot;: &quot;public_verified&quot;,
+  &quot;entrypoints&quot;: [
+    {
+      &quot;path&quot;: &quot;notebooks&quot;,
+      &quot;basis&quot;: &quot;observed root path; not executed&quot;,
+      &quot;repository&quot;: &quot;https://github.com/dynamicslab/dominant-balance&quot;
+    },
+    {
+      &quot;command_excerpt&quot;: &quot;The method essentially uses out of the box `scikit-learn` algorithms, so this repository doesn't have a separate library for import.  All the Jupyter notebooks should basically be self-contained, provided the dependencies (below) are met. See Appendix A of the paper for detailed information on data provenance, but there are notebooks for the following examples:&quot;,
+      &quot;source_url&quot;: &quot;https://raw.githubusercontent.com/dynamicslab/dominant-balance/master/README.md&quot;,
+      &quot;line&quot;: 7,
+      &quot;basis&quot;: &quot;literal README instruction; not executed&quot;
+    }
+  ],
+  &quot;environment&quot;:
+    {
+      &quot;requirement_excerpt&quot;: &quot;The method essentially uses out of the box `scikit-learn` algorithms, so this repository doesn't have a separate library for import.  All the Jupyter notebooks should basically be self-contained, provided the dependencies (below) are met. See Appendix A of the paper for detailed information on data provenance, but there are notebooks for the following examples:&quot;,
+      &quot;source_url&quot;: &quot;https://raw.githubusercontent.com/dynamicslab/dominant-balance/master/README.md&quot;,
+      &quot;line&quot;: 7,
+      &quot;basis&quot;: &quot;literal README statement; environment not constructed&quot;
+    },
+    {
+      &quot;requirement_excerpt&quot;: &quot;Optical pulse propagation with the Generalized Nonlinear Schrodinger Equation.  MATLAB spectral solver code originally obtained [here, but modified scripts to run the solver, nondimensionalize the results, and extract the various terms from the solver are in the data folder.&quot;,
+      &quot;source_url&quot;: &quot;https://raw.githubusercontent.com/dynamicslab/dominant-balance/master/README.md&quot;,
+      &quot;line&quot;: 23,
+      &quot;basis&quot;: &quot;literal README statement; environment not constructed&quot;
+    },
+    {
+      &quot;requirement_excerpt&quot;: &quot;Surface currents in the Gulf of Mexico.  Data was downloaded from the [HYCOM](https://www.hycom.org/) group, but a MATLAB script to do the same is in the data folder.&quot;,
+      &quot;source_url&quot;: &quot;https://raw.githubusercontent.com/dynamicslab/dominant-balance/master/README.md&quot;,
+      &quot;line&quot;: 27,
+      &quot;basis&quot;: &quot;literal README statement; environment not constructed&quot;
+    },
+    {
+      &quot;requirement_excerpt&quot;: &quot;Generalized Hodgkin-Huxley model of an intrinsically bursting neuron.  Again, MATLAB scripts implementing the full model are in the data folder.&quot;,
+      &quot;source_url&quot;: &quot;https://raw.githubusercontent.com/dynamicslab/dominant-balance/master/README.md&quot;,
+      &quot;line&quot;: 31,
+      &quot;basis&quot;: &quot;literal README statement; environment not constructed&quot;
+    },
+    {
+      &quot;requirement_excerpt&quot;: &quot;__Dependencies:__&quot;,
+      &quot;source_url&quot;: &quot;https://raw.githubusercontent.com/dynamicslab/dominant-balance/master/README.md&quot;,
+      &quot;line&quot;: 37,
+      &quot;basis&quot;: &quot;literal README statement; environment not constructed&quot;
+    }
+  ],
+  &quot;blockers&quot;: [
+    &quot;paper-result T2 reproduction not run; public access or README inspection is not reproduction&quot;
+  ],
+  &quot;follow_up_actions&quot;: []
+}
+</code></pre>
+<h2>原文定位</h2>
+<p>以下为课程整理的结论和原文页码 / 块号索引，全文通过出版页面访问。</p></main></body></html>

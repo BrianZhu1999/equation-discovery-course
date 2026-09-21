@@ -1,0 +1,115 @@
+<!doctype html><html lang="zh-CN"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Discovering sparse interpretable dynamics from partial observations · 物理规律发现</title><link rel="stylesheet" href="../style.css"><link rel="stylesheet" href="../public.css"></head><body><main class="doc"><div class="links"><a href="../">返回课程</a><a href="../spectrum/">三维谱图</a></div><h1>P23 · Discovering sparse interpretable dynamics from partial observations</h1>
+<p>Peter Y. Lu; Joan Ariño Bernad; Marin Soljačić. Discovering sparse interpretable dynamics from partial observations. Communications Physics, 2022, 5(1). DOI: 10.1038/s42005-022-00987-z</p>
+<p><a href="https://doi.org/10.1038/s42005-022-00987-z">出版页面</a> · 第 16 天 · 坐标、流形与守恒</p>
+<h2>研究问题</h2>
+<p>从缺失一个或多个关键状态的观测中，同时重建隐变量并发现闭合、可解释的ODE/PDE。</p>
+<h2>规律表示</h2>
+<p>预定义多项式/导数候选库上的稀疏符号方程；损失同时匹配多个阶次的符号时间导数。</p>
+<h2>方法</h2>
+<p>联合优化隐状态编码器和稀疏系数，并将符号方程反复求时间导数，与观测的有限差分高阶导数匹配。</p>
+<h2>假设</h2>
+<p>• 预定义符号候选库
+• 稀疏性
+• 观测与隐状态组成闭合自治系统
+• 多阶时间导数一致性</p>
+<h2>必做推导</h2>
+<p>对仅观测位置的系统写出高阶时间导数链，解释如何用符号导数约束隐藏动力学。</p>
+<h2>复现目标</h2>
+<p>在作者代码中选一个支持核心结论的案例：• Rössler与Lorenz ODE
+• 扩散与扩散Lotka-Volterra PDE
+• 仅观测振幅的非线性Schrodinger方程。先运行小样例，再恢复该案例原文配置；运行前登记原文指标/目标图、统计量和容差，运行后交付结构或等价结构、系数/统计量、留出预测、耗时和日志。</p>
+<h2>单因素检验</h2>
+<p>只去掉一个观测通道。</p>
+<h2>适用范围与限制</h2>
+<p>• 高阶有限差分使方法对噪声敏感；作者指出显式积分式损失可能更稳健。
+• 当前符号候选库是预定义且有限的。
+• 相位嵌入随数据集大小增长，且不能直接映射未来隐藏状态。</p>
+<h2>闭卷自测</h2>
+<h3>1. P23 实际辨识的未知对象是什么，哪些对象预先给定？</h3>
+<details><summary>先作答，再展开核对</summary>
+
+
+从缺失一个或多个关键状态的观测中，同时重建隐变量并发现闭合、可解释的ODE/PDE。
+表示：预定义多项式/导数候选库上的稀疏符号方程；损失同时匹配多个阶次的符号时间导数。
+
+
+</details>
+
+<h3>2. P23 从数据到模型采用什么路线？按顺序解释各步骤。</h3>
+<details><summary>先作答，再展开核对</summary>
+
+
+联合优化隐状态编码器和稀疏系数，并将符号方程反复求时间导数，与观测的有限差分高阶导数匹配。
+
+
+</details>
+
+<h3>3. P23 哪些假设或限制使结果不能直接推广？至少说出两项。</h3>
+<details><summary>先作答，再展开核对</summary>
+
+
+• 预定义符号候选库
+• 稀疏性
+• 观测与隐状态组成闭合自治系统
+• 多阶时间导数一致性
+• 高阶有限差分使方法对噪声敏感；作者指出显式积分式损失可能更稳健。
+• 当前符号候选库是预定义且有限的。
+• 相位嵌入随数据集大小增长，且不能直接映射未来隐藏状态。
+
+
+</details>
+
+<h3>4. 怎样设计这项单因素检验：只去掉一个观测通道。</h3>
+<details><summary>先作答，再展开核对</summary>
+
+
+只改变指定因素，固定数据划分与其余参数；用结构、系数/统计量和留出预测评价，并将结果联系到以下方法边界：
+• 高阶有限差分使方法对噪声敏感；作者指出显式积分式损失可能更稳健。
+• 当前符号候选库是预定义且有限的。
+• 相位嵌入随数据集大小增长，且不能直接映射未来隐藏状态。
+
+
+</details>
+
+<h2>作者代码与核查</h2>
+<p>代码信息为课程构建时的核查快照，可访问不等于已复现；没有定位到代码不等于作者没有公开。</p>
+<ul>
+<li><a href="https://github.com/peterparity/symder">https://github.com/peterparity/symder</a></li>
+</ul>
+<pre><code class="language-json">{
+  &quot;verified_status&quot;: &quot;public_verified&quot;,
+  &quot;entrypoints&quot;: [],
+  &quot;environment&quot;: [
+    {
+      &quot;requirement_excerpt&quot;: &quot;## Requirements&quot;,
+      &quot;source_url&quot;: &quot;https://raw.githubusercontent.com/peterparity/symder/master/README.md&quot;,
+      &quot;line&quot;: 7,
+      &quot;basis&quot;: &quot;literal README statement; environment not constructed&quot;
+    }
+  ],
+  &quot;blockers&quot;: [
+    &quot;paper-result T2 reproduction not run; public access or README inspection is not reproduction&quot;,
+    &quot;no concrete execution entrypoint established by current root/README inspection&quot;
+  ],
+  &quot;follow_up_actions&quot;: []
+}
+</code></pre>
+<h2>原文定位</h2>
+<p>以下为课程整理的结论和原文页码 / 块号索引，全文通过出版页面访问。</p>
+<ul>
+<li>
+<p>Rössler和Lorenz隐藏状态的相对误差分别报告为4.6e-4和1.7e-3。（PDF 页 2；块号 P002-B014, P002-B015）</p>
+</li>
+<li>
+<p>扩散和扩散Lotka-Volterra PDE的隐藏场误差分别为1.4e-4和1.0e-3。（PDF 页 2；块号 P002-B016）</p>
+</li>
+<li>
+<p>非线性Schrodinger仅给振幅时，相位本身误差0.35，但相位梯度误差0.057，反映规范不可辨识。（PDF 页 4；块号 P004-B004）</p>
+</li>
+<li>
+<p>方法损失明确把符号方程的高阶时间导数与数据有限差分导数匹配。（PDF 页 6；块号 P006-B005, P006-B006, P006-B007, P006-B008, P006-B009, P006-B010, P006-B011）</p>
+</li>
+<li>
+<p>代码和生成实验脚本在symder仓库公开。（PDF 页 6；块号 P006-B015, P006-B016, P006-B017, P006-B018）</p>
+</li>
+</ul></main></body></html>

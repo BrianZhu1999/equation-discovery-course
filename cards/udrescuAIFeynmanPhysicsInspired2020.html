@@ -1,0 +1,150 @@
+<!doctype html><html lang="zh-CN"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>AI Feynman: a Physics-Inspired Method for Symbolic Regression · 物理规律发现</title><link rel="stylesheet" href="../style.css"><link rel="stylesheet" href="../public.css"></head><body><main class="doc"><div class="links"><a href="../">返回课程</a><a href="../spectrum/">三维谱图</a></div><h1>P03 · AI Feynman: a Physics-Inspired Method for Symbolic Regression</h1>
+<p>Silviu-Marian Udrescu; Max Tegmark. AI Feynman: a Physics-Inspired Method for Symbolic Regression. None, 2020, None. DOI: 10.48550/arXiv.1905.11481</p>
+<p><a href="https://doi.org/10.48550/arXiv.1905.11481">出版页面</a> · 第 18 天 · 符号搜索</p>
+<h2>研究问题</h2>
+<p>从多变量数值表恢复未知代数物理公式；论文主体不直接发现含导数或积分的ODE/PDE。</p>
+<h2>规律表示</h2>
+<p>由有限基本函数和常数组成的符号串/逆波兰表达式；复杂问题递归分解为更低维子表达式，再拼回完整公式。</p>
+<h2>方法</h2>
+<p>顺序尝试量纲分析、多项式拟合、按描述长度控制的暴力符号搜索、NN探测平移/尺度对称与加法/乘法可分性、变量相等及输出变换，并对简化后的子问题递归求解。</p>
+<h2>假设</h2>
+<p>• 量纲齐次性
+• 平移、尺度等对称性
+• 加法和乘法可分性
+• 组合性、简单常数与最短描述长度偏好</p>
+<h2>必做推导</h2>
+<p>对可分离函数 f(x,y)=g(x)h(y) 推导可检验的分解关系，区分数值检测和符号恒等。</p>
+<h2>复现目标</h2>
+<p>在作者代码中选一个支持核心结论的案例：• 100条Feynman Lectures公式
+• 20条Goldstein、Jackson、Weinberg和Schwartz等教材bonus公式
+• 独立文献中的任意组合函数测试集。先运行小样例，再恢复该案例原文配置；运行前登记原文指标/目标图、统计量和容差，运行后交付结构或等价结构、系数/统计量、留出预测、耗时和日志。</p>
+<h2>单因素检验</h2>
+<p>只把一个可分离项改成耦合项。</p>
+<h2>适用范围与限制</h2>
+<p>• 100条基础公式实际是开发训练集而非严格独立测试集。
+• 高动态范围会使NN错过可分性阈值；复杂串的暴力搜索可需数年甚至远超可行时间。
+• 在非物理、任意组合函数集上的恢复率降至66.7%，说明优势依赖物理式常见的对称和可分结构。
+• 未评估自变量噪声或真实数据，NN拟合本身会引入事实噪声。</p>
+<h2>闭卷自测</h2>
+<h3>1. P03 实际辨识的未知对象是什么，哪些对象预先给定？</h3>
+<details><summary>先作答，再展开核对</summary>
+
+
+从多变量数值表恢复未知代数物理公式；论文主体不直接发现含导数或积分的ODE/PDE。
+表示：由有限基本函数和常数组成的符号串/逆波兰表达式；复杂问题递归分解为更低维子表达式，再拼回完整公式。
+
+
+</details>
+
+<h3>2. P03 从数据到模型采用什么路线？按顺序解释各步骤。</h3>
+<details><summary>先作答，再展开核对</summary>
+
+
+顺序尝试量纲分析、多项式拟合、按描述长度控制的暴力符号搜索、NN探测平移/尺度对称与加法/乘法可分性、变量相等及输出变换，并对简化后的子问题递归求解。
+
+
+</details>
+
+<h3>3. P03 哪些假设或限制使结果不能直接推广？至少说出两项。</h3>
+<details><summary>先作答，再展开核对</summary>
+
+
+• 量纲齐次性
+• 平移、尺度等对称性
+• 加法和乘法可分性
+• 组合性、简单常数与最短描述长度偏好
+• 100条基础公式实际是开发训练集而非严格独立测试集。
+• 高动态范围会使NN错过可分性阈值；复杂串的暴力搜索可需数年甚至远超可行时间。
+• 在非物理、任意组合函数集上的恢复率降至66.7%，说明优势依赖物理式常见的对称和可分结构。
+• 未评估自变量噪声或真实数据，NN拟合本身会引入事实噪声。
+
+
+</details>
+
+<h3>4. 怎样设计这项单因素检验：只把一个可分离项改成耦合项。</h3>
+<details><summary>先作答，再展开核对</summary>
+
+
+只改变指定因素，固定数据划分与其余参数；用结构、系数/统计量和留出预测评价，并将结果联系到以下方法边界：
+• 100条基础公式实际是开发训练集而非严格独立测试集。
+• 高动态范围会使NN错过可分性阈值；复杂串的暴力搜索可需数年甚至远超可行时间。
+• 在非物理、任意组合函数集上的恢复率降至66.7%，说明优势依赖物理式常见的对称和可分结构。
+• 未评估自变量噪声或真实数据，NN拟合本身会引入事实噪声。
+
+
+</details>
+
+<h2>作者代码与核查</h2>
+<p>代码信息为课程构建时的核查快照，可访问不等于已复现；没有定位到代码不等于作者没有公开。</p>
+<ul>
+<li><a href="https://github.com/SJ001/AI-Feynman">https://github.com/SJ001/AI-Feynman</a></li>
+</ul>
+<pre><code class="language-json">{
+  &quot;verified_status&quot;: &quot;public_verified&quot;,
+  &quot;entrypoints&quot;: [
+    {
+      &quot;path&quot;: &quot;example_data&quot;,
+      &quot;basis&quot;: &quot;observed root path; not executed&quot;,
+      &quot;repository&quot;: &quot;https://github.com/SJ001/AI-Feynman&quot;
+    },
+    {
+      &quot;path&quot;: &quot;examples&quot;,
+      &quot;basis&quot;: &quot;observed root path; not executed&quot;,
+      &quot;repository&quot;: &quot;https://github.com/SJ001/AI-Feynman&quot;
+    },
+    {
+      &quot;command_excerpt&quot;: &quot;(e.g. python ai_feynman_terminal_example.py --pathdir=../example_data/ --filename=example1.txt). Use python ai_feynman_terminal_example.py --help to display all the available parameters that can be passed to the function.&quot;,
+      &quot;source_url&quot;: &quot;https://raw.githubusercontent.com/SJ001/AI-Feynman/master/README.md&quot;,
+      &quot;line&quot;: 57,
+      &quot;basis&quot;: &quot;literal README instruction; not executed&quot;
+    }
+  ],
+  &quot;environment&quot;: [
+    {
+      &quot;path&quot;: &quot;requirements.txt&quot;,
+      &quot;basis&quot;: &quot;observed dependency/config file; compatibility not tested&quot;,
+      &quot;repository&quot;: &quot;https://github.com/SJ001/AI-Feynman&quot;
+    },
+    {
+      &quot;path&quot;: &quot;setup.py&quot;,
+      &quot;basis&quot;: &quot;observed dependency/config file; compatibility not tested&quot;,
+      &quot;repository&quot;: &quot;https://github.com/SJ001/AI-Feynman&quot;
+    },
+    {
+      &quot;requirement_excerpt&quot;: &quot;First install numpy with `pip install numpy`.&quot;,
+      &quot;source_url&quot;: &quot;https://raw.githubusercontent.com/SJ001/AI-Feynman/master/README.md&quot;,
+      &quot;line&quot;: 8,
+      &quot;basis&quot;: &quot;literal README statement; environment not constructed&quot;
+    },
+    {
+      &quot;requirement_excerpt&quot;: &quot;The 'aifeynman' package is available on PyPI and can be installed with `pip install aifeynman`.&quot;,
+      &quot;source_url&quot;: &quot;https://raw.githubusercontent.com/SJ001/AI-Feynman/master/README.md&quot;,
+      &quot;line&quot;: 9,
+      &quot;basis&quot;: &quot;literal README statement; environment not constructed&quot;
+    }
+  ],
+  &quot;blockers&quot;: [
+    &quot;paper-result T2 reproduction not run; public access or README inspection is not reproduction&quot;
+  ],
+  &quot;follow_up_actions&quot;: []
+}
+</code></pre>
+<h2>原文定位</h2>
+<p>以下为课程整理的结论和原文页码 / 块号索引，全文通过出版页面访问。</p>
+<ul>
+<li>
+<p>FSReD的每题包含数据表、单位表和真方程；100条基础式来自Feynman讲义，另有20条复杂bonus式，通常每题10^5个采样点。（PDF 页 7；块号 P007-B002, P007-B003, P007-B004, P007-B006, P007-B007, P007-B008）</p>
+</li>
+<li>
+<p>在每题最多2小时预算下，AI Feynman恢复100条基础公式的100%，Eureqa为71%；去掉量纲分析仍恢复93%，显示NN结构分解并非只依赖单位信息。（PDF 页 10；块号 P010-B004, P010-B006, P010-B009）</p>
+</li>
+<li>
+<p>多数简单式10个点即可恢复，NN参与的复杂式需10^2至10^6点；近半公式在1%因变量噪声下仍被精确求解。（PDF 页 11；块号 P011-B006, P011-B008, P011-B009, P011-B010, P011-B011）</p>
+</li>
+<li>
+<p>20条冻结后bonus式的恢复率为90%，Eureqa为15%；两次失败分别暴露暴力串长度、动态范围和符号表选择问题。（PDF 页 12；块号 P012-B002, P012-B003, P012-B004, P012-B005, P012-B006）</p>
+</li>
+<li>
+<p>代码、FSReD和结论所需数据在项目网站及GitHub公开。（PDF 页 13；块号 P013-B013）</p>
+</li>
+</ul></main></body></html>

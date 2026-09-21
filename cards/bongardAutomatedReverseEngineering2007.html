@@ -1,0 +1,116 @@
+<!doctype html><html lang="zh-CN"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Automated reverse engineering of nonlinear dynamical systems · 物理规律发现</title><link rel="stylesheet" href="../style.css"><link rel="stylesheet" href="../public.css"></head><body><main class="doc"><div class="links"><a href="../">返回课程</a><a href="../spectrum/">三维谱图</a></div><h1>P09 · Automated reverse engineering of nonlinear dynamical systems</h1>
+<p>Josh Bongard; Hod Lipson. Automated reverse engineering of nonlinear dynamical systems. Proceedings of the National Academy of Sciences, 2007, 104(24): 9943-9948. DOI: 10.1073/pnas.0609476104</p>
+<p><a href="https://doi.org/10.1073/pnas.0609476104">出版页面</a> · 第 2 天 · 基础与稀疏表示</p>
+<h2>研究问题</h2>
+<p>从可主动扰动的系统或已有含噪时间序列中，自动反演多变量耦合非线性ODE结构，并提高搜索规模和模型简洁性。</p>
+<h2>规律表示</h2>
+<p>每个状态方程由嵌套数学子表达式构成的自由形式符号树表示，多个方程共同组成动力系统模型。</p>
+<h2>方法</h2>
+<p>partitioning分解变量方程搜索；主动probing在候选模型预测分歧最大的初值处获取新数据；snipping把输出近常数的臃肿子树替换为常数，迭代演化精度和简洁性。</p>
+<h2>假设</h2>
+<p>• 系统可由全可观测状态上的耦合ODE描述
+• 候选模型分歧最大的实验最有判别力
+• 不同状态方程可分区优化后组合
+• 近常数子表达式多为过拟合膨胀，可被snipping简化</p>
+<h2>必做推导</h2>
+<p>写出模型群体、轨迹仿真误差和下一轮数据选择之间的循环，列出需要先验给定的算子。</p>
+<h2>复现目标</h2>
+<p>在作者代码中选一个支持核心结论的案例：• 单摆
+• Lotka-Volterra种间竞争
+• 高阶衰减系统
+• 大肠杆菌lac操纵子模型
+• 雪兔-加拿大猞猁历史种群
+• 不同支座角度的真实物理摆
+• 18个随机稳定非线性系统。先运行小样例，再恢复该案例原文配置；运行前登记原文指标/目标图、统计量和容差，运行后交付结构或等价结构、系数/统计量、留出预测、耗时和日志。</p>
+<h2>单因素检验</h2>
+<p>只更换用于检验的初始条件。</p>
+<h2>适用范围与限制</h2>
+<p>• 验证规模最高六个变量，仍比系统生物学中数百或数千组分低多个数量级。
+• 当前框架要求全部状态变量可观测；未观测变量会使受其影响的方程持续保持高误差。
+• 离散采样频率可能使某些不同结构在观测时刻不可区分，并对识别结构产生偏置。</p>
+<h2>闭卷自测</h2>
+<h3>1. P09 实际辨识的未知对象是什么，哪些对象预先给定？</h3>
+<details><summary>先作答，再展开核对</summary>
+
+
+从可主动扰动的系统或已有含噪时间序列中，自动反演多变量耦合非线性ODE结构，并提高搜索规模和模型简洁性。
+表示：每个状态方程由嵌套数学子表达式构成的自由形式符号树表示，多个方程共同组成动力系统模型。
+
+
+</details>
+
+<h3>2. P09 从数据到模型采用什么路线？按顺序解释各步骤。</h3>
+<details><summary>先作答，再展开核对</summary>
+
+
+partitioning分解变量方程搜索；主动probing在候选模型预测分歧最大的初值处获取新数据；snipping把输出近常数的臃肿子树替换为常数，迭代演化精度和简洁性。
+
+
+</details>
+
+<h3>3. P09 哪些假设或限制使结果不能直接推广？至少说出两项。</h3>
+<details><summary>先作答，再展开核对</summary>
+
+
+• 系统可由全可观测状态上的耦合ODE描述
+• 候选模型分歧最大的实验最有判别力
+• 不同状态方程可分区优化后组合
+• 近常数子表达式多为过拟合膨胀，可被snipping简化
+• 验证规模最高六个变量，仍比系统生物学中数百或数千组分低多个数量级。
+• 当前框架要求全部状态变量可观测；未观测变量会使受其影响的方程持续保持高误差。
+• 离散采样频率可能使某些不同结构在观测时刻不可区分，并对识别结构产生偏置。
+
+
+</details>
+
+<h3>4. 怎样设计这项单因素检验：只更换用于检验的初始条件。</h3>
+<details><summary>先作答，再展开核对</summary>
+
+
+只改变指定因素，固定数据划分与其余参数；用结构、系数/统计量和留出预测评价，并将结果联系到以下方法边界：
+• 验证规模最高六个变量，仍比系统生物学中数百或数千组分低多个数量级。
+• 当前框架要求全部状态变量可观测；未观测变量会使受其影响的方程持续保持高误差。
+• 离散采样频率可能使某些不同结构在观测时刻不可区分，并对识别结构产生偏置。
+
+
+</details>
+
+<h2>作者代码与核查</h2>
+<p>代码信息为课程构建时的核查快照，可访问不等于已复现；没有定位到代码不等于作者没有公开。</p>
+<pre><code class="language-json">{
+  &quot;verified_status&quot;: &quot;unverified&quot;,
+  &quot;entrypoints&quot;: [],
+  &quot;environment&quot;: [],
+  &quot;blockers&quot;: [
+    &quot;author code not found in inspected local source; this does not establish that code does not exist&quot;,
+    &quot;required code-discovery queue remains open; missing PDF URL is not evidence of missing author code&quot;
+  ],
+  &quot;follow_up_actions&quot;: [
+    &quot;Check publisher code/data availability and supplementary attachments&quot;,
+    &quot;Follow first/corresponding author project page; verify paper title/DOI in the repository before accepting it&quot;,
+    &quot;Record author-code link or a dated availability boundary; do not close this task because PDF transcription lacks a URL&quot;
+  ]
+}
+</code></pre>
+<h2>原文定位</h2>
+<p>以下为课程整理的结论和原文页码 / 块号索引，全文通过出版页面访问。</p>
+<ul>
+<li>
+<p>partitioning逐个状态方程搜索，并在积分某一方程时用真实数据替代其他变量；候选模型由用户给定运算符和操作数组成的嵌套符号ODE集合。（PDF 页 5；块号 P005-B013, P005-B014, P005-B015）</p>
+</li>
+<li>
+<p>自动probing选择使候选模型预测分歧最大的初值或时间片；snipping则把运行中输出范围很窄的子表达式替换为常数。（PDF 页 6；块号 P006-B002, P006-B003, P006-B004）</p>
+</li>
+<li>
+<p>四个合成系统均加入幅值0.08的均匀噪声并各运行30次；最佳和中位结果显示简单系统可精确恢复，而高次系统的中位模型明显更复杂。（PDF 页 2；块号 P002-B005, P002-B008）</p>
+</li>
+<li>
+<p>四种算法变体各进行30次试验，组合partitioning、自动probing和snipping后总体建模误差最低；典型摆试验显示probing淘汰结构错误近似，而snipping得到紧凑表达式。（PDF 页 4；块号 P004-B002, P004-B003, P004-B004, P004-B006, P004-B007）</p>
+</li>
+<li>
+<p>真实生态和物理系统的重复试验平均约82%收敛到共同结构，但因真实系统真方程未知，证据是与现有解释结构相似而非精确真值恢复。（PDF 页 4；块号 P004-B008, P004-B009, P004-B010, P004-B011, P004-B012）</p>
+</li>
+<li>
+<p>18个随机系统的规模试验中，完整算法在至多六变量时平均71%的试验找到精确解；无partitioning对照仅曾识别其中一个系统。（PDF 页 5；块号 P005-B001）</p>
+</li>
+</ul></main></body></html>

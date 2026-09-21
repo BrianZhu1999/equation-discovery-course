@@ -1,0 +1,133 @@
+<!doctype html><html lang="zh-CN"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Rapid Bayesian identification of sparse nonlinear dynamics from scarce and noisy data · 物理规律发现</title><link rel="stylesheet" href="../style.css"><link rel="stylesheet" href="../public.css"></head><body><main class="doc"><div class="links"><a href="../">返回课程</a><a href="../spectrum/">三维谱图</a></div><h1>P36 · Rapid Bayesian identification of sparse nonlinear dynamics from scarce and noisy data</h1>
+<p>Lloyd Fung; Urban Fasel; Matthew Juniper. Rapid Bayesian identification of sparse nonlinear dynamics from scarce and noisy data. Proceedings of the Royal Society A: Mathematical, Physical and Engineering Sciences, 2025, 481(2307). DOI: 10.1098/rspa.2024.0200</p>
+<p><a href="https://doi.org/10.1098/rspa.2024.0200">出版页面</a> · 第 5 天 · 统计选择与弱形式</p>
+<h2>研究问题</h2>
+<p>在采样稀少、观测噪声较强且需要快速计算的条件下，从候选函数库中选择ODE/PDE稀疏结构，并同时估计参数不确定性。</p>
+<h2>规律表示</h2>
+<p>预定义到三阶的多项式候选库及稀疏系数向量；结构由保留的列决定，系数后验在高斯先验和近似高斯异方差似然下解析计算。</p>
+<h2>方法</h2>
+<p>把观测噪声方差传播到导数和每个非线性候选项，噪声方差随系数迭代更新；从全模型出发，以边际似然增益逐项后向删除，直到继续删除不能提高证据。</p>
+<h2>假设</h2>
+<p>• 稀疏多项式候选库
+• 零均值高斯系数先验及由证据设定的先验尺度
+• 已知观测噪声方差传播模型
+• 主动采样中以预期信息增益选择新观测点</p>
+<h2>必做推导</h2>
+<p>区分系数后验、模型证据与阈值删项；写出一个线性高斯后验的均值与协方差。</p>
+<h2>复现目标</h2>
+<p>在作者代码中选一个支持核心结论的案例：• 标量非线性系统、Van der Pol振子和Lorenz系统
+• Hudson Bay Company 1900-1920猞猁-野兔皮毛交易数据
+• 有限差分与弱形式合成比较
+• 基于信息增益的顺序主动采样。先运行小样例，再恢复该案例原文配置；运行前登记原文指标/目标图、统计量和容差，运行后交付结构或等价结构、系数/统计量、留出预测、耗时和日志。</p>
+<h2>单因素检验</h2>
+<p>只改变稀疏先验强度。</p>
+<h2>适用范围与限制</h2>
+<p>• 后向贪心删除复杂度为O(M^2/2)，虽远低于穷举，却不保证全局证据最大值，可能过早删除真项。
+• 独立性、对角协方差与高斯近似在低信噪比或高度偏斜噪声下不可靠；作者建议此时改用更昂贵的采样方法。</p>
+<h2>闭卷自测</h2>
+<h3>1. P36 实际辨识的未知对象是什么，哪些对象预先给定？</h3>
+<details><summary>先作答，再展开核对</summary>
+
+
+在采样稀少、观测噪声较强且需要快速计算的条件下，从候选函数库中选择ODE/PDE稀疏结构，并同时估计参数不确定性。
+表示：预定义到三阶的多项式候选库及稀疏系数向量；结构由保留的列决定，系数后验在高斯先验和近似高斯异方差似然下解析计算。
+
+
+</details>
+
+<h3>2. P36 从数据到模型采用什么路线？按顺序解释各步骤。</h3>
+<details><summary>先作答，再展开核对</summary>
+
+
+把观测噪声方差传播到导数和每个非线性候选项，噪声方差随系数迭代更新；从全模型出发，以边际似然增益逐项后向删除，直到继续删除不能提高证据。
+
+
+</details>
+
+<h3>3. P36 哪些假设或限制使结果不能直接推广？至少说出两项。</h3>
+<details><summary>先作答，再展开核对</summary>
+
+
+• 稀疏多项式候选库
+• 零均值高斯系数先验及由证据设定的先验尺度
+• 已知观测噪声方差传播模型
+• 主动采样中以预期信息增益选择新观测点
+• 后向贪心删除复杂度为O(M^2/2)，虽远低于穷举，却不保证全局证据最大值，可能过早删除真项。
+• 独立性、对角协方差与高斯近似在低信噪比或高度偏斜噪声下不可靠；作者建议此时改用更昂贵的采样方法。
+
+
+</details>
+
+<h3>4. 怎样设计这项单因素检验：只改变稀疏先验强度。</h3>
+<details><summary>先作答，再展开核对</summary>
+
+
+只改变指定因素，固定数据划分与其余参数；用结构、系数/统计量和留出预测评价，并将结果联系到以下方法边界：
+• 后向贪心删除复杂度为O(M^2/2)，虽远低于穷举，却不保证全局证据最大值，可能过早删除真项。
+• 独立性、对角协方差与高斯近似在低信噪比或高度偏斜噪声下不可靠；作者建议此时改用更昂贵的采样方法。
+
+
+</details>
+
+<h2>作者代码与核查</h2>
+<p>代码信息为课程构建时的核查快照，可访问不等于已复现；没有定位到代码不等于作者没有公开。</p>
+<ul>
+<li><a href="https://github.com/llfung/B-SINDy">https://github.com/llfung/B-SINDy</a></li>
+</ul>
+<pre><code class="language-json">{
+  &quot;verified_status&quot;: &quot;public_verified&quot;,
+  &quot;entrypoints&quot;: [
+    {
+      &quot;path&quot;: &quot;Lorenz.m&quot;,
+      &quot;basis&quot;: &quot;observed root path; not executed&quot;,
+      &quot;repository&quot;: &quot;https://github.com/llfung/B-SINDy&quot;
+    },
+    {
+      &quot;path&quot;: &quot;LotkaVolterra.m&quot;,
+      &quot;basis&quot;: &quot;observed root path; not executed&quot;,
+      &quot;repository&quot;: &quot;https://github.com/llfung/B-SINDy&quot;
+    },
+    {
+      &quot;path&quot;: &quot;NonlinearOscillator.m&quot;,
+      &quot;basis&quot;: &quot;observed root path; not executed&quot;,
+      &quot;repository&quot;: &quot;https://github.com/llfung/B-SINDy&quot;
+    },
+    {
+      &quot;path&quot;: &quot;VanDerPol.m&quot;,
+      &quot;basis&quot;: &quot;observed root path; not executed&quot;,
+      &quot;repository&quot;: &quot;https://github.com/llfung/B-SINDy&quot;
+    }
+  ],
+  &quot;environment&quot;: [
+    {
+      &quot;requirement_excerpt&quot;: &quot;1. Run one of the `.m` script in MATLAB at the top level folder and start exploring!&quot;,
+      &quot;source_url&quot;: &quot;https://raw.githubusercontent.com/llfung/B-SINDy/main/README.md&quot;,
+      &quot;line&quot;: 16,
+      &quot;basis&quot;: &quot;literal README statement; environment not constructed&quot;
+    }
+  ],
+  &quot;blockers&quot;: [
+    &quot;paper-result T2 reproduction not run; public access or README inspection is not reproduction&quot;
+  ],
+  &quot;follow_up_actions&quot;: []
+}
+</code></pre>
+<h2>原文定位</h2>
+<p>以下为课程整理的结论和原文页码 / 块号索引，全文通过出版页面访问。</p>
+<ul>
+<li>
+<p>方法明确放弃完整噪声分布，采用候选项独立、时间点独立、对角协方差与高斯近似，以换取可用于实时发现的低成本方差传播。（PDF 页 5；块号 P005-B003, P005-B004, P005-B005, P005-B011）</p>
+</li>
+<li>
+<p>前三个合成例跨采样率与噪声各重复10,000次，只有结构完全正确且系数误差低于25%才计为成功。（PDF 页 10；块号 P010-B006）</p>
+</li>
+<li>
+<p>在高噪短窗Lorenz例中三种方法都不能精确恢复；作者把失败定位为轨迹未采到可区分共线x1和x2项的区域，延长时间窗后Bayesian-SINDy才恢复。（PDF 页 13；块号 P013-B010）</p>
+</li>
+<li>
+<p>21点猞猁-野兔数据上，以证据扫描选择观测噪声尺度后恢复Lotka-Volterra结构，并从解析后验给出系数标准差和95%重建带；SINDy与SparseBayes未得到一致结构。（PDF 页 15；块号 P015-B003, P015-B005, P015-B008）</p>
+</li>
+<li>
+<p>信息增益主动采样在Van der Pol的29点及Lorenz的151点处恢复完整模型，并把样本集中到尖峰或共线项最可区分区域。（PDF 页 21；块号 P021-B004）</p>
+</li>
+</ul></main></body></html>

@@ -1,0 +1,169 @@
+<!doctype html><html lang="zh-CN"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Discovering conservation laws using optimal transport and manifold learning · 物理规律发现</title><link rel="stylesheet" href="../style.css"><link rel="stylesheet" href="../public.css"></head><body><main class="doc"><div class="links"><a href="../">返回课程</a><a href="../spectrum/">三维谱图</a></div><h1>P26 · Discovering conservation laws using optimal transport and manifold learning</h1>
+<p>Peter Y. Lu; Rumen Dangovski; Marin Soljačić. Discovering conservation laws using optimal transport and manifold learning. Nature Communications, 2023, 14(1). DOI: 10.1038/s41467-023-40325-7</p>
+<p><a href="https://doi.org/10.1038/s41467-023-40325-7">出版页面</a> · 第 17 天 · 坐标、流形与守恒</p>
+<h2>研究问题</h2>
+<p>无需方程、时间导数或预设符号形式，从多条轨迹的经验分布发现守恒量坐标。</p>
+<h2>规律表示</h2>
+<p>守恒量以轨迹分布流形的扩散映射坐标或其非线性重参数化表示，不输出显式解析公式。</p>
+<h2>方法</h2>
+<p>计算全体轨迹的最优传输距离，做diffusion maps嵌入，再以相关性、可预测性和冗余的启发式评分选择坐标数。</p>
+<h2>假设</h2>
+<p>• 同一守恒等值面上的轨迹具有稳定物理测度
+• Wasserstein地面度量能表达物理相似性
+• 多轨迹覆盖不同守恒值
+• 低维流形假设</p>
+<h2>必做推导</h2>
+<p>对两个均匀圆轨道算 Wasserstein 距离，再说明扩散映射坐标为何只确定守恒量的重参数化。</p>
+<h2>复现目标</h2>
+<p>在作者代码中选一个支持核心结论的案例：• 完整与仅位置观测的简谐振子
+• 含噪单摆
+• 平面引力
+• 周期Turing系统
+• KdV方程。先运行小样例，再恢复该案例原文配置；运行前登记原文指标/目标图、统计量和容差，运行后交付结构或等价结构、系数/统计量、留出预测、耗时和日志。</p>
+<h2>单因素检验</h2>
+<p>只减少每条轨迹的覆盖时间。</p>
+<h2>适用范围与限制</h2>
+<p>• 方法不输出守恒量的显式符号表达式。
+• 需要每个等值面上的轨迹近似其遍历物理测度。
+• 流形拓扑或相变可使扩散坐标数不同于独立守恒量数。
+• 地面度量与单位决定显著性，Wasserstein距离受采样不均影响。</p>
+<h2>闭卷自测</h2>
+<h3>1. P26 实际辨识的未知对象是什么，哪些对象预先给定？</h3>
+<details><summary>先作答，再展开核对</summary>
+
+
+无需方程、时间导数或预设符号形式，从多条轨迹的经验分布发现守恒量坐标。
+表示：守恒量以轨迹分布流形的扩散映射坐标或其非线性重参数化表示，不输出显式解析公式。
+
+
+</details>
+
+<h3>2. P26 从数据到模型采用什么路线？按顺序解释各步骤。</h3>
+<details><summary>先作答，再展开核对</summary>
+
+
+计算全体轨迹的最优传输距离，做diffusion maps嵌入，再以相关性、可预测性和冗余的启发式评分选择坐标数。
+
+
+</details>
+
+<h3>3. P26 哪些假设或限制使结果不能直接推广？至少说出两项。</h3>
+<details><summary>先作答，再展开核对</summary>
+
+
+• 同一守恒等值面上的轨迹具有稳定物理测度
+• Wasserstein地面度量能表达物理相似性
+• 多轨迹覆盖不同守恒值
+• 低维流形假设
+• 方法不输出守恒量的显式符号表达式。
+• 需要每个等值面上的轨迹近似其遍历物理测度。
+• 流形拓扑或相变可使扩散坐标数不同于独立守恒量数。
+• 地面度量与单位决定显著性，Wasserstein距离受采样不均影响。
+
+
+</details>
+
+<h3>4. 怎样设计这项单因素检验：只减少每条轨迹的覆盖时间。</h3>
+<details><summary>先作答，再展开核对</summary>
+
+
+只改变指定因素，固定数据划分与其余参数；用结构、系数/统计量和留出预测评价，并将结果联系到以下方法边界：
+• 方法不输出守恒量的显式符号表达式。
+• 需要每个等值面上的轨迹近似其遍历物理测度。
+• 流形拓扑或相变可使扩散坐标数不同于独立守恒量数。
+• 地面度量与单位决定显著性，Wasserstein距离受采样不均影响。
+
+
+</details>
+
+<h2>作者代码与核查</h2>
+<p>代码信息为课程构建时的核查快照，可访问不等于已复现；没有定位到代码不等于作者没有公开。</p>
+<ul>
+<li><a href="https://github.com/peterparity/conservation-laws-manifold-learning">https://github.com/peterparity/conservation-laws-manifold-learning</a></li>
+</ul>
+<pre><code class="language-json">{
+  &quot;verified_status&quot;: &quot;public_verified&quot;,
+  &quot;entrypoints&quot;: [
+    {
+      &quot;path&quot;: &quot;double_pendulum.ipynb&quot;,
+      &quot;basis&quot;: &quot;observed root path; not executed&quot;,
+      &quot;repository&quot;: &quot;https://github.com/peterparity/conservation-laws-manifold-learning&quot;
+    },
+    {
+      &quot;path&quot;: &quot;kdv.ipynb&quot;,
+      &quot;basis&quot;: &quot;observed root path; not executed&quot;,
+      &quot;repository&quot;: &quot;https://github.com/peterparity/conservation-laws-manifold-learning&quot;
+    },
+    {
+      &quot;path&quot;: &quot;kdv_nonlocal.ipynb&quot;,
+      &quot;basis&quot;: &quot;observed root path; not executed&quot;,
+      &quot;repository&quot;: &quot;https://github.com/peterparity/conservation-laws-manifold-learning&quot;
+    },
+    {
+      &quot;path&quot;: &quot;langevin_sho.ipynb&quot;,
+      &quot;basis&quot;: &quot;observed root path; not executed&quot;,
+      &quot;repository&quot;: &quot;https://github.com/peterparity/conservation-laws-manifold-learning&quot;
+    },
+    {
+      &quot;path&quot;: &quot;pendulum.ipynb&quot;,
+      &quot;basis&quot;: &quot;observed root path; not executed&quot;,
+      &quot;repository&quot;: &quot;https://github.com/peterparity/conservation-laws-manifold-learning&quot;
+    },
+    {
+      &quot;path&quot;: &quot;planar_orbits.ipynb&quot;,
+      &quot;basis&quot;: &quot;observed root path; not executed&quot;,
+      &quot;repository&quot;: &quot;https://github.com/peterparity/conservation-laws-manifold-learning&quot;
+    },
+    {
+      &quot;path&quot;: &quot;sho.ipynb&quot;,
+      &quot;basis&quot;: &quot;observed root path; not executed&quot;,
+      &quot;repository&quot;: &quot;https://github.com/peterparity/conservation-laws-manifold-learning&quot;
+    },
+    {
+      &quot;path&quot;: &quot;turing.ipynb&quot;,
+      &quot;basis&quot;: &quot;observed root path; not executed&quot;,
+      &quot;repository&quot;: &quot;https://github.com/peterparity/conservation-laws-manifold-learning&quot;
+    }
+  ],
+  &quot;environment&quot;: [
+    {
+      &quot;path&quot;: &quot;Manifest.toml&quot;,
+      &quot;basis&quot;: &quot;observed dependency/config file; compatibility not tested&quot;,
+      &quot;repository&quot;: &quot;https://github.com/peterparity/conservation-laws-manifold-learning&quot;
+    },
+    {
+      &quot;path&quot;: &quot;Project.toml&quot;,
+      &quot;basis&quot;: &quot;observed dependency/config file; compatibility not tested&quot;,
+      &quot;repository&quot;: &quot;https://github.com/peterparity/conservation-laws-manifold-learning&quot;
+    },
+    {
+      &quot;path&quot;: &quot;requirements.txt&quot;,
+      &quot;basis&quot;: &quot;observed dependency/config file; compatibility not tested&quot;,
+      &quot;repository&quot;: &quot;https://github.com/peterparity/conservation-laws-manifold-learning&quot;
+    }
+  ],
+  &quot;blockers&quot;: [
+    &quot;paper-result T2 reproduction not run; public access or README inspection is not reproduction&quot;
+  ],
+  &quot;follow_up_actions&quot;: []
+}
+</code></pre>
+<h2>原文定位</h2>
+<p>以下为课程整理的结论和原文页码 / 块号索引，全文通过出版页面访问。</p>
+<ul>
+<li>
+<p>核心流程只需轨迹分布的Wasserstein几何，不依赖时间导数或已知动力学。（PDF 页 2；块号 P002-B004, P002-B005, P002-B006）</p>
+</li>
+<li>
+<p>简谐振子完整状态与仅位置观测分别得到R2=0.9995和0.9961的能量坐标。（PDF 页 4；块号 P004-B004, P004-B005, P004-B006, P004-B007, P004-B008）</p>
+</li>
+<li>
+<p>单摆在sigma=0.5噪声下，发现坐标与真能量秩相关0.9978。（PDF 页 5；块号 P005-B006）</p>
+</li>
+<li>
+<p>KdV案例的三个局部守恒量与真值秩相关分别为0.995、0.994和0.985。（PDF 页 7；块号 P007-B005, P007-B006, P007-B007, P007-B008, P007-B009, P007-B010）</p>
+</li>
+<li>
+<p>代码、数据与运行环境在GitHub和Zenodo公开。（PDF 页 9；块号 P009-B014, P009-B015, P009-B016）</p>
+</li>
+</ul></main></body></html>

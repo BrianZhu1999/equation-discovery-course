@@ -1,0 +1,137 @@
+<!doctype html><html lang="zh-CN"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Data-driven discovery of coordinates and governing equations · 物理规律发现</title><link rel="stylesheet" href="../style.css"><link rel="stylesheet" href="../public.css"></head><body><main class="doc"><div class="links"><a href="../">返回课程</a><a href="../spectrum/">三维谱图</a></div><h1>P31 · Data-driven discovery of coordinates and governing equations</h1>
+<p>Kathleen Champion; Bethany Lusch; J. Nathan Kutz; Steven L. Brunton. Data-driven discovery of coordinates and governing equations. Proceedings of the National Academy of Sciences, 2019, 116(45): 22445-22451. DOI: 10.1073/pnas.1906995116</p>
+<p><a href="https://doi.org/10.1073/pnas.1906995116">出版页面</a> · 第 15 天 · 坐标、流形与守恒</p>
+<h2>研究问题</h2>
+<p>从高维、非线性混合观测中找到允许简洁动力学的潜坐标，并同时识别闭式ODE。</p>
+<h2>规律表示</h2>
+<p>潜空间中预定义多项式或三角函数候选库的SINDy稀疏组合，一阶或二阶方程均可。</p>
+<h2>方法</h2>
+<p>联合最小化状态重建、潜空间SINDy残差、观测空间导数一致性和L1稀疏损失；训练中周期性顺序阈值近似L0。</p>
+<h2>假设</h2>
+<p>• 低维瓶颈
+• 预定义SINDy库
+• 潜动力学稀疏
+• 坐标映射可由前馈网络表示
+• 重建与导数一致性</p>
+<h2>必做推导</h2>
+<p>推导 z′=Dencoder(x)x′ 与 decoder 方向的一致性损失，解释坐标规范自由度。</p>
+<h2>复现目标</h2>
+<p>在作者代码中选一个支持核心结论的案例：• 128维非线性Lorenz观测
+• 10000维lambda-omega反应扩散快照
+• 非线性摆合成视频。先运行小样例，再恢复该案例原文配置；运行前登记原文指标/目标图、统计量和容差，运行后交付结构或等价结构、系数/统计量、留出预测、耗时和日志。</p>
+<h2>单因素检验</h2>
+<p>只更换网络初始化，比较坐标等价后的方程。</p>
+<h2>适用范围与限制</h2>
+<p>• 当前方法要求近似无噪的干净测量，因为连续时间SINDy依赖可靠导数。
+• 学得的autoencoder坐标可能不能泛化到远离训练分布的状态。
+• 混沌Lorenz长期相位因参数和初值敏感而很快偏离。</p>
+<h2>闭卷自测</h2>
+<h3>1. P31 实际辨识的未知对象是什么，哪些对象预先给定？</h3>
+<details><summary>先作答，再展开核对</summary>
+
+
+从高维、非线性混合观测中找到允许简洁动力学的潜坐标，并同时识别闭式ODE。
+表示：潜空间中预定义多项式或三角函数候选库的SINDy稀疏组合，一阶或二阶方程均可。
+
+
+</details>
+
+<h3>2. P31 从数据到模型采用什么路线？按顺序解释各步骤。</h3>
+<details><summary>先作答，再展开核对</summary>
+
+
+联合最小化状态重建、潜空间SINDy残差、观测空间导数一致性和L1稀疏损失；训练中周期性顺序阈值近似L0。
+
+
+</details>
+
+<h3>3. P31 哪些假设或限制使结果不能直接推广？至少说出两项。</h3>
+<details><summary>先作答，再展开核对</summary>
+
+
+• 低维瓶颈
+• 预定义SINDy库
+• 潜动力学稀疏
+• 坐标映射可由前馈网络表示
+• 重建与导数一致性
+• 当前方法要求近似无噪的干净测量，因为连续时间SINDy依赖可靠导数。
+• 学得的autoencoder坐标可能不能泛化到远离训练分布的状态。
+• 混沌Lorenz长期相位因参数和初值敏感而很快偏离。
+
+
+</details>
+
+<h3>4. 怎样设计这项单因素检验：只更换网络初始化，比较坐标等价后的方程。</h3>
+<details><summary>先作答，再展开核对</summary>
+
+
+只改变指定因素，固定数据划分与其余参数；用结构、系数/统计量和留出预测评价，并将结果联系到以下方法边界：
+• 当前方法要求近似无噪的干净测量，因为连续时间SINDy依赖可靠导数。
+• 学得的autoencoder坐标可能不能泛化到远离训练分布的状态。
+• 混沌Lorenz长期相位因参数和初值敏感而很快偏离。
+
+
+</details>
+
+<h2>作者代码与核查</h2>
+<p>代码信息为课程构建时的核查快照，可访问不等于已复现；没有定位到代码不等于作者没有公开。</p>
+<ul>
+<li><a href="https://github.com/kpchamp/SindyAutoencoders">https://github.com/kpchamp/SindyAutoencoders</a></li>
+</ul>
+<pre><code class="language-json">{
+  &quot;verified_status&quot;: &quot;public_verified&quot;,
+  &quot;entrypoints&quot;: [
+    {
+      &quot;path&quot;: &quot;examples&quot;,
+      &quot;basis&quot;: &quot;observed root path; not executed&quot;,
+      &quot;repository&quot;: &quot;https://github.com/kpchamp/SindyAutoencoders&quot;
+    },
+    {
+      &quot;command_excerpt&quot;: &quot;The paper contains results for three example problems based on the Lorenz system, a reaction-diffusion system, and the nonlinear pendulum. Code for each example can be found in the respective subfolder in the examples folder. For each example, there are jupyter notebooks for (1) running the training procedure and (2) analyzing the resulting models.&quot;,
+      &quot;source_url&quot;: &quot;https://raw.githubusercontent.com/kpchamp/SindyAutoencoders/master/README.md&quot;,
+      &quot;line&quot;: 5,
+      &quot;basis&quot;: &quot;literal README instruction; not executed&quot;
+    },
+    {
+      &quot;command_excerpt&quot;: &quot;Our training procedure can be replicated using the jupyter notebooks in each folder, which will run ten instances of the training and produce ten models. Running the notebook will also produce summary output, saved in a Pandas dataframe. The information saved in the dataframe can be used to compare among models. In the paper, we perform a model selection among the resulting models and select a subset of the models to highlight. Our model selection procedure is described in the appendix, along with a detailed description of the training procedure.&quot;,
+      &quot;source_url&quot;: &quot;https://raw.githubusercontent.com/kpchamp/SindyAutoencoders/master/README.md&quot;,
+      &quot;line&quot;: 7,
+      &quot;basis&quot;: &quot;literal README instruction; not executed&quot;
+    },
+    {
+      &quot;command_excerpt&quot;: &quot;For each example, we also include jupyter notebooks to analyze the resulting models. These notebooks produce plots of the results and print out summary statistics on test data. The models analyzed in the paper are included in the repository.&quot;,
+      &quot;source_url&quot;: &quot;https://raw.githubusercontent.com/kpchamp/SindyAutoencoders/master/README.md&quot;,
+      &quot;line&quot;: 9,
+      &quot;basis&quot;: &quot;literal README instruction; not executed&quot;
+    }
+  ],
+  &quot;environment&quot;: [],
+  &quot;blockers&quot;: [
+    &quot;paper-result T2 reproduction not run; public access or README inspection is not reproduction&quot;,
+    &quot;dependency/environment specification unverified&quot;
+  ],
+  &quot;follow_up_actions&quot;: []
+}
+</code></pre>
+<h2>原文定位</h2>
+<p>以下为课程整理的结论和原文页码 / 块号索引，全文通过出版页面访问。</p>
+<ul>
+<li>
+<p>联合损失含重建、z导数SINDy、x导数一致性和L1，并用顺序阈值获得更少活动项。（PDF 页 4；块号 P004-B008, P004-B009, P004-B010, P004-B011）</p>
+</li>
+<li>
+<p>128维Lorenz非线性观测恢复7项模型，经适当坐标变换与原系统同稀疏结构；域内100轨迹x误差3e-5，域外升至0.016。（PDF 页 5；块号 P005-B002, P005-B003, P005-B004）</p>
+</li>
+<li>
+<p>10000维反应扩散快照被压到二维振荡坐标，潜轨迹模拟相对误差1e-4。（PDF 页 5；块号 P005-B005, P005-B006, P005-B007）</p>
+</li>
+<li>
+<p>合成摆的10次训练仅5次正确识别sin方程。（PDF 页 5；块号 P005-B008, P005-B009, P005-B010, P005-B011）</p>
+</li>
+<li>
+<p>合成摆最佳模型的观测重建、观测加速度与潜加速度相对误差分别为8e-4、3e-4和2e-2。（PDF 页 6；块号 P006-B001）</p>
+</li>
+<li>
+<p>论文公开完整源代码仓库。（PDF 页 6；块号 P006-B003）</p>
+</li>
+</ul></main></body></html>

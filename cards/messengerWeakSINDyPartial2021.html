@@ -1,0 +1,237 @@
+<!doctype html><html lang="zh-CN"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Weak SINDy for partial differential equations · 物理规律发现</title><link rel="stylesheet" href="../style.css"><link rel="stylesheet" href="../public.css"></head><body><main class="doc"><div class="links"><a href="../">返回课程</a><a href="../spectrum/">三维谱图</a></div><h1>P16 · Weak SINDy for partial differential equations</h1>
+<p>Daniel A. Messenger; David M. Bortz. Weak SINDy for partial differential equations. Journal of Computational Physics, 2021, 443: 110525. DOI: 10.1016/j.jcp.2021.110525</p>
+<p><a href="https://doi.org/10.1016/j.jcp.2021.110525">出版页面</a> · 第 6 天 · 统计选择与弱形式</p>
+<h2>研究问题</h2>
+<p>在高测量噪声和高阶空间导数下，不作逐点数值微分而从规则时空场恢复稀疏PDE结构与系数。</p>
+<h2>规律表示</h2>
+<p>规律仍是用户给定试函数库和候选偏导算子集合中的稀疏线性组合，但以积分分部后的卷积弱式表示，而不是逐点强形式。</p>
+<h2>方法</h2>
+<p>利用可分离紧支测试函数和FFT构造Gram矩阵，以频谱拐点选择测试函数支撑尺度，进行坐标/状态尺度归一化，并用MSTLS自动选择稀疏阈值。</p>
+<h2>假设</h2>
+<p>• 真实PDE在预设状态函数与微分算子笛卡尔积库中稀疏
+• 测试函数紧支且足够光滑，使边界项消失并可多次分部积分
+• 高频测量噪声可由测试函数频谱尾部衰减
+• 坐标和状态尺度变化不应改变被选中的物理结构
+• 数据位于可进行多维离散卷积的规则网格</p>
+<h2>必做推导</h2>
+<p>对时间项和扩散项分别分部积分；把含噪场的导数完整转移到紧支撑测试函数。</p>
+<h2>复现目标</h2>
+<p>在作者代码中选一个支持核心结论的案例：• 无黏Burgers方程
+• Korteweg-de Vries方程
+• Kuramoto-Sivashinsky方程
+• 非线性Schrodinger方程
+• 二维Sine-Gordon方程
+• 二维反应扩散系统
+• 二维Navier-Stokes涡量方程。先运行小样例，再恢复该案例原文配置；运行前登记原文指标/目标图、统计量和容差，运行后交付结构或等价结构、系数/统计量、留出预测、耗时和日志。</p>
+<h2>单因素检验</h2>
+<p>只扫描测试函数支撑宽度。</p>
+<h2>适用范围与限制</h2>
+<p>• 作者不宣称所用测试函数族最优，最优测试函数和高信息查询点的自适应选择仍待研究。
+• 当前普通最小二乘假设残差独立同分布，与弱式线性系统的真实误差结构不符，需推广最小二乘及协方差建模。
+• 恢复系数误差对噪声、振幅和样本量的依赖尚未完全理解，因此一般恢复保证仍缺失。
+• 对极限环型反应扩散和Navier-Stokes的鲁棒性明显弱于非线性波与KS，作者认为需要基于动力学结构的可辨识性准则。</p>
+<h2>闭卷自测</h2>
+<h3>1. P16 实际辨识的未知对象是什么，哪些对象预先给定？</h3>
+<details><summary>先作答，再展开核对</summary>
+
+
+在高测量噪声和高阶空间导数下，不作逐点数值微分而从规则时空场恢复稀疏PDE结构与系数。
+表示：规律仍是用户给定试函数库和候选偏导算子集合中的稀疏线性组合，但以积分分部后的卷积弱式表示，而不是逐点强形式。
+
+
+</details>
+
+<h3>2. P16 从数据到模型采用什么路线？按顺序解释各步骤。</h3>
+<details><summary>先作答，再展开核对</summary>
+
+
+利用可分离紧支测试函数和FFT构造Gram矩阵，以频谱拐点选择测试函数支撑尺度，进行坐标/状态尺度归一化，并用MSTLS自动选择稀疏阈值。
+
+
+</details>
+
+<h3>3. P16 哪些假设或限制使结果不能直接推广？至少说出两项。</h3>
+<details><summary>先作答，再展开核对</summary>
+
+
+• 真实PDE在预设状态函数与微分算子笛卡尔积库中稀疏
+• 测试函数紧支且足够光滑，使边界项消失并可多次分部积分
+• 高频测量噪声可由测试函数频谱尾部衰减
+• 坐标和状态尺度变化不应改变被选中的物理结构
+• 数据位于可进行多维离散卷积的规则网格
+• 作者不宣称所用测试函数族最优，最优测试函数和高信息查询点的自适应选择仍待研究。
+• 当前普通最小二乘假设残差独立同分布，与弱式线性系统的真实误差结构不符，需推广最小二乘及协方差建模。
+• 恢复系数误差对噪声、振幅和样本量的依赖尚未完全理解，因此一般恢复保证仍缺失。
+• 对极限环型反应扩散和Navier-Stokes的鲁棒性明显弱于非线性波与KS，作者认为需要基于动力学结构的可辨识性准则。
+
+
+</details>
+
+<h3>4. 怎样设计这项单因素检验：只扫描测试函数支撑宽度。</h3>
+<details><summary>先作答，再展开核对</summary>
+
+
+只改变指定因素，固定数据划分与其余参数；用结构、系数/统计量和留出预测评价，并将结果联系到以下方法边界：
+• 作者不宣称所用测试函数族最优，最优测试函数和高信息查询点的自适应选择仍待研究。
+• 当前普通最小二乘假设残差独立同分布，与弱式线性系统的真实误差结构不符，需推广最小二乘及协方差建模。
+• 恢复系数误差对噪声、振幅和样本量的依赖尚未完全理解，因此一般恢复保证仍缺失。
+• 对极限环型反应扩散和Navier-Stokes的鲁棒性明显弱于非线性波与KS，作者认为需要基于动力学结构的可辨识性准则。
+
+
+</details>
+
+<h2>作者代码与核查</h2>
+<p>代码信息为课程构建时的核查快照，可访问不等于已复现；没有定位到代码不等于作者没有公开。</p>
+<ul>
+<li><a href="https://github.com/dm973/WSINDy_PDE">https://github.com/dm973/WSINDy_PDE</a></li>
+</ul>
+<pre><code class="language-json">{
+  &quot;verified_status&quot;: &quot;public_verified&quot;,
+  &quot;entrypoints&quot;: [
+    {
+      &quot;path&quot;: &quot;build_fcn_lib_tags.m&quot;,
+      &quot;basis&quot;: &quot;observed root path; not executed&quot;,
+      &quot;repository&quot;: &quot;https://github.com/dm973/WSINDy_PDE&quot;
+    },
+    {
+      &quot;path&quot;: &quot;build_str_tags.m&quot;,
+      &quot;basis&quot;: &quot;observed root path; not executed&quot;,
+      &quot;repository&quot;: &quot;https://github.com/dm973/WSINDy_PDE&quot;
+    },
+    {
+      &quot;path&quot;: &quot;convNDfft.m&quot;,
+      &quot;basis&quot;: &quot;observed root path; not executed&quot;,
+      &quot;repository&quot;: &quot;https://github.com/dm973/WSINDy_PDE&quot;
+    },
+    {
+      &quot;path&quot;: &quot;findcorners.m&quot;,
+      &quot;basis&quot;: &quot;observed root path; not executed&quot;,
+      &quot;repository&quot;: &quot;https://github.com/dm973/WSINDy_PDE&quot;
+    },
+    {
+      &quot;path&quot;: &quot;gen_noise.m&quot;,
+      &quot;basis&quot;: &quot;observed root path; not executed&quot;,
+      &quot;repository&quot;: &quot;https://github.com/dm973/WSINDy_PDE&quot;
+    },
+    {
+      &quot;path&quot;: &quot;get_lib_columns.m&quot;,
+      &quot;basis&quot;: &quot;observed root path; not executed&quot;,
+      &quot;repository&quot;: &quot;https://github.com/dm973/WSINDy_PDE&quot;
+    },
+    {
+      &quot;path&quot;: &quot;get_lib_tags.m&quot;,
+      &quot;basis&quot;: &quot;observed root path; not executed&quot;,
+      &quot;repository&quot;: &quot;https://github.com/dm973/WSINDy_PDE&quot;
+    },
+    {
+      &quot;path&quot;: &quot;get_scales.m&quot;,
+      &quot;basis&quot;: &quot;observed root path; not executed&quot;,
+      &quot;repository&quot;: &quot;https://github.com/dm973/WSINDy_PDE&quot;
+    },
+    {
+      &quot;path&quot;: &quot;get_testfcn_weights.m&quot;,
+      &quot;basis&quot;: &quot;observed root path; not executed&quot;,
+      &quot;repository&quot;: &quot;https://github.com/dm973/WSINDy_PDE&quot;
+    },
+    {
+      &quot;path&quot;: &quot;partitionNk.m&quot;,
+      &quot;basis&quot;: &quot;observed root path; not executed&quot;,
+      &quot;repository&quot;: &quot;https://github.com/dm973/WSINDy_PDE&quot;
+    },
+    {
+      &quot;path&quot;: &quot;partitions.m&quot;,
+      &quot;basis&quot;: &quot;observed root path; not executed&quot;,
+      &quot;repository&quot;: &quot;https://github.com/dm973/WSINDy_PDE&quot;
+    },
+    {
+      &quot;path&quot;: &quot;phi_int_weights.m&quot;,
+      &quot;basis&quot;: &quot;observed root path; not executed&quot;,
+      &quot;repository&quot;: &quot;https://github.com/dm973/WSINDy_PDE&quot;
+    },
+    {
+      &quot;path&quot;: &quot;plot_basis_fcn.m&quot;,
+      &quot;basis&quot;: &quot;observed root path; not executed&quot;,
+      &quot;repository&quot;: &quot;https://github.com/dm973/WSINDy_PDE&quot;
+    },
+    {
+      &quot;path&quot;: &quot;print_pde.m&quot;,
+      &quot;basis&quot;: &quot;observed root path; not executed&quot;,
+      &quot;repository&quot;: &quot;https://github.com/dm973/WSINDy_PDE&quot;
+    },
+    {
+      &quot;path&quot;: &quot;print_results.m&quot;,
+      &quot;basis&quot;: &quot;observed root path; not executed&quot;,
+      &quot;repository&quot;: &quot;https://github.com/dm973/WSINDy_PDE&quot;
+    },
+    {
+      &quot;path&quot;: &quot;sparsifyDynamics.m&quot;,
+      &quot;basis&quot;: &quot;observed root path; not executed&quot;,
+      &quot;repository&quot;: &quot;https://github.com/dm973/WSINDy_PDE&quot;
+    },
+    {
+      &quot;path&quot;: &quot;tags2axi.m&quot;,
+      &quot;basis&quot;: &quot;observed root path; not executed&quot;,
+      &quot;repository&quot;: &quot;https://github.com/dm973/WSINDy_PDE&quot;
+    },
+    {
+      &quot;path&quot;: &quot;true_corner.m&quot;,
+      &quot;basis&quot;: &quot;observed root path; not executed&quot;,
+      &quot;repository&quot;: &quot;https://github.com/dm973/WSINDy_PDE&quot;
+    },
+    {
+      &quot;path&quot;: &quot;wsindy_pde_RGLS.m&quot;,
+      &quot;basis&quot;: &quot;observed root path; not executed&quot;,
+      &quot;repository&quot;: &quot;https://github.com/dm973/WSINDy_PDE&quot;
+    },
+    {
+      &quot;path&quot;: &quot;wsindy_pde_RGLS_seq.m&quot;,
+      &quot;basis&quot;: &quot;observed root path; not executed&quot;,
+      &quot;repository&quot;: &quot;https://github.com/dm973/WSINDy_PDE&quot;
+    },
+    {
+      &quot;path&quot;: &quot;wsindy_pde_fun.m&quot;,
+      &quot;basis&quot;: &quot;observed root path; not executed&quot;,
+      &quot;repository&quot;: &quot;https://github.com/dm973/WSINDy_PDE&quot;
+    },
+    {
+      &quot;path&quot;: &quot;wsindy_pde_script.m&quot;,
+      &quot;basis&quot;: &quot;observed root path; not executed&quot;,
+      &quot;repository&quot;: &quot;https://github.com/dm973/WSINDy_PDE&quot;
+    }
+  ],
+  &quot;environment&quot;: [],
+  &quot;blockers&quot;: [
+    &quot;paper-result T2 reproduction not run; public access or README inspection is not reproduction&quot;,
+    &quot;dependency/environment specification unverified&quot;
+  ],
+  &quot;follow_up_actions&quot;: []
+}
+</code></pre>
+<h2>原文定位</h2>
+<p>以下为课程整理的结论和原文页码 / 块号索引，全文通过出版页面访问。</p>
+<ul>
+<li>
+<p>分部积分后的时空弱形式在查询点变为卷积，梯形求积形成b=Gw；因此可在不计算数据逐点导数的情况下恢复PDE系数，并用FFT高效构造各列。（PDF 页 5；块号 P005-B003, P005-B005, P005-B007）</p>
+</li>
+<li>
+<p>算法的关键选择包括测试函数、稀疏化、正则化、查询点和模型库；作者引入频谱选支撑、MSTLS自动阈值及尺度归一化以减少人工超参数。（PDF 页 8；块号 P008-B004, P008-B005）</p>
+</li>
+<li>
+<p>测试函数频谱被设计为在噪声主导频率处衰减，使卷积弱形式近似低通滤波；物理域支撑过宽会损失信号模态，过窄则减噪不足。（PDF 页 9；块号 P009-B003, P009-B004, P009-B005, P009-B006）</p>
+</li>
+<li>
+<p>七个合成PDE覆盖冲击、非线性波、时空混沌和极限环；论文声明四个系统在100%噪声下仍可靠，全部七个系统在20%噪声下可靠。（PDF 页 15；块号 P015-B005, P015-B006, P015-B007, P015-B008）</p>
+</li>
+<li>
+<p>每个系统在0至100%、步长2.5%的41个噪声级上各运行200次，并平均结构TPR和两类系数误差。（PDF 页 17；块号 P017-B003, P017-B004, P017-B005）</p>
+</li>
+<li>
+<p>无黏Burgers、KdV、KS和Sine-Gordon在100%噪声时平均TPR仍高于0.95，非线性Schrodinger保持至50%。（PDF 页 19；块号 P019-B007）</p>
+</li>
+<li>
+<p>反应扩散在22%噪声后因极限环相关共线性加入伪线性项；Navier-Stokes在27%后丢失小黏性项并退化为Euler涡量方程。（PDF 页 20；块号 P020-B005, P020-B007）</p>
+</li>
+<li>
+<p>Navier-Stokes的黏性系数仅0.01，高噪声下低于可辨阈值；低精度干净模拟本身也把无噪系数精度限制在不足三位有效数字。（PDF 页 21；块号 P021-B005）</p>
+</li>
+</ul></main></body></html>

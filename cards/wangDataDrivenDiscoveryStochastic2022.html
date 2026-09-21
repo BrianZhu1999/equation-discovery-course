@@ -1,0 +1,104 @@
+<!doctype html><html lang="zh-CN"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Data-Driven Discovery of Stochastic Differential Equations · 物理规律发现</title><link rel="stylesheet" href="../style.css"><link rel="stylesheet" href="../public.css"></head><body><main class="doc"><div class="links"><a href="../">返回课程</a><a href="../spectrum/">三维谱图</a></div><h1>P59 · Data-Driven Discovery of Stochastic Differential Equations</h1>
+<p>Yasen Wang; Huazhen Fang; Junyang Jin; Guijun Ma; Xin He; Xing Dai; Zuogong Yue; Cheng Cheng; Hai-Tao Zhang; Donglin Pu; Dongrui Wu; Ye Yuan; Jorge Gonçalves; Jürgen Kurths; Han Ding. Data-Driven Discovery of Stochastic Differential Equations. Engineering, 2022, 17: 244-252. DOI: 10.1016/j.eng.2022.02.007</p>
+<p><a href="https://doi.org/10.1016/j.eng.2022.02.007">出版页面</a> · 第 22 天 · 随机与记忆</p>
+<h2>研究问题</h2>
+<p>用有限时间序列辨识随机微分方程的漂移、扩散和结构。</p>
+<h2>规律表示</h2>
+<p>漂移与扩散的候选函数库。</p>
+<h2>方法</h2>
+<p>BISDE使用稀疏贝叶斯学习生成候选，再按模型证据或信息量选择结构并无偏重估系数。</p>
+<h2>假设</h2>
+<p>• Itô SDE
+• 稀疏漂移与扩散</p>
+<h2>必做推导</h2>
+<p>从条件增量似然写出漂移和扩散候选模型比较，说明无偏重估修正的对象。</p>
+<h2>复现目标</h2>
+<p>在作者代码中选一个支持核心结论的案例：• 合成SDE
+• 股票分钟价格
+• 油气田气体产量。先运行小样例，再恢复该案例原文配置；运行前登记原文指标/目标图、统计量和容差，运行后交付结构或等价结构、系数/统计量、留出预测、耗时和日志。</p>
+<h2>单因素检验</h2>
+<p>只缩短训练轨迹。</p>
+<h2>适用范围与限制</h2>
+<p>• 现实序列可能非平稳
+• 短时增量近似受采样间隔影响
+• 候选库错设仍未解决</p>
+<h2>闭卷自测</h2>
+<h3>1. P59 实际辨识的未知对象是什么，哪些对象预先给定？</h3>
+<details><summary>先作答，再展开核对</summary>
+
+
+用有限时间序列辨识随机微分方程的漂移、扩散和结构。
+表示：漂移与扩散的候选函数库。
+
+
+</details>
+
+<h3>2. P59 从数据到模型采用什么路线？按顺序解释各步骤。</h3>
+<details><summary>先作答，再展开核对</summary>
+
+
+BISDE使用稀疏贝叶斯学习生成候选，再按模型证据或信息量选择结构并无偏重估系数。
+
+
+</details>
+
+<h3>3. P59 哪些假设或限制使结果不能直接推广？至少说出两项。</h3>
+<details><summary>先作答，再展开核对</summary>
+
+
+• Itô SDE
+• 稀疏漂移与扩散
+• 现实序列可能非平稳
+• 短时增量近似受采样间隔影响
+• 候选库错设仍未解决
+
+
+</details>
+
+<h3>4. 怎样设计这项单因素检验：只缩短训练轨迹。</h3>
+<details><summary>先作答，再展开核对</summary>
+
+
+只改变指定因素，固定数据划分与其余参数；用结构、系数/统计量和留出预测评价，并将结果联系到以下方法边界：
+• 现实序列可能非平稳
+• 短时增量近似受采样间隔影响
+• 候选库错设仍未解决
+
+
+</details>
+
+<h2>作者代码与核查</h2>
+<p>代码信息为课程构建时的核查快照，可访问不等于已复现；没有定位到代码不等于作者没有公开。</p>
+<ul>
+<li><a href="https://github.com/HAIRLAB/BISDE">https://github.com/HAIRLAB/BISDE</a></li>
+</ul>
+<pre><code class="language-json">{
+  &quot;verified_status&quot;: &quot;public_verified&quot;,
+  &quot;entrypoints&quot;: [
+    {
+      &quot;path&quot;: &quot;Examples&quot;,
+      &quot;basis&quot;: &quot;observed root path; not executed&quot;,
+      &quot;repository&quot;: &quot;https://github.com/HAIRLAB/BISDE&quot;
+    },
+    {
+      &quot;path&quot;: &quot;Figure_Main&quot;,
+      &quot;basis&quot;: &quot;observed root path; not executed&quot;,
+      &quot;repository&quot;: &quot;https://github.com/HAIRLAB/BISDE&quot;
+    }
+  ],
+  &quot;environment&quot;: [
+    {
+      &quot;requirement_excerpt&quot;: &quot;•\tMatlab 2017a&quot;,
+      &quot;source_url&quot;: &quot;https://raw.githubusercontent.com/HAIRLAB/BISDE/main/README.md&quot;,
+      &quot;line&quot;: 6,
+      &quot;basis&quot;: &quot;literal README statement; environment not constructed&quot;
+    }
+  ],
+  &quot;blockers&quot;: [
+    &quot;paper-result T2 reproduction not run; public access or README inspection is not reproduction&quot;
+  ],
+  &quot;follow_up_actions&quot;: []
+}
+</code></pre>
+<h2>原文定位</h2>
+<p>以下为课程整理的结论和原文页码 / 块号索引，全文通过出版页面访问。</p></main></body></html>

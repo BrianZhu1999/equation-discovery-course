@@ -1,0 +1,116 @@
+<!doctype html><html lang="zh-CN"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Ensemble-SINDy: Robust sparse model discovery in the low-data, high-noise limit, with active learning and control · 物理规律发现</title><link rel="stylesheet" href="../style.css"><link rel="stylesheet" href="../public.css"></head><body><main class="doc"><div class="links"><a href="../">返回课程</a><a href="../spectrum/">三维谱图</a></div><h1>P20 · Ensemble-SINDy: Robust sparse model discovery in the low-data, high-noise limit, with active learning and control</h1>
+<p>U. Fasel; J. N. Kutz; B. W. Brunton; S. L. Brunton. Ensemble-SINDy: Robust sparse model discovery in the low-data, high-noise limit, with active learning and control. Proceedings of the Royal Society A: Mathematical, Physical and Engineering Sciences, 2022, 478(2260). DOI: 10.1098/rspa.2021.0904</p>
+<p><a href="https://doi.org/10.1098/rspa.2021.0904">出版页面</a> · 第 4 天 · 统计选择与弱形式</p>
+<h2>研究问题</h2>
+<p>在少样本、高噪声和候选库不确定时，提高SINDy的结构选择稳定性，并把系数不确定性用于主动采样和控制。</p>
+<h2>规律表示</h2>
+<p>预定义候选函数库上的稀疏线性组合；以不同重采样模型中各项的入选频率表示结构可信度。</p>
+<h2>方法</h2>
+<p>对数据行做bagging、对候选函数做library bagging，组合为双重集成；系数用均值或稳健中位数聚合，弱形式PDE版本构成E-WSINDy。</p>
+<h2>假设</h2>
+<p>• 候选函数库
+• 稀疏动力学假设
+• PDE弱形式积分结构
+• 控制案例中的已知输入与控制目标</p>
+<h2>必做推导</h2>
+<p>分别写出数据行重采样和候选列重采样；计算一个项的入选频率并解释它不是后验。</p>
+<h2>复现目标</h2>
+<p>在作者代码中选一个支持核心结论的案例：• Hudson Bay猞猁-雪兔皮张记录
+• 五个典型PDE
+• Lorenz系统
+• 模型预测控制基准。先运行小样例，再恢复该案例原文配置；运行前登记原文指标/目标图、统计量和容差，运行后交付结构或等价结构、系数/统计量、留出预测、耗时和日志。</p>
+<h2>单因素检验</h2>
+<p>只改变重采样比例。</p>
+<h2>适用范围与限制</h2>
+<p>• 候选函数库的选择对能否找到正确模型至关重要。
+• 直接PDE微分对噪声敏感，因此实验需要弱形式缓解。
+• 混沌轨迹对系数误差高度敏感，长期轨迹误差不能仅由短期拟合判断。</p>
+<h2>闭卷自测</h2>
+<h3>1. P20 实际辨识的未知对象是什么，哪些对象预先给定？</h3>
+<details><summary>先作答，再展开核对</summary>
+
+
+在少样本、高噪声和候选库不确定时，提高SINDy的结构选择稳定性，并把系数不确定性用于主动采样和控制。
+表示：预定义候选函数库上的稀疏线性组合；以不同重采样模型中各项的入选频率表示结构可信度。
+
+
+</details>
+
+<h3>2. P20 从数据到模型采用什么路线？按顺序解释各步骤。</h3>
+<details><summary>先作答，再展开核对</summary>
+
+
+对数据行做bagging、对候选函数做library bagging，组合为双重集成；系数用均值或稳健中位数聚合，弱形式PDE版本构成E-WSINDy。
+
+
+</details>
+
+<h3>3. P20 哪些假设或限制使结果不能直接推广？至少说出两项。</h3>
+<details><summary>先作答，再展开核对</summary>
+
+
+• 候选函数库
+• 稀疏动力学假设
+• PDE弱形式积分结构
+• 控制案例中的已知输入与控制目标
+• 候选函数库的选择对能否找到正确模型至关重要。
+• 直接PDE微分对噪声敏感，因此实验需要弱形式缓解。
+• 混沌轨迹对系数误差高度敏感，长期轨迹误差不能仅由短期拟合判断。
+
+
+</details>
+
+<h3>4. 怎样设计这项单因素检验：只改变重采样比例。</h3>
+<details><summary>先作答，再展开核对</summary>
+
+
+只改变指定因素，固定数据划分与其余参数；用结构、系数/统计量和留出预测评价，并将结果联系到以下方法边界：
+• 候选函数库的选择对能否找到正确模型至关重要。
+• 直接PDE微分对噪声敏感，因此实验需要弱形式缓解。
+• 混沌轨迹对系数误差高度敏感，长期轨迹误差不能仅由短期拟合判断。
+
+
+</details>
+
+<h2>作者代码与核查</h2>
+<p>代码信息为课程构建时的核查快照，可访问不等于已复现；没有定位到代码不等于作者没有公开。</p>
+<ul>
+<li><a href="https://github.com/urban-fasel/EnsembleSINDy">https://github.com/urban-fasel/EnsembleSINDy</a></li>
+</ul>
+<pre><code class="language-json">{
+  &quot;verified_status&quot;: &quot;public_verified&quot;,
+  &quot;entrypoints&quot;: [],
+  &quot;environment&quot;: [
+    {
+      &quot;requirement_excerpt&quot;: &quot;This repository contains Matlab code to reproduce the results of the paper:&quot;,
+      &quot;source_url&quot;: &quot;https://raw.githubusercontent.com/urban-fasel/EnsembleSINDy/main/README.md&quot;,
+      &quot;line&quot;: 3,
+      &quot;basis&quot;: &quot;literal README statement; environment not constructed&quot;
+    }
+  ],
+  &quot;blockers&quot;: [
+    &quot;paper-result T2 reproduction not run; public access or README inspection is not reproduction&quot;,
+    &quot;no concrete execution entrypoint established by current root/README inspection&quot;
+  ],
+  &quot;follow_up_actions&quot;: []
+}
+</code></pre>
+<h2>原文定位</h2>
+<p>以下为课程整理的结论和原文页码 / 块号索引，全文通过出版页面访问。</p>
+<ul>
+<li>
+<p>论文定义数据bagging、library bagging和二者组合，并把项入选频率解释为结构概率、集成系数用于预测分布。（PDF 页 6；块号 P006-B004, P006-B005）</p>
+</li>
+<li>
+<p>Hudson Bay案例只有21个年度点；集成法在秒至小时级计算内恢复捕食-被捕食结构，并与昂贵MCMC进行比较。（PDF 页 9；块号 P009-B002, P009-B003）</p>
+</li>
+<li>
+<p>五个PDE基准上，E-WSINDy提高成功率，作者汇总其平均可承受噪声约提高2.3倍。（PDF 页 10；块号 P010-B001, P010-B002, P010-B003）</p>
+</li>
+<li>
+<p>Lorenz主动采样在高系数方差区域增加观测，随后降低系数方差和识别误差。（PDF 页 11；块号 P011-B002, P011-B003）</p>
+</li>
+<li>
+<p>算法被集成进PySINDy，提供可复现的软件入口。（PDF 页 13；块号 P013-B001）</p>
+</li>
+</ul></main></body></html>

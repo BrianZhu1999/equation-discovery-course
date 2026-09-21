@@ -1,0 +1,159 @@
+<!doctype html><html lang="zh-CN"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Discovering physical laws with parallel symbolic enumeration · 物理规律发现</title><link rel="stylesheet" href="../style.css"><link rel="stylesheet" href="../public.css"></head><body><main class="doc"><div class="links"><a href="../">返回课程</a><a href="../spectrum/">三维谱图</a></div><h1>P02 · Discovering physical laws with parallel symbolic enumeration</h1>
+<p>Kai Ruan; Yilong Xu; Ze-Feng Gao; Yang Liu; Yike Guo; Ji-Rong Wen; Hao Sun. Discovering physical laws with parallel symbolic enumeration. Nature Computational Science, 2025, None. DOI: 10.1038/s43588-025-00904-8</p>
+<p><a href="https://doi.org/10.1038/s43588-025-00904-8">出版页面</a> · 第 19 天 · 符号搜索</p>
+<h2>研究问题</h2>
+<p>在给定输入变量、输出和算子集合时，高效恢复可解释代数关系或ODE右端项，并应用于混沌系统、机电定位装置和湍流摩阻关系。</p>
+<h2>规律表示</h2>
+<p>数学表达式树；PSRN的符号层把所有浅层子树值张量化并复用，偏移张量可从最优数值位置反向还原符号树。</p>
+<h2>方法</h2>
+<p>GPU上并行枚举数百万至数亿候选并共享公共子树计算；GP为默认token生成器，也比较MCTS和随机生成；候选常数先采样、再用最小二乘统一细化，最终保留误差-复杂度Pareto前沿。</p>
+<h2>假设</h2>
+<p>• 离散预定义算子集合和最大树深
+• 复杂度惩罚与Pareto最优
+• 机电案例预设牛顿第二定律的状态依赖形式并加入sign摩擦算子
+• 摩阻案例先采用已有数据坍缩变量</p>
+<h2>必做推导</h2>
+<p>手算一个深度为2的表达式树枚举，说明代数等价去重如何减少候选数。</p>
+<h2>复现目标</h2>
+<p>在作者代码中选一个支持核心结论的案例：• Nguyen、Nguyen-c、R/R*、Livermore、Feynman和SRBench
+• 16种混沌ODE系统
+• EMPS机电定位实验
+• Nikuradse湍流摩阻实验
+• 50维含38个干扰变量的合成任务。先运行小样例，再恢复该案例原文配置；运行前登记原文指标/目标图、统计量和容差，运行后交付结构或等价结构、系数/统计量、留出预测、耗时和日志。</p>
+<h2>单因素检验</h2>
+<p>固定总评价次数，只改枚举深度。</p>
+<h2>适用范围与限制</h2>
+<p>• PSRN显存随层数急剧增长；20输入、3层、常用算子估算超过10^5 GB，常规实现直接处理的树深不超过3。
+• 深而不可分解的表达式可能使token生成器停在局部最优；真实系数若远离初始采样范围，最小二乘细化也可能找不到全局最优。
+• 高噪声下可能过度正则为简单式，也可能因偏好分式而用复杂有理函数拟合噪声；仍受预定义算子集限制。</p>
+<h2>闭卷自测</h2>
+<h3>1. P02 实际辨识的未知对象是什么，哪些对象预先给定？</h3>
+<details><summary>先作答，再展开核对</summary>
+
+
+在给定输入变量、输出和算子集合时，高效恢复可解释代数关系或ODE右端项，并应用于混沌系统、机电定位装置和湍流摩阻关系。
+表示：数学表达式树；PSRN的符号层把所有浅层子树值张量化并复用，偏移张量可从最优数值位置反向还原符号树。
+
+
+</details>
+
+<h3>2. P02 从数据到模型采用什么路线？按顺序解释各步骤。</h3>
+<details><summary>先作答，再展开核对</summary>
+
+
+GPU上并行枚举数百万至数亿候选并共享公共子树计算；GP为默认token生成器，也比较MCTS和随机生成；候选常数先采样、再用最小二乘统一细化，最终保留误差-复杂度Pareto前沿。
+
+
+</details>
+
+<h3>3. P02 哪些假设或限制使结果不能直接推广？至少说出两项。</h3>
+<details><summary>先作答，再展开核对</summary>
+
+
+• 离散预定义算子集合和最大树深
+• 复杂度惩罚与Pareto最优
+• 机电案例预设牛顿第二定律的状态依赖形式并加入sign摩擦算子
+• 摩阻案例先采用已有数据坍缩变量
+• PSRN显存随层数急剧增长；20输入、3层、常用算子估算超过10^5 GB，常规实现直接处理的树深不超过3。
+• 深而不可分解的表达式可能使token生成器停在局部最优；真实系数若远离初始采样范围，最小二乘细化也可能找不到全局最优。
+• 高噪声下可能过度正则为简单式，也可能因偏好分式而用复杂有理函数拟合噪声；仍受预定义算子集限制。
+
+
+</details>
+
+<h3>4. 怎样设计这项单因素检验：固定总评价次数，只改枚举深度。</h3>
+<details><summary>先作答，再展开核对</summary>
+
+
+只改变指定因素，固定数据划分与其余参数；用结构、系数/统计量和留出预测评价，并将结果联系到以下方法边界：
+• PSRN显存随层数急剧增长；20输入、3层、常用算子估算超过10^5 GB，常规实现直接处理的树深不超过3。
+• 深而不可分解的表达式可能使token生成器停在局部最优；真实系数若远离初始采样范围，最小二乘细化也可能找不到全局最优。
+• 高噪声下可能过度正则为简单式，也可能因偏好分式而用复杂有理函数拟合噪声；仍受预定义算子集限制。
+
+
+</details>
+
+<h2>作者代码与核查</h2>
+<p>代码信息为课程构建时的核查快照，可访问不等于已复现；没有定位到代码不等于作者没有公开。</p>
+<ul>
+<li><a href="https://github.com/intell-sci-comput/PSE">https://github.com/intell-sci-comput/PSE</a></li>
+</ul>
+<pre><code class="language-json">{
+  &quot;verified_status&quot;: &quot;public_verified&quot;,
+  &quot;entrypoints&quot;: [
+    {
+      &quot;path&quot;: &quot;run_benchmark_all.py&quot;,
+      &quot;basis&quot;: &quot;observed root path; not executed&quot;,
+      &quot;repository&quot;: &quot;https://github.com/intell-sci-comput/PSE&quot;
+    },
+    {
+      &quot;path&quot;: &quot;run_chaotic.py&quot;,
+      &quot;basis&quot;: &quot;observed root path; not executed&quot;,
+      &quot;repository&quot;: &quot;https://github.com/intell-sci-comput/PSE&quot;
+    },
+    {
+      &quot;path&quot;: &quot;run_custom_data.py&quot;,
+      &quot;basis&quot;: &quot;observed root path; not executed&quot;,
+      &quot;repository&quot;: &quot;https://github.com/intell-sci-comput/PSE&quot;
+    },
+    {
+      &quot;path&quot;: &quot;run_realworld_EMPS.py&quot;,
+      &quot;basis&quot;: &quot;observed root path; not executed&quot;,
+      &quot;repository&quot;: &quot;https://github.com/intell-sci-comput/PSE&quot;
+    },
+    {
+      &quot;path&quot;: &quot;run_realworld_roughpipe.py&quot;,
+      &quot;basis&quot;: &quot;observed root path; not executed&quot;,
+      &quot;repository&quot;: &quot;https://github.com/intell-sci-comput/PSE&quot;
+    }
+  ],
+  &quot;environment&quot;: [
+    {
+      &quot;path&quot;: &quot;requirements.txt&quot;,
+      &quot;basis&quot;: &quot;observed dependency/config file; compatibility not tested&quot;,
+      &quot;repository&quot;: &quot;https://github.com/intell-sci-comput/PSE&quot;
+    },
+    {
+      &quot;requirement_excerpt&quot;: &quot;pip install psrn&quot;,
+      &quot;source_url&quot;: &quot;https://raw.githubusercontent.com/intell-sci-comput/PSE/main/README.md&quot;,
+      &quot;line&quot;: 43,
+      &quot;basis&quot;: &quot;literal README statement; environment not constructed&quot;
+    },
+    {
+      &quot;requirement_excerpt&quot;: &quot;pip install git+https://github.com/x66ccff/PSRN&quot;,
+      &quot;source_url&quot;: &quot;https://raw.githubusercontent.com/intell-sci-comput/PSE/main/README.md&quot;,
+      &quot;line&quot;: 49,
+      &quot;basis&quot;: &quot;literal README statement; environment not constructed&quot;
+    },
+    {
+      &quot;requirement_excerpt&quot;: &quot;pip install -e .&quot;,
+      &quot;source_url&quot;: &quot;https://raw.githubusercontent.com/intell-sci-comput/PSE/main/README.md&quot;,
+      &quot;line&quot;: 154,
+      &quot;basis&quot;: &quot;literal README statement; environment not constructed&quot;
+    }
+  ],
+  &quot;blockers&quot;: [
+    &quot;paper-result T2 reproduction not run; public access or README inspection is not reproduction&quot;
+  ],
+  &quot;follow_up_actions&quot;: []
+}
+</code></pre>
+<h2>原文定位</h2>
+<p>以下为课程整理的结论和原文页码 / 块号索引，全文通过出版页面访问。</p>
+<ul>
+<li>
+<p>PSE通过公共子树共享和GPU并行评价数亿表达式，并在标准基准上报告最高恢复率和最高达两个数量级的运行加速。（PDF 页 5；块号 P005-B004, P005-B005, P005-B007）</p>
+</li>
+<li>
+<p>16个混沌系统在1%至10%高斯噪声下以50个随机种子比较；EMPS数据一半训练、一半测试，并进行20次试验后按测试奖励选模型。（PDF 页 6；块号 P006-B003, P006-B004, P006-B006, P006-B008）</p>
+</li>
+<li>
+<p>50维基准中PSE恢复40%的真表达式，而PySR和Operon在相同时间预算下为0%。（PDF 页 7；块号 P007-B006）</p>
+</li>
+<li>
+<p>与不复用子树的NumPy/CuPy暴力评价相比，样本少于1万时表达式评价速度约快四个数量级。（PDF 页 9；块号 P009-B007, P009-B008, P009-B009）</p>
+</li>
+<li>
+<p>全部测试数据和MIT许可源代码在GitHub与Zenodo公开。（PDF 页 13；块号 P013-B006, P013-B007, P013-B008, P013-B009）</p>
+</li>
+</ul></main></body></html>

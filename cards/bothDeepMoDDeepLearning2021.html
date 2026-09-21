@@ -1,0 +1,154 @@
+<!doctype html><html lang="zh-CN"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>DeepMoD: Deep learning for model discovery in noisy data · 物理规律发现</title><link rel="stylesheet" href="../style.css"><link rel="stylesheet" href="../public.css"></head><body><main class="doc"><div class="links"><a href="../">返回课程</a><a href="../spectrum/">三维谱图</a></div><h1>P14 · DeepMoD: Deep learning for model discovery in noisy data</h1>
+<p>Gert-Jan Both; Subham Choudhury; Pierre Sens; Remy Kusters. DeepMoD: Deep learning for model discovery in noisy data. Journal of Computational Physics, 2021, 428: 109985. DOI: 10.1016/j.jcp.2020.109985</p>
+<p><a href="https://doi.org/10.1016/j.jcp.2020.109985">出版页面</a> · 第 9 天 · 神经代理与导数</p>
+<h2>研究问题</h2>
+<p>从稀疏、非规则且含噪的时空样本中重建连续场和导数，并在预设候选库内发现显式PDE结构及系数。</p>
+<h2>规律表示</h2>
+<p>规律表示为预设函数与导数库Theta中的稀疏线性组合u_t=Theta xi；库可含状态多项式、导数和交叉项。</p>
+<h2>方法</h2>
+<p>联合最小化数据MSE、PDE回归残差和系数L1惩罚；待系数收敛后按无量纲缩放系数阈值剪枝，再移除L1并仅用保留项重训以减小系数偏差。</p>
+<h2>假设</h2>
+<p>• 真实PDE在用户给定候选库中稀疏
+• 坐标到状态的神经网络提供可微连续代理
+• 数据、回归残差和L1稀疏性可通过联合损失互相约束
+• 方程结构不依赖训练数据的具体边界条件</p>
+<h2>必做推导</h2>
+<p>写出数据损失、PDE 残差和稀疏系数三者的关系，区分自动微分的精确性与代理场偏差。</p>
+<h2>复现目标</h2>
+<p>在作者代码中选一个支持核心结论的案例：• Burgers方程及低黏度冲击案例
+• Korteweg-de Vries方程
+• 二维对流扩散方程
+• Keller-Segel趋化耦合方程
+• 真实凝胶电泳染料图像序列。先运行小样例，再恢复该案例原文配置；运行前登记原文指标/目标图、统计量和容差，运行后交付结构或等价结构、系数/统计量、留出预测、耗时和日志。</p>
+<h2>单因素检验</h2>
+<p>只减少观测点数。</p>
+<h2>适用范围与限制</h2>
+<p>• 真实规律的函数项必须已经包含在候选库中，否则DeepMoD不能返回正确方程。
+• 高噪声或实验伪影会使小而非零的高阶项破坏自动阈值策略，需要更先进的稀疏选择或人工阈值。</p>
+<h2>闭卷自测</h2>
+<h3>1. P14 实际辨识的未知对象是什么，哪些对象预先给定？</h3>
+<details><summary>先作答，再展开核对</summary>
+
+
+从稀疏、非规则且含噪的时空样本中重建连续场和导数，并在预设候选库内发现显式PDE结构及系数。
+表示：规律表示为预设函数与导数库Theta中的稀疏线性组合u_t=Theta xi；库可含状态多项式、导数和交叉项。
+
+
+</details>
+
+<h3>2. P14 从数据到模型采用什么路线？按顺序解释各步骤。</h3>
+<details><summary>先作答，再展开核对</summary>
+
+
+联合最小化数据MSE、PDE回归残差和系数L1惩罚；待系数收敛后按无量纲缩放系数阈值剪枝，再移除L1并仅用保留项重训以减小系数偏差。
+
+
+</details>
+
+<h3>3. P14 哪些假设或限制使结果不能直接推广？至少说出两项。</h3>
+<details><summary>先作答，再展开核对</summary>
+
+
+• 真实PDE在用户给定候选库中稀疏
+• 坐标到状态的神经网络提供可微连续代理
+• 数据、回归残差和L1稀疏性可通过联合损失互相约束
+• 方程结构不依赖训练数据的具体边界条件
+• 真实规律的函数项必须已经包含在候选库中，否则DeepMoD不能返回正确方程。
+• 高噪声或实验伪影会使小而非零的高阶项破坏自动阈值策略，需要更先进的稀疏选择或人工阈值。
+
+
+</details>
+
+<h3>4. 怎样设计这项单因素检验：只减少观测点数。</h3>
+<details><summary>先作答，再展开核对</summary>
+
+
+只改变指定因素，固定数据划分与其余参数；用结构、系数/统计量和留出预测评价，并将结果联系到以下方法边界：
+• 真实规律的函数项必须已经包含在候选库中，否则DeepMoD不能返回正确方程。
+• 高噪声或实验伪影会使小而非零的高阶项破坏自动阈值策略，需要更先进的稀疏选择或人工阈值。
+
+
+</details>
+
+<h2>作者代码与核查</h2>
+<p>代码信息为课程构建时的核查快照，可访问不等于已复现；没有定位到代码不等于作者没有公开。</p>
+<ul>
+<li><a href="https://github.com/PhIMaL/DeePyMoD">https://github.com/PhIMaL/DeePyMoD</a></li>
+</ul>
+<pre><code class="language-json">{
+  &quot;verified_status&quot;: &quot;public_verified&quot;,
+  &quot;entrypoints&quot;: [
+    {
+      &quot;path&quot;: &quot;examples&quot;,
+      &quot;basis&quot;: &quot;observed root path; not executed&quot;,
+      &quot;repository&quot;: &quot;https://github.com/PhIMaL/DeePyMoD&quot;
+    }
+  ],
+  &quot;environment&quot;: [
+    {
+      &quot;path&quot;: &quot;setup.py&quot;,
+      &quot;basis&quot;: &quot;observed dependency/config file; compatibility not tested&quot;,
+      &quot;repository&quot;: &quot;https://github.com/PhIMaL/DeePyMoD&quot;
+    },
+    {
+      &quot;requirement_excerpt&quot;: &quot;## Dependencies and CUDA&quot;,
+      &quot;source_url&quot;: &quot;https://raw.githubusercontent.com/PhIMaL/DeePyMoD/master/README.md&quot;,
+      &quot;line&quot;: 17,
+      &quot;basis&quot;: &quot;literal README statement; environment not constructed&quot;
+    },
+    {
+      &quot;requirement_excerpt&quot;: &quot;We support Python 3.6, 3.7 and 3.8.&quot;,
+      &quot;source_url&quot;: &quot;https://raw.githubusercontent.com/PhIMaL/DeePyMoD/master/README.md&quot;,
+      &quot;line&quot;: 18,
+      &quot;basis&quot;: &quot;literal README statement; environment not constructed&quot;
+    },
+    {
+      &quot;requirement_excerpt&quot;: &quot;We rely on the following packages, they will be installed in the pip installation procces for you:&quot;,
+      &quot;source_url&quot;: &quot;https://raw.githubusercontent.com/PhIMaL/DeePyMoD/master/README.md&quot;,
+      &quot;line&quot;: 19,
+      &quot;basis&quot;: &quot;literal README statement; environment not constructed&quot;
+    },
+    {
+      &quot;requirement_excerpt&quot;: &quot;``` pip install deepymod ```&quot;,
+      &quot;source_url&quot;: &quot;https://raw.githubusercontent.com/PhIMaL/DeePyMoD/master/README.md&quot;,
+      &quot;line&quot;: 30,
+      &quot;basis&quot;: &quot;literal README statement; environment not constructed&quot;
+    },
+    {
+      &quot;requirement_excerpt&quot;: &quot;``` pip install -e ./ ```&quot;,
+      &quot;source_url&quot;: &quot;https://raw.githubusercontent.com/PhIMaL/DeePyMoD/master/README.md&quot;,
+      &quot;line&quot;: 43,
+      &quot;basis&quot;: &quot;literal README statement; environment not constructed&quot;
+    }
+  ],
+  &quot;blockers&quot;: [
+    &quot;paper-result T2 reproduction not run; public access or README inspection is not reproduction&quot;
+  ],
+  &quot;follow_up_actions&quot;: []
+}
+</code></pre>
+<h2>原文定位</h2>
+<p>以下为课程整理的结论和原文页码 / 块号索引，全文通过出版页面访问。</p>
+<ul>
+<li>
+<p>网络以{x,t}为输入近似u，自动微分构造候选库；PDE系数与网络参数共同更新，损失由数据误差、回归误差和L1稀疏项组成。（PDF 页 3；块号 P003-B007, P003-B008, P003-B010, P003-B011, P003-B012）</p>
+</li>
+<li>
+<p>剪枝依据无量纲缩放系数；中等噪声下真项和伪项通常相差约一个数量级，剪枝后移除L1并在固定结构上重训以获得无偏系数。（PDF 页 5；块号 P005-B004, P005-B005, P005-B006）</p>
+</li>
+<li>
+<p>Burgers鲁棒性网格以五次不同采样运行统计：近零噪声时100点可恢复，5000点时最高75%噪声仍可恢复，但边界区只有部分运行成功。（PDF 页 6；块号 P006-B004）</p>
+</li>
+<li>
+<p>低黏度冲击Burgers使用2000点并加入10%白噪声，恢复方程的系数相对误差约5%。（PDF 页 6；块号 P006-B007, P006-B008）</p>
+</li>
+<li>
+<p>Keller-Segel耦合系统用10000点和5%白噪声，在36项库中恢复正确两条PDE，包括域内大部分位置幅值很小的耦合项u_x w_x。（PDF 页 7；块号 P007-B004, P007-B005, P007-B006）</p>
+</li>
+<li>
+<p>真实电泳图像随机取5000个时空点，恢复y向对流及x、y扩散项；两处染料的速度约0.3、扩散系数约0.01。（PDF 页 8；块号 P008-B002, P008-B005, P008-B006）</p>
+</li>
+<li>
+<p>电泳补充实验对两处染料各用五个采样种子：10次中8次得到目标结构，2次仍保留小的伪非线性项，且阈值需人工固定为|xi|&lt;0.1。（PDF 页 16；块号 P016-B011）</p>
+</li>
+</ul></main></body></html>

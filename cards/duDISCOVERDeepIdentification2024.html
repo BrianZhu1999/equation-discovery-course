@@ -1,0 +1,154 @@
+<!doctype html><html lang="zh-CN"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>DISCOVER: Deep identification of symbolically concise open-form partial differential equations via enhanced reinforcement learning · 物理规律发现</title><link rel="stylesheet" href="../style.css"><link rel="stylesheet" href="../public.css"></head><body><main class="doc"><div class="links"><a href="../">返回课程</a><a href="../spectrum/">三维谱图</a></div><h1>P35 · DISCOVER: Deep identification of symbolically concise open-form partial differential equations via enhanced reinforcement learning</h1>
+<p>Mengge Du; Yuntian Chen; Dongxiao Zhang. DISCOVER: Deep identification of symbolically concise open-form partial differential equations via enhanced reinforcement learning. Physical Review Research, 2024, 6(1). DOI: 10.1103/physrevresearch.6.013182</p>
+<p><a href="https://doi.org/10.1103/physrevresearch.6.013182">出版页面</a> · 第 18 天 · 符号搜索</p>
+<h2>研究问题</h2>
+<p>从时空观测中发现不局限于预设候选库的PDE结构，并把开放式符号搜索扩展到高维、多变量海洋次网格参数化。</p>
+<h2>规律表示</h2>
+<p>结构感知LSTM逐token生成可变深度PDE树，符号库可含导数、复合和除法结构；树拆成函数项后由稀疏回归估计线性系数。</p>
+<h2>方法</h2>
+<p>候选经语法和可选物理规则屏蔽，以拟合、复杂度和树深构成奖励；仅高奖励尾部样本用于风险寻求策略梯度更新。系数用STRidge求解，海洋长表达式另用迭代残差拟合和特征重要性删项。</p>
+<h2>假设</h2>
+<p>• 表达式树合法性和结构感知token屏蔽
+• 可按问题注入拉普拉斯算子等先验；Cahn-Hilliard案例比较了有无拉普拉斯先验
+• 海洋案例禁止湍流中不合理或罕见的项组合，并联合两层相关性评价
+• 稀疏性、表达式长度与树深惩罚</p>
+<h2>必做推导</h2>
+<p>写出表达式 token 策略、终止条件、系数拟合和强化学习奖励；区分生成概率和物理可信度。</p>
+<h2>复现目标</h2>
+<p>在作者代码中选一个支持核心结论的案例：• KdV、Burgers、Chafee-Infante
+• PDE_compound黏性重力流与PDE_divide分式结构
+• 二维Burgers、Allen-Cahn、Cahn-Hilliard等附录算例
+• 双层准地转海洋涡旋/喷流次网格参数化模拟基准。先运行小样例，再恢复该案例原文配置；运行前登记原文指标/目标图、统计量和容差，运行后交付结构或等价结构、系数/统计量、留出预测、耗时和日志。</p>
+<h2>单因素检验</h2>
+<p>固定函数评价预算，只改变奖励中的复杂度惩罚。</p>
+<h2>适用范围与限制</h2>
+<p>• 开放式搜索即使较SGA加速，仍比闭合候选库方法慢若干数量级；早期持续生成差候选还可能把策略推离真式，形成探索失败。
+• 作者明确称当前框架不适用于高噪且稀疏场景，并建议未来引入弱形式；任意高阶函数项的可靠求值仍是瓶颈。</p>
+<h2>闭卷自测</h2>
+<h3>1. P35 实际辨识的未知对象是什么，哪些对象预先给定？</h3>
+<details><summary>先作答，再展开核对</summary>
+
+
+从时空观测中发现不局限于预设候选库的PDE结构，并把开放式符号搜索扩展到高维、多变量海洋次网格参数化。
+表示：结构感知LSTM逐token生成可变深度PDE树，符号库可含导数、复合和除法结构；树拆成函数项后由稀疏回归估计线性系数。
+
+
+</details>
+
+<h3>2. P35 从数据到模型采用什么路线？按顺序解释各步骤。</h3>
+<details><summary>先作答，再展开核对</summary>
+
+
+候选经语法和可选物理规则屏蔽，以拟合、复杂度和树深构成奖励；仅高奖励尾部样本用于风险寻求策略梯度更新。系数用STRidge求解，海洋长表达式另用迭代残差拟合和特征重要性删项。
+
+
+</details>
+
+<h3>3. P35 哪些假设或限制使结果不能直接推广？至少说出两项。</h3>
+<details><summary>先作答，再展开核对</summary>
+
+
+• 表达式树合法性和结构感知token屏蔽
+• 可按问题注入拉普拉斯算子等先验；Cahn-Hilliard案例比较了有无拉普拉斯先验
+• 海洋案例禁止湍流中不合理或罕见的项组合，并联合两层相关性评价
+• 稀疏性、表达式长度与树深惩罚
+• 开放式搜索即使较SGA加速，仍比闭合候选库方法慢若干数量级；早期持续生成差候选还可能把策略推离真式，形成探索失败。
+• 作者明确称当前框架不适用于高噪且稀疏场景，并建议未来引入弱形式；任意高阶函数项的可靠求值仍是瓶颈。
+
+
+</details>
+
+<h3>4. 怎样设计这项单因素检验：固定函数评价预算，只改变奖励中的复杂度惩罚。</h3>
+<details><summary>先作答，再展开核对</summary>
+
+
+只改变指定因素，固定数据划分与其余参数；用结构、系数/统计量和留出预测评价，并将结果联系到以下方法边界：
+• 开放式搜索即使较SGA加速，仍比闭合候选库方法慢若干数量级；早期持续生成差候选还可能把策略推离真式，形成探索失败。
+• 作者明确称当前框架不适用于高噪且稀疏场景，并建议未来引入弱形式；任意高阶函数项的可靠求值仍是瓶颈。
+
+
+</details>
+
+<h2>作者代码与核查</h2>
+<p>代码信息为课程构建时的核查快照，可访问不等于已复现；没有定位到代码不等于作者没有公开。</p>
+<ul>
+<li><a href="https://github.com/menggedu/DISCOVER">https://github.com/menggedu/DISCOVER</a></li>
+</ul>
+<pre><code class="language-json">{
+  &quot;verified_status&quot;: &quot;public_verified&quot;,
+  &quot;entrypoints&quot;: [
+    {
+      &quot;command_excerpt&quot;: &quot;sh ./script_test/MODE1_test.sh&quot;,
+      &quot;source_url&quot;: &quot;https://raw.githubusercontent.com/menggedu/DISCOVER/master/README.md&quot;,
+      &quot;line&quot;: 51,
+      &quot;basis&quot;: &quot;literal README instruction; not executed&quot;
+    },
+    {
+      &quot;command_excerpt&quot;: &quot;sh  ./script_test/MODE2_test.sh&quot;,
+      &quot;source_url&quot;: &quot;https://raw.githubusercontent.com/menggedu/DISCOVER/master/README.md&quot;,
+      &quot;line&quot;: 55,
+      &quot;basis&quot;: &quot;literal README instruction; not executed&quot;
+    }
+  ],
+  &quot;environment&quot;: [
+    {
+      &quot;path&quot;: &quot;requirements.txt&quot;,
+      &quot;basis&quot;: &quot;observed dependency/config file; compatibility not tested&quot;,
+      &quot;repository&quot;: &quot;https://github.com/menggedu/DISCOVER&quot;
+    },
+    {
+      &quot;requirement_excerpt&quot;: &quot;conda create -n env_name python=3.7 # Create a Python 3 virtual environment with conda.&quot;,
+      &quot;source_url&quot;: &quot;https://raw.githubusercontent.com/menggedu/DISCOVER/master/README.md&quot;,
+      &quot;line&quot;: 18,
+      &quot;basis&quot;: &quot;literal README statement; environment not constructed&quot;
+    },
+    {
+      &quot;requirement_excerpt&quot;: &quot;Extra dependencies,&quot;,
+      &quot;source_url&quot;: &quot;https://raw.githubusercontent.com/menggedu/DISCOVER/master/README.md&quot;,
+      &quot;line&quot;: 21,
+      &quot;basis&quot;: &quot;literal README statement; environment not constructed&quot;
+    },
+    {
+      &quot;requirement_excerpt&quot;: &quot;pip install -r requirements.txt # Possible incompatibility may occurs due to the version of tensorboard. Manually installing it may be required.&quot;,
+      &quot;source_url&quot;: &quot;https://raw.githubusercontent.com/menggedu/DISCOVER/master/README.md&quot;,
+      &quot;line&quot;: 23,
+      &quot;basis&quot;: &quot;literal README statement; environment not constructed&quot;
+    },
+    {
+      &quot;requirement_excerpt&quot;: &quot;pip install tensorboard==1.15&quot;,
+      &quot;source_url&quot;: &quot;https://raw.githubusercontent.com/menggedu/DISCOVER/master/README.md&quot;,
+      &quot;line&quot;: 24,
+      &quot;basis&quot;: &quot;literal README statement; environment not constructed&quot;
+    },
+    {
+      &quot;requirement_excerpt&quot;: &quot;please reinstall protobuf by pip install protobuf==3.20&quot;,
+      &quot;source_url&quot;: &quot;https://raw.githubusercontent.com/menggedu/DISCOVER/master/README.md&quot;,
+      &quot;line&quot;: 34,
+      &quot;basis&quot;: &quot;literal README statement; environment not constructed&quot;
+    }
+  ],
+  &quot;blockers&quot;: [
+    &quot;paper-result T2 reproduction not run; public access or README inspection is not reproduction&quot;
+  ],
+  &quot;follow_up_actions&quot;: []
+}
+</code></pre>
+<h2>原文定位</h2>
+<p>以下为课程整理的结论和原文页码 / 块号索引，全文通过出版页面访问。</p>
+<ul>
+<li>
+<p>五个典型和开放式PDE在同一框架下被测试；作者报告含噪、稀疏条件下仍能产生准确简洁结构，而闭合候选库不能表示复合与分式项。（PDF 页 7；块号 P007-B005, P007-B006, P007-B007）</p>
+</li>
+<li>
+<p>与SGA的比较对每个PDE使用五个随机种子；表中同时报告系数误差与运行时间，DISCOVER除Chafee-Infante外平均约用SGA(fast) 40%的时间。（PDF 页 8；块号 P008-B004, P008-B005）</p>
+</li>
+<li>
+<p>给定拉普拉斯算子先验时，Cahn-Hilliard真式在第194次迭代发现；默认配置需903次，直接显示先验缩减搜索的作用。（PDF 页 10；块号 P010-B004, P010-B005）</p>
+</li>
+<li>
+<p>噪声鲁棒性明显依方程而异：KdV和Burgers可到5%噪声，其他三例多只在1%下满意，噪声Cahn-Hilliard因四阶导数和复合结构未能恢复。（PDF 页 19；块号 P019-B006, P019-B007）</p>
+</li>
+<li>
+<p>海洋参数化只用涡旋配置训练和验证，却在喷流配置上同时做离线强迫误差和在线低分辨率动力学评价；发现式前五项与既有理论项相符。（PDF 页 23；块号 P023-B003, P023-B004）</p>
+</li>
+</ul></main></body></html>

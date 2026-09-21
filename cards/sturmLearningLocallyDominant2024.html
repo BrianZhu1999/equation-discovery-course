@@ -1,0 +1,91 @@
+<!doctype html><html lang="zh-CN"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Learning locally dominant force balances in active particle systems · 物理规律发现</title><link rel="stylesheet" href="../style.css"><link rel="stylesheet" href="../public.css"></head><body><main class="doc"><div class="links"><a href="../">返回课程</a><a href="../spectrum/">三维谱图</a></div><h1>P71 · Learning locally dominant force balances in active particle systems</h1>
+<p>Dominik Sturm; Suryanarayana Maddu; Ivo F. Sbalzarini. Learning locally dominant force balances in active particle systems. Proceedings of the Royal Society A: Mathematical, Physical and Engineering Sciences, 2024, 480(2304): 20230532. DOI: 10.1098/rspa.2023.0532</p>
+<p><a href="https://doi.org/10.1098/rspa.2023.0532">出版页面</a> · 第 27 天 · 物理机制与真实场</p>
+<h2>研究问题</h2>
+<p>分解主动粒子宏观图样中随时空区域变化的主导力平衡。</p>
+<h2>规律表示</h2>
+<p>已知全局主动流体模型各项形成方程空间，局部区域对应不同稀疏平衡。</p>
+<h2>方法</h2>
+<p>Gaussian mixture、稀疏主成分和高维Pareto模型选择结合。</p>
+<h2>假设</h2>
+<p>• 全局候选模型
+• 局部平衡稀疏
+• 场项尺度</p>
+<h2>必做推导</h2>
+<p>对同一主动图样区分核、界面与背景的局部力平衡，说明聚类标签如何得到物理解释。</p>
+<h2>复现目标</h2>
+<p>在作者代码中选一个支持核心结论的案例：• 移动密度带
+• 密度依赖运动形成的asters
+• 主动粒子水动力模拟。先运行小样例，再恢复该案例原文配置；运行前登记原文指标/目标图、统计量和容差，运行后交付结构或等价结构、系数/统计量、留出预测、耗时和日志。</p>
+<h2>单因素检验</h2>
+<p>只改变聚类数量。</p>
+<h2>适用范围与限制</h2>
+<p>• 数据来自预设水动力模型
+• 忽略粒子间流体相互作用
+• 聚类与Pareto点仍需人工解释</p>
+<h2>闭卷自测</h2>
+<h3>1. P71 实际辨识的未知对象是什么，哪些对象预先给定？</h3>
+<details><summary>先作答，再展开核对</summary>
+
+
+分解主动粒子宏观图样中随时空区域变化的主导力平衡。
+表示：已知全局主动流体模型各项形成方程空间，局部区域对应不同稀疏平衡。
+
+
+</details>
+
+<h3>2. P71 从数据到模型采用什么路线？按顺序解释各步骤。</h3>
+<details><summary>先作答，再展开核对</summary>
+
+
+Gaussian mixture、稀疏主成分和高维Pareto模型选择结合。
+
+
+</details>
+
+<h3>3. P71 哪些假设或限制使结果不能直接推广？至少说出两项。</h3>
+<details><summary>先作答，再展开核对</summary>
+
+
+• 全局候选模型
+• 局部平衡稀疏
+• 场项尺度
+• 数据来自预设水动力模型
+• 忽略粒子间流体相互作用
+• 聚类与Pareto点仍需人工解释
+
+
+</details>
+
+<h3>4. 怎样设计这项单因素检验：只改变聚类数量。</h3>
+<details><summary>先作答，再展开核对</summary>
+
+
+只改变指定因素，固定数据划分与其余参数；用结构、系数/统计量和留出预测评价，并将结果联系到以下方法边界：
+• 数据来自预设水动力模型
+• 忽略粒子间流体相互作用
+• 聚类与Pareto点仍需人工解释
+
+
+</details>
+
+<h2>作者代码与核查</h2>
+<p>代码信息为课程构建时的核查快照，可访问不等于已复现；没有定位到代码不等于作者没有公开。</p>
+<ul>
+<li>http://doi.org/10.14278/rodare.2378</li>
+</ul>
+<pre><code class="language-json">{
+  &quot;verified_status&quot;: &quot;author_link&quot;,
+  &quot;entrypoints&quot;: [],
+  &quot;environment&quot;: [],
+  &quot;blockers&quot;: [
+    &quot;paper-result T2 reproduction not run; public access or README inspection is not reproduction&quot;,
+    &quot;HTTP 502; inaccessible link is not proof repository never existed&quot;,
+    &quot;no concrete execution entrypoint established by current root/README inspection&quot;,
+    &quot;dependency/environment specification unverified&quot;
+  ],
+  &quot;follow_up_actions&quot;: []
+}
+</code></pre>
+<h2>原文定位</h2>
+<p>以下为课程整理的结论和原文页码 / 块号索引，全文通过出版页面访问。</p></main></body></html>

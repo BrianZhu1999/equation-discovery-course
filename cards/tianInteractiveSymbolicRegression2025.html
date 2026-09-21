@@ -1,0 +1,171 @@
+<!doctype html><html lang="zh-CN"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Interactive symbolic regression with co-design mechanism through offline reinforcement learning · 物理规律发现</title><link rel="stylesheet" href="../style.css"><link rel="stylesheet" href="../public.css"></head><body><main class="doc"><div class="links"><a href="../">返回课程</a><a href="../spectrum/">三维谱图</a></div><h1>P40 · Interactive symbolic regression with co-design mechanism through offline reinforcement learning</h1>
+<p>Yuan Tian; Wenqi Zhou; Michele Viscione; Hao Dong; David S. Kammer; Olga Fink. Interactive symbolic regression with co-design mechanism through offline reinforcement learning. Nature Communications, 2025, 16(1). DOI: 10.1038/s41467-025-59288-y</p>
+<p><a href="https://doi.org/10.1038/s41467-025-59288-y">出版页面</a> · 第 19 天 · 符号搜索</p>
+<h2>研究问题</h2>
+<p>从数值输入输出对恢复表达式树，并允许专家把已知的部分表达式作为前缀状态注入，以补全未知修正项或复杂公式。</p>
+<h2>规律表示</h2>
+<p>逐步构造前缀表达式树；beam search保留128条候选轨迹，树完成后可用BFGS连续优化常数。专家知识表现为预先填入树中的一段动作序列。</p>
+<h2>方法</h2>
+<p>用含最优与次优轨迹的离线数据训练保守Q学习网络；推理时按Q值和beam search扩展树，随后BFGS调常数。交互模式从用户给定的部分树继续生成。</p>
+<h2>假设</h2>
+<p>• 表达式树语法和完整性检查
+• 专家提供的部分树/教材公式前缀
+• 漂移实验预设已知核心物理公式
+• 系外行星案例人工从散点推断反比和对数比例，并加入天体物理常数</p>
+<h2>必做推导</h2>
+<p>区分离线数据集、策略奖励与人工表达式约束；列出共设计介入搜索的时点。</p>
+<h2>复现目标</h2>
+<p>在作者代码中选一个支持核心结论的案例：• SSDNC符号回归基准
+• SRBench三变量任务
+• AI-Feynman加性、乘性、衰减、周期和平方漂移
+• 合成热木星凌星光谱。先运行小样例，再恢复该案例原文配置；运行前登记原文指标/目标图、统计量和容差，运行后交付结构或等价结构、系数/统计量、留出预测、耗时和日志。</p>
+<h2>单因素检验</h2>
+<p>固定其余条件，只增加一个正确的人工结构约束。</p>
+<h2>适用范围与限制</h2>
+<p>• 验证主要局限于二变量，三变量仅作扩展；高维表达式及ODE/PDE仍是未来方向。
+• 模型把常数离散值当作独立动作且不直接拟合，常出现常数错误；最终精度依赖额外BFGS。</p>
+<h2>闭卷自测</h2>
+<h3>1. P40 实际辨识的未知对象是什么，哪些对象预先给定？</h3>
+<details><summary>先作答，再展开核对</summary>
+
+
+从数值输入输出对恢复表达式树，并允许专家把已知的部分表达式作为前缀状态注入，以补全未知修正项或复杂公式。
+表示：逐步构造前缀表达式树；beam search保留128条候选轨迹，树完成后可用BFGS连续优化常数。专家知识表现为预先填入树中的一段动作序列。
+
+
+</details>
+
+<h3>2. P40 从数据到模型采用什么路线？按顺序解释各步骤。</h3>
+<details><summary>先作答，再展开核对</summary>
+
+
+用含最优与次优轨迹的离线数据训练保守Q学习网络；推理时按Q值和beam search扩展树，随后BFGS调常数。交互模式从用户给定的部分树继续生成。
+
+
+</details>
+
+<h3>3. P40 哪些假设或限制使结果不能直接推广？至少说出两项。</h3>
+<details><summary>先作答，再展开核对</summary>
+
+
+• 表达式树语法和完整性检查
+• 专家提供的部分树/教材公式前缀
+• 漂移实验预设已知核心物理公式
+• 系外行星案例人工从散点推断反比和对数比例，并加入天体物理常数
+• 验证主要局限于二变量，三变量仅作扩展；高维表达式及ODE/PDE仍是未来方向。
+• 模型把常数离散值当作独立动作且不直接拟合，常出现常数错误；最终精度依赖额外BFGS。
+
+
+</details>
+
+<h3>4. 怎样设计这项单因素检验：固定其余条件，只增加一个正确的人工结构约束。</h3>
+<details><summary>先作答，再展开核对</summary>
+
+
+只改变指定因素，固定数据划分与其余参数；用结构、系数/统计量和留出预测评价，并将结果联系到以下方法边界：
+• 验证主要局限于二变量，三变量仅作扩展；高维表达式及ODE/PDE仍是未来方向。
+• 模型把常数离散值当作独立动作且不直接拟合，常出现常数错误；最终精度依赖额外BFGS。
+
+
+</details>
+
+<h2>作者代码与核查</h2>
+<p>代码信息为课程构建时的核查快照，可访问不等于已复现；没有定位到代码不等于作者没有公开。</p>
+<ul>
+<li><a href="https://github.com/EPFL-IMOS/Sym-Q">https://github.com/EPFL-IMOS/Sym-Q</a></li>
+</ul>
+<pre><code class="language-json">{
+  &quot;verified_status&quot;: &quot;public_verified&quot;,
+  &quot;entrypoints&quot;: [
+    {
+      &quot;path&quot;: &quot;train.py&quot;,
+      &quot;basis&quot;: &quot;observed root path; not executed&quot;,
+      &quot;repository&quot;: &quot;https://github.com/EPFL-IMOS/Sym-Q&quot;
+    },
+    {
+      &quot;command_excerpt&quot;: &quot;python add_points_to_json.py&quot;,
+      &quot;source_url&quot;: &quot;https://raw.githubusercontent.com/EPFL-IMOS/Sym-Q/main/README.md&quot;,
+      &quot;line&quot;: 53,
+      &quot;basis&quot;: &quot;literal README instruction; not executed&quot;
+    },
+    {
+      &quot;command_excerpt&quot;: &quot;python gen_SSDNC_benchmark.py&quot;,
+      &quot;source_url&quot;: &quot;https://raw.githubusercontent.com/EPFL-IMOS/Sym-Q/main/README.md&quot;,
+      &quot;line&quot;: 54,
+      &quot;basis&quot;: &quot;literal README instruction; not executed&quot;
+    },
+    {
+      &quot;command_excerpt&quot;: &quot;python train.py&quot;,
+      &quot;source_url&quot;: &quot;https://raw.githubusercontent.com/EPFL-IMOS/Sym-Q/main/README.md&quot;,
+      &quot;line&quot;: 63,
+      &quot;basis&quot;: &quot;literal README instruction; not executed&quot;
+    },
+    {
+      &quot;command_excerpt&quot;: &quot;python beam_search.py --weights_path PATH_TO_WEIGHTS --target ssdnc_r2&quot;,
+      &quot;source_url&quot;: &quot;https://raw.githubusercontent.com/EPFL-IMOS/Sym-Q/main/README.md&quot;,
+      &quot;line&quot;: 69,
+      &quot;basis&quot;: &quot;literal README instruction; not executed&quot;
+    }
+  ],
+  &quot;environment&quot;: [
+    {
+      &quot;path&quot;: &quot;requirements.txt&quot;,
+      &quot;basis&quot;: &quot;observed dependency/config file; compatibility not tested&quot;,
+      &quot;repository&quot;: &quot;https://github.com/EPFL-IMOS/Sym-Q&quot;
+    },
+    {
+      &quot;requirement_excerpt&quot;: &quot;Create and activate a Conda environment for Sym-Q:&quot;,
+      &quot;source_url&quot;: &quot;https://raw.githubusercontent.com/EPFL-IMOS/Sym-Q/main/README.md&quot;,
+      &quot;line&quot;: 36,
+      &quot;basis&quot;: &quot;literal README statement; environment not constructed&quot;
+    },
+    {
+      &quot;requirement_excerpt&quot;: &quot;conda create -n SymQ python=3.9&quot;,
+      &quot;source_url&quot;: &quot;https://raw.githubusercontent.com/EPFL-IMOS/Sym-Q/main/README.md&quot;,
+      &quot;line&quot;: 39,
+      &quot;basis&quot;: &quot;literal README statement; environment not constructed&quot;
+    },
+    {
+      &quot;requirement_excerpt&quot;: &quot;conda activate SymQ&quot;,
+      &quot;source_url&quot;: &quot;https://raw.githubusercontent.com/EPFL-IMOS/Sym-Q/main/README.md&quot;,
+      &quot;line&quot;: 40,
+      &quot;basis&quot;: &quot;literal README statement; environment not constructed&quot;
+    },
+    {
+      &quot;requirement_excerpt&quot;: &quot;pip install -e NeuralSymbolicRegressionThatScales/src/&quot;,
+      &quot;source_url&quot;: &quot;https://raw.githubusercontent.com/EPFL-IMOS/Sym-Q/main/README.md&quot;,
+      &quot;line&quot;: 41,
+      &quot;basis&quot;: &quot;literal README statement; environment not constructed&quot;
+    },
+    {
+      &quot;requirement_excerpt&quot;: &quot;pip install -r Sym-Q/requirements.txt&quot;,
+      &quot;source_url&quot;: &quot;https://raw.githubusercontent.com/EPFL-IMOS/Sym-Q/main/README.md&quot;,
+      &quot;line&quot;: 42,
+      &quot;basis&quot;: &quot;literal README statement; environment not constructed&quot;
+    }
+  ],
+  &quot;blockers&quot;: [
+    &quot;paper-result T2 reproduction not run; public access or README inspection is not reproduction&quot;
+  ],
+  &quot;follow_up_actions&quot;: []
+}
+</code></pre>
+<h2>原文定位</h2>
+<p>以下为课程整理的结论和原文页码 / 块号索引，全文通过出版页面访问。</p>
+<ul>
+<li>
+<p>SSDNC包含963个测试方程，骨架与训练分布共享但系数不同；beam size 128时Sym-Q骨架恢复率82.3%，无beam为42.7%。（PDF 页 3；块号 P003-B005, P003-B008, P003-B009, P003-B011）</p>
+</li>
+<li>
+<p>所谓共设计基准逐步注入每条真值动作序列的前i-1步作为专家知识；恢复率随注入比例上升，说明的是利用已知前缀的能力而非真实用户研究。（PDF 页 4；块号 P004-B009, P004-B010, P004-B011, P004-B012）</p>
+</li>
+<li>
+<p>AI-Feynman漂移实验给模型提供教材公式核心，再恢复加性、乘性、指数衰减、周期或平方修正；常数统一由BFGS拟合。（PDF 页 5；块号 P005-B006, P005-B007）</p>
+</li>
+<li>
+<p>凌星光谱无交互时虽MSE低至7.6x10^-4但R2低于0.95；人工加入反比、对数比例及天体物理常数后才逐步恢复真值闭式。（PDF 页 6；块号 P006-B006, P006-B008, P006-B009, P006-B011）</p>
+</li>
+<li>
+<p>逐步错误分析显示中段决策最难，错误频率跟训练运算符分布一致，并常混淆精确常数、sin/cos、平方根/幂和除法/负幂。（PDF 页 7；块号 P007-B008, P007-B009, P007-B011, P007-B012）</p>
+</li>
+</ul></main></body></html>

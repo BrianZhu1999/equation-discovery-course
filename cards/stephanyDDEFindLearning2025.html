@@ -1,0 +1,210 @@
+<!doctype html><html lang="zh-CN"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>DDE-Find: learning delay differential equations from noisy, limited data · 物理规律发现</title><link rel="stylesheet" href="../style.css"><link rel="stylesheet" href="../public.css"></head><body><main class="doc"><div class="links"><a href="../">返回课程</a><a href="../spectrum/">三维谱图</a></div><h1>P76 · DDE-Find: learning delay differential equations from noisy, limited data</h1>
+<p>Robert Stephany. DDE-Find: learning delay differential equations from noisy, limited data. Proceedings of the Royal Society A: Mathematical, Physical and Engineering Sciences, 2025, 481(2310): 20240403. DOI: 10.1098/rspa.2024.0403</p>
+<p><a href="https://doi.org/10.1098/rspa.2024.0403">出版页面</a> · 第 29 天 · 随机与记忆</p>
+<h2>研究问题</h2>
+<p>从有限含噪轨迹联合估计延迟微分方程参数、时滞和初始历史函数。</p>
+<h2>规律表示</h2>
+<p>给定可微DDE右端项和参数化历史函数；也可用神经网络参数化。</p>
+<h2>方法</h2>
+<p>求解DDE前向轨迹，以伴随方程高效计算关于参数、时滞和历史函数的梯度，再作梯度优化。</p>
+<h2>假设</h2>
+<p>• DDE结构族
+• 单一固定时滞
+• 参数化初始历史</p>
+<h2>必做推导</h2>
+<p>对 x(t−τ) 写出时滞参数的链式导数，解释初始历史为什么是函数而非一个数。</p>
+<h2>复现目标</h2>
+<p>在作者代码中选一个支持核心结论的案例：• 延迟指数衰减
+• 延迟Logistic
+• ENSO
+• Cheyne-Stokes呼吸
+• HIV模型。先运行小样例，再恢复该案例原文配置；运行前登记原文指标/目标图、统计量和容差，运行后交付结构或等价结构、系数/统计量、留出预测、耗时和日志。</p>
+<h2>单因素检验</h2>
+<p>只改变可学习历史函数的参数数量。</p>
+<h2>适用范围与限制</h2>
+<p>• 部分历史参数的损失梯度为零或极小
+• 神经网络右端项可用错误时滞拟合相同轨迹
+• 需要预先给定DDE结构族</p>
+<h2>闭卷自测</h2>
+<h3>1. P76 实际辨识的未知对象是什么，哪些对象预先给定？</h3>
+<details><summary>先作答，再展开核对</summary>
+
+
+从有限含噪轨迹联合估计延迟微分方程参数、时滞和初始历史函数。
+表示：给定可微DDE右端项和参数化历史函数；也可用神经网络参数化。
+
+
+</details>
+
+<h3>2. P76 从数据到模型采用什么路线？按顺序解释各步骤。</h3>
+<details><summary>先作答，再展开核对</summary>
+
+
+求解DDE前向轨迹，以伴随方程高效计算关于参数、时滞和历史函数的梯度，再作梯度优化。
+
+
+</details>
+
+<h3>3. P76 哪些假设或限制使结果不能直接推广？至少说出两项。</h3>
+<details><summary>先作答，再展开核对</summary>
+
+
+• DDE结构族
+• 单一固定时滞
+• 参数化初始历史
+• 部分历史参数的损失梯度为零或极小
+• 神经网络右端项可用错误时滞拟合相同轨迹
+• 需要预先给定DDE结构族
+
+
+</details>
+
+<h3>4. 怎样设计这项单因素检验：只改变可学习历史函数的参数数量。</h3>
+<details><summary>先作答，再展开核对</summary>
+
+
+只改变指定因素，固定数据划分与其余参数；用结构、系数/统计量和留出预测评价，并将结果联系到以下方法边界：
+• 部分历史参数的损失梯度为零或极小
+• 神经网络右端项可用错误时滞拟合相同轨迹
+• 需要预先给定DDE结构族
+
+
+</details>
+
+<h2>作者代码与核查</h2>
+<p>代码信息为课程构建时的核查快照，可访问不等于已复现；没有定位到代码不等于作者没有公开。</p>
+<ul>
+<li><a href="https://github.com/punkduckable/DDE-Find">https://github.com/punkduckable/DDE-Find</a></li>
+</ul>
+<pre><code class="language-json">{
+  &quot;verified_status&quot;: &quot;public_verified&quot;,
+  &quot;entrypoints&quot;: [
+    {
+      &quot;path&quot;: &quot;Experiment.ipynb&quot;,
+      &quot;basis&quot;: &quot;observed root path; not executed&quot;,
+      &quot;repository&quot;: &quot;https://github.com/punkduckable/DDE-Find&quot;
+    },
+    {
+      &quot;path&quot;: &quot;Train.py&quot;,
+      &quot;basis&quot;: &quot;observed root path; not executed&quot;,
+      &quot;repository&quot;: &quot;https://github.com/punkduckable/DDE-Find&quot;
+    },
+    {
+      &quot;command_excerpt&quot;: &quot;`Experiment.ipynb`: The main Jupyter Notebook file. This file drives the rest of the code. I'll talk&quot;,
+      &quot;source_url&quot;: &quot;https://raw.githubusercontent.com/punkduckable/DDE-Find/main/README.md&quot;,
+      &quot;line&quot;: 104,
+      &quot;basis&quot;: &quot;literal README instruction; not executed&quot;
+    },
+    {
+      &quot;command_excerpt&quot;: &quot;With all that established, let's talk about how to use the Jupyter Notebook. The first code cell&quot;,
+      &quot;source_url&quot;: &quot;https://raw.githubusercontent.com/punkduckable/DDE-Find/main/README.md&quot;,
+      &quot;line&quot;: 135,
+      &quot;basis&quot;: &quot;literal README instruction; not executed&quot;
+    },
+    {
+      &quot;command_excerpt&quot;: &quot;While `Experiments.ipynb` gives you a user-friendly jupyter notebook, it is not the best for&quot;,
+      &quot;source_url&quot;: &quot;https://raw.githubusercontent.com/punkduckable/DDE-Find/main/README.md&quot;,
+      &quot;line&quot;: 169,
+      &quot;basis&quot;: &quot;literal README instruction; not executed&quot;
+    },
+    {
+      &quot;command_excerpt&quot;: &quot;`python ./Experiments.py`&quot;,
+      &quot;source_url&quot;: &quot;https://raw.githubusercontent.com/punkduckable/DDE-Find/main/README.md&quot;,
+      &quot;line&quot;: 176,
+      &quot;basis&quot;: &quot;literal README instruction; not executed&quot;
+    }
+  ],
+  &quot;environment&quot;: [
+    {
+      &quot;requirement_excerpt&quot;: &quot;### Dependencies&quot;,
+      &quot;source_url&quot;: &quot;https://raw.githubusercontent.com/punkduckable/DDE-Find/main/README.md&quot;,
+      &quot;line&quot;: 17,
+      &quot;basis&quot;: &quot;literal README statement; environment not constructed&quot;
+    },
+    {
+      &quot;requirement_excerpt&quot;: &quot;`python 3.10`:&quot;,
+      &quot;source_url&quot;: &quot;https://raw.githubusercontent.com/punkduckable/DDE-Find/main/README.md&quot;,
+      &quot;line&quot;: 25,
+      &quot;basis&quot;: &quot;literal README statement; environment not constructed&quot;
+    },
+    {
+      &quot;requirement_excerpt&quot;: &quot;`conda create --name DDE_Find python=3.10`&quot;,
+      &quot;source_url&quot;: &quot;https://raw.githubusercontent.com/punkduckable/DDE-Find/main/README.md&quot;,
+      &quot;line&quot;: 27,
+      &quot;basis&quot;: &quot;literal README statement; environment not constructed&quot;
+    },
+    {
+      &quot;requirement_excerpt&quot;: &quot;Say yes if conda prompts you. Once you've built the virtual environment, activate it:&quot;,
+      &quot;source_url&quot;: &quot;https://raw.githubusercontent.com/punkduckable/DDE-Find/main/README.md&quot;,
+      &quot;line&quot;: 29,
+      &quot;basis&quot;: &quot;literal README statement; environment not constructed&quot;
+    },
+    {
+      &quot;requirement_excerpt&quot;: &quot;`conda activate DDE_Find`&quot;,
+      &quot;source_url&quot;: &quot;https://raw.githubusercontent.com/punkduckable/DDE-Find/main/README.md&quot;,
+      &quot;line&quot;: 31,
+      &quot;basis&quot;: &quot;literal README statement; environment not constructed&quot;
+    },
+    {
+      &quot;requirement_excerpt&quot;: &quot;`conda install numpy=1.26.3`&quot;,
+      &quot;source_url&quot;: &quot;https://raw.githubusercontent.com/punkduckable/DDE-Find/main/README.md&quot;,
+      &quot;line&quot;: 37,
+      &quot;basis&quot;: &quot;literal README statement; environment not constructed&quot;
+    },
+    {
+      &quot;requirement_excerpt&quot;: &quot;`conda install torch=2.1.2`&quot;,
+      &quot;source_url&quot;: &quot;https://raw.githubusercontent.com/punkduckable/DDE-Find/main/README.md&quot;,
+      &quot;line&quot;: 38,
+      &quot;basis&quot;: &quot;literal README statement; environment not constructed&quot;
+    },
+    {
+      &quot;requirement_excerpt&quot;: &quot;`conda install matplotlib=3.8.2`&quot;,
+      &quot;source_url&quot;: &quot;https://raw.githubusercontent.com/punkduckable/DDE-Find/main/README.md&quot;,
+      &quot;line&quot;: 39,
+      &quot;basis&quot;: &quot;literal README statement; environment not constructed&quot;
+    },
+    {
+      &quot;requirement_excerpt&quot;: &quot;`conda install seaborn=0.13.2`&quot;,
+      &quot;source_url&quot;: &quot;https://raw.githubusercontent.com/punkduckable/DDE-Find/main/README.md&quot;,
+      &quot;line&quot;: 40,
+      &quot;basis&quot;: &quot;literal README statement; environment not constructed&quot;
+    },
+    {
+      &quot;requirement_excerpt&quot;: &quot;`conda install scipy=1.12.9`&quot;,
+      &quot;source_url&quot;: &quot;https://raw.githubusercontent.com/punkduckable/DDE-Find/main/README.md&quot;,
+      &quot;line&quot;: 41,
+      &quot;basis&quot;: &quot;literal README statement; environment not constructed&quot;
+    },
+    {
+      &quot;requirement_excerpt&quot;: &quot;`conda install jupyter`&quot;,
+      &quot;source_url&quot;: &quot;https://raw.githubusercontent.com/punkduckable/DDE-Find/main/README.md&quot;,
+      &quot;line&quot;: 42,
+      &quot;basis&quot;: &quot;literal README statement; environment not constructed&quot;
+    },
+    {
+      &quot;requirement_excerpt&quot;: &quot;`conda install tensorboard=2.16.2`&quot;,
+      &quot;source_url&quot;: &quot;https://raw.githubusercontent.com/punkduckable/DDE-Find/main/README.md&quot;,
+      &quot;line&quot;: 43,
+      &quot;basis&quot;: &quot;literal README statement; environment not constructed&quot;
+    },
+    {
+      &quot;requirement_excerpt&quot;: &quot;`conda install pyyaml=6.0.1`&quot;,
+      &quot;source_url&quot;: &quot;https://raw.githubusercontent.com/punkduckable/DDE-Find/main/README.md&quot;,
+      &quot;line&quot;: 44,
+      &quot;basis&quot;: &quot;literal README statement; environment not constructed&quot;
+    },
+    {
+      &quot;requirement_excerpt&quot;: &quot;run the `DDE-Find` library), simply activate the environment with `conda activate DDE_Find`.&quot;,
+      &quot;source_url&quot;: &quot;https://raw.githubusercontent.com/punkduckable/DDE-Find/main/README.md&quot;,
+      &quot;line&quot;: 49,
+      &quot;basis&quot;: &quot;literal README statement; environment not constructed&quot;
+    }
+  ],
+  &quot;blockers&quot;: [
+    &quot;paper-result T2 reproduction not run; public access or README inspection is not reproduction&quot;
+  ],
+  &quot;follow_up_actions&quot;: []
+}
+</code></pre>
+<h2>原文定位</h2>
+<p>以下为课程整理的结论和原文页码 / 块号索引，全文通过出版页面访问。</p></main></body></html>

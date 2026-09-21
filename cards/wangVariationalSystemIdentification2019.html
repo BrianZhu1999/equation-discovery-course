@@ -1,0 +1,113 @@
+<!doctype html><html lang="zh-CN"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Variational system identification of the partial differential equations governing the physics of pattern-formation: Inference under varying fidelity and noise · 物理规律发现</title><link rel="stylesheet" href="../style.css"><link rel="stylesheet" href="../public.css"></head><body><main class="doc"><div class="links"><a href="../">返回课程</a><a href="../spectrum/">三维谱图</a></div><h1>P68 · Variational system identification of the partial differential equations governing the physics of pattern-formation: Inference under varying fidelity and noise</h1>
+<p>Z. Wang; X. Huan; K. Garikipati. Variational system identification of the partial differential equations governing the physics of pattern-formation: Inference under varying fidelity and noise. Computer Methods in Applied Mechanics and Engineering, 2019, 356: 44-74. DOI: 10.1016/j.cma.2019.07.007</p>
+<p><a href="https://doi.org/10.1016/j.cma.2019.07.007">出版页面</a> · 第 8 天 · 统计选择与弱形式</p>
+<h2>研究问题</h2>
+<p>在相似图样可由多个PDE解释时辨别相变和生物形态发生的控制方程及边界条件。</p>
+<h2>规律表示</h2>
+<p>Allen-Cahn、Cahn-Hilliard等变分弱式算子和Neumann边界积分项。</p>
+<h2>方法</h2>
+<p>NURBS基上的弱式算子回归与逐项消除。</p>
+<h2>假设</h2>
+<p>• 变分函数空间
+• 候选相场算子
+• 边界条件类型</p>
+<h2>必做推导</h2>
+<p>推导相场弱形式中的体积分和 Neumann 边界积分，保留边界项而不擅自丢掉。</p>
+<h2>复现目标</h2>
+<p>在作者代码中选一个支持核心结论的案例：• 多种相场与图样形成PDE模拟
+• 不同网格、时间步和噪声。先运行小样例，再恢复该案例原文配置；运行前登记原文指标/目标图、统计量和容差，运行后交付结构或等价结构、系数/统计量、留出预测、耗时和日志。</p>
+<h2>单因素检验</h2>
+<p>只改变网格分辨率。</p>
+<h2>适用范围与限制</h2>
+<p>• 候选模型族预先给定
+• 低保真可能丢失高频机制
+• 未形成系统UQ或数据选择优化</p>
+<h2>闭卷自测</h2>
+<h3>1. P68 实际辨识的未知对象是什么，哪些对象预先给定？</h3>
+<details><summary>先作答，再展开核对</summary>
+
+
+在相似图样可由多个PDE解释时辨别相变和生物形态发生的控制方程及边界条件。
+表示：Allen-Cahn、Cahn-Hilliard等变分弱式算子和Neumann边界积分项。
+
+
+</details>
+
+<h3>2. P68 从数据到模型采用什么路线？按顺序解释各步骤。</h3>
+<details><summary>先作答，再展开核对</summary>
+
+
+NURBS基上的弱式算子回归与逐项消除。
+
+
+</details>
+
+<h3>3. P68 哪些假设或限制使结果不能直接推广？至少说出两项。</h3>
+<details><summary>先作答，再展开核对</summary>
+
+
+• 变分函数空间
+• 候选相场算子
+• 边界条件类型
+• 候选模型族预先给定
+• 低保真可能丢失高频机制
+• 未形成系统UQ或数据选择优化
+
+
+</details>
+
+<h3>4. 怎样设计这项单因素检验：只改变网格分辨率。</h3>
+<details><summary>先作答，再展开核对</summary>
+
+
+只改变指定因素，固定数据划分与其余参数；用结构、系数/统计量和留出预测评价，并将结果联系到以下方法边界：
+• 候选模型族预先给定
+• 低保真可能丢失高频机制
+• 未形成系统UQ或数据选择优化
+
+
+</details>
+
+<h2>作者代码与核查</h2>
+<p>代码信息为课程构建时的核查快照，可访问不等于已复现；没有定位到代码不等于作者没有公开。</p>
+<ul>
+<li><a href="https://github.com/mechanoChem/mechanoChem">https://github.com/mechanoChem/mechanoChem</a></li>
+</ul>
+<pre><code class="language-json">{
+  &quot;verified_status&quot;: &quot;public_verified&quot;,
+  &quot;entrypoints&quot;: [
+    {
+      &quot;command_excerpt&quot;: &quot;The ouput files created by the code are .dat binary files and a fieldInfo.txt file. These files can be converted to .vtk files and visualized using tools such as VisIt or ParaView using the igakit package (see step 5 of the installation instructions). To do this file conversion, run the initBounValProbs/writeVTKFile.py script from the directory containing the output files. For example, if the .dat and fieldInfo.txt ouput files were located in the initBounValProb/nonGradientMechanics/3D folder, the following commands would create the .vtk files: &lt;br&gt;&quot;,
+      &quot;source_url&quot;: &quot;https://raw.githubusercontent.com/mechanoChem/mechanoChemIGA/master/README.md&quot;,
+      &quot;line&quot;: 194,
+      &quot;basis&quot;: &quot;literal README instruction; not executed&quot;
+    },
+    {
+      &quot;command_excerpt&quot;: &quot;$ python ../../writeVTKFiles.py&quot;,
+      &quot;source_url&quot;: &quot;https://raw.githubusercontent.com/mechanoChem/mechanoChemIGA/master/README.md&quot;,
+      &quot;line&quot;: 197,
+      &quot;basis&quot;: &quot;literal README instruction; not executed&quot;
+    }
+  ],
+  &quot;environment&quot;: [
+    {
+      &quot;path&quot;: &quot;Dockerfile&quot;,
+      &quot;basis&quot;: &quot;observed dependency/config file; compatibility not tested&quot;,
+      &quot;repository&quot;: &quot;https://github.com/mechanoChem/mechanoChem&quot;
+    },
+    {
+      &quot;requirement_excerpt&quot;: &quot;$ pip install https://bitbucket.org/dalcinl/igakit/get/default.tar.gz&quot;,
+      &quot;source_url&quot;: &quot;https://raw.githubusercontent.com/mechanoChem/mechanoChemIGA/master/README.md&quot;,
+      &quot;line&quot;: 164,
+      &quot;basis&quot;: &quot;literal README statement; environment not constructed&quot;
+    }
+  ],
+  &quot;blockers&quot;: [
+    &quot;paper-result T2 reproduction not run; public access or README inspection is not reproduction&quot;,
+    &quot;paper author link is the mechanoChem simulation framework; exact variational inference experiment entrypoint not established&quot;
+  ],
+  &quot;follow_up_actions&quot;: []
+}
+</code></pre>
+<h2>原文定位</h2>
+<p>以下为课程整理的结论和原文页码 / 块号索引，全文通过出版页面访问。</p></main></body></html>

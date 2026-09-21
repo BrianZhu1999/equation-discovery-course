@@ -1,0 +1,133 @@
+<!doctype html><html lang="zh-CN"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>PySINDy: A comprehensive Python package for robust sparse system identification · 物理规律发现</title><link rel="stylesheet" href="../style.css"><link rel="stylesheet" href="../public.css"></head><body><main class="doc"><div class="links"><a href="../">返回课程</a><a href="../spectrum/">三维谱图</a></div><h1>P48 · PySINDy: A comprehensive Python package for robust sparse system identification</h1>
+<p>Alan Kaptanoglu; Brian de Silva; Urban Fasel; Kadierdan Kaheman; Andy Goldschmidt; Jared Callaham; Charles Delahunt; Zachary Nicolaou; Kathleen Champion; Jean-Christophe Loiseau; J. Kutz; Steven Brunton. PySINDy: A comprehensive Python package for robust sparse system identification. Journal of Open Source Software, 2022, 7(69): 3994. DOI: 10.21105/joss.03994</p>
+<p><a href="https://doi.org/10.21105/joss.03994">出版页面</a> · 第 1 天 · 基础与稀疏表示</p>
+<h2>研究问题</h2>
+<p>提供统一、可维护且可组合的Python实现，使研究者可在同一接口下选择候选库、微分方法和稀疏优化器，覆盖ODE、PDE、控制、隐式与弱形式识别。</p>
+<h2>规律表示</h2>
+<p>动力函数表示为用户候选库Theta中的稀疏线性组合；GeneralizedLibrary可张量化、拼接并限制每个子库使用的输入，从而构建ODE、PDE和隐式关系。</p>
+<h2>方法</h2>
+<p>包内组合多种贪心、阈值、正则和约束优化器求解Q_t约等于Theta(Q)Xi；软件侧重模块化选择和可复现实验，而非提出单一新的结构搜索准则。</p>
+<h2>假设</h2>
+<p>• 候选函数库由背景科学知识选择
+• 稀疏正则偏好少量非零系数
+• 可选物理约束、稳定性和控制输入扩展
+• 微分器与优化器需按数据噪声和任务结构人工选择</p>
+<h2>必做推导</h2>
+<p>把 differentiation、feature library、optimizer 三个接口对回 SINDy 数学步骤。</p>
+<h2>复现目标</h2>
+<p>在作者代码中选一个支持核心结论的案例：• 传统ODE SINDy
+• 隐式ODE与带控制系统
+• PDE和ODE/PDE弱形式
+• Kuramoto-Sivashinsky时空数据
+• 流体稳定trapping SINDy与多轨迹/集成扩展。先运行小样例，再恢复该案例原文配置；运行前登记原文指标/目标图、统计量和容差，运行后交付结构或等价结构、系数/统计量、留出预测、耗时和日志。</p>
+<h2>单因素检验</h2>
+<p>只更换求导器，其他设置完全相同。</p>
+<h2>适用范围与限制</h2>
+<p>• SINDy成功的必要条件是候选库张成空间中存在足够准确且稀疏的真动力学表示；背景知识不足或库遗漏会使优化器无法恢复真结构。
+• 软件功能图明确区分已实现与尚未实现的SINDy变体，因此论文所综述的文献功能不能全部视为当时包内可用能力。</p>
+<h2>闭卷自测</h2>
+<h3>1. P48 实际辨识的未知对象是什么，哪些对象预先给定？</h3>
+<details><summary>先作答，再展开核对</summary>
+
+
+提供统一、可维护且可组合的Python实现，使研究者可在同一接口下选择候选库、微分方法和稀疏优化器，覆盖ODE、PDE、控制、隐式与弱形式识别。
+表示：动力函数表示为用户候选库Theta中的稀疏线性组合；GeneralizedLibrary可张量化、拼接并限制每个子库使用的输入，从而构建ODE、PDE和隐式关系。
+
+
+</details>
+
+<h3>2. P48 从数据到模型采用什么路线？按顺序解释各步骤。</h3>
+<details><summary>先作答，再展开核对</summary>
+
+
+包内组合多种贪心、阈值、正则和约束优化器求解Q_t约等于Theta(Q)Xi；软件侧重模块化选择和可复现实验，而非提出单一新的结构搜索准则。
+
+
+</details>
+
+<h3>3. P48 哪些假设或限制使结果不能直接推广？至少说出两项。</h3>
+<details><summary>先作答，再展开核对</summary>
+
+
+• 候选函数库由背景科学知识选择
+• 稀疏正则偏好少量非零系数
+• 可选物理约束、稳定性和控制输入扩展
+• 微分器与优化器需按数据噪声和任务结构人工选择
+• SINDy成功的必要条件是候选库张成空间中存在足够准确且稀疏的真动力学表示；背景知识不足或库遗漏会使优化器无法恢复真结构。
+• 软件功能图明确区分已实现与尚未实现的SINDy变体，因此论文所综述的文献功能不能全部视为当时包内可用能力。
+
+
+</details>
+
+<h3>4. 怎样设计这项单因素检验：只更换求导器，其他设置完全相同。</h3>
+<details><summary>先作答，再展开核对</summary>
+
+
+只改变指定因素，固定数据划分与其余参数；用结构、系数/统计量和留出预测评价，并将结果联系到以下方法边界：
+• SINDy成功的必要条件是候选库张成空间中存在足够准确且稀疏的真动力学表示；背景知识不足或库遗漏会使优化器无法恢复真结构。
+• 软件功能图明确区分已实现与尚未实现的SINDy变体，因此论文所综述的文献功能不能全部视为当时包内可用能力。
+
+
+</details>
+
+<h2>作者代码与核查</h2>
+<p>代码信息为课程构建时的核查快照，可访问不等于已复现；没有定位到代码不等于作者没有公开。</p>
+<ul>
+<li><a href="https://github.com/dynamicslab/pysindy">https://github.com/dynamicslab/pysindy</a></li>
+</ul>
+<pre><code class="language-json">{
+  &quot;verified_status&quot;: &quot;public_verified&quot;,
+  &quot;entrypoints&quot;: [
+    {
+      &quot;path&quot;: &quot;examples&quot;,
+      &quot;basis&quot;: &quot;observed root path; not executed&quot;,
+      &quot;repository&quot;: &quot;https://github.com/dynamicslab/pysindy&quot;
+    }
+  ],
+  &quot;environment&quot;: [
+    {
+      &quot;path&quot;: &quot;pyproject.toml&quot;,
+      &quot;basis&quot;: &quot;observed dependency/config file; compatibility not tested&quot;,
+      &quot;repository&quot;: &quot;https://github.com/dynamicslab/pysindy&quot;
+    },
+    {
+      &quot;requirement_excerpt&quot;: &quot;The preferred way to install is with pip or conda e.g. ``pip install pysindy``.&quot;,
+      &quot;source_url&quot;: &quot;https://raw.githubusercontent.com/dynamicslab/pysindy/main/README.rst&quot;,
+      &quot;line&quot;: 22,
+      &quot;basis&quot;: &quot;literal README statement; environment not constructed&quot;
+    },
+    {
+      &quot;requirement_excerpt&quot;: &quot;Pysindy also provides several extras, e.g. ``pip install pysindy[miosr]``:&quot;,
+      &quot;source_url&quot;: &quot;https://raw.githubusercontent.com/dynamicslab/pysindy/main/README.rst&quot;,
+      &quot;line&quot;: 24,
+      &quot;basis&quot;: &quot;literal README statement; environment not constructed&quot;
+    }
+  ],
+  &quot;blockers&quot;: [
+    &quot;paper-result T2 reproduction not run; public access or README inspection is not reproduction&quot;
+  ],
+  &quot;follow_up_actions&quot;: []
+}
+</code></pre>
+<h2>原文定位</h2>
+<p>以下为课程整理的结论和原文页码 / 块号索引，全文通过出版页面访问。</p>
+<ul>
+<li>
+<p>标准SINDy要求真动力学在候选库张成空间中有准确的稀疏展开，并把导数矩阵对候选矩阵的拟合写成带稀疏正则的回归。（PDF 页 2；块号 P002-B002, P002-B003, P002-B004, P002-B006）</p>
+</li>
+<li>
+<p>PySINDy默认二阶有限差分，但同时提供高阶差分、Savitzky-Golay、谱方法、样条和总变差微分，明确把导数估计作为可替换模块。（PDF 页 2；块号 P002-B005）</p>
+</li>
+<li>
+<p>统一框架覆盖任意空间维PDE及其弱形式，并把ODE、隐式ODE、PDE、控制项、物理约束、多轨迹、子采样和集成放入可组合模块。（PDF 页 3；块号 P003-B003, P003-B004, P003-B005）</p>
+</li>
+<li>
+<p>Kuramoto-Sivashinsky示例在前60%数据上训练，并在后40%数据上测试时间导数预测；作者报告结构识别正确且留出导数拟合表现良好。（PDF 页 3；块号 P003-B006）</p>
+</li>
+<li>
+<p>Kuramoto-Sivashinsky图注给出的识别式系数约为-0.98、-0.99和-1.00，接近三个真系数-1。（PDF 页 5；块号 P005-B001）</p>
+</li>
+<li>
+<p>项目公开源码，强调完整文档、示例、单元测试、PEP8和较少非标准依赖，并用notebook复现多篇SINDy论文案例。（PDF 页 3；块号 P003-B001, P003-B006）</p>
+</li>
+</ul></main></body></html>

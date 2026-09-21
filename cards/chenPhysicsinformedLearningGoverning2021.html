@@ -1,0 +1,178 @@
+<!doctype html><html lang="zh-CN"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Physics-informed learning of governing equations from scarce data · 物理规律发现</title><link rel="stylesheet" href="../style.css"><link rel="stylesheet" href="../public.css"></head><body><main class="doc"><div class="links"><a href="../">返回课程</a><a href="../spectrum/">三维谱图</a></div><h1>P18 · Physics-informed learning of governing equations from scarce data</h1>
+<p>Zhao Chen; Yang Liu; Hao Sun. Physics-informed learning of governing equations from scarce data. Nature Communications, 2021, 12(1). DOI: 10.1038/s41467-021-26434-1</p>
+<p><a href="https://doi.org/10.1038/s41467-021-26434-1">出版页面</a> · 第 10 天 · 神经代理与导数</p>
+<h2>研究问题</h2>
+<p>从稀疏、含噪、可能来自多个初始/边界条件的时空观测中，同时重建连续响应并识别稀疏闭式PDE；进一步在真实细胞划痕实验中恢复迁移-增殖方程。</p>
+<h2>规律表示</h2>
+<p>预定义常数、多项式、三角项和空间导数及其乘积组成候选库phi，稀疏系数矩阵Lambda给出一阶时间PDE；二阶时间系统先改写为状态空间，未知源项也须以候选函数加入库。</p>
+<h2>方法</h2>
+<p>先用L1正则联合预训练DNN与系数，再以交替方向优化在STRidge结构更新和Adam/L-BFGS网络更新之间迭代，最后可在固定结构上后训练微调系数；beta由残差-稀疏度Pareto前沿选择。</p>
+<h2>假设</h2>
+<p>• 真PDE可在预定义候选库中稀疏表示
+• 多个初始/边界条件共享同一组PDE结构与系数
+• 配点上的PDE残差与L0型稀疏约束
+• FitzHugh-Nagumo案例预知扩散项形式但未知系数
+• 细胞案例预设扩散加局部反应形式rho_t=gamma rho_xx+F(rho)</p>
+<h2>必做推导</h2>
+<p>分别写出数据拟合、物理残差和稀疏结构更新步骤，分析稀疏观测如何约束代理。</p>
+<h2>复现目标</h2>
+<p>在作者代码中选一个支持核心结论的案例：• 黏性Burgers与低黏度冲击Burgers
+• Kuramoto-Sivashinsky与非线性Schrodinger方程
+• Re=100圆柱流Navier-Stokes涡量数据
+• lambda-omega与FitzHugh-Nagumo反应扩散系统
+• 四种初始密度的体外细胞迁移和增殖划痕实验。先运行小样例，再恢复该案例原文配置；运行前登记原文指标/目标图、统计量和容差，运行后交付结构或等价结构、系数/统计量、留出预测、耗时和日志。</p>
+<h2>单因素检验</h2>
+<p>只改变内部配点数，保持真实观测固定。</p>
+<h2>适用范围与限制</h2>
+<p>• 未知源项只有在候选形式已设计时才能并行发现；若源项表达式复杂且完全未知，就需要异常庞大的库并显著增加计算复杂度。
+• PINN-SR因DNN训练远慢于SINDy；全连接网络扩展到三维需要海量配点，而root-branch的参数、配点和内存又随独立数据集数近线性增长。
+• 当前方法不能处理时空变系数PDE；PINN全局基对混沌和尖锐传播前沿建模较差，稀疏含噪数据下会造成系数偏差。
+• 成功依赖预定义库既包含真项又不过大；千量级候选易秩亏和病态，漏掉关键项仍会得到看似简洁的假阳性最佳拟合方程。
+• 数据-物理权重alpha等超参数采用启发式尺度规则，作者明确称其选择仍是PINN领域的关键开放问题，并报告某些反应扩散案例需例外调大。</p>
+<h2>闭卷自测</h2>
+<h3>1. P18 实际辨识的未知对象是什么，哪些对象预先给定？</h3>
+<details><summary>先作答，再展开核对</summary>
+
+
+从稀疏、含噪、可能来自多个初始/边界条件的时空观测中，同时重建连续响应并识别稀疏闭式PDE；进一步在真实细胞划痕实验中恢复迁移-增殖方程。
+表示：预定义常数、多项式、三角项和空间导数及其乘积组成候选库phi，稀疏系数矩阵Lambda给出一阶时间PDE；二阶时间系统先改写为状态空间，未知源项也须以候选函数加入库。
+
+
+</details>
+
+<h3>2. P18 从数据到模型采用什么路线？按顺序解释各步骤。</h3>
+<details><summary>先作答，再展开核对</summary>
+
+
+先用L1正则联合预训练DNN与系数，再以交替方向优化在STRidge结构更新和Adam/L-BFGS网络更新之间迭代，最后可在固定结构上后训练微调系数；beta由残差-稀疏度Pareto前沿选择。
+
+
+</details>
+
+<h3>3. P18 哪些假设或限制使结果不能直接推广？至少说出两项。</h3>
+<details><summary>先作答，再展开核对</summary>
+
+
+• 真PDE可在预定义候选库中稀疏表示
+• 多个初始/边界条件共享同一组PDE结构与系数
+• 配点上的PDE残差与L0型稀疏约束
+• FitzHugh-Nagumo案例预知扩散项形式但未知系数
+• 细胞案例预设扩散加局部反应形式rho_t=gamma rho_xx+F(rho)
+• 未知源项只有在候选形式已设计时才能并行发现；若源项表达式复杂且完全未知，就需要异常庞大的库并显著增加计算复杂度。
+• PINN-SR因DNN训练远慢于SINDy；全连接网络扩展到三维需要海量配点，而root-branch的参数、配点和内存又随独立数据集数近线性增长。
+• 当前方法不能处理时空变系数PDE；PINN全局基对混沌和尖锐传播前沿建模较差，稀疏含噪数据下会造成系数偏差。
+• 成功依赖预定义库既包含真项又不过大；千量级候选易秩亏和病态，漏掉关键项仍会得到看似简洁的假阳性最佳拟合方程。
+• 数据-物理权重alpha等超参数采用启发式尺度规则，作者明确称其选择仍是PINN领域的关键开放问题，并报告某些反应扩散案例需例外调大。
+
+
+</details>
+
+<h3>4. 怎样设计这项单因素检验：只改变内部配点数，保持真实观测固定。</h3>
+<details><summary>先作答，再展开核对</summary>
+
+
+只改变指定因素，固定数据划分与其余参数；用结构、系数/统计量和留出预测评价，并将结果联系到以下方法边界：
+• 未知源项只有在候选形式已设计时才能并行发现；若源项表达式复杂且完全未知，就需要异常庞大的库并显著增加计算复杂度。
+• PINN-SR因DNN训练远慢于SINDy；全连接网络扩展到三维需要海量配点，而root-branch的参数、配点和内存又随独立数据集数近线性增长。
+• 当前方法不能处理时空变系数PDE；PINN全局基对混沌和尖锐传播前沿建模较差，稀疏含噪数据下会造成系数偏差。
+• 成功依赖预定义库既包含真项又不过大；千量级候选易秩亏和病态，漏掉关键项仍会得到看似简洁的假阳性最佳拟合方程。
+• 数据-物理权重alpha等超参数采用启发式尺度规则，作者明确称其选择仍是PINN领域的关键开放问题，并报告某些反应扩散案例需例外调大。
+
+
+</details>
+
+<h2>作者代码与核查</h2>
+<p>代码信息为课程构建时的核查快照，可访问不等于已复现；没有定位到代码不等于作者没有公开。</p>
+<ul>
+<li><a href="https://github.com/isds-neu/EQDiscovery">https://github.com/isds-neu/EQDiscovery</a></li>
+</ul>
+<pre><code class="language-json">{
+  &quot;verified_status&quot;: &quot;public_verified&quot;,
+  &quot;entrypoints&quot;: [
+    {
+      &quot;path&quot;: &quot;Examples&quot;,
+      &quot;basis&quot;: &quot;observed root path; not executed&quot;,
+      &quot;repository&quot;: &quot;https://github.com/isds-neu/EQDiscovery&quot;
+    }
+  ],
+  &quot;environment&quot;: [
+    {
+      &quot;requirement_excerpt&quot;: &quot;# System Requirements&quot;,
+      &quot;source_url&quot;: &quot;https://raw.githubusercontent.com/isds-neu/EQDiscovery/master/README.md&quot;,
+      &quot;line&quot;: 9,
+      &quot;basis&quot;: &quot;literal README statement; environment not constructed&quot;
+    },
+    {
+      &quot;requirement_excerpt&quot;: &quot;## Hardware requirements&quot;,
+      &quot;source_url&quot;: &quot;https://raw.githubusercontent.com/isds-neu/EQDiscovery/master/README.md&quot;,
+      &quot;line&quot;: 10,
+      &quot;basis&quot;: &quot;literal README statement; environment not constructed&quot;
+    },
+    {
+      &quot;requirement_excerpt&quot;: &quot;## Software requirements&quot;,
+      &quot;source_url&quot;: &quot;https://raw.githubusercontent.com/isds-neu/EQDiscovery/master/README.md&quot;,
+      &quot;line&quot;: 15,
+      &quot;basis&quot;: &quot;literal README statement; environment not constructed&quot;
+    },
+    {
+      &quot;requirement_excerpt&quot;: &quot;### OS Requirements&quot;,
+      &quot;source_url&quot;: &quot;https://raw.githubusercontent.com/isds-neu/EQDiscovery/master/README.md&quot;,
+      &quot;line&quot;: 16,
+      &quot;basis&quot;: &quot;literal README statement; environment not constructed&quot;
+    },
+    {
+      &quot;requirement_excerpt&quot;: &quot;### Software dependencies&quot;,
+      &quot;source_url&quot;: &quot;https://raw.githubusercontent.com/isds-neu/EQDiscovery/master/README.md&quot;,
+      &quot;line&quot;: 20,
+      &quot;basis&quot;: &quot;literal README statement; environment not constructed&quot;
+    },
+    {
+      &quot;requirement_excerpt&quot;: &quot;This work was implemented on Tensorflow-gpu 1.15 in Python empowered by GPU. MATLAB was used for final visual presentation in the manuscript.&quot;,
+      &quot;source_url&quot;: &quot;https://raw.githubusercontent.com/isds-neu/EQDiscovery/master/README.md&quot;,
+      &quot;line&quot;: 21,
+      &quot;basis&quot;: &quot;literal README statement; environment not constructed&quot;
+    },
+    {
+      &quot;requirement_excerpt&quot;: &quot;- Python 3.7&quot;,
+      &quot;source_url&quot;: &quot;https://raw.githubusercontent.com/isds-neu/EQDiscovery/master/README.md&quot;,
+      &quot;line&quot;: 29,
+      &quot;basis&quot;: &quot;literal README statement; environment not constructed&quot;
+    },
+    {
+      &quot;requirement_excerpt&quot;: &quot;Expected outcome will show the quality of system response prediction and equation discovery. Specifically, some error metrics and simple figures illustrating predictive system responses, discovered governing equations and loss convergence for diagnostics purpose. Note that we used MATLAB codes to design formal figures in the manuscript.&quot;,
+      &quot;source_url&quot;: &quot;https://raw.githubusercontent.com/isds-neu/EQDiscovery/master/README.md&quot;,
+      &quot;line&quot;: 42,
+      &quot;basis&quot;: &quot;literal README statement; environment not constructed&quot;
+    }
+  ],
+  &quot;blockers&quot;: [
+    &quot;paper-result T2 reproduction not run; public access or README inspection is not reproduction&quot;
+  ],
+  &quot;follow_up_actions&quot;: []
+}
+</code></pre>
+<h2>原文定位</h2>
+<p>以下为课程整理的结论和原文页码 / 块号索引，全文通过出版页面访问。</p>
+<ul>
+<li>
+<p>PINN-SR以单支或root-branch DNN拟合状态，用自动微分构造候选库，在随机配点上联合数据损失、PDE残差和L0稀疏项；交替优化用于处理直接求解的NP-hard结构选择。（PDF 页 3；块号 P003-B006, P003-B007, P003-B008, P003-B009, P003-B010）</p>
+</li>
+<li>
+<p>五个单数据集数值基准在10%噪声下均恢复正确项集，非零系数平均相对误差约0.08%至1.84%；使用数据比例从Navier-Stokes的0.22%到Schrodinger的37.5%。（PDF 页 4；块号 P004-B005, P004-B006）</p>
+</li>
+<li>
+<p>KS只用320个固定空间点、101个时刻且加10%噪声时仍恢复四项结构，系数误差约0.94%，代理全场相对L2误差约2.14%。（PDF 页 5；块号 P005-B005, P005-B006）</p>
+</li>
+<li>
+<p>圆柱流Navier-Stokes案例从开放模拟数据随机取500个空间位置、60个时刻并加入10%噪声，60项库在首次ADO后得到正确稀疏结构，全场涡量误差约2.58%。（PDF 页 6；块号 P006-B004）</p>
+</li>
+<li>
+<p>root-branch实验把三种初/边条件的Burgers冲击响应联合起来，在10%噪声下恢复u u_x和u_xx及小黏性系数，三条件堆叠全场误差约0.65%。（PDF 页 7；块号 P007-B003）</p>
+</li>
+<li>
+<p>细胞实验在0、12、24、36、48 h成像，使用四种初始细胞数量且每种取三个重复实验均值；候选空间因已知迁移-反应机制被限制为一个扩散项和八个反应/梯度候选。（PDF 页 8；块号 P008-B005, P008-B006）</p>
+</li>
+<li>
+<p>四种初始细胞数量都保留扩散、rho和rho^2，得到与Fisher-Kolmogorov同形的PDE；用0 h测量作初值前向模拟后，12至48 h曲线与实验观测一致。（PDF 页 9；块号 P009-B003, P009-B005, P009-B006）</p>
+</li>
+</ul></main></body></html>

@@ -1,0 +1,42 @@
+<!doctype html><html lang="zh-CN"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>论文播客脚本 · 物理规律发现</title><link rel="stylesheet" href="../style.css"><link rel="stylesheet" href="../public.css"></head><body><main class="doc"><div class="links"><a href="../">返回课程</a><a href="../spectrum/">三维谱图</a></div><h1>第6期｜从粒子到场：主动物质与均场方程</h1>
+<blockquote>
+<p>这是课程学习播客脚本，不是对论文结果的独立再验证。数字和性能结论以原文为准。</p>
+</blockquote>
+<p><strong>主持人</strong>：从粒子轨迹到连续场，中间究竟丢掉了什么？</p>
+<p><strong>研究者</strong>：这一期选了：P50《Data-Driven Discovery of Active Nematic Hydrodynamics》；P51《Learning hydrodynamic equations for active matter from particle simulations and experiments》；P64《Learning mean-field equations from particle data using WSINDy》。我们只抓住一条主线，不把整篇论文念成摘要。</p>
+<h2>1. P50：Data-Driven Discovery of Active Nematic Hydrodynamics</h2>
+<p><strong>主持人</strong>：这篇工作的未知对象到底是什么？用一句话先说清楚。</p>
+<p><strong>研究者</strong>：它的研究目标是：从微管-驱动蛋白主动向列实验的取向张量场和速度场中辨识连续体水动力学。</p>
+<p><strong>主持人</strong>：那数据是怎样变成方程的？</p>
+<p><strong>研究者</strong>：方法路线是：局部积分或弱形式构造残差，岭回归后逐项消除，并以最优性曲线的肩部选取简约模型。这里要特别注意，候选表示、数据质量和优化器都属于问题设定的一部分。</p>
+<p><strong>主持人</strong>：课程给这篇安排的推导是什么？</p>
+<p><strong>研究者</strong>：写出 Q 张量演化的候选类型，并推导为什么缺陷区罕见会压低弹性项全局回归贡献。</p>
+<p><strong>主持人</strong>：最容易被忽略的限制呢？</p>
+<p><strong>研究者</strong>：原文和课程记录的边界是：• 近阈值结构受有限统计量影响
+• 缺陷附近数据不足导致弹性项漏选
+• 数值稳定项并非完全由数据自动选出。所以可以说它在给定假设下有效，不能直接说发现了所有系统的普适定律。</p>
+<h2>2. P51：Learning hydrodynamic equations for active matter from particle simulations and experiments</h2>
+<p><strong>主持人</strong>：这篇工作的未知对象到底是什么？用一句话先说清楚。</p>
+<p><strong>研究者</strong>：它的研究目标是：由粒子轨迹和视频显微数据直接学习主动粒子系统的宏观水动力PDE。</p>
+<p><strong>主持人</strong>：那数据是怎样变成方程的？</p>
+<p><strong>研究者</strong>：方法路线是：先以核方法粗粒化粒子轨迹，再用Chebyshev谱表示和稀疏回归选择PDE项与系数。这里要特别注意，候选表示、数据质量和优化器都属于问题设定的一部分。</p>
+<p><strong>主持人</strong>：课程给这篇安排的推导是什么？</p>
+<p><strong>研究者</strong>：从粒子密度/极化的核粗粒化写到谱截断；解释确定性闭合为何依赖快慢涨落分离。</p>
+<p><strong>主持人</strong>：最容易被忽略的限制呢？</p>
+<p><strong>研究者</strong>：原文和课程记录的边界是：• 粗粒化坐标与尺度由研究者设定
+• 代数衰减涨落情形可能需要SPDE而非确定性PDE
+• 实验验证仍集中于特定主动体系。所以可以说它在给定假设下有效，不能直接说发现了所有系统的普适定律。</p>
+<h2>3. P64：Learning mean-field equations from particle data using WSINDy</h2>
+<p><strong>主持人</strong>：这篇工作的未知对象到底是什么？用一句话先说清楚。</p>
+<p><strong>研究者</strong>：它的研究目标是：由大量相互作用粒子的离散轨迹恢复均场非局域PDE及相互作用、势和扩散。</p>
+<p><strong>主持人</strong>：那数据是怎样变成方程的？</p>
+<p><strong>研究者</strong>：方法路线是：先将粒子经验测度核化为密度，再用WSINDy弱形式和稀疏阈值选择项。这里要特别注意，候选表示、数据质量和优化器都属于问题设定的一部分。</p>
+<p><strong>主持人</strong>：课程给这篇安排的推导是什么？</p>
+<p><strong>研究者</strong>：从粒子经验测度的弱积分构造连续方程特征，避免逐点先估完整密度导数。</p>
+<p><strong>主持人</strong>：最容易被忽略的限制呢？</p>
+<p><strong>研究者</strong>：原文和课程记录的边界是：• 依赖大粒子数均场条件
+• 核密度和测试函数尺度需设定
+• 有限N相关性可违反收敛假设。所以可以说它在给定假设下有效，不能直接说发现了所有系统的普适定律。</p>
+<h2>结尾：带走三句话</h2>
+<p><strong>研究者</strong>：第一，先说清楚未知对象和候选空间；第二，区分训练拟合、结构恢复和留出预测；第三，任何漂亮的方程都要配上可辨识条件和失败边界。</p>
+<p><strong>主持人</strong>：下一期继续沿着这条线走：把公式放回数据、实验和它不能回答的问题里。</p></main></body></html>

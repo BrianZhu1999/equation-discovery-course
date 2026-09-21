@@ -1,0 +1,43 @@
+<!doctype html><html lang="zh-CN"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>论文播客脚本 · 物理规律发现</title><link rel="stylesheet" href="../style.css"><link rel="stylesheet" href="../public.css"></head><body><main class="doc"><div class="links"><a href="../">返回课程</a><a href="../spectrum/">三维谱图</a></div><h1>第4期｜神经网络发现 PDE：自动微分究竟帮了什么</h1>
+<blockquote>
+<p>这是课程学习播客脚本，不是对论文结果的独立再验证。数字和性能结论以原文为准。</p>
+</blockquote>
+<p><strong>主持人</strong>：神经网络能把场拟合得很漂亮，但漂亮的拟合是不是物理规律？</p>
+<p><strong>研究者</strong>：这一期选了：P12《Hidden physics models: Machine learning of nonlinear partial differential equations》；P14《DeepMoD: Deep learning for model discovery in noisy data》；P18《Physics-informed learning of governing equations from scarce data》。我们只抓住一条主线，不把整篇论文念成摘要。</p>
+<h2>1. P12：Hidden physics models: Machine learning of nonlinear partial differential equations</h2>
+<p><strong>主持人</strong>：这篇工作的未知对象到底是什么？用一句话先说清楚。</p>
+<p><strong>研究者</strong>：它的研究目标是：在已知参数化PDE结构下，仅用相邻两个含噪稀疏快照，通过把离散物理嵌入高斯过程协方差来估计未知系数或分数阶参数。</p>
+<p><strong>主持人</strong>：那数据是怎样变成方程的？</p>
+<p><strong>研究者</strong>：方法路线是：用L-BFGS最小化多输出GP的负对数边缘似然，同时估计核超参数、PDE参数和独立高斯噪声方差。这里要特别注意，候选表示、数据质量和优化器都属于问题设定的一部分。</p>
+<p><strong>主持人</strong>：课程给这篇安排的推导是什么？</p>
+<p><strong>研究者</strong>：从一次隐式时间推进写出两时刻观测的协方差块；解释未知 PDE 参数如何进入 GP 核。</p>
+<p><strong>主持人</strong>：最容易被忽略的限制呢？</p>
+<p><strong>研究者</strong>：原文和课程记录的边界是：• 负对数边缘似然没有避免多局部极小值的理论保证；完全贝叶斯参数估计虽更稳健，但需昂贵MCMC。
+• 训练需反演稠密协方差矩阵，计算量随总训练点数三次增长。
+• 相邻快照间隔必须足够小才能使用后向Euler；作者的灵敏度试验确认较大间隔会带来明显参数偏差。所以可以说它在给定假设下有效，不能直接说发现了所有系统的普适定律。</p>
+<h2>2. P14：DeepMoD: Deep learning for model discovery in noisy data</h2>
+<p><strong>主持人</strong>：这篇工作的未知对象到底是什么？用一句话先说清楚。</p>
+<p><strong>研究者</strong>：它的研究目标是：从稀疏、非规则且含噪的时空样本中重建连续场和导数，并在预设候选库内发现显式PDE结构及系数。</p>
+<p><strong>主持人</strong>：那数据是怎样变成方程的？</p>
+<p><strong>研究者</strong>：方法路线是：联合最小化数据MSE、PDE回归残差和系数L1惩罚；待系数收敛后按无量纲缩放系数阈值剪枝，再移除L1并仅用保留项重训以减小系数偏差。这里要特别注意，候选表示、数据质量和优化器都属于问题设定的一部分。</p>
+<p><strong>主持人</strong>：课程给这篇安排的推导是什么？</p>
+<p><strong>研究者</strong>：写出数据损失、PDE 残差和稀疏系数三者的关系，区分自动微分的精确性与代理场偏差。</p>
+<p><strong>主持人</strong>：最容易被忽略的限制呢？</p>
+<p><strong>研究者</strong>：原文和课程记录的边界是：• 真实规律的函数项必须已经包含在候选库中，否则DeepMoD不能返回正确方程。
+• 高噪声或实验伪影会使小而非零的高阶项破坏自动阈值策略，需要更先进的稀疏选择或人工阈值。所以可以说它在给定假设下有效，不能直接说发现了所有系统的普适定律。</p>
+<h2>3. P18：Physics-informed learning of governing equations from scarce data</h2>
+<p><strong>主持人</strong>：这篇工作的未知对象到底是什么？用一句话先说清楚。</p>
+<p><strong>研究者</strong>：它的研究目标是：从稀疏、含噪、可能来自多个初始/边界条件的时空观测中，同时重建连续响应并识别稀疏闭式PDE；进一步在真实细胞划痕实验中恢复迁移-增殖方程。</p>
+<p><strong>主持人</strong>：那数据是怎样变成方程的？</p>
+<p><strong>研究者</strong>：方法路线是：先用L1正则联合预训练DNN与系数，再以交替方向优化在STRidge结构更新和Adam/L-BFGS网络更新之间迭代，最后可在固定结构上后训练微调系数；beta由残差-稀疏度Pareto前沿选择。这里要特别注意，候选表示、数据质量和优化器都属于问题设定的一部分。</p>
+<p><strong>主持人</strong>：课程给这篇安排的推导是什么？</p>
+<p><strong>研究者</strong>：分别写出数据拟合、物理残差和稀疏结构更新步骤，分析稀疏观测如何约束代理。</p>
+<p><strong>主持人</strong>：最容易被忽略的限制呢？</p>
+<p><strong>研究者</strong>：原文和课程记录的边界是：• 未知源项只有在候选形式已设计时才能并行发现；若源项表达式复杂且完全未知，就需要异常庞大的库并显著增加计算复杂度。
+• PINN-SR因DNN训练远慢于SINDy；全连接网络扩展到三维需要海量配点，而root-branch的参数、配点和内存又随独立数据集数近线性增长。
+• 当前方法不能处理时空变系数PDE；PINN全局基对混沌和尖锐传播前沿建模较差，稀疏含噪数据下会造成系数偏差。
+• 成功依赖预定义库既包含真项又不过大；千量级候选易秩亏和病态，漏掉关键项仍会得到看似简洁的假阳性最佳拟合方程。
+• 数据-物理权重alpha等超参数采用启发式尺度规则，作者明确称其选择仍是PINN领域的关键开放问题，并报告某些反应扩散案例需例外调大。所以可以说它在给定假设下有效，不能直接说发现了所有系统的普适定律。</p>
+<h2>结尾：带走三句话</h2>
+<p><strong>研究者</strong>：第一，先说清楚未知对象和候选空间；第二，区分训练拟合、结构恢复和留出预测；第三，任何漂亮的方程都要配上可辨识条件和失败边界。</p>
+<p><strong>主持人</strong>：下一期继续沿着这条线走：把公式放回数据、实验和它不能回答的问题里。</p></main></body></html>

@@ -1,0 +1,42 @@
+<!doctype html><html lang="zh-CN"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>论文播客脚本 · 物理规律发现</title><link rel="stylesheet" href="../style.css"><link rel="stylesheet" href="../public.css"></head><body><main class="doc"><div class="links"><a href="../">返回课程</a><a href="../spectrum/">三维谱图</a></div><h1>第2期｜从 ODE 到 PDE：为什么弱形式能抗噪</h1>
+<blockquote>
+<p>这是课程学习播客脚本，不是对论文结果的独立再验证。数字和性能结论以原文为准。</p>
+</blockquote>
+<p><strong>主持人</strong>：如果数据里有噪声，直接求高阶导数会把噪声放大。PDE 发现还能怎么办？</p>
+<p><strong>研究者</strong>：这一期选了：P4《Data-driven discovery of partial differential equations》；P16《Weak SINDy for partial differential equations》；P53《Robust and optimal sparse regression for nonlinear PDE models》。我们只抓住一条主线，不把整篇论文念成摘要。</p>
+<h2>1. P4：Data-driven discovery of partial differential equations</h2>
+<p><strong>主持人</strong>：这篇工作的未知对象到底是什么？用一句话先说清楚。</p>
+<p><strong>研究者</strong>：它的研究目标是：从Euler或Lagrange框架的时空序列识别参数化PDE右端项及系数，并区分对单一轨迹等价的候选动力学。</p>
+<p><strong>主持人</strong>：那数据是怎样变成方程的？</p>
+<p><strong>研究者</strong>：方法路线是：以顺序阈值岭回归STRidge近似L0稀疏选择，迭代搜索阈值，并用残差、条件数相关惩罚和非零项数形成Pareto式模型选择。这里要特别注意，候选表示、数据质量和优化器都属于问题设定的一部分。</p>
+<p><strong>主持人</strong>：课程给这篇安排的推导是什么？</p>
+<p><strong>研究者</strong>：为 Burgers 方程列出 u、u²、u_x、u_xx、u u_x 的特征列，写出阈值岭回归和未见初值检验。</p>
+<p><strong>主持人</strong>：最容易被忽略的限制呢？</p>
+<p><strong>研究者</strong>：原文和课程记录的边界是：• 低误差识别所需时间序列长度没有理论估计，仅建议用Pareto误差陡降作为经验指引。
+• Kuramoto-Sivashinsky在含噪时虽选对项但系数明显低估，归因于数值微分误差。
+• 多项式求导在边界附近不可靠，边界剔除会强烈影响结果；作者称该求导方法远非完美。所以可以说它在给定假设下有效，不能直接说发现了所有系统的普适定律。</p>
+<h2>2. P16：Weak SINDy for partial differential equations</h2>
+<p><strong>主持人</strong>：这篇工作的未知对象到底是什么？用一句话先说清楚。</p>
+<p><strong>研究者</strong>：它的研究目标是：在高测量噪声和高阶空间导数下，不作逐点数值微分而从规则时空场恢复稀疏PDE结构与系数。</p>
+<p><strong>主持人</strong>：那数据是怎样变成方程的？</p>
+<p><strong>研究者</strong>：方法路线是：利用可分离紧支测试函数和FFT构造Gram矩阵，以频谱拐点选择测试函数支撑尺度，进行坐标/状态尺度归一化，并用MSTLS自动选择稀疏阈值。这里要特别注意，候选表示、数据质量和优化器都属于问题设定的一部分。</p>
+<p><strong>主持人</strong>：课程给这篇安排的推导是什么？</p>
+<p><strong>研究者</strong>：对时间项和扩散项分别分部积分；把含噪场的导数完整转移到紧支撑测试函数。</p>
+<p><strong>主持人</strong>：最容易被忽略的限制呢？</p>
+<p><strong>研究者</strong>：原文和课程记录的边界是：• 作者不宣称所用测试函数族最优，最优测试函数和高信息查询点的自适应选择仍待研究。
+• 当前普通最小二乘假设残差独立同分布，与弱式线性系统的真实误差结构不符，需推广最小二乘及协方差建模。
+• 恢复系数误差对噪声、振幅和样本量的依赖尚未完全理解，因此一般恢复保证仍缺失。
+• 对极限环型反应扩散和Navier-Stokes的鲁棒性明显弱于非线性波与KS，作者认为需要基于动力学结构的可辨识性准则。所以可以说它在给定假设下有效，不能直接说发现了所有系统的普适定律。</p>
+<h2>3. P53：Robust and optimal sparse regression for nonlinear PDE models</h2>
+<p><strong>主持人</strong>：这篇工作的未知对象到底是什么？用一句话先说清楚。</p>
+<p><strong>研究者</strong>：它的研究目标是：从高噪声时空场辨识非线性PDE，重点处理高阶导数。</p>
+<p><strong>主持人</strong>：那数据是怎样变成方程的？</p>
+<p><strong>研究者</strong>：方法路线是：弱形式、奇异向量求解与逐项阈值相结合，并推导窗口尺度、分辨率和噪声之间的误差标度。这里要特别注意，候选表示、数据质量和优化器都属于问题设定的一部分。</p>
+<p><strong>主持人</strong>：课程给这篇安排的推导是什么？</p>
+<p><strong>研究者</strong>：对 KS 的四阶项分部积分，并讨论窗口尺度、求积误差与噪声方差如何共同作用。</p>
+<p><strong>主持人</strong>：最容易被忽略的限制呢？</p>
+<p><strong>研究者</strong>：原文和课程记录的边界是：• 主要证据来自单一已知数值PDE
+• 标度推导依赖平稳噪声和相关尺度假设。所以可以说它在给定假设下有效，不能直接说发现了所有系统的普适定律。</p>
+<h2>结尾：带走三句话</h2>
+<p><strong>研究者</strong>：第一，先说清楚未知对象和候选空间；第二，区分训练拟合、结构恢复和留出预测；第三，任何漂亮的方程都要配上可辨识条件和失败边界。</p>
+<p><strong>主持人</strong>：下一期继续沿着这条线走：把公式放回数据、实验和它不能回答的问题里。</p></main></body></html>

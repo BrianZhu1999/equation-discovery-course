@@ -1,0 +1,116 @@
+<!doctype html><html lang="zh-CN"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Reactive SINDy: Discovering governing reactions from concentration data · 物理规律发现</title><link rel="stylesheet" href="../style.css"><link rel="stylesheet" href="../public.css"></head><body><main class="doc"><div class="links"><a href="../">返回课程</a><a href="../spectrum/">三维谱图</a></div><h1>P24 · Reactive SINDy: Discovering governing reactions from concentration data</h1>
+<p>Moritz Hoffmann; Christoph Fröhner; Frank Noé. Reactive SINDy: Discovering governing reactions from concentration data. The Journal of Chemical Physics, 2019, 150(2). DOI: 10.1063/1.5066099</p>
+<p><a href="https://doi.org/10.1063/1.5066099">出版页面</a> · 第 29 天 · 物理机制与真实场</p>
+<h2>研究问题</h2>
+<p>从多物种浓度时间序列中识别反应通道、化学计量效应和速率常数。</p>
+<h2>规律表示</h2>
+<p>候选反应张量的非负稀疏组合；向量值表示把同一反应在所有物种方程中的系数绑定起来。</p>
+<h2>方法</h2>
+<p>二阶有限差分估计浓度导数，随后以非负elastic net和截断识别反应；随机数据用交叉验证选正则化。</p>
+<h2>假设</h2>
+<p>• 质量作用律候选
+• 化学计量耦合
+• 非负反应速率
+• 稀疏反应网络</p>
+<h2>必做推导</h2>
+<p>写出质量作用律的反应计量矩阵及非负反应速率，解释为什么一组系数共同出现。</p>
+<h2>复现目标</h2>
+<p>在作者代码中选一个支持核心结论的案例：• 合成基因调控网络
+• 确定性反应动力学
+• Gillespie随机反应轨迹。先运行小样例，再恢复该案例原文配置；运行前登记原文指标/目标图、统计量和容差，运行后交付结构或等价结构、系数/统计量、留出预测、耗时和日志。</p>
+<h2>单因素检验</h2>
+<p>只删掉一种反应对应的候选通道。</p>
+<h2>适用范围与限制</h2>
+<p>• 平衡态数据的导数为零，不能据此恢复反应动力学；必须观测弛豫瞬态。
+• 有限差分和反应库共同限制可恢复噪声水平与机制范围。</p>
+<h2>闭卷自测</h2>
+<h3>1. P24 实际辨识的未知对象是什么，哪些对象预先给定？</h3>
+<details><summary>先作答，再展开核对</summary>
+
+
+从多物种浓度时间序列中识别反应通道、化学计量效应和速率常数。
+表示：候选反应张量的非负稀疏组合；向量值表示把同一反应在所有物种方程中的系数绑定起来。
+
+
+</details>
+
+<h3>2. P24 从数据到模型采用什么路线？按顺序解释各步骤。</h3>
+<details><summary>先作答，再展开核对</summary>
+
+
+二阶有限差分估计浓度导数，随后以非负elastic net和截断识别反应；随机数据用交叉验证选正则化。
+
+
+</details>
+
+<h3>3. P24 哪些假设或限制使结果不能直接推广？至少说出两项。</h3>
+<details><summary>先作答，再展开核对</summary>
+
+
+• 质量作用律候选
+• 化学计量耦合
+• 非负反应速率
+• 稀疏反应网络
+• 平衡态数据的导数为零，不能据此恢复反应动力学；必须观测弛豫瞬态。
+• 有限差分和反应库共同限制可恢复噪声水平与机制范围。
+
+
+</details>
+
+<h3>4. 怎样设计这项单因素检验：只删掉一种反应对应的候选通道。</h3>
+<details><summary>先作答，再展开核对</summary>
+
+
+只改变指定因素，固定数据划分与其余参数；用结构、系数/统计量和留出预测评价，并将结果联系到以下方法边界：
+• 平衡态数据的导数为零，不能据此恢复反应动力学；必须观测弛豫瞬态。
+• 有限差分和反应库共同限制可恢复噪声水平与机制范围。
+
+
+</details>
+
+<h2>作者代码与核查</h2>
+<p>代码信息为课程构建时的核查快照，可访问不等于已复现；没有定位到代码不等于作者没有公开。</p>
+<ul>
+<li><a href="https://github.com/readdy/readdy_learn">https://github.com/readdy/readdy_learn</a></li>
+</ul>
+<pre><code class="language-json">{
+  &quot;verified_status&quot;: &quot;public_verified&quot;,
+  &quot;entrypoints&quot;: [
+    {
+      &quot;path&quot;: &quot;demonstration&quot;,
+      &quot;basis&quot;: &quot;observed root path; not executed&quot;,
+      &quot;repository&quot;: &quot;https://github.com/readdy/readdy_learn&quot;
+    }
+  ],
+  &quot;environment&quot;: [
+    {
+      &quot;path&quot;: &quot;setup.py&quot;,
+      &quot;basis&quot;: &quot;observed dependency/config file; compatibility not tested&quot;,
+      &quot;repository&quot;: &quot;https://github.com/readdy/readdy_learn&quot;
+    }
+  ],
+  &quot;blockers&quot;: [
+    &quot;paper-result T2 reproduction not run; public access or README inspection is not reproduction&quot;
+  ],
+  &quot;follow_up_actions&quot;: []
+}
+</code></pre>
+<h2>原文定位</h2>
+<p>以下为课程整理的结论和原文页码 / 块号索引，全文通过出版页面访问。</p>
+<ul>
+<li>
+<p>论文建立向量值反应候选与非负稀疏回归，并给出readdy_learn实现。（PDF 页 4；块号 P004-B005, P004-B006, P004-B007, P004-B008, P004-B009, P004-B010, P004-B011）</p>
+</li>
+<li>
+<p>单条667帧合成基因调控轨迹配以宽候选反应库作为主要基准。（PDF 页 5；块号 P005-B003, P005-B004, P005-B005, P005-B006, P005-B007, P005-B008）</p>
+</li>
+<li>
+<p>普通最小二乘几乎精确拟合导数，却产生机理错误和伪反应；正则化与截断恢复正确反应图。（PDF 页 8；块号 P008-B002, P008-B003）</p>
+</li>
+<li>
+<p>Gillespie噪声实验用10折交叉验证，噪声降低时伪反应数减少。（PDF 页 9；块号 P009-B003）</p>
+</li>
+<li>
+<p>加入第二个初值、总计1334帧后收敛改善；作者报告在约1e-6以下噪声区间可可靠恢复。（PDF 页 10；块号 P010-B003）</p>
+</li>
+</ul></main></body></html>

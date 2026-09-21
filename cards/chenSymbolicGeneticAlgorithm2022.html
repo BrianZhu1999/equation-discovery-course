@@ -1,0 +1,126 @@
+<!doctype html><html lang="zh-CN"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Symbolic genetic algorithm for discovering open-form partial differential equations (SGA-PDE) · 物理规律发现</title><link rel="stylesheet" href="../style.css"><link rel="stylesheet" href="../public.css"></head><body><main class="doc"><div class="links"><a href="../">返回课程</a><a href="../spectrum/">三维谱图</a></div><h1>P37 · Symbolic genetic algorithm for discovering open-form partial differential equations (SGA-PDE)</h1>
+<p>Yuntian Chen; Yingtao Luo; Qiang Liu; Hao Xu; Dongxiao Zhang. Symbolic genetic algorithm for discovering open-form partial differential equations (SGA-PDE). Physical Review Research, 2022, 4(2). DOI: 10.1103/physrevresearch.4.023174</p>
+<p><a href="https://doi.org/10.1103/physrevresearch.4.023174">出版页面</a> · 第 13 天 · 符号搜索</p>
+<h2>研究问题</h2>
+<p>在不预先枚举完整候选函数项的条件下，从观测中发现可含复合函数或分式结构的开放式PDE右端。</p>
+<h2>规律表示</h2>
+<p>树节点含加、减、乘、除、一二阶微分、平方、立方以及u、x、0等操作数；森林可随代际改变项数和拓扑，因而比固定候选矩阵开放。</p>
+<h2>方法</h2>
+<p>对森林执行交叉、变异与替换来改动节点和拓扑；每代用STRidge求各树系数，再以AIC平衡残差与项数并选择下一代。</p>
+<h2>假设</h2>
+<p>• 基本操作符与操作数集合
+• 树高、项数和代数阈值
+• AIC对函数项数的复杂度惩罚
+• 框架允许加入预置扩散项等专家先验，但主实验声称不提供候选函数项先验</p>
+<h2>必做推导</h2>
+<p>手工执行一次表达式树变异/交叉，检查新 PDE 是否语法合法且可数值评价。</p>
+<h2>复现目标</h2>
+<p>在作者代码中选一个支持核心结论的案例：• Burgers方程
+• KdV方程
+• Chafee-Infante方程
+• 黏性重力流PDE_compound
+• 含分式项的PDE_divide。先运行小样例，再恢复该案例原文配置；运行前登记原文指标/目标图、统计量和容差，运行后交付结构或等价结构、系数/统计量、留出预测、耗时和日志。</p>
+<h2>单因素检验</h2>
+<p>只移除一个基本算子。</p>
+<h2>适用范围与限制</h2>
+<p>• AIC单独最小化可能偏好含冗余项的结构，收敛AIC阈值也是需要按具体问题调整的超参数。
+• 作者把优化效率列为主要限制；无限开放搜索使当前遗传优化可能难以用于大问题，真实稀疏含噪数据尚待研究。</p>
+<h2>闭卷自测</h2>
+<h3>1. P37 实际辨识的未知对象是什么，哪些对象预先给定？</h3>
+<details><summary>先作答，再展开核对</summary>
+
+
+在不预先枚举完整候选函数项的条件下，从观测中发现可含复合函数或分式结构的开放式PDE右端。
+表示：树节点含加、减、乘、除、一二阶微分、平方、立方以及u、x、0等操作数；森林可随代际改变项数和拓扑，因而比固定候选矩阵开放。
+
+
+</details>
+
+<h3>2. P37 从数据到模型采用什么路线？按顺序解释各步骤。</h3>
+<details><summary>先作答，再展开核对</summary>
+
+
+对森林执行交叉、变异与替换来改动节点和拓扑；每代用STRidge求各树系数，再以AIC平衡残差与项数并选择下一代。
+
+
+</details>
+
+<h3>3. P37 哪些假设或限制使结果不能直接推广？至少说出两项。</h3>
+<details><summary>先作答，再展开核对</summary>
+
+
+• 基本操作符与操作数集合
+• 树高、项数和代数阈值
+• AIC对函数项数的复杂度惩罚
+• 框架允许加入预置扩散项等专家先验，但主实验声称不提供候选函数项先验
+• AIC单独最小化可能偏好含冗余项的结构，收敛AIC阈值也是需要按具体问题调整的超参数。
+• 作者把优化效率列为主要限制；无限开放搜索使当前遗传优化可能难以用于大问题，真实稀疏含噪数据尚待研究。
+
+
+</details>
+
+<h3>4. 怎样设计这项单因素检验：只移除一个基本算子。</h3>
+<details><summary>先作答，再展开核对</summary>
+
+
+只改变指定因素，固定数据划分与其余参数；用结构、系数/统计量和留出预测评价，并将结果联系到以下方法边界：
+• AIC单独最小化可能偏好含冗余项的结构，收敛AIC阈值也是需要按具体问题调整的超参数。
+• 作者把优化效率列为主要限制；无限开放搜索使当前遗传优化可能难以用于大问题，真实稀疏含噪数据尚待研究。
+
+
+</details>
+
+<h2>作者代码与核查</h2>
+<p>代码信息为课程构建时的核查快照，可访问不等于已复现；没有定位到代码不等于作者没有公开。</p>
+<ul>
+<li><a href="https://github.com/YuntianChen/SGA-PDE">https://github.com/YuntianChen/SGA-PDE</a></li>
+</ul>
+<pre><code class="language-json">{
+  &quot;verified_status&quot;: &quot;public_verified&quot;,
+  &quot;entrypoints&quot;: [
+    {
+      &quot;command_excerpt&quot;: &quot;(6) SGA.py: The main program of SGA-PDE. Define the SGA class. The crossover operation in SGA-PDE is defined in 'corss_over' function. The mutation and replacement operation in SGA-PDE are defined in 'change' function.&quot;,
+      &quot;source_url&quot;: &quot;https://raw.githubusercontent.com/YuntianChen/SGA-PDE/main/README.md&quot;,
+      &quot;line&quot;: 26,
+      &quot;basis&quot;: &quot;literal README instruction; not executed&quot;
+    }
+  ],
+  &quot;environment&quot;: [
+    {
+      &quot;requirement_excerpt&quot;: &quot;## Requirements&quot;,
+      &quot;source_url&quot;: &quot;https://raw.githubusercontent.com/YuntianChen/SGA-PDE/main/README.md&quot;,
+      &quot;line&quot;: 95,
+      &quot;basis&quot;: &quot;literal README statement; environment not constructed&quot;
+    },
+    {
+      &quot;requirement_excerpt&quot;: &quot;- `pip install -r requirements.txt`&quot;,
+      &quot;source_url&quot;: &quot;https://raw.githubusercontent.com/YuntianChen/SGA-PDE/main/README.md&quot;,
+      &quot;line&quot;: 101,
+      &quot;basis&quot;: &quot;literal README statement; environment not constructed&quot;
+    }
+  ],
+  &quot;blockers&quot;: [
+    &quot;paper-result T2 reproduction not run; public access or README inspection is not reproduction&quot;
+  ],
+  &quot;follow_up_actions&quot;: []
+}
+</code></pre>
+<h2>原文定位</h2>
+<p>以下为课程整理的结论和原文页码 / 块号索引，全文通过出版页面访问。</p>
+<ul>
+<li>
+<p>SGA-PDE把PDE视作二叉树森林，遗传操作更新拓扑和节点，STRidge估计森林中各项的系数并用数据拟合度选择。（PDF 页 3；块号 P003-B010, P003-B011）</p>
+</li>
+<li>
+<p>五个PDE在同一组基础操作符和操作数下测试；作者报告函数项与参考PDE完全一致，并强调可覆盖复合和分式结构。（PDF 页 10；块号 P010-B013, P010-B014, P010-B015）</p>
+</li>
+<li>
+<p>KdV从首代明显错误结构演化到第31代真式，第69代还找到等价的更简洁复合导数形式。（PDF 页 12；块号 P012-B007）</p>
+</li>
+<li>
+<p>PDE_compound和PDE_divide的代际轨迹显示森林表示能形成嵌套微分复合项和1/x型分式项。（PDF 页 12；块号 P012-B008）</p>
+</li>
+<li>
+<p>附录在不同超参数和随机种子下记录发现Burgers真式所需代数，并报告各设置均能找到正确结果。（PDF 页 19；块号 P019-B022）</p>
+</li>
+</ul></main></body></html>

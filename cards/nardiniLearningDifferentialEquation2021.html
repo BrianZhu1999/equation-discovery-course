@@ -1,0 +1,98 @@
+<!doctype html><html lang="zh-CN"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Learning differential equation models from stochastic agent-based model simulations · 物理规律发现</title><link rel="stylesheet" href="../style.css"><link rel="stylesheet" href="../public.css"></head><body><main class="doc"><div class="links"><a href="../">返回课程</a><a href="../spectrum/">三维谱图</a></div><h1>P62 · Learning differential equation models from stochastic agent-based model simulations</h1>
+<p>John T. Nardini; Ruth E. Baker; Matthew J. Simpson; Kevin B. Flores. Learning differential equation models from stochastic agent-based model simulations. Journal of The Royal Society Interface, 2021, 18(176): rsif.2020.0987. DOI: 10.1098/rsif.2020.0987</p>
+<p><a href="https://doi.org/10.1098/rsif.2020.0987">出版页面</a> · 第 24 天 · 粗粒化与跨参数</p>
+<h2>研究问题</h2>
+<p>从随机个体模型模拟中学习可解释的平均动力学方程。</p>
+<h2>规律表示</h2>
+<p>群体变量的ODE/PDE候选项，作为传统均场闭合的替代或校验。</p>
+<h2>方法</h2>
+<p>对多次ABM模拟求统计量，经去噪后用方程学习和模型选择恢复有效微分方程。</p>
+<h2>假设</h2>
+<p>• 低维群体变量
+• 稀疏有效动力学</p>
+<h2>必做推导</h2>
+<p>区分个体模拟、轨迹集均值和一次实现的密度场，说明何时能拟合确定性宏观 PDE。</p>
+<h2>复现目标</h2>
+<p>在作者代码中选一个支持核心结论的案例：• birth-death-movement ABM
+• SIR ABM。先运行小样例，再恢复该案例原文配置；运行前登记原文指标/目标图、统计量和容差，运行后交付结构或等价结构、系数/统计量、留出预测、耗时和日志。</p>
+<h2>单因素检验</h2>
+<p>只改变模拟重复次数。</p>
+<h2>适用范围与限制</h2>
+<p>• 不同参数区间可能需要不同有效方程
+• 有限训练窗口外推不可靠
+• 新闭合仍需从微观规则解释</p>
+<h2>闭卷自测</h2>
+<h3>1. P62 实际辨识的未知对象是什么，哪些对象预先给定？</h3>
+<details><summary>先作答，再展开核对</summary>
+
+
+从随机个体模型模拟中学习可解释的平均动力学方程。
+表示：群体变量的ODE/PDE候选项，作为传统均场闭合的替代或校验。
+
+
+</details>
+
+<h3>2. P62 从数据到模型采用什么路线？按顺序解释各步骤。</h3>
+<details><summary>先作答，再展开核对</summary>
+
+
+对多次ABM模拟求统计量，经去噪后用方程学习和模型选择恢复有效微分方程。
+
+
+</details>
+
+<h3>3. P62 哪些假设或限制使结果不能直接推广？至少说出两项。</h3>
+<details><summary>先作答，再展开核对</summary>
+
+
+• 低维群体变量
+• 稀疏有效动力学
+• 不同参数区间可能需要不同有效方程
+• 有限训练窗口外推不可靠
+• 新闭合仍需从微观规则解释
+
+
+</details>
+
+<h3>4. 怎样设计这项单因素检验：只改变模拟重复次数。</h3>
+<details><summary>先作答，再展开核对</summary>
+
+
+只改变指定因素，固定数据划分与其余参数；用结构、系数/统计量和留出预测评价，并将结果联系到以下方法边界：
+• 不同参数区间可能需要不同有效方程
+• 有限训练窗口外推不可靠
+• 新闭合仍需从微观规则解释
+
+
+</details>
+
+<h2>作者代码与核查</h2>
+<p>代码信息为课程构建时的核查快照，可访问不等于已复现；没有定位到代码不等于作者没有公开。</p>
+<ul>
+<li><a href="https://github.com/johnnardini/Learning-DE-models-from-stochastic-ABMs">https://github.com/johnnardini/Learning-DE-models-from-stochastic-ABMs</a></li>
+</ul>
+<pre><code class="language-json">{
+  &quot;verified_status&quot;: &quot;public_verified&quot;,
+  &quot;entrypoints&quot;: [
+    {
+      &quot;path&quot;: &quot;decrease_time_samples.ipynb&quot;,
+      &quot;basis&quot;: &quot;observed root path; not executed&quot;,
+      &quot;repository&quot;: &quot;https://github.com/johnnardini/Learning-DE-models-from-stochastic-ABMs&quot;
+    },
+    {
+      &quot;command_excerpt&quot;: &quot;The **ABM** folder contains the code used to implement the ABMs from our study, which include the birth-death-migration (BDM) process and the susceptible-infected-recovered (SIR) model.  The jupyter notebook `plot_ABM_DE_BDM.ipynb` can be used to simulate the BDM ABM and compare its output to its mean-field model. The jupyter notebook `plot_ABM_DE_SIR.ipynb` can be used to simulate the SIR ABM and compare its output to its mean-field model. Both of these notebooks rely on `ABM_package.py` to implement the ABMs.&quot;,
+      &quot;source_url&quot;: &quot;https://raw.githubusercontent.com/johnnardini/Learning-DE-models-from-stochastic-ABMs/master/README.md&quot;,
+      &quot;line&quot;: 6,
+      &quot;basis&quot;: &quot;literal README instruction; not executed&quot;
+    }
+  ],
+  &quot;environment&quot;: [],
+  &quot;blockers&quot;: [
+    &quot;paper-result T2 reproduction not run; public access or README inspection is not reproduction&quot;,
+    &quot;dependency/environment specification unverified&quot;
+  ],
+  &quot;follow_up_actions&quot;: []
+}
+</code></pre>
+<h2>原文定位</h2>
+<p>以下为课程整理的结论和原文页码 / 块号索引，全文通过出版页面访问。</p></main></body></html>

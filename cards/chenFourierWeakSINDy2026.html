@@ -1,0 +1,108 @@
+<!doctype html><html lang="zh-CN"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Fourier Weak SINDy: Spectral Test Function Selection for Robust Model Identification · 物理规律发现</title><link rel="stylesheet" href="../style.css"><link rel="stylesheet" href="../public.css"></head><body><main class="doc"><div class="links"><a href="../">返回课程</a><a href="../spectrum/">三维谱图</a></div><h1>P05 · Fourier Weak SINDy: Spectral Test Function Selection for Robust Model Identification</h1>
+<p>Zhiheng Chen; Urban Fasel; Anastasia Bizyaeva. Fourier Weak SINDy: Spectral Test Function Selection for Robust Model Identification. None, 2026, None. DOI: 10.48550/arXiv.2604.20141</p>
+<p><a href="https://doi.org/10.48550/arXiv.2604.20141">出版页面</a> · 第 6 天 · 统计选择与弱形式</p>
+<h2>研究问题</h2>
+<p>从均匀采样且受强测量噪声污染的低维非线性轨迹中，自动选择弱形式测试函数并恢复稀疏ODE结构与系数。</p>
+<h2>规律表示</h2>
+<p>规律表示为预设函数字典中的稀疏线性组合；弱式等式在正交正弦基下化为状态和候选函数的Fourier系数回归。</p>
+<h2>方法</h2>
+<p>先用multitaper功率谱密度估计选择K个主频，再用FFT计算投影系数，最后以顺序阈值稀疏回归估计激活项及系数。</p>
+<h2>假设</h2>
+<p>• 真实动力学在用户给定候选库中稀疏
+• 正交正弦测试函数减少回归信息冗余
+• 功率最大的频率通常具有较高信噪比并承载主要动力学
+• 轨迹均匀采样且测量噪声为加性白高斯噪声</p>
+<h2>必做推导</h2>
+<p>从 ∫φ x′=−∫φ′x 推到正弦投影，并检查端点项为什么消失。</p>
+<h2>复现目标</h2>
+<p>在作者代码中选一个支持核心结论的案例：• Lorenz系统
+• Lotka-Volterra系统
+• 超混沌Lorenz系统
+• 超混沌Jha系统。先运行小样例，再恢复该案例原文配置；运行前登记原文指标/目标图、统计量和容差，运行后交付结构或等价结构、系数/统计量、留出预测、耗时和日志。</p>
+<h2>单因素检验</h2>
+<p>只增加被选入的测试频率数。</p>
+<h2>适用范围与限制</h2>
+<p>• 当前FFT实现限于均匀采样，并假设加性白高斯噪声；彩色噪声和不规则时间采样需改用其他谱估计或非均匀FFT。
+• 按功率选择主频可能漏掉振幅低但动力学重要的模态。
+• 作者未与具备自适应超参数调节的Weak SINDy变体作原则上公平的比较。</p>
+<h2>闭卷自测</h2>
+<h3>1. P05 实际辨识的未知对象是什么，哪些对象预先给定？</h3>
+<details><summary>先作答，再展开核对</summary>
+
+
+从均匀采样且受强测量噪声污染的低维非线性轨迹中，自动选择弱形式测试函数并恢复稀疏ODE结构与系数。
+表示：规律表示为预设函数字典中的稀疏线性组合；弱式等式在正交正弦基下化为状态和候选函数的Fourier系数回归。
+
+
+</details>
+
+<h3>2. P05 从数据到模型采用什么路线？按顺序解释各步骤。</h3>
+<details><summary>先作答，再展开核对</summary>
+
+
+先用multitaper功率谱密度估计选择K个主频，再用FFT计算投影系数，最后以顺序阈值稀疏回归估计激活项及系数。
+
+
+</details>
+
+<h3>3. P05 哪些假设或限制使结果不能直接推广？至少说出两项。</h3>
+<details><summary>先作答，再展开核对</summary>
+
+
+• 真实动力学在用户给定候选库中稀疏
+• 正交正弦测试函数减少回归信息冗余
+• 功率最大的频率通常具有较高信噪比并承载主要动力学
+• 轨迹均匀采样且测量噪声为加性白高斯噪声
+• 当前FFT实现限于均匀采样，并假设加性白高斯噪声；彩色噪声和不规则时间采样需改用其他谱估计或非均匀FFT。
+• 按功率选择主频可能漏掉振幅低但动力学重要的模态。
+• 作者未与具备自适应超参数调节的Weak SINDy变体作原则上公平的比较。
+
+
+</details>
+
+<h3>4. 怎样设计这项单因素检验：只增加被选入的测试频率数。</h3>
+<details><summary>先作答，再展开核对</summary>
+
+
+只改变指定因素，固定数据划分与其余参数；用结构、系数/统计量和留出预测评价，并将结果联系到以下方法边界：
+• 当前FFT实现限于均匀采样，并假设加性白高斯噪声；彩色噪声和不规则时间采样需改用其他谱估计或非均匀FFT。
+• 按功率选择主频可能漏掉振幅低但动力学重要的模态。
+• 作者未与具备自适应超参数调节的Weak SINDy变体作原则上公平的比较。
+
+
+</details>
+
+<h2>作者代码与核查</h2>
+<p>代码信息为课程构建时的核查快照，可访问不等于已复现；没有定位到代码不等于作者没有公开。</p>
+<pre><code class="language-json">{
+  &quot;verified_status&quot;: &quot;candidate&quot;,
+  &quot;entrypoints&quot;: [],
+  &quot;environment&quot;: [],
+  &quot;blockers&quot;: [
+    &quot;author code not found in inspected local source; this does not establish that code does not exist&quot;,
+    &quot;required code-discovery queue remains open; missing PDF URL is not evidence of missing author code&quot;
+  ],
+  &quot;follow_up_actions&quot;: [
+    &quot;Check publisher code/data availability and supplementary attachments&quot;,
+    &quot;Follow first/corresponding author project page; verify paper title/DOI in the repository before accepting it&quot;,
+    &quot;Record author-code link or a dated availability boundary; do not close this task because PDF transcription lacks a URL&quot;,
+    &quot;GitHub search found FourierWeakSINDy; confirm C3GroupCornell author/group relationship and paper identifier before promotion&quot;
+  ]
+}
+</code></pre>
+<h2>原文定位</h2>
+<p>以下为课程整理的结论和原文页码 / 块号索引，全文通过出版页面访问。</p>
+<ul>
+<li>
+<p>正弦测试函数满足端点消失条件，利用Fourier正交性后弱形式回归可直接由状态矩阵和候选库矩阵的FFT系数构造；主频由multitaper功率谱选择。（PDF 页 6；块号 P006-B002, P006-B005, P006-B007, P006-B008）</p>
+</li>
+<li>
+<p>Lorenz二次库试验中，100%噪声下Fourier Weak SINDy的中位系数误差约为0.1、TPR约为0.7；噪声不超过25%时20次试验均达到TPR=1。（PDF 页 8；块号 P008-B006, P008-B007）</p>
+</li>
+<li>
+<p>Lorenz试验选择超过约30个测试频率后收益饱和，继续加入较弱高频还会略降性能；带宽增大带来的改善同样呈饱和。（PDF 页 9；块号 P009-B003, P009-B004）</p>
+</li>
+<li>
+<p>补充材料对每种方法汇总200个Lorenz学习结果：普通SINDy和bump弱式各产生12个不稳定模型，而Fourier Weak SINDy未产生不稳定模型。（PDF 页 16；块号 P016-B007, P016-B008, P016-B009）</p>
+</li>
+</ul></main></body></html>

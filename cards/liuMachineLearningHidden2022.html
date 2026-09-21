@@ -1,0 +1,110 @@
+<!doctype html><html lang="zh-CN"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Machine Learning Hidden Symmetries · 物理规律发现</title><link rel="stylesheet" href="../style.css"><link rel="stylesheet" href="../public.css"></head><body><main class="doc"><div class="links"><a href="../">返回课程</a><a href="../spectrum/">三维谱图</a></div><h1>P22 · Machine Learning Hidden Symmetries</h1>
+<p>Ziming Liu; Max Tegmark. Machine Learning Hidden Symmetries. Physical Review Letters, 2022, 128(18). DOI: 10.1103/physrevlett.128.180201</p>
+<p><a href="https://doi.org/10.1103/physrevlett.128.180201">出版页面</a> · 第 16 天 · 坐标、流形与守恒</p>
+<h2>研究问题</h2>
+<p>寻找把已知动力学或张量场变换到满足给定对称条件的坐标系，并进一步把神经坐标变换符号化。</p>
+<h2>规律表示</h2>
+<p>目标规律不是新ODE项，而是变换后对象满足的线性偏微分对称约束，例如Lie不变性、Hamilton结构、平移不变与模块化。</p>
+<h2>方法</h2>
+<p>针对用户指定的候选对称类型，训练可逆神经网络最小化归一化对称PDE残差，再用AI Feynman对学得坐标变换做符号回归。</p>
+<h2>假设</h2>
+<p>• 预先列出的对称类别
+• 可逆坐标变换
+• 张量变换律
+• 低残差与可符号化变换偏好</p>
+<h2>必做推导</h2>
+<p>用坐标变换的链式法则说明隐藏对称如何改变方程形式，并列出可验证的不变量。</p>
+<h2>复现目标</h2>
+<p>在作者代码中选一个支持核心结论的案例：• 自由/匀速运动
+• 双摆等经典力学系统
+• FRW时空
+• Schwarzschild时空。先运行小样例，再恢复该案例原文配置；运行前登记原文指标/目标图、统计量和容差，运行后交付结构或等价结构、系数/统计量、留出预测、耗时和日志。</p>
+<h2>单因素检验</h2>
+<p>只对观测施加一个可逆非线性坐标变换。</p>
+<h2>适用范围与限制</h2>
+<p>• 方法只在用户预定义的对称清单中检验，不能直接发明未知对称生成元。
+• 匀速运动问题存在无穷多个有效变换，欠约束导致符号回归不能恢复唯一真式。
+• 主体实验是解析、合成且无噪声，噪声鲁棒性仅由单一附录案例支持。</p>
+<h2>闭卷自测</h2>
+<h3>1. P22 实际辨识的未知对象是什么，哪些对象预先给定？</h3>
+<details><summary>先作答，再展开核对</summary>
+
+
+寻找把已知动力学或张量场变换到满足给定对称条件的坐标系，并进一步把神经坐标变换符号化。
+表示：目标规律不是新ODE项，而是变换后对象满足的线性偏微分对称约束，例如Lie不变性、Hamilton结构、平移不变与模块化。
+
+
+</details>
+
+<h3>2. P22 从数据到模型采用什么路线？按顺序解释各步骤。</h3>
+<details><summary>先作答，再展开核对</summary>
+
+
+针对用户指定的候选对称类型，训练可逆神经网络最小化归一化对称PDE残差，再用AI Feynman对学得坐标变换做符号回归。
+
+
+</details>
+
+<h3>3. P22 哪些假设或限制使结果不能直接推广？至少说出两项。</h3>
+<details><summary>先作答，再展开核对</summary>
+
+
+• 预先列出的对称类别
+• 可逆坐标变换
+• 张量变换律
+• 低残差与可符号化变换偏好
+• 方法只在用户预定义的对称清单中检验，不能直接发明未知对称生成元。
+• 匀速运动问题存在无穷多个有效变换，欠约束导致符号回归不能恢复唯一真式。
+• 主体实验是解析、合成且无噪声，噪声鲁棒性仅由单一附录案例支持。
+
+
+</details>
+
+<h3>4. 怎样设计这项单因素检验：只对观测施加一个可逆非线性坐标变换。</h3>
+<details><summary>先作答，再展开核对</summary>
+
+
+只改变指定因素，固定数据划分与其余参数；用结构、系数/统计量和留出预测评价，并将结果联系到以下方法边界：
+• 方法只在用户预定义的对称清单中检验，不能直接发明未知对称生成元。
+• 匀速运动问题存在无穷多个有效变换，欠约束导致符号回归不能恢复唯一真式。
+• 主体实验是解析、合成且无噪声，噪声鲁棒性仅由单一附录案例支持。
+
+
+</details>
+
+<h2>作者代码与核查</h2>
+<p>代码信息为课程构建时的核查快照，可访问不等于已复现；没有定位到代码不等于作者没有公开。</p>
+<pre><code class="language-json">{
+  &quot;verified_status&quot;: &quot;unverified&quot;,
+  &quot;entrypoints&quot;: [],
+  &quot;environment&quot;: [],
+  &quot;blockers&quot;: [
+    &quot;author code not found in inspected local source; this does not establish that code does not exist&quot;,
+    &quot;required code-discovery queue remains open; missing PDF URL is not evidence of missing author code&quot;
+  ],
+  &quot;follow_up_actions&quot;: [
+    &quot;Check publisher code/data availability and supplementary attachments&quot;,
+    &quot;Follow first/corresponding author project page; verify paper title/DOI in the repository before accepting it&quot;,
+    &quot;Record author-code link or a dated availability boundary; do not close this task because PDF transcription lacks a URL&quot;
+  ]
+}
+</code></pre>
+<h2>原文定位</h2>
+<p>以下为课程整理的结论和原文页码 / 块号索引，全文通过出版页面访问。</p>
+<ul>
+<li>
+<p>作者将广义对称写为变换后张量满足L-hat T=0，并列出平移、Lie不变、Hamilton性和模块化等实例。（PDF 页 2；块号 P002-B006, P002-B007, P002-B008, P002-B009, P002-B010, P002-B011）</p>
+</li>
+<li>
+<p>可逆网络最小化归一化PDE残差，坐标变换的张量律被硬编码进计算图。（PDF 页 3；块号 P003-B003, P003-B004）</p>
+</li>
+<li>
+<p>六个经典力学/GR例子均找到目标隐藏对称，多数坐标变换随后被AI Feynman精确符号化。（PDF 页 4；块号 P004-B004）</p>
+</li>
+<li>
+<p>FRW到Minkowski及Schwarzschild到Gullstrand-Painleve坐标的变换被恢复。（PDF 页 5；块号 P005-B003, P005-B004）</p>
+</li>
+<li>
+<p>附录噪声试验显示sigma=0.01时一个FRW案例仍形成可区分的损失地板。（PDF 页 13；块号 P013-B007, P013-B008）</p>
+</li>
+</ul></main></body></html>

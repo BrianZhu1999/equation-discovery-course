@@ -1,0 +1,154 @@
+<!doctype html><html lang="zh-CN"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>PDE-READ: Human-readable partial differential equation discovery using deep learning · 物理规律发现</title><link rel="stylesheet" href="../style.css"><link rel="stylesheet" href="../public.css"></head><body><main class="doc"><div class="links"><a href="../">返回课程</a><a href="../spectrum/">三维谱图</a></div><h1>P47 · PDE-READ: Human-readable partial differential equation discovery using deep learning</h1>
+<p>Robert Stephany; Christopher Earls. PDE-READ: Human-readable partial differential equation discovery using deep learning. Neural Networks, 2022, 154: 360-382. DOI: 10.1016/j.neunet.2022.07.008</p>
+<p><a href="https://doi.org/10.1016/j.neunet.2022.07.008">出版页面</a> · 第 9 天 · 神经代理与导数</p>
+<h2>研究问题</h2>
+<p>从一维空间的稀疏高噪观测中同时学习连续解代理和未知PDE右端，再把神经右端蒸馏为人可读的稀疏多项式。</p>
+<h2>规律表示</h2>
+<p>目标限定为u及其一维空间导数的稀疏多项式，左端是某阶纯时间导数；候选库枚举给定最高空间导数阶和多项式次数下的单项式。</p>
+<h2>方法</h2>
+<p>先联合训练两个有理激活网络，使U拟合数据且时间导数匹配N；再在大量元数据点上用无固定阈值的递归特征消除逐项删库，按删除最重要项引起的残差跃升排序候选。</p>
+<h2>假设</h2>
+<p>• 一维空间、加性独立同分布零均值高斯噪声假设
+• PDE左端为纯时间导数，右端为u及空间导数的稀疏多项式
+• 用户预设最高空间导数阶和候选多项式次数
+• 配点PDE一致性及稀疏递归特征消除</p>
+<h2>必做推导</h2>
+<p>推导一个有理激活函数的一阶导数，并说明逐步消除如何改变 PDE 支撑集。</p>
+<h2>复现目标</h2>
+<p>在作者代码中选一个支持核心结论的案例：• 热方程
+• Burgers方程
+• Allen-Cahn方程
+• KdV方程
+• Klein-Gordon方程
+• 动态梁方程。先运行小样例，再恢复该案例原文配置；运行前登记原文指标/目标图、统计量和容差，运行后交付结构或等价结构、系数/统计量、留出预测、耗时和日志。</p>
+<h2>单因素检验</h2>
+<p>只改变代理网络容量。</p>
+<h2>适用范围与限制</h2>
+<p>• 当前形式不能学习含二维空间和时空混合导数的KP方程，也不能学习右端为有理函数的PDE；进一步放宽形式还会允许动力网络退化为恒零映射。
+• 配点数主导运行时间，且每个配点都要计算U及高阶导数；PDE阶数越高成本越大，因此可用配点数存在实际上限。
+• 识别系数普遍向零收缩且噪声越强越严重；作者未找到根因，只能把缓解该问题列为未来研究。
+• 单条响应轨迹可能同时满足多个PDE；热方程构造例中算法对另一解释给出极高置信，作者明确把这归结为逆问题非唯一性。</p>
+<h2>闭卷自测</h2>
+<h3>1. P47 实际辨识的未知对象是什么，哪些对象预先给定？</h3>
+<details><summary>先作答，再展开核对</summary>
+
+
+从一维空间的稀疏高噪观测中同时学习连续解代理和未知PDE右端，再把神经右端蒸馏为人可读的稀疏多项式。
+表示：目标限定为u及其一维空间导数的稀疏多项式，左端是某阶纯时间导数；候选库枚举给定最高空间导数阶和多项式次数下的单项式。
+
+
+</details>
+
+<h3>2. P47 从数据到模型采用什么路线？按顺序解释各步骤。</h3>
+<details><summary>先作答，再展开核对</summary>
+
+
+先联合训练两个有理激活网络，使U拟合数据且时间导数匹配N；再在大量元数据点上用无固定阈值的递归特征消除逐项删库，按删除最重要项引起的残差跃升排序候选。
+
+
+</details>
+
+<h3>3. P47 哪些假设或限制使结果不能直接推广？至少说出两项。</h3>
+<details><summary>先作答，再展开核对</summary>
+
+
+• 一维空间、加性独立同分布零均值高斯噪声假设
+• PDE左端为纯时间导数，右端为u及空间导数的稀疏多项式
+• 用户预设最高空间导数阶和候选多项式次数
+• 配点PDE一致性及稀疏递归特征消除
+• 当前形式不能学习含二维空间和时空混合导数的KP方程，也不能学习右端为有理函数的PDE；进一步放宽形式还会允许动力网络退化为恒零映射。
+• 配点数主导运行时间，且每个配点都要计算U及高阶导数；PDE阶数越高成本越大，因此可用配点数存在实际上限。
+• 识别系数普遍向零收缩且噪声越强越严重；作者未找到根因，只能把缓解该问题列为未来研究。
+• 单条响应轨迹可能同时满足多个PDE；热方程构造例中算法对另一解释给出极高置信，作者明确把这归结为逆问题非唯一性。
+
+
+</details>
+
+<h3>4. 怎样设计这项单因素检验：只改变代理网络容量。</h3>
+<details><summary>先作答，再展开核对</summary>
+
+
+只改变指定因素，固定数据划分与其余参数；用结构、系数/统计量和留出预测评价，并将结果联系到以下方法边界：
+• 当前形式不能学习含二维空间和时空混合导数的KP方程，也不能学习右端为有理函数的PDE；进一步放宽形式还会允许动力网络退化为恒零映射。
+• 配点数主导运行时间，且每个配点都要计算U及高阶导数；PDE阶数越高成本越大，因此可用配点数存在实际上限。
+• 识别系数普遍向零收缩且噪声越强越严重；作者未找到根因，只能把缓解该问题列为未来研究。
+• 单条响应轨迹可能同时满足多个PDE；热方程构造例中算法对另一解释给出极高置信，作者明确把这归结为逆问题非唯一性。
+
+
+</details>
+
+<h2>作者代码与核查</h2>
+<p>代码信息为课程构建时的核查快照，可访问不等于已复现；没有定位到代码不等于作者没有公开。</p>
+<ul>
+<li><a href="https://github.com/punkduckable/PDE-READ">https://github.com/punkduckable/PDE-READ</a></li>
+</ul>
+<pre><code class="language-json">{
+  &quot;verified_status&quot;: &quot;public_verified&quot;,
+  &quot;entrypoints&quot;: [
+    {
+      &quot;command_excerpt&quot;: &quot;*Data:* `PDE-READ` trains U to match a data set. The \&quot;DataSet Name\&quot; setting specifies the data set that `PDE-READ` trains on. \&quot;DataSet Name\&quot; should be the name of a file in the `Data/DataSets` directory. A \&quot;DataSet\&quot; is simply a `.npz` file that contains five variables: Training_Inputs, Training_Targets, Testing_Inputs, Testing_Targets, and Bounds. Each should be a `numpy.ndarray` object. If you want to use `PDE-READ` on your data, you must write a program that calls the `Create_Data_Set` function (in `Create_Data_Set.py`) with the appropriate arguments. See that function's docstring for details. Alternatively, you can create a DataSet using one of our `MATLAB` data sets by running `Python3 ./From_MATLAB.py` when your current working directory is `Data`. The `From_MATLAB` file contains four settings: \&quot;Data_File_Name\&quot;, \&quot;Noise_Proportion\&quot;, \&quot;Num_Train_Examples\&quot;, and \&quot;Num_Test_Examples\&quot;. \&quot;Data_File_Name\&quot; should refer to one of the `.mat` files in the `MATLAB/Data` directory. \&quot;Noise_Proportion\&quot;, \&quot;Num_Train_Examples\&quot;, and \&quot;Num_Test_Examples\&quot; control the level of noise in the data, the number of training data points, and the number of testing data points, respectively.&quot;,
+      &quot;source_url&quot;: &quot;https://raw.githubusercontent.com/punkduckable/PDE-READ/master/README.md&quot;,
+      &quot;line&quot;: 14,
+      &quot;basis&quot;: &quot;literal README instruction; not executed&quot;
+    },
+    {
+      &quot;command_excerpt&quot;: &quot;*Plot:* Visualizing the solution that `PDE-READ` identifies can be very useful. The `Plot` directory contains code for visualizing the networks that `PDE-READ` trains. Plotting is controlled by the `Plot/Settings.txt` file. This settings file contains many of the same settings as Settings.txt, and they have the same meaning. Critically, the \&quot;Load File Name\&quot; setting must refer to a file in `Saves`. Further, the network architecture and PDE Settings in `Plot/Settings.txt` must match the values you used when training the network housed in the load file. For example, if the saved trained the network with a rational neural network with five layers and 50 neurons per layer, then `Plot/Settings.txt` must use those settings. To plot a saved solution, set the appropriate settings in `Plot/Settings.txt` and then run `Python3 ./Plot_Solution.py` when your current working directory is `Plot.`&quot;,
+      &quot;source_url&quot;: &quot;https://raw.githubusercontent.com/punkduckable/PDE-READ/master/README.md&quot;,
+      &quot;line&quot;: 16,
+      &quot;basis&quot;: &quot;literal README instruction; not executed&quot;
+    },
+    {
+      &quot;command_excerpt&quot;: &quot;Once you have selected the appropriate settings, you can run the code by entering the `Code` directory (`cd ./Code`) and running the main file (`Python3 ./main.py`).&quot;,
+      &quot;source_url&quot;: &quot;https://raw.githubusercontent.com/punkduckable/PDE-READ/master/README.md&quot;,
+      &quot;line&quot;: 38,
+      &quot;basis&quot;: &quot;literal README instruction; not executed&quot;
+    }
+  ],
+  &quot;environment&quot;: [
+    {
+      &quot;requirement_excerpt&quot;: &quot;*Data:* `PDE-READ` trains U to match a data set. The \&quot;DataSet Name\&quot; setting specifies the data set that `PDE-READ` trains on. \&quot;DataSet Name\&quot; should be the name of a file in the `Data/DataSets` directory. A \&quot;DataSet\&quot; is simply a `.npz` file that contains five variables: Training_Inputs, Training_Targets, Testing_Inputs, Testing_Targets, and Bounds. Each should be a `numpy.ndarray` object. If you want to use `PDE-READ` on your data, you must write a program that calls the `Create_Data_Set` function (in `Create_Data_Set.py`) with the appropriate arguments. See that function's docstring for details. Alternatively, you can create a DataSet using one of our `MATLAB` data sets by running `Python3 ./From_MATLAB.py` when your current working directory is `Data`. The `From_MATLAB` file contains four settings: \&quot;Data_File_Name\&quot;, \&quot;Noise_Proportion\&quot;, \&quot;Num_Train_Examples\&quot;, and \&quot;Num_Test_Examples\&quot;. \&quot;Data_File_Name\&quot; should refer to one of the `.mat` files in the `MATLAB/Data` directory. \&quot;Noise_Proportion\&quot;, \&quot;Num_Train_Examples\&quot;, and \&quot;Num_Test_Examples\&quot; control the level of noise in the data, the number of training data points, and the number of testing data points, respectively.&quot;,
+      &quot;source_url&quot;: &quot;https://raw.githubusercontent.com/punkduckable/PDE-READ/master/README.md&quot;,
+      &quot;line&quot;: 14,
+      &quot;basis&quot;: &quot;literal README statement; environment not constructed&quot;
+    },
+    {
+      &quot;requirement_excerpt&quot;: &quot;*Everything else:* The other directories in this repository are as follows: `Figures` houses figured produced by running `Plot_Solution.py.` Saves houses serializations of the networks that `PDE-READ` runs (\&quot;Load File Name\&quot; in `Settings.txt` and `Plot/Settings.txt` must refer to a file in this directory). `Test` contains test code that I used while developing `PDE-READ`. `MATLAB` contains the `MATLAB` data sets (the `.mat` files in `MATLAB/Data`), and the scripts that created them (the `.m` files in `MATLAB/Scripts`).&quot;,
+      &quot;source_url&quot;: &quot;https://raw.githubusercontent.com/punkduckable/PDE-READ/master/README.md&quot;,
+      &quot;line&quot;: 18,
+      &quot;basis&quot;: &quot;literal README statement; environment not constructed&quot;
+    },
+    {
+      &quot;requirement_excerpt&quot;: &quot;# Dependencies: #&quot;,
+      &quot;source_url&quot;: &quot;https://raw.githubusercontent.com/punkduckable/PDE-READ/master/README.md&quot;,
+      &quot;line&quot;: 43,
+      &quot;basis&quot;: &quot;literal README statement; environment not constructed&quot;
+    }
+  ],
+  &quot;blockers&quot;: [
+    &quot;paper-result T2 reproduction not run; public access or README inspection is not reproduction&quot;
+  ],
+  &quot;follow_up_actions&quot;: []
+}
+</code></pre>
+<h2>原文定位</h2>
+<p>以下为课程整理的结论和原文页码 / 块号索引，全文通过出版页面访问。</p>
+<ul>
+<li>
+<p>方法先联合训练响应网络U和右端网络N，再用递归特征消除从N提取可读PDE；U的导数由自动微分计算。（PDF 页 6；块号 P006-B002, P006-B003）</p>
+</li>
+<li>
+<p>六个基准数据集均由Chebfun脚本合成，并按先加高斯噪声、再随机抽取NData点的统一流程构造稀疏含噪观测。（PDF 页 10；块号 P010-B003, P010-B010, P010-B012, P010-B014, P010-B015, P010-B016）</p>
+</li>
+<li>
+<p>Burgers案例用10000个点和100%噪声训练，递归特征消除后仍把与目标结构一致的PDE排为最高候选。（PDF 页 14；块号 P014-B009）</p>
+</li>
+<li>
+<p>Burgers的三个高噪或稀疏实验都恢复了正确项集，但识别系数相对真值约有40%误差，表明结构成功不等于参数准确。（PDF 页 16；块号 P016-B006）</p>
+</li>
+<li>
+<p>当候选右端额外包含三阶空间导数时，Burgers在30%噪声可忽略多余导数，但50%噪声最高候选变错；若候选最高阶低于真PDE，则没有明确候选出现。（PDF 页 33；块号 P033-B003, P033-B004, P033-B005, P033-B006, P033-B007, P033-B008）</p>
+</li>
+<li>
+<p>动态梁是测试的最高阶方程，含四阶空间和二阶时间导数；50%噪声下仍能恢复，但100%噪声时成为唯一不能可靠识别的基准。（PDF 页 39；块号 P039-B003）</p>
+</li>
+</ul></main></body></html>

@@ -1,0 +1,117 @@
+<!doctype html><html lang="zh-CN"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>SINDy-KANs: Sparse identification of non-linear dynamics through Kolmogorov-Arnold networks · 物理规律发现</title><link rel="stylesheet" href="../style.css"><link rel="stylesheet" href="../public.css"></head><body><main class="doc"><div class="links"><a href="../">返回课程</a><a href="../spectrum/">三维谱图</a></div><h1>P07 · SINDy-KANs: Sparse identification of non-linear dynamics through Kolmogorov-Arnold networks</h1>
+<p>Amanda A. Howard; Nicholas Zolman; Bruno Jacob; Steven L. Brunton; Panos Stinis. SINDy-KANs: Sparse identification of non-linear dynamics through Kolmogorov-Arnold networks. None, 2026, None. DOI: 10.48550/arXiv.2603.18548</p>
+<p><a href="https://doi.org/10.48550/arXiv.2603.18548">出版页面</a> · 第 20 天 · 符号搜索</p>
+<h2>研究问题</h2>
+<p>在保留KAN深层函数复合能力的同时，使每条可训练激活函数具有SINDy式稀疏符号表示，从数据恢复较简洁的代数式和ODE。</p>
+<h2>规律表示</h2>
+<p>每个一元KAN激活在可按层设定的候选函数库中表示为稀疏线性组合，最终规律是这些稀疏一元函数经多层加和与乘法形成的复合表达式。</p>
+<h2>方法</h2>
+<p>同步训练B样条KAN与逐激活的稀疏回归；用可训练shadow矩阵Lambda承载L1稀疏约束并与回归系数对齐。另给出直接优化系数的更快但较不稳健版本。</p>
+<h2>假设</h2>
+<p>• 目标规律可分解为少量一元基函数的深层复合
+• 每个激活函数在用户指定的逐层候选库中稀疏
+• 可通过乘法节点显式编码多变量乘积
+• 网络深度对应允许的函数复合层数</p>
+<h2>必做推导</h2>
+<p>把可学习一元函数边与固定多项式候选列对应起来，说明剪枝后如何导出符号式。</p>
+<h2>复现目标</h2>
+<p>在作者代码中选一个支持核心结论的案例：• cos(x^2+y)等组合函数
+• ABC流
+• Lorenz系统
+• Kuramoto振子网络
+• 附录线性三维ODE噪声案例。先运行小样例，再恢复该案例原文配置；运行前登记原文指标/目标图、统计量和容差，运行后交付结构或等价结构、系数/统计量、留出预测、耗时和日志。</p>
+<h2>单因素检验</h2>
+<p>保持训练数据固定，只改样条网格分辨率。</p>
+<h2>适用范围与限制</h2>
+<p>• 输入变量增多时，嵌套非线性会降低表达式可解释性。
+• 动力学任务仍需从数据数值估计时间导数，作者明确指出这会对噪声敏感，且仍需进一步鲁棒性研究。
+• 所需网络层数事先未知，而更深KAN更难训练；多余层虽可学习恒等映射，但架构选择尚未自动解决。
+• 直接SINDy-KAN较快但假设每个激活均可被候选库线性组合充分表示，库不充分时会损失准确性。</p>
+<h2>闭卷自测</h2>
+<h3>1. P07 实际辨识的未知对象是什么，哪些对象预先给定？</h3>
+<details><summary>先作答，再展开核对</summary>
+
+
+在保留KAN深层函数复合能力的同时，使每条可训练激活函数具有SINDy式稀疏符号表示，从数据恢复较简洁的代数式和ODE。
+表示：每个一元KAN激活在可按层设定的候选函数库中表示为稀疏线性组合，最终规律是这些稀疏一元函数经多层加和与乘法形成的复合表达式。
+
+
+</details>
+
+<h3>2. P07 从数据到模型采用什么路线？按顺序解释各步骤。</h3>
+<details><summary>先作答，再展开核对</summary>
+
+
+同步训练B样条KAN与逐激活的稀疏回归；用可训练shadow矩阵Lambda承载L1稀疏约束并与回归系数对齐。另给出直接优化系数的更快但较不稳健版本。
+
+
+</details>
+
+<h3>3. P07 哪些假设或限制使结果不能直接推广？至少说出两项。</h3>
+<details><summary>先作答，再展开核对</summary>
+
+
+• 目标规律可分解为少量一元基函数的深层复合
+• 每个激活函数在用户指定的逐层候选库中稀疏
+• 可通过乘法节点显式编码多变量乘积
+• 网络深度对应允许的函数复合层数
+• 输入变量增多时，嵌套非线性会降低表达式可解释性。
+• 动力学任务仍需从数据数值估计时间导数，作者明确指出这会对噪声敏感，且仍需进一步鲁棒性研究。
+• 所需网络层数事先未知，而更深KAN更难训练；多余层虽可学习恒等映射，但架构选择尚未自动解决。
+• 直接SINDy-KAN较快但假设每个激活均可被候选库线性组合充分表示，库不充分时会损失准确性。
+
+
+</details>
+
+<h3>4. 怎样设计这项单因素检验：保持训练数据固定，只改样条网格分辨率。</h3>
+<details><summary>先作答，再展开核对</summary>
+
+
+只改变指定因素，固定数据划分与其余参数；用结构、系数/统计量和留出预测评价，并将结果联系到以下方法边界：
+• 输入变量增多时，嵌套非线性会降低表达式可解释性。
+• 动力学任务仍需从数据数值估计时间导数，作者明确指出这会对噪声敏感，且仍需进一步鲁棒性研究。
+• 所需网络层数事先未知，而更深KAN更难训练；多余层虽可学习恒等映射，但架构选择尚未自动解决。
+• 直接SINDy-KAN较快但假设每个激活均可被候选库线性组合充分表示，库不充分时会损失准确性。
+
+
+</details>
+
+<h2>作者代码与核查</h2>
+<p>代码信息为课程构建时的核查快照，可访问不等于已复现；没有定位到代码不等于作者没有公开。</p>
+<pre><code class="language-json">{
+  &quot;verified_status&quot;: &quot;unavailable&quot;,
+  &quot;entrypoints&quot;: [],
+  &quot;environment&quot;: [],
+  &quot;blockers&quot;: [
+    &quot;source says all code/data will be released upon publication; current release not established&quot;,
+    &quot;required code-discovery queue remains open; missing PDF URL is not evidence of missing author code&quot;
+  ],
+  &quot;follow_up_actions&quot;: [
+    &quot;Check publisher code/data availability and supplementary attachments&quot;,
+    &quot;Follow first/corresponding author project page; verify paper title/DOI in the repository before accepting it&quot;,
+    &quot;Record author-code link or a dated availability boundary; do not close this task because PDF transcription lacks a URL&quot;
+  ]
+}
+</code></pre>
+<h2>原文定位</h2>
+<p>以下为课程整理的结论和原文页码 / 块号索引，全文通过出版页面访问。</p>
+<ul>
+<li>
+<p>每个KAN激活函数独立构造一元候选库和稀疏系数，shadow矩阵以L1项逼近稀疏系数，并与KAN数据拟合和符号表示误差联合训练。（PDF 页 5；块号 P005-B004, P005-B005, P005-B007, P005-B010）</p>
+</li>
+<li>
+<p>在含嵌套组合的cos(x^2+y)回归任务中，深层SINDy-KAN可表达该组合，而对照pykan的逐激活后处理受到单函数匹配限制。（PDF 页 6；块号 P006-B005, P006-B006, P006-B007）</p>
+</li>
+<li>
+<p>ABC流案例通过第一层学习坐标缩放、第二层使用正弦/余弦，使六个频率参数由模型学习而非预先写入平坦字典。（PDF 页 9；块号 P009-B004, P009-B007）</p>
+</li>
+<li>
+<p>Lorenz案例用显式乘法节点在一层隐藏层中形成二次交互，而普通加法KAN需要更深网络才能表达相同二次项。（PDF 页 10；块号 P010-B004, P010-B006, P010-B007）</p>
+</li>
+<li>
+<p>Kuramoto案例复用sin(theta_i-theta_j)的反对称性，仅激活六个隐藏节点中的三个。（PDF 页 12；块号 P012-B006）</p>
+</li>
+<li>
+<p>附录线性ODE中，6.27%相对状态噪声仍保持正确线性结构，但31.37%时学习式出现多个虚假三次项，表明噪声鲁棒性尚有限。（PDF 页 19；块号 P019-B005, P019-B006）</p>
+</li>
+</ul></main></body></html>

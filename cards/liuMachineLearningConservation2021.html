@@ -1,0 +1,111 @@
+<!doctype html><html lang="zh-CN"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Machine Learning Conservation Laws from Trajectories · 物理规律发现</title><link rel="stylesheet" href="../style.css"><link rel="stylesheet" href="../public.css"></head><body><main class="doc"><div class="links"><a href="../">返回课程</a><a href="../spectrum/">三维谱图</a></div><h1>P25 · Machine Learning Conservation Laws from Trajectories</h1>
+<p>Ziming Liu; Max Tegmark. Machine Learning Conservation Laws from Trajectories. Physical Review Letters, 2021, 126(18). DOI: 10.1103/physrevlett.126.180604</p>
+<p><a href="https://doi.org/10.1103/physrevlett.126.180604">出版页面</a> · 第 17 天 · 坐标、流形与守恒</p>
+<h2>研究问题</h2>
+<p>在未知方程时，从轨迹几何估计独立守恒量数目，并尝试恢复其解析表达式及近似守恒破缺。</p>
+<h2>规律表示</h2>
+<p>第一阶段以轨迹流形余维表示守恒量数量，第二阶段用AI Feynman将候选不变量符号化。</p>
+<h2>方法</h2>
+<p>神经经验贝叶斯迭代地把加噪点拉回数据流形，在多个邻域尺度做局部PCA并寻找稳定维数平台；再训练恒定于轨迹的神经函数并符号回归。</p>
+<h2>假设</h2>
+<p>• 轨迹在等守恒量流形上稠密采样
+• 局部低维流形假设
+• 守恒量函数可由神经网络和AI Feynman表示
+• 尺度平台对应有效维数</p>
+<h2>必做推导</h2>
+<p>从 ∇C·f=0 解释守恒量梯度的线性独立性；说明常数函数为何是平凡解。</p>
+<h2>复现目标</h2>
+<p>在作者代码中选一个支持核心结论的案例：• 简谐振子
+• Kepler问题
+• 单摆
+• 磁镜
+• 三体问题。先运行小样例，再恢复该案例原文配置；运行前登记原文指标/目标图、统计量和容差，运行后交付结构或等价结构、系数/统计量、留出预测、耗时和日志。</p>
+<h2>单因素检验</h2>
+<p>只缩短轨迹采样时长。</p>
+<h2>适用范围与限制</h2>
+<p>• Runge-Lenz矢量、大角度摆能量和三体能量未被AI Feynman恢复为正确符号式。
+• 理论依赖轨迹在其闭包/等值面上足够稠密的遍历性假设。
+• 作者把原始实验数据应用列为未来方向，正文证据仍是合成轨迹。</p>
+<h2>闭卷自测</h2>
+<h3>1. P25 实际辨识的未知对象是什么，哪些对象预先给定？</h3>
+<details><summary>先作答，再展开核对</summary>
+
+
+在未知方程时，从轨迹几何估计独立守恒量数目，并尝试恢复其解析表达式及近似守恒破缺。
+表示：第一阶段以轨迹流形余维表示守恒量数量，第二阶段用AI Feynman将候选不变量符号化。
+
+
+</details>
+
+<h3>2. P25 从数据到模型采用什么路线？按顺序解释各步骤。</h3>
+<details><summary>先作答，再展开核对</summary>
+
+
+神经经验贝叶斯迭代地把加噪点拉回数据流形，在多个邻域尺度做局部PCA并寻找稳定维数平台；再训练恒定于轨迹的神经函数并符号回归。
+
+
+</details>
+
+<h3>3. P25 哪些假设或限制使结果不能直接推广？至少说出两项。</h3>
+<details><summary>先作答，再展开核对</summary>
+
+
+• 轨迹在等守恒量流形上稠密采样
+• 局部低维流形假设
+• 守恒量函数可由神经网络和AI Feynman表示
+• 尺度平台对应有效维数
+• Runge-Lenz矢量、大角度摆能量和三体能量未被AI Feynman恢复为正确符号式。
+• 理论依赖轨迹在其闭包/等值面上足够稠密的遍历性假设。
+• 作者把原始实验数据应用列为未来方向，正文证据仍是合成轨迹。
+
+
+</details>
+
+<h3>4. 怎样设计这项单因素检验：只缩短轨迹采样时长。</h3>
+<details><summary>先作答，再展开核对</summary>
+
+
+只改变指定因素，固定数据划分与其余参数；用结构、系数/统计量和留出预测评价，并将结果联系到以下方法边界：
+• Runge-Lenz矢量、大角度摆能量和三体能量未被AI Feynman恢复为正确符号式。
+• 理论依赖轨迹在其闭包/等值面上足够稠密的遍历性假设。
+• 作者把原始实验数据应用列为未来方向，正文证据仍是合成轨迹。
+
+
+</details>
+
+<h2>作者代码与核查</h2>
+<p>代码信息为课程构建时的核查快照，可访问不等于已复现；没有定位到代码不等于作者没有公开。</p>
+<pre><code class="language-json">{
+  &quot;verified_status&quot;: &quot;unverified&quot;,
+  &quot;entrypoints&quot;: [],
+  &quot;environment&quot;: [],
+  &quot;blockers&quot;: [
+    &quot;author code not found in inspected local source; this does not establish that code does not exist&quot;,
+    &quot;required code-discovery queue remains open; missing PDF URL is not evidence of missing author code&quot;
+  ],
+  &quot;follow_up_actions&quot;: [
+    &quot;Check publisher code/data availability and supplementary attachments&quot;,
+    &quot;Follow first/corresponding author project page; verify paper title/DOI in the repository before accepting it&quot;,
+    &quot;Record author-code link or a dated availability boundary; do not close this task because PDF transcription lacks a URL&quot;
+  ]
+}
+</code></pre>
+<h2>原文定位</h2>
+<p>以下为课程整理的结论和原文页码 / 块号索引，全文通过出版页面访问。</p>
+<ul>
+<li>
+<p>论文建立守恒量数等于环境维数减轨迹流形维数的对应，并给出白化、walk-pull去噪和多尺度局部PCA算法。（PDF 页 2；块号 P002-B003, P002-B004, P002-B005, P002-B006, P002-B007, P002-B008, P002-B009, P002-B010, P002-B011, P002-B012）</p>
+</li>
+<li>
+<p>五个Hamilton系统均恢复正确守恒量个数，13个目标表达式中AI Feynman符号恢复10个。（PDF 页 3；块号 P003-B003, P003-B004, P003-B005）</p>
+</li>
+<li>
+<p>受扰Kepler、单摆、磁镜与三体案例中，估计的有效守恒数随扰动或相区改变，显示近似规律破缺。（PDF 页 5；块号 P005-B002, P005-B003, P005-B004）</p>
+</li>
+<li>
+<p>每个系统100次随机起点试验中，四舍五入后的守恒量数均100/100正确。（PDF 页 7；块号 P007-B004, P007-B005）</p>
+</li>
+<li>
+<p>奇偶样本留出和第三条独立轨迹用于检查神经与符号守恒函数的泛化。（PDF 页 9；块号 P009-B002, P009-B003, P009-B004, P009-B005, P009-B006, P009-B007）</p>
+</li>
+</ul></main></body></html>

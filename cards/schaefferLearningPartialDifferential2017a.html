@@ -1,0 +1,116 @@
+<!doctype html><html lang="zh-CN"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Learning partial differential equations via data discovery and sparse optimization · 物理规律发现</title><link rel="stylesheet" href="../style.css"><link rel="stylesheet" href="../public.css"></head><body><main class="doc"><div class="links"><a href="../">返回课程</a><a href="../spectrum/">三维谱图</a></div><h1>P11 · Learning partial differential equations via data discovery and sparse optimization</h1>
+<p>Hayden Schaeffer. Learning partial differential equations via data discovery and sparse optimization. Proceedings of the Royal Society A: Mathematical, Physical and Engineering Sciences, 2017, 473(2197): 20160446. DOI: 10.1098/rspa.2016.0446</p>
+<p><a href="https://doi.org/10.1098/rspa.2016.0446">出版页面</a> · 第 3 天 · 基础与稀疏表示</p>
+<h2>研究问题</h2>
+<p>从时空场数据及其数值导数中，在多项式与空间导数组成的大候选空间内恢复稀疏演化PDE。</p>
+<h2>规律表示</h2>
+<p>PDE右端表示为问题依赖候选特征矩阵的稀疏线性组合；非零系数定义强形式局部PDE。</p>
+<h2>方法</h2>
+<p>求带L1惩罚的最小二乘问题，采用Douglas-Rachford迭代，并可在选中支撑上重新最小二乘去偏；正则参数控制项数。</p>
+<h2>假设</h2>
+<p>• 真PDE在用户构造的多项式-导数特征空间中稀疏
+• 周期边界允许稳定的Fourier谱微分
+• L1正则优先选择项数更少的解释
+• 高Re数据可能由主导的Euler极限方程而非模拟器完整方程解释</p>
+<h2>必做推导</h2>
+<p>把 PDE 系数辨识写为稀疏优化，列出字典、采样和正则化假设如何进入恢复结论。</p>
+<h2>复现目标</h2>
+<p>在作者代码中选一个支持核心结论的案例：• Burgers方程
+• KdV方程
+• Swift-Hohenberg方程
+• Cahn-Hilliard方程
+• 二维Navier-Stokes/Euler涡量方程
+• 振荡对流均匀化
+• 单孤子模型歧义案例。先运行小样例，再恢复该案例原文配置；运行前登记原文指标/目标图、统计量和容差，运行后交付结构或等价结构、系数/统计量、留出预测、耗时和日志。</p>
+<h2>单因素检验</h2>
+<p>只改变候选矩阵两列的相关程度。</p>
+<h2>适用范围与限制</h2>
+<p>• 真方程项必须包含在按问题构造的候选特征空间内。
+• 当同一数据可由多个PDE解释时，稀疏优化可能选择有效但非研究者预期的更简方程。
+• 若噪声直接加入状态，数值求导会失稳；该实验在约3%状态噪声后出现恢复转变并需要额外平滑。</p>
+<h2>闭卷自测</h2>
+<h3>1. P11 实际辨识的未知对象是什么，哪些对象预先给定？</h3>
+<details><summary>先作答，再展开核对</summary>
+
+
+从时空场数据及其数值导数中，在多项式与空间导数组成的大候选空间内恢复稀疏演化PDE。
+表示：PDE右端表示为问题依赖候选特征矩阵的稀疏线性组合；非零系数定义强形式局部PDE。
+
+
+</details>
+
+<h3>2. P11 从数据到模型采用什么路线？按顺序解释各步骤。</h3>
+<details><summary>先作答，再展开核对</summary>
+
+
+求带L1惩罚的最小二乘问题，采用Douglas-Rachford迭代，并可在选中支撑上重新最小二乘去偏；正则参数控制项数。
+
+
+</details>
+
+<h3>3. P11 哪些假设或限制使结果不能直接推广？至少说出两项。</h3>
+<details><summary>先作答，再展开核对</summary>
+
+
+• 真PDE在用户构造的多项式-导数特征空间中稀疏
+• 周期边界允许稳定的Fourier谱微分
+• L1正则优先选择项数更少的解释
+• 高Re数据可能由主导的Euler极限方程而非模拟器完整方程解释
+• 真方程项必须包含在按问题构造的候选特征空间内。
+• 当同一数据可由多个PDE解释时，稀疏优化可能选择有效但非研究者预期的更简方程。
+• 若噪声直接加入状态，数值求导会失稳；该实验在约3%状态噪声后出现恢复转变并需要额外平滑。
+
+
+</details>
+
+<h3>4. 怎样设计这项单因素检验：只改变候选矩阵两列的相关程度。</h3>
+<details><summary>先作答，再展开核对</summary>
+
+
+只改变指定因素，固定数据划分与其余参数；用结构、系数/统计量和留出预测评价，并将结果联系到以下方法边界：
+• 真方程项必须包含在按问题构造的候选特征空间内。
+• 当同一数据可由多个PDE解释时，稀疏优化可能选择有效但非研究者预期的更简方程。
+• 若噪声直接加入状态，数值求导会失稳；该实验在约3%状态噪声后出现恢复转变并需要额外平滑。
+
+
+</details>
+
+<h2>作者代码与核查</h2>
+<p>代码信息为课程构建时的核查快照，可访问不等于已复现；没有定位到代码不等于作者没有公开。</p>
+<pre><code class="language-json">{
+  &quot;verified_status&quot;: &quot;unverified&quot;,
+  &quot;entrypoints&quot;: [],
+  &quot;environment&quot;: [],
+  &quot;blockers&quot;: [
+    &quot;author code not found in inspected local source; this does not establish that code does not exist&quot;,
+    &quot;required code-discovery queue remains open; missing PDF URL is not evidence of missing author code&quot;
+  ],
+  &quot;follow_up_actions&quot;: [
+    &quot;Check publisher code/data availability and supplementary attachments&quot;,
+    &quot;Follow first/corresponding author project page; verify paper title/DOI in the repository before accepting it&quot;,
+    &quot;Record author-code link or a dated availability boundary; do not close this task because PDF transcription lacks a URL&quot;
+  ]
+}
+</code></pre>
+<h2>原文定位</h2>
+<p>以下为课程整理的结论和原文页码 / 块号索引，全文通过出版页面访问。</p>
+<ul>
+<li>
+<p>方法由状态及其谱空间导数构造问题依赖特征矩阵，并用L1正则最小二乘选择少量项；前提是真项包含在特征空间内。（PDF 页 4；块号 P004-B003, P004-B004, P004-B006, P004-B007, P004-B008）</p>
+</li>
+<li>
+<p>L1问题由Douglas-Rachford迭代求解；选定支撑后可再做无惩罚最小二乘以消除shrinkage系数偏差。（PDF 页 6；块号 P006-B003, P006-B005, P006-B007, P006-B009, P006-B010）</p>
+</li>
+<li>
+<p>Burgers试验在只对速度/导数观测施加特殊噪声的设置下，即使报告噪声率94.5%，系数误差仍小于1%；这不能与状态场直接污染等同。（PDF 页 8；块号 P008-B002, P008-B004, P008-B005）</p>
+</li>
+<li>
+<p>Cahn-Hilliard在5%噪声和仅25个时间戳时仍恢复正确项，表中报告系数在真值1%内。（PDF 页 14；块号 P014-B002, P014-B003）</p>
+</li>
+<li>
+<p>高Re二维Navier-Stokes数据由1,048,576点模拟而以65,536点学习，算法恢复与Euler极限一致的主导项，而不是强行保留生成器中的微小黏性项。（PDF 页 14；块号 P014-B005, P014-B006, P014-B007）</p>
+</li>
+<li>
+<p>单KdV孤子同时满足更稀疏的一向波方程，算法优先选择后者；去掉ux候选后才恢复预期KdV，直接展示了可识别性歧义。（PDF 页 18；块号 P018-B001, P018-B002）</p>
+</li>
+</ul></main></body></html>

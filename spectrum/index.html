@@ -1,0 +1,74 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#08111e">
+  <title>方程发现谱图 · 76 篇文献</title>
+  <link rel="stylesheet" href="./spectrum.css">
+</head>
+<body>
+  <div class="app-shell">
+    <header class="topbar">
+      <div class="brand-block">
+        <div class="brand-kicker">RESEARCH ATLAS · 2026</div>
+        <h1>方程发现 <span>谱图</span></h1>
+        <p>从观测到可验证方程：方法谱系、桥接思想与关键文献</p>
+      </div>
+      <div class="top-actions">
+        <a class="quiet-link" href="../">返回课程</a>
+        <button id="reset-view" class="ghost-button" type="button">重置视角</button>
+      </div>
+    </header>
+
+    <section class="control-dock" aria-label="谱图控制栏">
+      <label class="search-box"><span aria-hidden="true">⌕</span><input id="search" type="search" placeholder="搜索论文、作者、方法或 P 编号" autocomplete="off"></label>
+      <div id="branch-filters" class="chip-row" role="group" aria-label="研究分支"></div>
+      <label class="year-control">起始年份 <input id="year-range" type="range" min="2007" max="2026" value="2007"><output id="year-value">2007</output></label>
+      <label class="check-control"><input id="classic-only" type="checkbox"> 只看经典锚点</label>
+      <label class="check-control"><input id="show-edges" type="checkbox" checked> 显示关系</label>
+      <button id="mode-toggle" class="mode-button" type="button" aria-pressed="false">切换二维视图</button>
+    </section>
+
+    <main class="atlas-layout">
+      <section class="visual-panel" aria-label="方程发现三维谱图">
+        <div class="panel-head">
+          <div>
+            <div class="eyebrow">METHOD SPACE / 3D MAP</div>
+            <h2>方法如何从数据走向规律</h2>
+          </div>
+          <div class="view-hint"><span class="mouse-icon">◈</span> 拖动旋转 · 滚轮缩放 · 点击节点查看</div>
+        </div>
+        <div id="map-stage" class="map-stage">
+          <canvas id="spectrum-canvas" aria-label="三维方程发现谱图"></canvas>
+          <div id="label-layer" class="label-layer" aria-hidden="true"></div>
+          <div id="stage-layer" class="stage-layer" aria-hidden="true"></div>
+          <div id="loading" class="loading-card">正在展开文献谱系…</div>
+          <div class="map-legend" id="legend"></div>
+          <div class="map-status" id="map-status" aria-live="polite"></div>
+        </div>
+        <div id="fallback-board" class="fallback-board" hidden>
+          <div class="fallback-head"><div><span class="eyebrow">READABLE FALLBACK</span><h3>二维流程总览</h3></div><p>每一列是一个研究阶段；点击论文卡片查看详情。</p></div>
+          <div id="fallback-content" class="fallback-content"></div>
+        </div>
+      </section>
+
+      <aside id="detail-panel" class="detail-panel" aria-label="论文详情">
+        <div class="detail-placeholder">
+          <div class="orbit-mark" aria-hidden="true">◎</div>
+          <h2>选择一个节点</h2>
+          <p>三维空间中的大节点是流程阶段，小节点是关键论文。点击后，这里会显示它在谱图中的位置、核心贡献和可追溯链接。</p>
+          <div class="meaning-grid">
+            <div><b>横轴</b><span>研究流程阶段</span></div>
+            <div><b>纵轴</b><span>方法家族</span></div>
+            <div><b>深度</b><span>发表年份 / 理论层级</span></div>
+          </div>
+        </div>
+      </aside>
+    </main>
+
+    <footer class="atlas-footer"><span id="count-label">正在读取数据…</span><span>谱图中的连线表示方法关系的整理性映射；论文事实以课程卡与原文为准。</span></footer>
+  </div>
+  <script src="./spectrum.js"></script>
+</body>
+</html>

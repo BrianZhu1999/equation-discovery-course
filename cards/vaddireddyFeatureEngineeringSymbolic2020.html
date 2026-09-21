@@ -1,0 +1,126 @@
+<!doctype html><html lang="zh-CN"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Feature engineering and symbolic regression methods for detecting hidden physics from sparse sensor observation data · 物理规律发现</title><link rel="stylesheet" href="../style.css"><link rel="stylesheet" href="../public.css"></head><body><main class="doc"><div class="links"><a href="../">返回课程</a><a href="../spectrum/">三维谱图</a></div><h1>P46 · Feature engineering and symbolic regression methods for detecting hidden physics from sparse sensor observation data</h1>
+<p>Harsha Vaddireddy; Adil Rasheed; Anne E. Staples; Omer San. Feature engineering and symbolic regression methods for detecting hidden physics from sparse sensor observation data. Physics of Fluids, 2020, 32(1). DOI: 10.1063/1.5136351</p>
+<p><a href="https://doi.org/10.1063/1.5136351">出版页面</a> · 第 13 天 · 符号搜索</p>
+<h2>研究问题</h2>
+<p>比较开放组合的基因表达编程GEP与固定候选库STRidge，研究如何从稀疏时空采样恢复PDE、数值截断误差、未知源项和LES湍流闭合核。</p>
+<h2>规律表示</h2>
+<p>GEP用可变表达式染色体表示复杂组合、三角和指数函数；STRidge用预定义候选列的稀疏线性组合。研究范围主要为二次非线性、最高五阶空间导数，以及已知方程残差中的源项或闭合核。</p>
+<h2>方法</h2>
+<p>GEP通过种群、基因连接、变异和随机数常量模块进化表达式；STRidge通过岭回归与序贯阈值删项。发现的湍流核及系数随后嵌回LES作前向模拟。</p>
+<h2>假设</h2>
+<p>• 已知PDE部分先移到响应端，只发现残差源项或闭合项
+• GEP的函数集、终端集、基因数与常数范围预先配置
+• STRidge的完整特征库由研究者显式枚举
+• Kawahara案例人工移除会导致更稀疏替代解释的u_x，并向GEP核心库加入uu_x</p>
+<h2>必做推导</h2>
+<p>把稀疏传感观测经特征工程变成回归输入，追踪哪些导数或特征来自额外先验。</p>
+<h2>复现目标</h2>
+<p>在作者代码中选一个支持核心结论的案例：• Burgers、KdV/Kawahara、Sine-Gordon等标准PDE
+• Burgers数值格式的修正微分方程
+• 1D对流扩散隐藏源项
+• 2D涡旋合并隐藏源项
+• 二维Kraichnan湍流Smagorinsky与Leith闭合核。先运行小样例，再恢复该案例原文配置；运行前登记原文指标/目标图、统计量和容差，运行后交付结构或等价结构、系数/统计量、留出预测、耗时和日志。</p>
+<h2>单因素检验</h2>
+<p>只减少一个传感通道。</p>
+<h2>适用范围与限制</h2>
+<p>• GEP超参数来自既有例子加试错且所有案例共用同一设置；算法对常数拟合先天较差，需预设随机常数范围，增大种群又显著增加计算开销。
+• 固定库稀疏回归的预测能力受特征库表达力限制，不能表示复杂函数组合；Sine-Gordon案例即暴露了这一边界。
+• 单轨迹可能同时满足更简单的错误或替代PDE；Kawahara案例只有人工删去替代项并注入目标非线性后才得到期望结构。</p>
+<h2>闭卷自测</h2>
+<h3>1. P46 实际辨识的未知对象是什么，哪些对象预先给定？</h3>
+<details><summary>先作答，再展开核对</summary>
+
+
+比较开放组合的基因表达编程GEP与固定候选库STRidge，研究如何从稀疏时空采样恢复PDE、数值截断误差、未知源项和LES湍流闭合核。
+表示：GEP用可变表达式染色体表示复杂组合、三角和指数函数；STRidge用预定义候选列的稀疏线性组合。研究范围主要为二次非线性、最高五阶空间导数，以及已知方程残差中的源项或闭合核。
+
+
+</details>
+
+<h3>2. P46 从数据到模型采用什么路线？按顺序解释各步骤。</h3>
+<details><summary>先作答，再展开核对</summary>
+
+
+GEP通过种群、基因连接、变异和随机数常量模块进化表达式；STRidge通过岭回归与序贯阈值删项。发现的湍流核及系数随后嵌回LES作前向模拟。
+
+
+</details>
+
+<h3>3. P46 哪些假设或限制使结果不能直接推广？至少说出两项。</h3>
+<details><summary>先作答，再展开核对</summary>
+
+
+• 已知PDE部分先移到响应端，只发现残差源项或闭合项
+• GEP的函数集、终端集、基因数与常数范围预先配置
+• STRidge的完整特征库由研究者显式枚举
+• Kawahara案例人工移除会导致更稀疏替代解释的u_x，并向GEP核心库加入uu_x
+• GEP超参数来自既有例子加试错且所有案例共用同一设置；算法对常数拟合先天较差，需预设随机常数范围，增大种群又显著增加计算开销。
+• 固定库稀疏回归的预测能力受特征库表达力限制，不能表示复杂函数组合；Sine-Gordon案例即暴露了这一边界。
+• 单轨迹可能同时满足更简单的错误或替代PDE；Kawahara案例只有人工删去替代项并注入目标非线性后才得到期望结构。
+
+
+</details>
+
+<h3>4. 怎样设计这项单因素检验：只减少一个传感通道。</h3>
+<details><summary>先作答，再展开核对</summary>
+
+
+只改变指定因素，固定数据划分与其余参数；用结构、系数/统计量和留出预测评价，并将结果联系到以下方法边界：
+• GEP超参数来自既有例子加试错且所有案例共用同一设置；算法对常数拟合先天较差，需预设随机常数范围，增大种群又显著增加计算开销。
+• 固定库稀疏回归的预测能力受特征库表达力限制，不能表示复杂函数组合；Sine-Gordon案例即暴露了这一边界。
+• 单轨迹可能同时满足更简单的错误或替代PDE；Kawahara案例只有人工删去替代项并注入目标非线性后才得到期望结构。
+
+
+</details>
+
+<h2>作者代码与核查</h2>
+<p>代码信息为课程构建时的核查快照，可访问不等于已复现；没有定位到代码不等于作者没有公开。</p>
+<ul>
+<li><a href="https://github.com/sayin/SR">https://github.com/sayin/SR</a></li>
+</ul>
+<pre><code class="language-json">{
+  &quot;verified_status&quot;: &quot;public_verified&quot;,
+  &quot;entrypoints&quot;: [],
+  &quot;environment&quot;: [],
+  &quot;blockers&quot;: [
+    &quot;paper-result T2 reproduction not run; public access or README inspection is not reproduction&quot;,
+    &quot;no concrete execution entrypoint established by current root/README inspection&quot;,
+    &quot;dependency/environment specification unverified&quot;
+  ],
+  &quot;follow_up_actions&quot;: []
+}
+</code></pre>
+<h2>原文定位</h2>
+<p>以下为课程整理的结论和原文页码 / 块号索引，全文通过出版页面访问。</p>
+<ul>
+<li>
+<p>GEP只接收核心特征并自动构造高阶交互，STRidge必须显式输入所有组合特征；这一表示差异决定前者的开放表达力与后者的效率边界。（PDF 页 6；块号 P006-B006）</p>
+</li>
+<li>
+<p>Kawahara案例为得到目标式，作者从STRidge特征库人工删除会形成更稀疏模型的u_x，并在GEP核心特征中显式加入uu_x。（PDF 页 21；块号 P021-B004）</p>
+</li>
+<li>
+<p>Kawahara测试所用的单一行波解同时满足线性波动方程，因此GEP和STRidge都可能返回这一更稀疏的替代PDE，而不是目标五阶方程。（PDF 页 20；块号 P020-B010）</p>
+</li>
+<li>
+<p>1D隐藏源项案例用64个随机空间位置模拟现实采集；为了在这些位置计算空间导数，还必须额外保存每个传感点周围的差分模板数据。（PDF 页 31；块号 P031-B002, P031-B003）</p>
+</li>
+<li>
+<p>隐藏物理协议先由含真物理的方程生成合成数据，再把已知方程部分代入并扣除，使未知源项成为符号回归待恢复的残差；传感器场景因此是模拟采样而非实测。（PDF 页 30；块号 P030-B003）</p>
+</li>
+<li>
+<p>二维涡旋合并中，GEP恢复的时空源项测试误差约为1.35x10^-8，表中同时列出恢复表达式与真表达式。（PDF 页 34；块号 P034-B006）</p>
+</li>
+<li>
+<p>二维涡旋合并只在64个随机位置采集流函数和涡量，用这些稀疏观测构造待回归响应和核心特征。（PDF 页 33；块号 P033-B006, P033-B007）</p>
+</li>
+<li>
+<p>湍流案例恢复Smagorinsky核与c_s=0.12；将该核嵌回二维衰减湍流LES后，能合理提供补偿未解析小尺度所需的耗散。（PDF 页 38；块号 P038-B007）</p>
+</li>
+<li>
+<p>高保真湍流数据来自Re=4000、1024x1024网格、t=0至4且时间步长0.001的二维DNS。（PDF 页 36；块号 P036-B011）</p>
+</li>
+<li>
+<p>LES训练数据由DNS粗化到64x64获得，随后以粗化流场和LES源项构造特征库，并由GEP搜索涡黏核及其经验系数。（PDF 页 37；块号 P037-B006, P037-B007）</p>
+</li>
+</ul></main></body></html>

@@ -1,0 +1,116 @@
+<!doctype html><html lang="zh-CN"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Interpretable scientific discovery with symbolic regression: a review · 物理规律发现</title><link rel="stylesheet" href="../style.css"><link rel="stylesheet" href="../public.css"></head><body><main class="doc"><div class="links"><a href="../">返回课程</a><a href="../spectrum/">三维谱图</a></div><h1>P33 · Interpretable scientific discovery with symbolic regression: a review</h1>
+<p>Nour Makke; Sanjay Chawla. Interpretable scientific discovery with symbolic regression: a review. Artificial Intelligence Review, 2024, 57(1). DOI: 10.1007/s10462-023-10622-0</p>
+<p><a href="https://doi.org/10.1007/s10462-023-10622-0">出版页面</a> · 第 2 天 · 基础与稀疏表示</p>
+<h2>研究问题</h2>
+<p>系统整理符号回归的函数表示、搜索范式、科学应用和基准，并讨论可解释性与预测性能的关系。</p>
+<h2>规律表示</h2>
+<p>覆盖线性候选库、运算节点神经网络、表达式树/Polish序列，以及GP、Transformer和RL生成式表示。</p>
+<h2>方法</h2>
+<p>综述而非单一算法；将方法归为线性回归、可微非线性网络、表达式树的GP/Transformer/RL，并区分直接数据到公式与先学表示/黑箱再蒸馏。</p>
+<h2>假设</h2>
+<p>• 用户给定算子库
+• 误差与表达式复杂度权衡
+• 可选量纲、物理变量和领域算子
+• 基准真式可表达性</p>
+<h2>必做推导</h2>
+<p>按固定字典、表达式树、神经生成三类画出输入—搜索空间—输出对照。</p>
+<h2>复现目标</h2>
+<p>综述比较任务：将稀疏回归、符号搜索、神经方法放在同一张对象—假设—数据—验证表中，推导两类方法之间的联系，记录各自不能回答的问题。本篇按理论/综述路径验收，不要求编造作者程序。</p>
+<h2>单因素检验</h2>
+<p>选择同一个目标式，对照不同方法允许的函数集合。</p>
+<h2>适用范围与限制</h2>
+<p>• 线性SR受预定义结构限制，只能覆盖特定加性候选形式。
+• 线性库不能表达一般函数复合、多变量组合和参数化函数参数，扩展库在高维数据上还会带来计算瓶颈。
+• 即使较简单的Nguyen-12关系也可能恢复失败，且扩大采样域后恢复率仍只有12%。
+• 预测公式强烈依赖允许算子集合；Nguyen-12在纯多项式库中的恢复率也只有3%。
+• 绝大多数方法只在已知真式的合成数据上验证，真实物理实验应用仍很少。</p>
+<h2>闭卷自测</h2>
+<h3>1. P33 实际辨识的未知对象是什么，哪些对象预先给定？</h3>
+<details><summary>先作答，再展开核对</summary>
+
+
+系统整理符号回归的函数表示、搜索范式、科学应用和基准，并讨论可解释性与预测性能的关系。
+表示：覆盖线性候选库、运算节点神经网络、表达式树/Polish序列，以及GP、Transformer和RL生成式表示。
+
+
+</details>
+
+<h3>2. P33 从数据到模型采用什么路线？按顺序解释各步骤。</h3>
+<details><summary>先作答，再展开核对</summary>
+
+
+综述而非单一算法；将方法归为线性回归、可微非线性网络、表达式树的GP/Transformer/RL，并区分直接数据到公式与先学表示/黑箱再蒸馏。
+
+
+</details>
+
+<h3>3. P33 哪些假设或限制使结果不能直接推广？至少说出两项。</h3>
+<details><summary>先作答，再展开核对</summary>
+
+
+• 用户给定算子库
+• 误差与表达式复杂度权衡
+• 可选量纲、物理变量和领域算子
+• 基准真式可表达性
+• 线性SR受预定义结构限制，只能覆盖特定加性候选形式。
+• 线性库不能表达一般函数复合、多变量组合和参数化函数参数，扩展库在高维数据上还会带来计算瓶颈。
+• 即使较简单的Nguyen-12关系也可能恢复失败，且扩大采样域后恢复率仍只有12%。
+• 预测公式强烈依赖允许算子集合；Nguyen-12在纯多项式库中的恢复率也只有3%。
+• 绝大多数方法只在已知真式的合成数据上验证，真实物理实验应用仍很少。
+
+
+</details>
+
+<h3>4. 怎样设计这项单因素检验：选择同一个目标式，对照不同方法允许的函数集合。</h3>
+<details><summary>先作答，再展开核对</summary>
+
+
+只改变指定因素，固定数据划分与其余参数；用结构、系数/统计量和留出预测评价，并将结果联系到以下方法边界：
+• 线性SR受预定义结构限制，只能覆盖特定加性候选形式。
+• 线性库不能表达一般函数复合、多变量组合和参数化函数参数，扩展库在高维数据上还会带来计算瓶颈。
+• 即使较简单的Nguyen-12关系也可能恢复失败，且扩大采样域后恢复率仍只有12%。
+• 预测公式强烈依赖允许算子集合；Nguyen-12在纯多项式库中的恢复率也只有3%。
+• 绝大多数方法只在已知真式的合成数据上验证，真实物理实验应用仍很少。
+
+
+</details>
+
+<h2>作者代码与核查</h2>
+<p>代码信息为课程构建时的核查快照，可访问不等于已复现；没有定位到代码不等于作者没有公开。</p>
+<pre><code class="language-json">{
+  &quot;verified_status&quot;: &quot;candidate&quot;,
+  &quot;entrypoints&quot;: [],
+  &quot;environment&quot;: [],
+  &quot;blockers&quot;: [
+    &quot;author code not found in inspected local source; this does not establish that code does not exist&quot;,
+    &quot;required code-discovery queue remains open; missing PDF URL is not evidence of missing author code&quot;
+  ],
+  &quot;follow_up_actions&quot;: [
+    &quot;Check publisher code/data availability and supplementary attachments&quot;,
+    &quot;Follow first/corresponding author project page; verify paper title/DOI in the repository before accepting it&quot;,
+    &quot;Record author-code link or a dated availability boundary; do not close this task because PDF transcription lacks a URL&quot;
+  ]
+}
+</code></pre>
+<h2>原文定位</h2>
+<p>以下为课程整理的结论和原文页码 / 块号索引，全文通过出版页面访问。</p>
+<ul>
+<li>
+<p>论文把SR定义为离散函数类上的经验风险最小化，并以算子库的函数复合和树/Polish序列表示公式。（PDF 页 4；块号 P004-B004, P004-B005, P004-B006, P004-B007, P004-B009, P004-B010, P004-B011）</p>
+</li>
+<li>
+<p>线性SR的核心限制是预定义加性结构，因而只在特定情形下有效。（PDF 页 13；块号 P013-B009）</p>
+</li>
+<li>
+<p>预定义线性库不能表达一般函数复合、多变量组合和参数化函数参数，扩展库在高维数据上还带来计算瓶颈。（PDF 页 14；块号 P014-B004）</p>
+</li>
+<li>
+<p>综述区分直接SR与先学低维表示/黑箱后再符号化的两阶段路线，并汇总主要方法代码。（PDF 页 20；块号 P020-B007, P020-B008, P020-B009, P020-B010, P020-B011, P020-B012）</p>
+</li>
+<li>
+<p>作者指出Feynman基准将常数当变量、取值域远离真实物理、混用整数与连续量且存在重复公式。（PDF 页 28；块号 P028-B006, P028-B007）</p>
+</li>
+<li>
+<p>自做NGPPS检查中，Nguyen-12只有纯多项式库时恢复率3%，展示允许运算集合对结果的强控制。（PDF 页 30；块号 P030-B003）</p>
+</li>
+</ul></main></body></html>

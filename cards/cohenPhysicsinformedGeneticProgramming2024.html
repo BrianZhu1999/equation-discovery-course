@@ -1,0 +1,110 @@
+<!doctype html><html lang="zh-CN"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Physics-informed genetic programming for discovery of partial differential equations from scarce and noisy data · 物理规律发现</title><link rel="stylesheet" href="../style.css"><link rel="stylesheet" href="../public.css"></head><body><main class="doc"><div class="links"><a href="../">返回课程</a><a href="../spectrum/">三维谱图</a></div><h1>P28 · Physics-informed genetic programming for discovery of partial differential equations from scarce and noisy data</h1>
+<p>Benjamin G. Cohen; Burcu Beykal; George M. Bollas. Physics-informed genetic programming for discovery of partial differential equations from scarce and noisy data. Journal of Computational Physics, 2024, 514: 113261. DOI: 10.1016/j.jcp.2024.113261</p>
+<p><a href="https://doi.org/10.1016/j.jcp.2024.113261">出版页面</a> · 第 13 天 · 符号搜索</p>
+<h2>研究问题</h2>
+<p>从极少传感器和噪声观测中，利用前向PDE求解器直接搜索可解释方程结构。</p>
+<h2>规律表示</h2>
+<p>遗传编程表达式树，可由专家将变量、导数和算子分区并规定组合方式；系数为连续参数。</p>
+<h2>方法</h2>
+<p>外层GP变异/交叉搜索结构，内层通过PDE前向积分和梯度优化系数，最终以BIC权衡残差与复杂度。</p>
+<h2>假设</h2>
+<p>• 给定初始与边界条件
+• 专家指定符号分区和表达式组合
+• 可数值积分的PDE形式
+• BIC复杂度惩罚</p>
+<h2>必做推导</h2>
+<p>写出遗传表达式搜索与物理残差评价的内外层关系；说明语法限制如何排除候选。</p>
+<h2>复现目标</h2>
+<p>在作者代码中选一个支持核心结论的案例：• 等温PFR
+• 等温CSTR
+• 非等温耦合反应器
+• Burgers方程。先运行小样例，再恢复该案例原文配置；运行前登记原文指标/目标图、统计量和容差，运行后交付结构或等价结构、系数/统计量、留出预测、耗时和日志。</p>
+<h2>单因素检验</h2>
+<p>只改变物理残差权重。</p>
+<h2>适用范围与限制</h2>
+<p>• GP随符号空间扩展不良，PDE积分昂贵，且关键初始/边界条件在现实中可能不可得。
+• 内层信赖域优化没有全局最优保证。
+• 符号空间和组合策略需专家选择。</p>
+<h2>闭卷自测</h2>
+<h3>1. P28 实际辨识的未知对象是什么，哪些对象预先给定？</h3>
+<details><summary>先作答，再展开核对</summary>
+
+
+从极少传感器和噪声观测中，利用前向PDE求解器直接搜索可解释方程结构。
+表示：遗传编程表达式树，可由专家将变量、导数和算子分区并规定组合方式；系数为连续参数。
+
+
+</details>
+
+<h3>2. P28 从数据到模型采用什么路线？按顺序解释各步骤。</h3>
+<details><summary>先作答，再展开核对</summary>
+
+
+外层GP变异/交叉搜索结构，内层通过PDE前向积分和梯度优化系数，最终以BIC权衡残差与复杂度。
+
+
+</details>
+
+<h3>3. P28 哪些假设或限制使结果不能直接推广？至少说出两项。</h3>
+<details><summary>先作答，再展开核对</summary>
+
+
+• 给定初始与边界条件
+• 专家指定符号分区和表达式组合
+• 可数值积分的PDE形式
+• BIC复杂度惩罚
+• GP随符号空间扩展不良，PDE积分昂贵，且关键初始/边界条件在现实中可能不可得。
+• 内层信赖域优化没有全局最优保证。
+• 符号空间和组合策略需专家选择。
+
+
+</details>
+
+<h3>4. 怎样设计这项单因素检验：只改变物理残差权重。</h3>
+<details><summary>先作答，再展开核对</summary>
+
+
+只改变指定因素，固定数据划分与其余参数；用结构、系数/统计量和留出预测评价，并将结果联系到以下方法边界：
+• GP随符号空间扩展不良，PDE积分昂贵，且关键初始/边界条件在现实中可能不可得。
+• 内层信赖域优化没有全局最优保证。
+• 符号空间和组合策略需专家选择。
+
+
+</details>
+
+<h2>作者代码与核查</h2>
+<p>代码信息为课程构建时的核查快照，可访问不等于已复现；没有定位到代码不等于作者没有公开。</p>
+<pre><code class="language-json">{
+  &quot;verified_status&quot;: &quot;unverified&quot;,
+  &quot;entrypoints&quot;: [],
+  &quot;environment&quot;: [],
+  &quot;blockers&quot;: [
+    &quot;author code not found in inspected local source; this does not establish that code does not exist&quot;,
+    &quot;required code-discovery queue remains open; missing PDF URL is not evidence of missing author code&quot;
+  ],
+  &quot;follow_up_actions&quot;: [
+    &quot;Check publisher code/data availability and supplementary attachments&quot;,
+    &quot;Follow first/corresponding author project page; verify paper title/DOI in the repository before accepting it&quot;,
+    &quot;Record author-code link or a dated availability boundary; do not close this task because PDF transcription lacks a URL&quot;
+  ]
+}
+</code></pre>
+<h2>原文定位</h2>
+<p>以下为课程整理的结论和原文页码 / 块号索引，全文通过出版页面访问。</p>
+<ul>
+<li>
+<p>双层优化由外层表达式树搜索和内层前向积分/梯度系数估计组成，最终按BIC选式。（PDF 页 8；块号 P008-B003, P008-B004）</p>
+</li>
+<li>
+<p>等温PFR与CSTR在20次运行中成功率95%与80%，平均耗时约21.62与18.95分钟。（PDF 页 11；块号 P011-B003, P011-B004）</p>
+</li>
+<li>
+<p>非等温耦合系统成功率降到60%，耗时314.58±154.07分钟，反应项最难发现。（PDF 页 13；块号 P013-B003, P013-B004）</p>
+</li>
+<li>
+<p>Burgers在4传感器和10%噪声仍正确；弱SINDy低于42传感器出错、低于18失败，但GP约慢三个数量级且需初边值。（PDF 页 15；块号 P015-B003, P015-B004）</p>
+</li>
+<li>
+<p>单传感器、两次运行共8点且50%噪声仍有成功案例，降到4点则失败。（PDF 页 15；块号 P015-B005, P015-B006, P015-B007）</p>
+</li>
+</ul></main></body></html>

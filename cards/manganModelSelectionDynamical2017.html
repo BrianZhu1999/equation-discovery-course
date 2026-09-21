@@ -1,0 +1,113 @@
+<!doctype html><html lang="zh-CN"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Model selection for dynamical systems via sparse regression and information criteria · 物理规律发现</title><link rel="stylesheet" href="../style.css"><link rel="stylesheet" href="../public.css"></head><body><main class="doc"><div class="links"><a href="../">返回课程</a><a href="../spectrum/">三维谱图</a></div><h1>P42 · Model selection for dynamical systems via sparse regression and information criteria</h1>
+<p>N. M. Mangan; J. N. Kutz; S. L. Brunton; J. L. Proctor. Model selection for dynamical systems via sparse regression and information criteria. Proceedings of the Royal Society A: Mathematical, Physical and Engineering Sciences, 2017, 473(2204): 20170009. DOI: 10.1098/rspa.2017.0009</p>
+<p><a href="https://doi.org/10.1098/rspa.2017.0009">出版页面</a> · 第 4 天 · 统计选择与弱形式</p>
+<h2>研究问题</h2>
+<p>从时间序列出发，在组合数量巨大的非线性动力系统候选中先筛出稀疏模型，再用AIC或BIC给候选的相对证据排序，以替代依赖Pareto前沿目测拐点的选择。</p>
+<h2>规律表示</h2>
+<p>预设多项式函数库中的稀疏线性组合；每个状态方程有一组非零项，模型复杂度由总非零项或自由参数数目表征。</p>
+<h2>方法</h2>
+<p>扫描SINDy稀疏化参数获得Pareto前沿附近的少量结构，对每个结构重新拟合并前向积分，再计算小样本修正AICc或BIC；以相对分数Delta区分强支持、弱支持与无支持。</p>
+<h2>假设</h2>
+<p>• 状态变量集合及其是否冗余由用户给定
+• 候选函数库的最高多项式阶数预先设定
+• SINDy稀疏性约束用于组合空间压缩
+• 初值分布、验证轨迹长度及采样方案共同定义信息准则的观测单位</p>
+<h2>必做推导</h2>
+<p>从高斯残差似然推导 AIC，并解释动力系统中独立轨迹与相关时间点的区别。</p>
+<h2>复现目标</h2>
+<p>在作者代码中选一个支持核心结论的案例：• 一维五阶多项式候选的完整63模型枚举
+• 二维三次动力系统的约2.684亿个潜在模型
+• SEIR疾病传播模型
+• 混沌Lorenz系统。先运行小样例，再恢复该案例原文配置；运行前登记原文指标/目标图、统计量和容差，运行后交付结构或等价结构、系数/统计量、留出预测、耗时和日志。</p>
+<h2>单因素检验</h2>
+<p>只改变验证轨迹数量。</p>
+<h2>适用范围与限制</h2>
+<p>• 混沌系统的模型排序对验证时长敏感；即使系数误差约为百万分之一，Lorenz轨迹也会在有限时间后发散，而实际应用通常预先不知道该特征时标。
+• 高噪时真模型可能在稀疏回归阶段被彻底排除，且相对信息准则不能提示所有候选的绝对拟合都很差。
+• 仅用两条交叉验证轨迹时，一个错误的一项模型可获得比真模型更低的AICc；增加验证轨迹才纠正排序。</p>
+<h2>闭卷自测</h2>
+<h3>1. P42 实际辨识的未知对象是什么，哪些对象预先给定？</h3>
+<details><summary>先作答，再展开核对</summary>
+
+
+从时间序列出发，在组合数量巨大的非线性动力系统候选中先筛出稀疏模型，再用AIC或BIC给候选的相对证据排序，以替代依赖Pareto前沿目测拐点的选择。
+表示：预设多项式函数库中的稀疏线性组合；每个状态方程有一组非零项，模型复杂度由总非零项或自由参数数目表征。
+
+
+</details>
+
+<h3>2. P42 从数据到模型采用什么路线？按顺序解释各步骤。</h3>
+<details><summary>先作答，再展开核对</summary>
+
+
+扫描SINDy稀疏化参数获得Pareto前沿附近的少量结构，对每个结构重新拟合并前向积分，再计算小样本修正AICc或BIC；以相对分数Delta区分强支持、弱支持与无支持。
+
+
+</details>
+
+<h3>3. P42 哪些假设或限制使结果不能直接推广？至少说出两项。</h3>
+<details><summary>先作答，再展开核对</summary>
+
+
+• 状态变量集合及其是否冗余由用户给定
+• 候选函数库的最高多项式阶数预先设定
+• SINDy稀疏性约束用于组合空间压缩
+• 初值分布、验证轨迹长度及采样方案共同定义信息准则的观测单位
+• 混沌系统的模型排序对验证时长敏感；即使系数误差约为百万分之一，Lorenz轨迹也会在有限时间后发散，而实际应用通常预先不知道该特征时标。
+• 高噪时真模型可能在稀疏回归阶段被彻底排除，且相对信息准则不能提示所有候选的绝对拟合都很差。
+• 仅用两条交叉验证轨迹时，一个错误的一项模型可获得比真模型更低的AICc；增加验证轨迹才纠正排序。
+
+
+</details>
+
+<h3>4. 怎样设计这项单因素检验：只改变验证轨迹数量。</h3>
+<details><summary>先作答，再展开核对</summary>
+
+
+只改变指定因素，固定数据划分与其余参数；用结构、系数/统计量和留出预测评价，并将结果联系到以下方法边界：
+• 混沌系统的模型排序对验证时长敏感；即使系数误差约为百万分之一，Lorenz轨迹也会在有限时间后发散，而实际应用通常预先不知道该特征时标。
+• 高噪时真模型可能在稀疏回归阶段被彻底排除，且相对信息准则不能提示所有候选的绝对拟合都很差。
+• 仅用两条交叉验证轨迹时，一个错误的一项模型可获得比真模型更低的AICc；增加验证轨迹才纠正排序。
+
+
+</details>
+
+<h2>作者代码与核查</h2>
+<p>代码信息为课程构建时的核查快照，可访问不等于已复现；没有定位到代码不等于作者没有公开。</p>
+<pre><code class="language-json">{
+  &quot;verified_status&quot;: &quot;unverified&quot;,
+  &quot;entrypoints&quot;: [],
+  &quot;environment&quot;: [],
+  &quot;blockers&quot;: [
+    &quot;author code not found in inspected local source; this does not establish that code does not exist&quot;,
+    &quot;required code-discovery queue remains open; missing PDF URL is not evidence of missing author code&quot;
+  ],
+  &quot;follow_up_actions&quot;: [
+    &quot;Check publisher code/data availability and supplementary attachments&quot;,
+    &quot;Follow first/corresponding author project page; verify paper title/DOI in the repository before accepting it&quot;,
+    &quot;Record author-code link or a dated availability boundary; do not close this task because PDF transcription lacks a URL&quot;
+  ]
+}
+</code></pre>
+<h2>原文定位</h2>
+<p>以下为课程整理的结论和原文页码 / 块号索引，全文通过出版页面访问。</p>
+<ul>
+<li>
+<p>SINDy先把二维三次示例约十亿量级的候选压缩到约百个，再对可管理子集计算AIC/BIC；相对AIC以Delta不超过2、4至7和至少10分别定义强、弱和无支持。（PDF 页 6；块号 P006-B003, P006-B005）</p>
+</li>
+<li>
+<p>一维五阶多项式库的63个非空组合被完整枚举，并以100个初值交叉验证；真三项模型是完整空间中唯一获强支持的模型。（PDF 页 7；块号 P007-B007）</p>
+</li>
+<li>
+<p>二维系统的28个单项对应268,435,455个潜在模型；方法仅用一条输入轨迹生成候选，再以100个随机初值的轨迹验证，真模型获强支持而其他候选无支持。（PDF 页 8；块号 P008-B004, P008-B005）</p>
+</li>
+<li>
+<p>SEIR中加入冗余状态R会使SINDy找不到正确方程；移除R后，100条验证轨迹才把六项真模型选为唯一受支持结构，说明状态表示本身决定可辨识性。（PDF 页 9；块号 P009-B004）</p>
+</li>
+<li>
+<p>Lorenz示例从1023个候选中恢复真七项模型并给予强支持，但另有一个带小常数项的模型仍获弱支持。（PDF 页 9；块号 P009-B005）</p>
+</li>
+<li>
+<p>噪声达到特定水平后SINDy不再提出真模型，AIC便无法评价它；相对AIC仍会强制给当前最小者零分，即便其绝对轨迹误差很高。（PDF 页 11；块号 P011-B003, P011-B004）</p>
+</li>
+</ul></main></body></html>

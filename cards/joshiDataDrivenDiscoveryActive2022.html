@@ -1,0 +1,149 @@
+<!doctype html><html lang="zh-CN"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Data-Driven Discovery of Active Nematic Hydrodynamics · 物理规律发现</title><link rel="stylesheet" href="../style.css"><link rel="stylesheet" href="../public.css"></head><body><main class="doc"><div class="links"><a href="../">返回课程</a><a href="../spectrum/">三维谱图</a></div><h1>P50 · Data-Driven Discovery of Active Nematic Hydrodynamics</h1>
+<p>Chaitanya Joshi; Sattvic Ray; Linnea M. Lemma; Minu Varghese; Graham Sharp; Zvonimir Dogic; Aparna Baskaran; Michael F. Hagan. Data-Driven Discovery of Active Nematic Hydrodynamics. Physical Review Letters, 2022, 129(25): 258001. DOI: 10.1103/physrevlett.129.258001</p>
+<p><a href="https://doi.org/10.1103/physrevlett.129.258001">出版页面</a> · 第 28 天 · 物理机制与真实场</p>
+<h2>研究问题</h2>
+<p>从微管-驱动蛋白主动向列实验的取向张量场和速度场中辨识连续体水动力学。</p>
+<h2>规律表示</h2>
+<p>Q张量演化与低雷诺数流动方程的低阶、对称允许候选项；压力作为潜变量。</p>
+<h2>方法</h2>
+<p>局部积分或弱形式构造残差，岭回归后逐项消除，并以最优性曲线的肩部选取简约模型。</p>
+<h2>假设</h2>
+<p>• 张量类型与低阶导数
+• 不可压缩性
+• 低雷诺数流动结构</p>
+<h2>必做推导</h2>
+<p>写出 Q 张量演化的候选类型，并推导为什么缺陷区罕见会压低弹性项全局回归贡献。</p>
+<h2>复现目标</h2>
+<p>在作者代码中选一个支持核心结论的案例：• 微管主动向列实验
+• 不同ATP浓度
+• 高分辨率小视场数据
+• 数值基准。先运行小样例，再恢复该案例原文配置；运行前登记原文指标/目标图、统计量和容差，运行后交付结构或等价结构、系数/统计量、留出预测、耗时和日志。</p>
+<h2>单因素检验</h2>
+<p>只增加缺陷附近采样权重。</p>
+<h2>适用范围与限制</h2>
+<p>• 近阈值结构受有限统计量影响
+• 缺陷附近数据不足导致弹性项漏选
+• 数值稳定项并非完全由数据自动选出</p>
+<h2>闭卷自测</h2>
+<h3>1. P50 实际辨识的未知对象是什么，哪些对象预先给定？</h3>
+<details><summary>先作答，再展开核对</summary>
+
+
+从微管-驱动蛋白主动向列实验的取向张量场和速度场中辨识连续体水动力学。
+表示：Q张量演化与低雷诺数流动方程的低阶、对称允许候选项；压力作为潜变量。
+
+
+</details>
+
+<h3>2. P50 从数据到模型采用什么路线？按顺序解释各步骤。</h3>
+<details><summary>先作答，再展开核对</summary>
+
+
+局部积分或弱形式构造残差，岭回归后逐项消除，并以最优性曲线的肩部选取简约模型。
+
+
+</details>
+
+<h3>3. P50 哪些假设或限制使结果不能直接推广？至少说出两项。</h3>
+<details><summary>先作答，再展开核对</summary>
+
+
+• 张量类型与低阶导数
+• 不可压缩性
+• 低雷诺数流动结构
+• 近阈值结构受有限统计量影响
+• 缺陷附近数据不足导致弹性项漏选
+• 数值稳定项并非完全由数据自动选出
+
+
+</details>
+
+<h3>4. 怎样设计这项单因素检验：只增加缺陷附近采样权重。</h3>
+<details><summary>先作答，再展开核对</summary>
+
+
+只改变指定因素，固定数据划分与其余参数；用结构、系数/统计量和留出预测评价，并将结果联系到以下方法边界：
+• 近阈值结构受有限统计量影响
+• 缺陷附近数据不足导致弹性项漏选
+• 数值稳定项并非完全由数据自动选出
+
+
+</details>
+
+<h2>作者代码与核查</h2>
+<p>代码信息为课程构建时的核查快照，可访问不等于已复现；没有定位到代码不等于作者没有公开。</p>
+<ul>
+<li><a href="https://github.com/joshichaitanya3/actnempy">https://github.com/joshichaitanya3/actnempy</a></li>
+</ul>
+<pre><code class="language-json">{
+  &quot;verified_status&quot;: &quot;public_verified&quot;,
+  &quot;entrypoints&quot;: [
+    {
+      &quot;path&quot;: &quot;examples&quot;,
+      &quot;basis&quot;: &quot;observed root path; not executed&quot;,
+      &quot;repository&quot;: &quot;https://github.com/joshichaitanya3/actnempy&quot;
+    },
+    {
+      &quot;command_excerpt&quot;: &quot;For an example of a code used in the manuscript [Data-driven discovery of active nematic hydrodynamics](https://journals.aps.org/prl/abstract/10.1103/PhysRevLett.129.258001) ([arXiv version here](https://arxiv.org/abs/2202.12854)), see this Jupyter notebook.&quot;,
+      &quot;source_url&quot;: &quot;https://raw.githubusercontent.com/joshichaitanya3/actnempy/main/README.md&quot;,
+      &quot;line&quot;: 10,
+      &quot;basis&quot;: &quot;literal README instruction; not executed&quot;
+    },
+    {
+      &quot;command_excerpt&quot;: &quot;uv run pytest tests/test_actnem.py -v&quot;,
+      &quot;source_url&quot;: &quot;https://raw.githubusercontent.com/joshichaitanya3/actnempy/main/README.md&quot;,
+      &quot;line&quot;: 56,
+      &quot;basis&quot;: &quot;literal README instruction; not executed&quot;
+    },
+    {
+      &quot;command_excerpt&quot;: &quot;Reactive [Marimo](https://docs.marimo.io/) notebook versions of the Jupyter notebooks described above are now available. They provide additional functionality such as sliders to interactively vary defect detection hyper-parameters in basic_example.py and display model with different number of terms in SINDy.py.&quot;,
+      &quot;source_url&quot;: &quot;https://raw.githubusercontent.com/joshichaitanya3/actnempy/main/README.md&quot;,
+      &quot;line&quot;: 72,
+      &quot;basis&quot;: &quot;literal README instruction; not executed&quot;
+    },
+    {
+      &quot;command_excerpt&quot;: &quot;uv run marimo edit examples/basic_example.py&quot;,
+      &quot;source_url&quot;: &quot;https://raw.githubusercontent.com/joshichaitanya3/actnempy/main/README.md&quot;,
+      &quot;line&quot;: 83,
+      &quot;basis&quot;: &quot;literal README instruction; not executed&quot;
+    },
+    {
+      &quot;command_excerpt&quot;: &quot;uv run marimo run examples/basic_example.py&quot;,
+      &quot;source_url&quot;: &quot;https://raw.githubusercontent.com/joshichaitanya3/actnempy/main/README.md&quot;,
+      &quot;line&quot;: 89,
+      &quot;basis&quot;: &quot;literal README instruction; not executed&quot;
+    }
+  ],
+  &quot;environment&quot;: [
+    {
+      &quot;path&quot;: &quot;pyproject.toml&quot;,
+      &quot;basis&quot;: &quot;observed dependency/config file; compatibility not tested&quot;,
+      &quot;repository&quot;: &quot;https://github.com/joshichaitanya3/actnempy&quot;
+    },
+    {
+      &quot;requirement_excerpt&quot;: &quot;This project uses [uv](https://docs.astral.sh/uv/) to manage dependencies and packaging.&quot;,
+      &quot;source_url&quot;: &quot;https://raw.githubusercontent.com/joshichaitanya3/actnempy/main/README.md&quot;,
+      &quot;line&quot;: 14,
+      &quot;basis&quot;: &quot;literal README statement; environment not constructed&quot;
+    },
+    {
+      &quot;requirement_excerpt&quot;: &quot;This creates a `.venv` with `actnempy` and its dependencies installed. Prefix commands with `uv run` (e.g. `uv run python`) to run them inside that environment, or activate it directly with `source .venv/bin/activate`.&quot;,
+      &quot;source_url&quot;: &quot;https://raw.githubusercontent.com/joshichaitanya3/actnempy/main/README.md&quot;,
+      &quot;line&quot;: 29,
+      &quot;basis&quot;: &quot;literal README statement; environment not constructed&quot;
+    },
+    {
+      &quot;requirement_excerpt&quot;: &quot;pip install .&quot;,
+      &quot;source_url&quot;: &quot;https://raw.githubusercontent.com/joshichaitanya3/actnempy/main/README.md&quot;,
+      &quot;line&quot;: 34,
+      &quot;basis&quot;: &quot;literal README statement; environment not constructed&quot;
+    }
+  ],
+  &quot;blockers&quot;: [
+    &quot;paper-result T2 reproduction not run; public access or README inspection is not reproduction&quot;
+  ],
+  &quot;follow_up_actions&quot;: []
+}
+</code></pre>
+<h2>原文定位</h2>
+<p>以下为课程整理的结论和原文页码 / 块号索引，全文通过出版页面访问。</p></main></body></html>

@@ -1,0 +1,91 @@
+<!doctype html><html lang="zh-CN"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Learning hydrodynamic equations for active matter from particle simulations and experiments · 物理规律发现</title><link rel="stylesheet" href="../style.css"><link rel="stylesheet" href="../public.css"></head><body><main class="doc"><div class="links"><a href="../">返回课程</a><a href="../spectrum/">三维谱图</a></div><h1>P51 · Learning hydrodynamic equations for active matter from particle simulations and experiments</h1>
+<p>Rohit Supekar; Boya Song; Alasdair Hastewell; Gary P. T. Choi; Alexander Mietke; Jörn Dunkel. Learning hydrodynamic equations for active matter from particle simulations and experiments. Proceedings of the National Academy of Sciences, 2023, 120(7): e2206994120. DOI: 10.1073/pnas.2206994120</p>
+<p><a href="https://doi.org/10.1073/pnas.2206994120">出版页面</a> · 第 28 天 · 物理机制与真实场</p>
+<h2>研究问题</h2>
+<p>由粒子轨迹和视频显微数据直接学习主动粒子系统的宏观水动力PDE。</p>
+<h2>规律表示</h2>
+<p>满足平移、旋转和反射对称的密度、极化与速度场候选项，并显式允许参数化耦合。</p>
+<h2>方法</h2>
+<p>先以核方法粗粒化粒子轨迹，再用Chebyshev谱表示和稀疏回归选择PDE项与系数。</p>
+<h2>假设</h2>
+<p>• 场的张量类型
+• 几何对称性
+• 局域低阶水动力闭合</p>
+<h2>必做推导</h2>
+<p>从粒子密度/极化的核粗粒化写到谱截断；解释确定性闭合为何依赖快慢涨落分离。</p>
+<h2>复现目标</h2>
+<p>在作者代码中选一个支持核心结论的案例：• 手性主动粒子模拟
+• Quincke roller实验
+• 鱼群视频扩展示例
+• 新边界条件测试。先运行小样例，再恢复该案例原文配置；运行前登记原文指标/目标图、统计量和容差，运行后交付结构或等价结构、系数/统计量、留出预测、耗时和日志。</p>
+<h2>单因素检验</h2>
+<p>只改变粗粒化核宽度。</p>
+<h2>适用范围与限制</h2>
+<p>• 粗粒化坐标与尺度由研究者设定
+• 代数衰减涨落情形可能需要SPDE而非确定性PDE
+• 实验验证仍集中于特定主动体系</p>
+<h2>闭卷自测</h2>
+<h3>1. P51 实际辨识的未知对象是什么，哪些对象预先给定？</h3>
+<details><summary>先作答，再展开核对</summary>
+
+
+由粒子轨迹和视频显微数据直接学习主动粒子系统的宏观水动力PDE。
+表示：满足平移、旋转和反射对称的密度、极化与速度场候选项，并显式允许参数化耦合。
+
+
+</details>
+
+<h3>2. P51 从数据到模型采用什么路线？按顺序解释各步骤。</h3>
+<details><summary>先作答，再展开核对</summary>
+
+
+先以核方法粗粒化粒子轨迹，再用Chebyshev谱表示和稀疏回归选择PDE项与系数。
+
+
+</details>
+
+<h3>3. P51 哪些假设或限制使结果不能直接推广？至少说出两项。</h3>
+<details><summary>先作答，再展开核对</summary>
+
+
+• 场的张量类型
+• 几何对称性
+• 局域低阶水动力闭合
+• 粗粒化坐标与尺度由研究者设定
+• 代数衰减涨落情形可能需要SPDE而非确定性PDE
+• 实验验证仍集中于特定主动体系
+
+
+</details>
+
+<h3>4. 怎样设计这项单因素检验：只改变粗粒化核宽度。</h3>
+<details><summary>先作答，再展开核对</summary>
+
+
+只改变指定因素，固定数据划分与其余参数；用结构、系数/统计量和留出预测评价，并将结果联系到以下方法边界：
+• 粗粒化坐标与尺度由研究者设定
+• 代数衰减涨落情形可能需要SPDE而非确定性PDE
+• 实验验证仍集中于特定主动体系
+
+
+</details>
+
+<h2>作者代码与核查</h2>
+<p>代码信息为课程构建时的核查快照，可访问不等于已复现；没有定位到代码不等于作者没有公开。</p>
+<pre><code class="language-json">{
+  &quot;verified_status&quot;: &quot;unavailable&quot;,
+  &quot;entrypoints&quot;: [],
+  &quot;environment&quot;: [],
+  &quot;blockers&quot;: [
+    &quot;source says code available from corresponding author on reasonable request; no public link established&quot;,
+    &quot;required code-discovery queue remains open; missing PDF URL is not evidence of missing author code&quot;
+  ],
+  &quot;follow_up_actions&quot;: [
+    &quot;Check publisher code/data availability and supplementary attachments&quot;,
+    &quot;Follow first/corresponding author project page; verify paper title/DOI in the repository before accepting it&quot;,
+    &quot;Record author-code link or a dated availability boundary; do not close this task because PDF transcription lacks a URL&quot;
+  ]
+}
+</code></pre>
+<h2>原文定位</h2>
+<p>以下为课程整理的结论和原文页码 / 块号索引，全文通过出版页面访问。</p></main></body></html>

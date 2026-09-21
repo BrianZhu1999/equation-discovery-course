@@ -1,0 +1,117 @@
+<!doctype html><html lang="zh-CN"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Robust learning from noisy, incomplete, high-dimensional experimental data via physically constrained symbolic regression · 物理规律发现</title><link rel="stylesheet" href="../style.css"><link rel="stylesheet" href="../public.css"></head><body><main class="doc"><div class="links"><a href="../">返回课程</a><a href="../spectrum/">三维谱图</a></div><h1>P19 · Robust learning from noisy, incomplete, high-dimensional experimental data via physically constrained symbolic regression</h1>
+<p>Patrick A. K. Reinbold; Logan M. Kageorge; Michael F. Schatz; Roman O. Grigoriev. Robust learning from noisy, incomplete, high-dimensional experimental data via physically constrained symbolic regression. Nature Communications, 2021, 12(1). DOI: 10.1038/s41467-021-23479-0</p>
+<p><a href="https://doi.org/10.1038/s41467-021-23479-0">出版页面</a> · 第 8 天 · 统计选择与弱形式</p>
+<h2>研究问题</h2>
+<p>仅从带噪且不完备的二维PIV速度场中识别弱湍流薄层流动的定量PDE，并重建未直接观测的压力与Lorentz强迫场。</p>
+<h2>规律表示</h2>
+<p>以因果性、局域性和平滑性导出的Volterra型局部展开为起点，再用均匀性、各向同性与近似不可压缩性约束候选；最终规律是含对流、各向异性黏性、压力梯度与外力的稀疏二维动量PDE。</p>
+<h2>方法</h2>
+<p>在随机时空积分域与多组权函数上计算弱形式内积，堆叠成Qc=q0；迭代删除幅值低于epsilon||q0||的候选列。对每个数据集用30组随机积分域重复回归，以入选频率、系数均值和标准差评估稳定性。</p>
+<h2>假设</h2>
+<p>• 因果性、局域性和平滑性限定局部Volterra候选
+• 欧氏对称性、空间均匀性和各向同性限定候选张量形式及常系数
+• 实验支持的水平速度近似散度为零
+• 强迫场时间不变且压力以梯度进入方程
+• 薄层流动由内外应力驱动，压力和体力作为必要潜在场</p>
+<h2>必做推导</h2>
+<p>选一类无散测试函数，推导压力梯度在弱积分里消失的条件。</p>
+<h2>复现目标</h2>
+<p>在作者代码中选一个支持核心结论的案例：• 矩形容器中的浅层电解质-介电液双层流动
+• Lorentz力驱动的准二维Kolmogorov型流
+• Re约17.88至19的时间周期流
+• 更高Re下的弱湍流PIV速度场
+• 独立磁场测量得到的深度平均Lorentz强迫参考。先运行小样例，再恢复该案例原文配置；运行前登记原文指标/目标图、统计量和容差，运行后交付结构或等价结构、系数/统计量、留出预测、耗时和日志。</p>
+<h2>单因素检验</h2>
+<p>只改变积分窗口大小，检查弱项稳定性。</p>
+<h2>适用范围与限制</h2>
+<p>• 同一数据集内重采样得到的系数标准差远小于不同实验数据集间均值差异，因而会低估真实不确定性；跨实验差异又混合了动力学变化与层厚等条件漂移。
+• 为消去静态强迫而选择的时间奇权函数只适用于时间变化流；接近稳态时所有弱形式项趋近零，PIV误差占优，方法失效。
+• 候选库、潜在变量和消元权函数依赖相当具体的领域知识；高维系统中的纯数据建库不具可处理性，且尚无从数据一般识别潜在变量的方法。
+• 方法必须观测速度，即使压力已知也不能缺少速度；PDE数据还必须沿所有独立坐标有足够变化，近稳态数据会使回归方程退化为恒等式。</p>
+<h2>闭卷自测</h2>
+<h3>1. P19 实际辨识的未知对象是什么，哪些对象预先给定？</h3>
+<details><summary>先作答，再展开核对</summary>
+
+
+仅从带噪且不完备的二维PIV速度场中识别弱湍流薄层流动的定量PDE，并重建未直接观测的压力与Lorentz强迫场。
+表示：以因果性、局域性和平滑性导出的Volterra型局部展开为起点，再用均匀性、各向同性与近似不可压缩性约束候选；最终规律是含对流、各向异性黏性、压力梯度与外力的稀疏二维动量PDE。
+
+
+</details>
+
+<h3>2. P19 从数据到模型采用什么路线？按顺序解释各步骤。</h3>
+<details><summary>先作答，再展开核对</summary>
+
+
+在随机时空积分域与多组权函数上计算弱形式内积，堆叠成Qc=q0；迭代删除幅值低于epsilon||q0||的候选列。对每个数据集用30组随机积分域重复回归，以入选频率、系数均值和标准差评估稳定性。
+
+
+</details>
+
+<h3>3. P19 哪些假设或限制使结果不能直接推广？至少说出两项。</h3>
+<details><summary>先作答，再展开核对</summary>
+
+
+• 因果性、局域性和平滑性限定局部Volterra候选
+• 欧氏对称性、空间均匀性和各向同性限定候选张量形式及常系数
+• 实验支持的水平速度近似散度为零
+• 强迫场时间不变且压力以梯度进入方程
+• 薄层流动由内外应力驱动，压力和体力作为必要潜在场
+• 同一数据集内重采样得到的系数标准差远小于不同实验数据集间均值差异，因而会低估真实不确定性；跨实验差异又混合了动力学变化与层厚等条件漂移。
+• 为消去静态强迫而选择的时间奇权函数只适用于时间变化流；接近稳态时所有弱形式项趋近零，PIV误差占优，方法失效。
+• 候选库、潜在变量和消元权函数依赖相当具体的领域知识；高维系统中的纯数据建库不具可处理性，且尚无从数据一般识别潜在变量的方法。
+• 方法必须观测速度，即使压力已知也不能缺少速度；PDE数据还必须沿所有独立坐标有足够变化，近稳态数据会使回归方程退化为恒等式。
+
+
+</details>
+
+<h3>4. 怎样设计这项单因素检验：只改变积分窗口大小，检查弱项稳定性。</h3>
+<details><summary>先作答，再展开核对</summary>
+
+
+只改变指定因素，固定数据划分与其余参数；用结构、系数/统计量和留出预测评价，并将结果联系到以下方法边界：
+• 同一数据集内重采样得到的系数标准差远小于不同实验数据集间均值差异，因而会低估真实不确定性；跨实验差异又混合了动力学变化与层厚等条件漂移。
+• 为消去静态强迫而选择的时间奇权函数只适用于时间变化流；接近稳态时所有弱形式项趋近零，PIV误差占优，方法失效。
+• 候选库、潜在变量和消元权函数依赖相当具体的领域知识；高维系统中的纯数据建库不具可处理性，且尚无从数据一般识别潜在变量的方法。
+• 方法必须观测速度，即使压力已知也不能缺少速度；PDE数据还必须沿所有独立坐标有足够变化，近稳态数据会使回归方程退化为恒等式。
+
+
+</details>
+
+<h2>作者代码与核查</h2>
+<p>代码信息为课程构建时的核查快照，可访问不等于已复现；没有定位到代码不等于作者没有公开。</p>
+<ul>
+<li><a href="https://doi.org/10.5281/zenodo.4653308">https://doi.org/10.5281/zenodo.4653308</a></li>
+</ul>
+<pre><code class="language-json">{
+  &quot;verified_status&quot;: &quot;author_link&quot;,
+  &quot;entrypoints&quot;: [],
+  &quot;environment&quot;: [],
+  &quot;blockers&quot;: [
+    &quot;paper-result T2 reproduction not run; public access or README inspection is not reproduction&quot;,
+    &quot;SSLError: HTTPSConnectionPool(host='doi.org', port=443): Max retries exceeded with url: /10.5281/zenodo.4653308 (Caused by SSLError(SSLEOFError(8, 'EOF occurred in violation of protocol (_ssl.c:1002)')))&quot;,
+    &quot;no concrete execution entrypoint established by current root/README inspection&quot;,
+    &quot;dependency/environment specification unverified&quot;
+  ],
+  &quot;follow_up_actions&quot;: []
+}
+</code></pre>
+<h2>原文定位</h2>
+<p>以下为课程整理的结论和原文页码 / 块号索引，全文通过出版页面访问。</p>
+<ul>
+<li>
+<p>方法以局域性、平滑性、欧氏对称性和流体应力知识大幅裁剪候选空间，并把压力与体力明确作为速度观测中缺失的潜在场。（PDF 页 2；块号 P002-B005, P002-B006, P002-B007, P002-B008, P002-B009）</p>
+</li>
+<li>
+<p>弱形式在随机时空域上积分并堆叠为线性系统，避免直接求含噪导数和不可观测潜在场；随后以序贯阈值删除候选列获得稀疏模型。（PDF 页 3；块号 P003-B003, P003-B008, P003-B010, P003-B011, P003-B013）</p>
+</li>
+<li>
+<p>每组实验使用30种随机时空积分域分布；epsilon约0.1至0.3时结构最稳定，识别模型在Re约17.8至36范围内残差最低约0.02，并保留可解释的动量输运项。（PDF 页 4；块号 P004-B003, P004-B004, P004-B006, P004-B007, P004-B008）</p>
+</li>
+<li>
+<p>实验识别式与第一性原理二维模型同形，但三个参数并非机械复现理论值；识别的c3约比理论值高25%，与解释临界Re偏差所需约22%的修正相符。（PDF 页 4；块号 P004-B009, P004-B010）</p>
+</li>
+<li>
+<p>由速度场反演出的Lorentz强迫与独立磁场测量计算的强迫轮廓几乎不可区分；磁场数据明确只作为重建验证而未进入回归，构成独立现实证据。（PDF 页 6；块号 P006-B007, P006-B008, P006-B009）</p>
+</li>
+</ul></main></body></html>

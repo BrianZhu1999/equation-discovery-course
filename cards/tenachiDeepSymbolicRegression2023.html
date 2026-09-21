@@ -1,0 +1,164 @@
+<!doctype html><html lang="zh-CN"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Deep Symbolic Regression for Physics Guided by Units Constraints: Toward the Automated Discovery of Physical Laws · 物理规律发现</title><link rel="stylesheet" href="../style.css"><link rel="stylesheet" href="../public.css"></head><body><main class="doc"><div class="links"><a href="../">返回课程</a><a href="../spectrum/">三维谱图</a></div><h1>P41 · Deep Symbolic Regression for Physics Guided by Units Constraints: Toward the Automated Discovery of Physical Laws</h1>
+<p>Wassim Tenachi; Rodrigo Ibata; Foivos I. Diakogiannis. Deep Symbolic Regression for Physics Guided by Units Constraints: Toward the Automated Discovery of Physical Laws. The Astrophysical Journal, 2023, 959(2): 99. DOI: 10.3847/1538-4357/ad014c</p>
+<p><a href="https://doi.org/10.3847/1538-4357/ad014c">出版页面</a> · 第 18 天 · 符号搜索</p>
+<h2>研究问题</h2>
+<p>在一般符号回归中原位施加物理量纲一致性，使搜索只生成单位可闭合的表达式，并用于物理教科书关系和天体物理函数恢复。</p>
+<h2>规律表示</h2>
+<p>前缀token序列与等价表达式树；词表含变量、固定/自由常数及算术、三角、指数和对数运算。系统持续追踪整棵树的语法与单位。</p>
+<h2>方法</h2>
+<p>每个任务从头初始化RNN，以风险寻求策略梯度只强化最佳5%候选，并用熵正则维持探索；局部量纲规则先屏蔽不可能token，再以拟合-复杂度Pareto前沿输出候选。</p>
+<h2>假设</h2>
+<p>• 目标与各变量/常数的物理单位
+• 加减同量纲、乘除单位传播及维度函数输入约束
+• 表达式长度小于35、偏好长度8、限制三角嵌套、禁止exp/log自嵌套和无效逆操作
+• 自由常数及其单位由用户预先提供</p>
+<h2>必做推导</h2>
+<p>手算加法、乘法与微分节点的量纲传播；证明不相容量纲的加法应被屏蔽。</p>
+<h2>复现目标</h2>
+<p>在作者代码中选一个支持核心结论的案例：• 120题Feynman/SRBench物理公式
+• 相对论粒子能量
+• Pantheon Ia型超新星Hubble图
+• 等时势中的径向作用量
+• 补充自由落体、引力常数、黑体光子数等物理例。先运行小样例，再恢复该案例原文配置；运行前登记原文指标/目标图、统计量和容差，运行后交付结构或等价结构、系数/统计量、留出预测、耗时和日志。</p>
+<h2>单因素检验</h2>
+<p>只关闭单位约束，保持搜索预算不变。</p>
+<h2>适用范围与限制</h2>
+<p>• 自由常数及其物理单位必须预先给出；新经验问题中常数数量和单位未知时，搜索更困难，增加多种自由常数又会扩大空间。
+• 每个符号回归任务都从头初始化和训练RNN，不能复用以往物理表达式经验。
+• 当前不发现ODE/PDE或微积分算子；微分和积分操作符仅是未来计划。</p>
+<h2>闭卷自测</h2>
+<h3>1. P41 实际辨识的未知对象是什么，哪些对象预先给定？</h3>
+<details><summary>先作答，再展开核对</summary>
+
+
+在一般符号回归中原位施加物理量纲一致性，使搜索只生成单位可闭合的表达式，并用于物理教科书关系和天体物理函数恢复。
+表示：前缀token序列与等价表达式树；词表含变量、固定/自由常数及算术、三角、指数和对数运算。系统持续追踪整棵树的语法与单位。
+
+
+</details>
+
+<h3>2. P41 从数据到模型采用什么路线？按顺序解释各步骤。</h3>
+<details><summary>先作答，再展开核对</summary>
+
+
+每个任务从头初始化RNN，以风险寻求策略梯度只强化最佳5%候选，并用熵正则维持探索；局部量纲规则先屏蔽不可能token，再以拟合-复杂度Pareto前沿输出候选。
+
+
+</details>
+
+<h3>3. P41 哪些假设或限制使结果不能直接推广？至少说出两项。</h3>
+<details><summary>先作答，再展开核对</summary>
+
+
+• 目标与各变量/常数的物理单位
+• 加减同量纲、乘除单位传播及维度函数输入约束
+• 表达式长度小于35、偏好长度8、限制三角嵌套、禁止exp/log自嵌套和无效逆操作
+• 自由常数及其单位由用户预先提供
+• 自由常数及其物理单位必须预先给出；新经验问题中常数数量和单位未知时，搜索更困难，增加多种自由常数又会扩大空间。
+• 每个符号回归任务都从头初始化和训练RNN，不能复用以往物理表达式经验。
+• 当前不发现ODE/PDE或微积分算子；微分和积分操作符仅是未来计划。
+
+
+</details>
+
+<h3>4. 怎样设计这项单因素检验：只关闭单位约束，保持搜索预算不变。</h3>
+<details><summary>先作答，再展开核对</summary>
+
+
+只改变指定因素，固定数据划分与其余参数；用结构、系数/统计量和留出预测评价，并将结果联系到以下方法边界：
+• 自由常数及其物理单位必须预先给出；新经验问题中常数数量和单位未知时，搜索更困难，增加多种自由常数又会扩大空间。
+• 每个符号回归任务都从头初始化和训练RNN，不能复用以往物理表达式经验。
+• 当前不发现ODE/PDE或微积分算子；微分和积分操作符仅是未来计划。
+
+
+</details>
+
+<h2>作者代码与核查</h2>
+<p>代码信息为课程构建时的核查快照，可访问不等于已复现；没有定位到代码不等于作者没有公开。</p>
+<ul>
+<li><a href="https://github.com/WassimTenachi/PhySO">https://github.com/WassimTenachi/PhySO</a></li>
+</ul>
+<pre><code class="language-json">{
+  &quot;verified_status&quot;: &quot;public_verified&quot;,
+  &quot;entrypoints&quot;: [
+    {
+      &quot;path&quot;: &quot;demos&quot;,
+      &quot;basis&quot;: &quot;observed root path; not executed&quot;,
+      &quot;repository&quot;: &quot;https://github.com/WassimTenachi/PhySO&quot;
+    }
+  ],
+  &quot;environment&quot;: [
+    {
+      &quot;path&quot;: &quot;pyproject.toml&quot;,
+      &quot;basis&quot;: &quot;observed dependency/config file; compatibility not tested&quot;,
+      &quot;repository&quot;: &quot;https://github.com/WassimTenachi/PhySO&quot;
+    },
+    {
+      &quot;path&quot;: &quot;requirements.txt&quot;,
+      &quot;basis&quot;: &quot;observed dependency/config file; compatibility not tested&quot;,
+      &quot;repository&quot;: &quot;https://github.com/WassimTenachi/PhySO&quot;
+    },
+    {
+      &quot;path&quot;: &quot;setup.py&quot;,
+      &quot;basis&quot;: &quot;observed dependency/config file; compatibility not tested&quot;,
+      &quot;repository&quot;: &quot;https://github.com/WassimTenachi/PhySO&quot;
+    },
+    {
+      &quot;requirement_excerpt&quot;: &quot;[![Conda Version](https://img.shields.io/conda/vn/conda-forge/physo.svg)](https://anaconda.org/conda-forge/physo)&quot;,
+      &quot;source_url&quot;: &quot;https://raw.githubusercontent.com/WassimTenachi/PhySO/main/README.md&quot;,
+      &quot;line&quot;: 13,
+      &quot;basis&quot;: &quot;literal README statement; environment not constructed&quot;
+    },
+    {
+      &quot;requirement_excerpt&quot;: &quot;**2025-08** : 📦 Install via `pip install physo` and `conda` now available!&quot;,
+      &quot;source_url&quot;: &quot;https://raw.githubusercontent.com/WassimTenachi/PhySO/main/README.md&quot;,
+      &quot;line&quot;: 21,
+      &quot;basis&quot;: &quot;literal README statement; environment not constructed&quot;
+    },
+    {
+      &quot;requirement_excerpt&quot;: &quot;**2025-07** : 🐍 Python 3.12 + latest `NumPy`/`PyTorch`/`SymPy` support.&quot;,
+      &quot;source_url&quot;: &quot;https://raw.githubusercontent.com/WassimTenachi/PhySO/main/README.md&quot;,
+      &quot;line&quot;: 22,
+      &quot;basis&quot;: &quot;literal README statement; environment not constructed&quot;
+    },
+    {
+      &quot;requirement_excerpt&quot;: &quot;pip install physo&quot;,
+      &quot;source_url&quot;: &quot;https://raw.githubusercontent.com/WassimTenachi/PhySO/main/README.md&quot;,
+      &quot;line&quot;: 63,
+      &quot;basis&quot;: &quot;literal README statement; environment not constructed&quot;
+    },
+    {
+      &quot;requirement_excerpt&quot;: &quot;conda install -c conda-forge physo&quot;,
+      &quot;source_url&quot;: &quot;https://raw.githubusercontent.com/WassimTenachi/PhySO/main/README.md&quot;,
+      &quot;line&quot;: 70,
+      &quot;basis&quot;: &quot;literal README statement; environment not constructed&quot;
+    }
+  ],
+  &quot;blockers&quot;: [
+    &quot;paper-result T2 reproduction not run; public access or README inspection is not reproduction&quot;
+  ],
+  &quot;follow_up_actions&quot;: []
+}
+</code></pre>
+<h2>原文定位</h2>
+<p>以下为课程整理的结论和原文页码 / 块号索引，全文通过出版页面访问。</p>
+<ul>
+<li>
+<p>RNN以父、兄弟、上一token、悬空节点数和所需单位为上下文生成前缀树；量纲mask在采样前禁止会导致物理不一致的token。（PDF 页 5；块号 P005-B003, P005-B004, P005-B005, P005-B006）</p>
+</li>
+<li>
+<p>Feynman协议每题10,000拟合点、100,000无噪测试点、五次种子和最多100万候选；四种噪声合计评价23.2亿表达式。（PDF 页 9；块号 P009-B008, P009-B011, P009-B012, P009-B013）</p>
+</li>
+<li>
+<p>PhySO精确符号恢复率为58.5%，而纯RL DSR约42%；在10%噪声下仍超过53%，多数比较方法低于20%。（PDF 页 10；块号 P010-B006, P010-B007, P010-B008）</p>
+</li>
+<li>
+<p>相对论能量在同一token库、显式提供自由常数及其单位、最多1000万候选的条件下被精确恢复，文中称该设定下DSR和AI Feynman未恢复。（PDF 页 12；块号 P012-B004, P012-B007）</p>
+</li>
+<li>
+<p>Pantheon单独约束下更简单表达式优于LambdaCDM，但作者明确指出低红移事件过多且缺少CMB等观测，因而不据此否定LambdaCDM。（PDF 页 14；块号 P014-B003, P014-B014）</p>
+</li>
+<li>
+<p>等时势径向作用量在1000万次猜测后仍失败，只有借用AI Feynman的加性可分性预处理并分别拟合两部分后才恢复。（PDF 页 14；块号 P014-B008, P014-B009, P014-B015）</p>
+</li>
+</ul></main></body></html>

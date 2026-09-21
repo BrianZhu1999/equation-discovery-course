@@ -1,0 +1,178 @@
+<!doctype html><html lang="zh-CN"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Symbolic Graph Networks for Robust PDE Discovery from Noisy Sparse Data · 物理规律发现</title><link rel="stylesheet" href="../style.css"><link rel="stylesheet" href="../public.css"></head><body><main class="doc"><div class="links"><a href="../">返回课程</a><a href="../spectrum/">三维谱图</a></div><h1>P06 · Symbolic Graph Networks for Robust PDE Discovery from Noisy Sparse Data</h1>
+<p>Xingyu Chen; Junxiu An; Jun Guo; Yuqian Zhou. Symbolic Graph Networks for Robust PDE Discovery from Noisy Sparse Data. None, 2026, None. DOI: 10.48550/arXiv.2603.22380</p>
+<p><a href="https://doi.org/10.48550/arXiv.2603.22380">出版页面</a> · 第 20 天 · 符号搜索</p>
+<h2>研究问题</h2>
+<p>在粗网格和加性噪声下，以图消息传递替代脆弱的局部差分，并把学习到的空间交互和节点更新蒸馏为符号关系。</p>
+<h2>规律表示</h2>
+<p>两阶段符号表示：PySR先拟合成对节点的消息函数，再拟合中心节点与聚合消息之间的更新函数；输出可能是离散更新式、解析解形式或两者组合，而不必是连续强形式PDE。</p>
+<h2>方法</h2>
+<p>Savitzky-Golay滤波提供几何warm start，训练期间动态注入高斯噪声；低维消息传递GNN拟合演化后，PySR以遗传式表达树搜索分别蒸馏消息函数和更新函数。</p>
+<h2>假设</h2>
+<p>• 局部物理作用可由共享的成对消息及置换不变聚合表示
+• 物理交互位于一至二维低维消息流形
+• 高频扰动可被非局部积分式聚合衰减
+• S-G平滑和训练噪声注入提供几何与稳健性先验</p>
+<h2>必做推导</h2>
+<p>画出图消息传递得到的特征与最终符号表达式之间的映射；检查输出是 PDE 还是解的拟合。</p>
+<h2>复现目标</h2>
+<p>在作者代码中选一个支持核心结论的案例：• 二维驻波解析解
+• 二维对流扩散方程
+• 二维不可压Navier-Stokes的Taylor-Green涡解析衰减。先运行小样例，再恢复该案例原文配置；运行前登记原文指标/目标图、统计量和容差，运行后交付结构或等价结构、系数/统计量、留出预测、耗时和日志。</p>
+<h2>单因素检验</h2>
+<p>只改变空间采样点的分布。</p>
+<h2>适用范围与限制</h2>
+<p>• 为控制符号搜索，将潜在消息限制在很低维度，这可能遗漏复杂系统中细微但重要的耦合效应。
+• 非局部聚合虽能抑制高频噪声，也可能过平滑冲击、间断和尖锐界面，损害梯度保真度。</p>
+<h2>闭卷自测</h2>
+<h3>1. P06 实际辨识的未知对象是什么，哪些对象预先给定？</h3>
+<details><summary>先作答，再展开核对</summary>
+
+
+在粗网格和加性噪声下，以图消息传递替代脆弱的局部差分，并把学习到的空间交互和节点更新蒸馏为符号关系。
+表示：两阶段符号表示：PySR先拟合成对节点的消息函数，再拟合中心节点与聚合消息之间的更新函数；输出可能是离散更新式、解析解形式或两者组合，而不必是连续强形式PDE。
+
+
+</details>
+
+<h3>2. P06 从数据到模型采用什么路线？按顺序解释各步骤。</h3>
+<details><summary>先作答，再展开核对</summary>
+
+
+Savitzky-Golay滤波提供几何warm start，训练期间动态注入高斯噪声；低维消息传递GNN拟合演化后，PySR以遗传式表达树搜索分别蒸馏消息函数和更新函数。
+
+
+</details>
+
+<h3>3. P06 哪些假设或限制使结果不能直接推广？至少说出两项。</h3>
+<details><summary>先作答，再展开核对</summary>
+
+
+• 局部物理作用可由共享的成对消息及置换不变聚合表示
+• 物理交互位于一至二维低维消息流形
+• 高频扰动可被非局部积分式聚合衰减
+• S-G平滑和训练噪声注入提供几何与稳健性先验
+• 为控制符号搜索，将潜在消息限制在很低维度，这可能遗漏复杂系统中细微但重要的耦合效应。
+• 非局部聚合虽能抑制高频噪声，也可能过平滑冲击、间断和尖锐界面，损害梯度保真度。
+
+
+</details>
+
+<h3>4. 怎样设计这项单因素检验：只改变空间采样点的分布。</h3>
+<details><summary>先作答，再展开核对</summary>
+
+
+只改变指定因素，固定数据划分与其余参数；用结构、系数/统计量和留出预测评价，并将结果联系到以下方法边界：
+• 为控制符号搜索，将潜在消息限制在很低维度，这可能遗漏复杂系统中细微但重要的耦合效应。
+• 非局部聚合虽能抑制高频噪声，也可能过平滑冲击、间断和尖锐界面，损害梯度保真度。
+
+
+</details>
+
+<h2>作者代码与核查</h2>
+<p>代码信息为课程构建时的核查快照，可访问不等于已复现；没有定位到代码不等于作者没有公开。</p>
+<ul>
+<li><a href="https://github.com/CXY0112/SGN">https://github.com/CXY0112/SGN</a></li>
+</ul>
+<pre><code class="language-json">{
+  &quot;verified_status&quot;: &quot;public_verified&quot;,
+  &quot;entrypoints&quot;: [
+    {
+      &quot;command_excerpt&quot;: &quot;python 1wave/1train.py&quot;,
+      &quot;source_url&quot;: &quot;https://raw.githubusercontent.com/CXY0112/SGN/main/README.MD&quot;,
+      &quot;line&quot;: 94,
+      &quot;basis&quot;: &quot;literal README instruction; not executed&quot;
+    },
+    {
+      &quot;command_excerpt&quot;: &quot;python 2Convection_Diffusion/2predict.py&quot;,
+      &quot;source_url&quot;: &quot;https://raw.githubusercontent.com/CXY0112/SGN/main/README.MD&quot;,
+      &quot;line&quot;: 95,
+      &quot;basis&quot;: &quot;literal README instruction; not executed&quot;
+    },
+    {
+      &quot;command_excerpt&quot;: &quot;python 3NavierStokes/4test.py&quot;,
+      &quot;source_url&quot;: &quot;https://raw.githubusercontent.com/CXY0112/SGN/main/README.MD&quot;,
+      &quot;line&quot;: 96,
+      &quot;basis&quot;: &quot;literal README instruction; not executed&quot;
+    },
+    {
+      &quot;command_excerpt&quot;: &quot;Run `visualization.py` to generate comparison plots, including:&quot;,
+      &quot;source_url&quot;: &quot;https://raw.githubusercontent.com/CXY0112/SGN/main/README.MD&quot;,
+      &quot;line&quot;: 110,
+      &quot;basis&quot;: &quot;literal README instruction; not executed&quot;
+    }
+  ],
+  &quot;environment&quot;: [
+    {
+      &quot;requirement_excerpt&quot;: &quot;├── requirement.txt             # Python dependencies&quot;,
+      &quot;source_url&quot;: &quot;https://raw.githubusercontent.com/CXY0112/SGN/main/README.MD&quot;,
+      &quot;line&quot;: 33,
+      &quot;basis&quot;: &quot;literal README statement; environment not constructed&quot;
+    },
+    {
+      &quot;requirement_excerpt&quot;: &quot;Python 3.8+ is required. We recommend using a virtual environment:&quot;,
+      &quot;source_url&quot;: &quot;https://raw.githubusercontent.com/CXY0112/SGN/main/README.MD&quot;,
+      &quot;line&quot;: 63,
+      &quot;basis&quot;: &quot;literal README statement; environment not constructed&quot;
+    },
+    {
+      &quot;requirement_excerpt&quot;: &quot;pip install -r requirement.txt&quot;,
+      &quot;source_url&quot;: &quot;https://raw.githubusercontent.com/CXY0112/SGN/main/README.MD&quot;,
+      &quot;line&quot;: 66,
+      &quot;basis&quot;: &quot;literal README statement; environment not constructed&quot;
+    },
+    {
+      &quot;requirement_excerpt&quot;: &quot;### 3. Julia &amp; PySR Setup&quot;,
+      &quot;source_url&quot;: &quot;https://raw.githubusercontent.com/CXY0112/SGN/main/README.MD&quot;,
+      &quot;line&quot;: 70,
+      &quot;basis&quot;: &quot;literal README statement; environment not constructed&quot;
+    },
+    {
+      &quot;requirement_excerpt&quot;: &quot;Since the symbolic regression engine `PySR` relies on the Julia language, please ensure Julia is installed on your system:&quot;,
+      &quot;source_url&quot;: &quot;https://raw.githubusercontent.com/CXY0112/SGN/main/README.MD&quot;,
+      &quot;line&quot;: 72,
+      &quot;basis&quot;: &quot;literal README statement; environment not constructed&quot;
+    },
+    {
+      &quot;requirement_excerpt&quot;: &quot;1. **Install Julia**: Download from the [Official Julia Website](https://julialang.org/downloads/) (v1.9 or higher is recommended).&quot;,
+      &quot;source_url&quot;: &quot;https://raw.githubusercontent.com/CXY0112/SGN/main/README.MD&quot;,
+      &quot;line&quot;: 74,
+      &quot;basis&quot;: &quot;literal README statement; environment not constructed&quot;
+    },
+    {
+      &quot;requirement_excerpt&quot;: &quot;2. **Configure Path**: Ensure the `julia` command is accessible in your system terminal.&quot;,
+      &quot;source_url&quot;: &quot;https://raw.githubusercontent.com/CXY0112/SGN/main/README.MD&quot;,
+      &quot;line&quot;: 75,
+      &quot;basis&quot;: &quot;literal README statement; environment not constructed&quot;
+    },
+    {
+      &quot;requirement_excerpt&quot;: &quot;- Removed the previous requirement to move experiment scripts into the project root.&quot;,
+      &quot;source_url&quot;: &quot;https://raw.githubusercontent.com/CXY0112/SGN/main/README.MD&quot;,
+      &quot;line&quot;: 135,
+      &quot;basis&quot;: &quot;literal README statement; environment not constructed&quot;
+    }
+  ],
+  &quot;blockers&quot;: [
+    &quot;paper-result T2 reproduction not run; public access or README inspection is not reproduction&quot;
+  ],
+  &quot;follow_up_actions&quot;: []
+}
+</code></pre>
+<h2>原文定位</h2>
+<p>以下为课程整理的结论和原文页码 / 块号索引，全文通过出版页面访问。</p>
+<ul>
+<li>
+<p>框架由图神经模拟器和PySR符号分析器组成；后者分别蒸馏低维消息函数与节点更新函数，再复合为最终演化关系。（PDF 页 7；块号 P007-B001, P007-B002, P007-B004）</p>
+</li>
+<li>
+<p>理论部分只在高频扰动极限下把消息聚合对应到积分算子并说明其低通效应，这支持噪声抑制机制，但不是一般条件下连续PDE可识别性的证明。（PDF 页 11；块号 P011-B006, P011-B007, P011-B008）</p>
+</li>
+<li>
+<p>全部数据由高保真求解器在32×32×100网格生成；因SGN与PDE-Net 2.0输出形态不同，统一比较采用状态预测MSE，并在高噪声及Navier-Stokes条件下省略基线。（PDF 页 14；块号 P014-B002, P014-B003）</p>
+</li>
+<li>
+<p>波动方程0.2%噪声时报告MSE为1.38e-10，但该行SGN输出是已知驻波数据的解析解形式，不是原连续波动PDE。（PDF 页 15；块号 P015-B003, P015-B004）</p>
+</li>
+<li>
+<p>Taylor-Green涡0.1%噪声时，SGN得到单步衰减乘子0.9900558，接近理论值0.9900498，且较高噪声下的衰减乘子仍接近该值。（PDF 页 22；块号 P022-B001, P022-B002）</p>
+</li>
+</ul></main></body></html>

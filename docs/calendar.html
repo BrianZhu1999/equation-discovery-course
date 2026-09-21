@@ -1,0 +1,273 @@
+<!doctype html><html lang="zh-CN"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>calendar · 物理规律发现</title><link rel="stylesheet" href="../style.css"><link rel="stylesheet" href="../public.css"></head><body><main class="doc"><div class="links"><a href="../">返回课程</a><a href="../spectrum/">三维谱图</a></div><p class="notice">公网版：笔记和进度保存在当前浏览器，可在首页导出 / 导入 JSON。文中本地命令与文件约定适用于下载后的实验；站点不能执行代码或核验本机日志。论文全文请通过出版页面访问。</p><h1>30天递进日历</h1>
+<p>P01–P76与原综述编号一致。26天阅读覆盖76篇，D7/D14/D21/D30复盘。代码复现跨天并行；全部公开代码论文须T2，不能因月底到了就降低验收标准。</p>
+<table>
+<thead>
+<tr>
+<th>天</th>
+<th>主题</th>
+<th>论文</th>
+<th>阅读估时</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>1</td>
+<td>状态、候选项与稀疏系数</td>
+<td>P10, P48</td>
+<td>2.8 h</td>
+</tr>
+<tr>
+<td>2</td>
+<td>方程发现的两条起点</td>
+<td>P09, P08, P33</td>
+<td>2.4 h</td>
+</tr>
+<tr>
+<td>3</td>
+<td>从 ODE 到 PDE 与隐式方程</td>
+<td>P04, P11, P15</td>
+<td>4.8 h</td>
+</tr>
+<tr>
+<td>4</td>
+<td>训练误差之外的模型选择</td>
+<td>P42, P29, P20</td>
+<td>3.6 h</td>
+</tr>
+<tr>
+<td>5</td>
+<td>误差条、稳定性与贝叶斯推断</td>
+<td>P43, P55, P36</td>
+<td>2.4 h</td>
+</tr>
+<tr>
+<td>6</td>
+<td>弱形式与测试函数</td>
+<td>P16, P53, P05</td>
+<td>3.6 h</td>
+</tr>
+<tr>
+<td>7</td>
+<td>第一周复盘：独立写出 SINDy</td>
+<td>复盘</td>
+<td>0 h</td>
+</tr>
+<tr>
+<td>8</td>
+<td>变分形式与不可观测压力</td>
+<td>P68, P54, P19</td>
+<td>3.6 h</td>
+</tr>
+<tr>
+<td>9</td>
+<td>可微代理与高斯过程</td>
+<td>P12, P14, P47</td>
+<td>4.8 h</td>
+</tr>
+<tr>
+<td>10</td>
+<td>神经代理与物理约束</td>
+<td>P38, P18, P27</td>
+<td>3.6 h</td>
+</tr>
+<tr>
+<td>11</td>
+<td>噪声模型与极少时间样本</td>
+<td>P49, P72, P73</td>
+<td>2.4 h</td>
+</tr>
+<tr>
+<td>12</td>
+<td>差分算子、积分与结构演化</td>
+<td>P13, P17, P45</td>
+<td>3.6 h</td>
+</tr>
+<tr>
+<td>13</td>
+<td>开放表达式与遗传搜索</td>
+<td>P37, P28, P46</td>
+<td>2.4 h</td>
+</tr>
+<tr>
+<td>14</td>
+<td>第二周复盘：同一 PDE 的三种辨识</td>
+<td>复盘</td>
+<td>0 h</td>
+</tr>
+<tr>
+<td>15</td>
+<td>潜在坐标、延迟与坐标不确定性</td>
+<td>P31, P34, P30</td>
+<td>4.8 h</td>
+</tr>
+<tr>
+<td>16</td>
+<td>部分观测、量纲与对称性</td>
+<td>P23, P21, P22</td>
+<td>2.4 h</td>
+</tr>
+<tr>
+<td>17</td>
+<td>守恒量与守恒动力学</td>
+<td>P25, P26, P44</td>
+<td>3.6 h</td>
+</tr>
+<tr>
+<td>18</td>
+<td>符号分解、单位约束与强化学习</td>
+<td>P03, P41, P35</td>
+<td>3.6 h</td>
+</tr>
+<tr>
+<td>19</td>
+<td>人机交互、枚举与方程生成</td>
+<td>P40, P02, P01</td>
+<td>3.6 h</td>
+</tr>
+<tr>
+<td>20</td>
+<td>图结构与可学习函数</td>
+<td>P06, P07, P39</td>
+<td>2.4 h</td>
+</tr>
+<tr>
+<td>21</td>
+<td>第三周复盘：坐标和定律不可混淆</td>
+<td>复盘</td>
+<td>0 h</td>
+</tr>
+<tr>
+<td>22</td>
+<td>随机增量、漂移与扩散</td>
+<td>P57, P59, P58</td>
+<td>3.6 h</td>
+</tr>
+<tr>
+<td>23</td>
+<td>有限时间步与随机场</td>
+<td>P61, P60, P74</td>
+<td>3.6 h</td>
+</tr>
+<tr>
+<td>24</td>
+<td>粒子到连续方程</td>
+<td>P62, P63, P64</td>
+<td>3.6 h</td>
+</tr>
+<tr>
+<td>25</td>
+<td>连续极限失效与材料缺口</td>
+<td>P65, P66, P52</td>
+<td>2.4 h</td>
+</tr>
+<tr>
+<td>26</td>
+<td>参数族、分岔与组稀疏</td>
+<td>P32, P56, P70</td>
+<td>2.4 h</td>
+</tr>
+<tr>
+<td>27</td>
+<td>局部平衡与多尺度网络</td>
+<td>P67, P71, P75</td>
+<td>2.4 h</td>
+</tr>
+<tr>
+<td>28</td>
+<td>真实主动体系与湍流</td>
+<td>P50, P51, P69</td>
+<td>4.8 h</td>
+</tr>
+<tr>
+<td>29</td>
+<td>反应机制与延迟闭合</td>
+<td>P24, P76</td>
+<td>1.6 h</td>
+</tr>
+<tr>
+<td>30</td>
+<td>课程答辩与复现清账</td>
+<td>复盘</td>
+<td>0 h</td>
+</tr>
+</tbody>
+</table>
+<h2>全部76篇索引</h2>
+<ul>
+<li>D01 / P10 <a href="../cards/bruntonDiscoveringGoverningEquations2016.html">Discovering governing equations from data by sparse identification of nonlinear dynamical systems</a></li>
+<li>D01 / P48 <a href="../cards/kaptanogluPySINDyComprehensivePython2022.html">PySINDy: A comprehensive Python package for robust sparse system identification</a></li>
+<li>D02 / P09 <a href="../cards/bongardAutomatedReverseEngineering2007.html">Automated reverse engineering of nonlinear dynamical systems</a></li>
+<li>D02 / P08 <a href="../cards/schmidtDistillingFreeFormNatural2009.html">Distilling Free-Form Natural Laws from Experimental Data</a></li>
+<li>D02 / P33 <a href="../cards/makkeInterpretableScientificDiscovery2024.html">Interpretable scientific discovery with symbolic regression: a review</a></li>
+<li>D03 / P04 <a href="../cards/rudyDatadrivenDiscoveryPartial2017.html">Data-driven discovery of partial differential equations</a></li>
+<li>D03 / P11 <a href="../cards/schaefferLearningPartialDifferential2017a.html">Learning partial differential equations via data discovery and sparse optimization</a></li>
+<li>D03 / P15 <a href="../cards/kahemanSINDyPIRobustAlgorithm2020.html">SINDy-PI: a robust algorithm for parallel implicit sparse identification of nonlinear dynamics</a></li>
+<li>D04 / P42 <a href="../cards/manganModelSelectionDynamical2017.html">Model selection for dynamical systems via sparse regression and information criteria</a></li>
+<li>D04 / P29 <a href="../cards/eganAutomaticallyDiscoveringOrdinary2024.html">Automatically discovering ordinary differential equations from data with sparse regression</a></li>
+<li>D04 / P20 <a href="../cards/faselEnsembleSINDyRobustSparse2022.html">Ensemble-SINDy: Robust sparse model discovery in the low-data, high-noise limit, with active learning and control</a></li>
+<li>D05 / P43 <a href="../cards/zhangRobustDatadrivenDiscovery2018.html">Robust data-driven discovery of governing physical laws with error bars</a></li>
+<li>D05 / P55 <a href="../cards/madduStabilitySelectionEnables2022.html">Stability selection enables robust learning of differential equations from limited noisy data</a></li>
+<li>D05 / P36 <a href="../cards/fungRapidBayesianIdentification2025.html">Rapid Bayesian identification of sparse nonlinear dynamics from scarce and noisy data</a></li>
+<li>D06 / P16 <a href="../cards/messengerWeakSINDyPartial2021.html">Weak SINDy for partial differential equations</a></li>
+<li>D06 / P53 <a href="../cards/gurevichRobustOptimalSparse2019.html">Robust and optimal sparse regression for nonlinear PDE models</a></li>
+<li>D06 / P05 <a href="../cards/chenFourierWeakSINDy2026.html">Fourier Weak SINDy: Spectral Test Function Selection for Robust Model Identification</a></li>
+<li>D08 / P68 <a href="../cards/wangVariationalSystemIdentification2019.html">Variational system identification of the partial differential equations governing the physics of pattern-formation: Inference under varying fidelity and noise</a></li>
+<li>D08 / P54 <a href="../cards/reinboldDatadrivenDiscoveryPartial2019.html">Data-driven discovery of partial differential equation models with latent variables</a></li>
+<li>D08 / P19 <a href="../cards/reinboldRobustLearningNoisy2021.html">Robust learning from noisy, incomplete, high-dimensional experimental data via physically constrained symbolic regression</a></li>
+<li>D09 / P12 <a href="../cards/raissiHiddenPhysicsModels2018.html">Hidden physics models: Machine learning of nonlinear partial differential equations</a></li>
+<li>D09 / P14 <a href="../cards/bothDeepMoDDeepLearning2021.html">DeepMoD: Deep learning for model discovery in noisy data</a></li>
+<li>D09 / P47 <a href="../cards/stephanyPDEREADHumanreadablePartial2022.html">PDE-READ: Human-readable partial differential equation discovery using deep learning</a></li>
+<li>D10 / P38 <a href="../cards/stephanyPDELEARNUsingDeep2024.html">PDE-LEARN: Using deep learning to discover partial differential equations from noisy, limited data</a></li>
+<li>D10 / P18 <a href="../cards/chenPhysicsinformedLearningGoverning2021.html">Physics-informed learning of governing equations from scarce data</a></li>
+<li>D10 / P27 <a href="../cards/xuDiscoveryPartialDifferential2023.html">Discovery of Partial Differential Equations from Highly Noisy and Sparse Data with Physics-Informed Information Criterion</a></li>
+<li>D11 / P49 <a href="../cards/thanasutivesNoiseawarePhysicsinformedMachine2023.html">Noise-aware physics-informed machine learning for robust PDE discovery</a></li>
+<li>D11 / P72 <a href="../cards/lagergrenLearningPartialDifferential2020.html">Learning partial differential equations for biological transport models from noisy spatio-temporal data</a></li>
+<li>D11 / P73 <a href="../cards/nardiniLearningEquationsBiological2020.html">Learning Equations from Biological Data with Limited Time Samples</a></li>
+<li>D12 / P13 <a href="../cards/longPDENet20Learning2019.html">PDE-Net 2.0: Learning PDEs from data with a numeric-symbolic hybrid deep network</a></li>
+<li>D12 / P17 <a href="../cards/xuDeeplearningBasedDiscovery2021.html">Deep-learning based discovery of partial differential equations in integral form from sparse and noisy data</a></li>
+<li>D12 / P45 <a href="../cards/xuDLGAPDEDiscoveryPDEs2020.html">DLGA-PDE: Discovery of PDEs with incomplete candidate library via combination of deep learning and genetic algorithm</a></li>
+<li>D13 / P37 <a href="../cards/chenSymbolicGeneticAlgorithm2022.html">Symbolic genetic algorithm for discovering open-form partial differential equations (SGA-PDE)</a></li>
+<li>D13 / P28 <a href="../cards/cohenPhysicsinformedGeneticProgramming2024.html">Physics-informed genetic programming for discovery of partial differential equations from scarce and noisy data</a></li>
+<li>D13 / P46 <a href="../cards/vaddireddyFeatureEngineeringSymbolic2020.html">Feature engineering and symbolic regression methods for detecting hidden physics from sparse sensor observation data</a></li>
+<li>D15 / P31 <a href="../cards/championDatadrivenDiscoveryCoordinates2019.html">Data-driven discovery of coordinates and governing equations</a></li>
+<li>D15 / P34 <a href="../cards/bakarjiDiscoveringGoverningEquations2023.html">Discovering governing equations from partial measurements with deep delay autoencoders</a></li>
+<li>D15 / P30 <a href="../cards/marsgaoBayesianAutoencodersDatadriven2024.html">Bayesian autoencoders for data-driven discovery of coordinates, governing equations and fundamental constants</a></li>
+<li>D16 / P23 <a href="../cards/luDiscoveringSparseInterpretable2022.html">Discovering sparse interpretable dynamics from partial observations</a></li>
+<li>D16 / P21 <a href="../cards/xieDatadrivenDiscoveryDimensionless2022.html">Data-driven discovery of dimensionless numbers and governing laws from scarce measurements</a></li>
+<li>D16 / P22 <a href="../cards/liuMachineLearningHidden2022.html">Machine Learning Hidden Symmetries</a></li>
+<li>D17 / P25 <a href="../cards/liuMachineLearningConservation2021.html">Machine Learning Conservation Laws from Trajectories</a></li>
+<li>D17 / P26 <a href="../cards/luDiscoveringConservationLaws2023.html">Discovering conservation laws using optimal transport and manifold learning</a></li>
+<li>D17 / P44 <a href="../cards/loiseauConstrainedSparseGalerkin2018.html">Constrained sparse Galerkin regression</a></li>
+<li>D18 / P03 <a href="../cards/udrescuAIFeynmanPhysicsInspired2020.html">AI Feynman: a Physics-Inspired Method for Symbolic Regression</a></li>
+<li>D18 / P41 <a href="../cards/tenachiDeepSymbolicRegression2023.html">Deep Symbolic Regression for Physics Guided by Units Constraints: Toward the Automated Discovery of Physical Laws</a></li>
+<li>D18 / P35 <a href="../cards/duDISCOVERDeepIdentification2024.html">DISCOVER: Deep identification of symbolically concise open-form partial differential equations via enhanced reinforcement learning</a></li>
+<li>D19 / P40 <a href="../cards/tianInteractiveSymbolicRegression2025.html">Interactive symbolic regression with co-design mechanism through offline reinforcement learning</a></li>
+<li>D19 / P02 <a href="../cards/ruanDiscoveringPhysicalLaws2025.html">Discovering physical laws with parallel symbolic enumeration</a></li>
+<li>D19 / P01 <a href="../cards/xuGenerativeDiscoveryPartial2025.html">Generative discovery of partial differential equations by learning from math handbooks</a></li>
+<li>D20 / P06 <a href="../cards/chenSymbolicGraphNetworks2026.html">Symbolic Graph Networks for Robust PDE Discovery from Noisy Sparse Data</a></li>
+<li>D20 / P07 <a href="../cards/howardSINDyKANsSparseIdentification2026.html">SINDy-KANs: Sparse identification of non-linear dynamics through Kolmogorov-Arnold networks</a></li>
+<li>D20 / P39 <a href="../cards/huLearningInterpretableNetwork2025.html">Learning interpretable network dynamics via universal neural symbolic regression</a></li>
+<li>D22 / P57 <a href="../cards/boninsegnaSparseLearningStochastic2018.html">Sparse learning of stochastic dynamical equations</a></li>
+<li>D22 / P59 <a href="../cards/wangDataDrivenDiscoveryStochastic2022.html">Data-Driven Discovery of Stochastic Differential Equations</a></li>
+<li>D22 / P58 <a href="../cards/huangSparseInferenceActive2022.html">Sparse inference and active learning of stochastic differential equations from data</a></li>
+<li>D23 / P61 <a href="../cards/wannerHigherOrderDrift2024.html">On Higher Order Drift and Diffusion Estimates for Stochastic SINDy</a></li>
+<li>D23 / P60 <a href="../cards/mathpatiDiscoveringStochasticPartial2024.html">Discovering stochastic partial differential equations from limited data using variational Bayes inference</a></li>
+<li>D23 / P74 <a href="../cards/snyderDatadrivenStochasticModeling2021.html">Data-driven stochastic modeling of coarse-grained dynamics with finite-size effects using Langevin regression</a></li>
+<li>D24 / P62 <a href="../cards/nardiniLearningDifferentialEquation2021.html">Learning differential equation models from stochastic agent-based model simulations</a></li>
+<li>D24 / P63 <a href="../cards/bakarjiDatadrivenDiscoveryCoarsegrained2021.html">Data-driven discovery of coarse-grained equations</a></li>
+<li>D24 / P64 <a href="../cards/messengerLearningMeanfieldEquations2022.html">Learning mean-field equations from particle data using WSINDy</a></li>
+<li>D25 / P65 <a href="../cards/vandenheuvelPushingCoarsegrainedModels2024.html">Pushing coarse-grained models beyond the continuum limit using equation learning</a></li>
+<li>D25 / P66 <a href="../cards/jugLearningMacroscopicEquations2024.html">Learning macroscopic equations of motion from dissipative particle dynamics simulations of fluids</a></li>
+<li>D25 / P52 <a href="../cards/zhangDatadrivenDiscoveryGoverning2020.html">Data-driven discovery of governing equations for fluid dynamics based on molecular simulation</a></li>
+<li>D26 / P32 <a href="../cards/rudyDataDrivenIdentificationParametric2019.html">Data-Driven Identification of Parametric Partial Differential Equations</a></li>
+<li>D26 / P56 <a href="../cards/madduLearningPhysicallyConsistent2021.html">Learning physically consistent differential equation models from data using group sparsity</a></li>
+<li>D26 / P70 <a href="../cards/nicolaouDatadrivenDiscoveryExtrapolation2023.html">Data-driven discovery and extrapolation of parameterized pattern-forming dynamics</a></li>
+<li>D27 / P67 <a href="../cards/callahamLearningDominantPhysical2021.html">Learning dominant physical processes with data-driven balance models</a></li>
+<li>D27 / P71 <a href="../cards/sturmLearningLocallyDominant2024.html">Learning locally dominant force balances in active particle systems</a></li>
+<li>D27 / P75 <a href="../cards/owensDatadrivenDiscoveryGoverning2023.html">Data-Driven Discovery of Governing Equations for Coarse-Grained Heterogeneous Network Dynamics</a></li>
+<li>D28 / P50 <a href="../cards/joshiDataDrivenDiscoveryActive2022.html">Data-Driven Discovery of Active Nematic Hydrodynamics</a></li>
+<li>D28 / P51 <a href="../cards/supekarLearningHydrodynamicEquations2023.html">Learning hydrodynamic equations for active matter from particle simulations and experiments</a></li>
+<li>D28 / P69 <a href="../cards/gurevichLearningFluidPhysics2024.html">Learning fluid physics from highly turbulent data using sparse physics-informed discovery of empirical relations (SPIDER)</a></li>
+<li>D29 / P24 <a href="../cards/hoffmannReactiveSINDyDiscovering2019.html">Reactive SINDy: Discovering governing reactions from concentration data</a></li>
+<li>D29 / P76 <a href="../cards/stephanyDDEFindLearning2025.html">DDE-Find: learning delay differential equations from noisy, limited data</a></li>
+</ul></main></body></html>

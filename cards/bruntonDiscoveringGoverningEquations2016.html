@@ -1,0 +1,121 @@
+<!doctype html><html lang="zh-CN"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Discovering governing equations from data by sparse identification of nonlinear dynamical systems · 物理规律发现</title><link rel="stylesheet" href="../style.css"><link rel="stylesheet" href="../public.css"></head><body><main class="doc"><div class="links"><a href="../">返回课程</a><a href="../spectrum/">三维谱图</a></div><h1>P10 · Discovering governing equations from data by sparse identification of nonlinear dynamical systems</h1>
+<p>Steven L. Brunton; Joshua L. Proctor; J. Nathan Kutz. Discovering governing equations from data by sparse identification of nonlinear dynamical systems. Proceedings of the National Academy of Sciences, 2016, 113(15): 3932-3937. DOI: 10.1073/pnas.1517384113</p>
+<p><a href="https://doi.org/10.1073/pnas.1517384113">出版页面</a> · 第 1 天 · 基础与稀疏表示</p>
+<h2>研究问题</h2>
+<p>从状态及其时间导数数据中，在候选非线性函数库内识别少量激活项，从而得到可解释ODE、参数化映射或降阶流体动力学。</p>
+<h2>规律表示</h2>
+<p>每个状态导数表示为候选库Theta(X)的稀疏线性组合，系数矩阵Xi的非零项定义显式动力学。</p>
+<h2>方法</h2>
+<p>以顺序阈值最小二乘反复拟合、删除小系数并在保留项上重拟合；稀疏阈值lambda通过留出数据和准确度-复杂度Pareto elbow选择。</p>
+<h2>假设</h2>
+<p>• 动力学在选定候选函数空间中稀疏
+• 高维系统存在可由POD提取的低秩相干坐标
+• 复杂度与预测误差应在Pareto前沿折中
+• 参数可作为状态变量嵌入以恢复分岔法则</p>
+<h2>必做推导</h2>
+<p>由 x′=f(x) 构造 Θ(X)Ξ=X′；在三列的小矩阵上手算一次最小二乘、阈值和重新拟合。</p>
+<h2>复现目标</h2>
+<p>在作者代码中选一个支持核心结论的案例：• 线性二维动力系统
+• Lorenz系统
+• 二维圆柱尾流直接数值模拟
+• 参数化logistic映射
+• Hopf正常形。先运行小样例，再恢复该案例原文配置；运行前登记原文指标/目标图、统计量和容差，运行后交付结构或等价结构、系数/统计量、留出预测、耗时和日志。</p>
+<h2>单因素检验</h2>
+<p>只删除 Lorenz 的一个必需候选项，观察错误替代结构。</p>
+<h2>适用范围与限制</h2>
+<p>• 多项式候选项数随原状态维数和阶数快速组合增长，因此高维问题依赖先验降维，而降维坐标本身会影响可发现形式。
+• 高阶多项式库可能导致回归矩阵病态和非唯一稀疏表示。
+• 流体模型在未参与训练的高能初值上仅定性复现瞬态；放宽稀疏性虽可改善拟合，却会引入高阶项。
+• 如何仅由数据选择合适的近似函数空间仍是开放问题。</p>
+<h2>闭卷自测</h2>
+<h3>1. P10 实际辨识的未知对象是什么，哪些对象预先给定？</h3>
+<details><summary>先作答，再展开核对</summary>
+
+
+从状态及其时间导数数据中，在候选非线性函数库内识别少量激活项，从而得到可解释ODE、参数化映射或降阶流体动力学。
+表示：每个状态导数表示为候选库Theta(X)的稀疏线性组合，系数矩阵Xi的非零项定义显式动力学。
+
+
+</details>
+
+<h3>2. P10 从数据到模型采用什么路线？按顺序解释各步骤。</h3>
+<details><summary>先作答，再展开核对</summary>
+
+
+以顺序阈值最小二乘反复拟合、删除小系数并在保留项上重拟合；稀疏阈值lambda通过留出数据和准确度-复杂度Pareto elbow选择。
+
+
+</details>
+
+<h3>3. P10 哪些假设或限制使结果不能直接推广？至少说出两项。</h3>
+<details><summary>先作答，再展开核对</summary>
+
+
+• 动力学在选定候选函数空间中稀疏
+• 高维系统存在可由POD提取的低秩相干坐标
+• 复杂度与预测误差应在Pareto前沿折中
+• 参数可作为状态变量嵌入以恢复分岔法则
+• 多项式候选项数随原状态维数和阶数快速组合增长，因此高维问题依赖先验降维，而降维坐标本身会影响可发现形式。
+• 高阶多项式库可能导致回归矩阵病态和非唯一稀疏表示。
+• 流体模型在未参与训练的高能初值上仅定性复现瞬态；放宽稀疏性虽可改善拟合，却会引入高阶项。
+• 如何仅由数据选择合适的近似函数空间仍是开放问题。
+
+
+</details>
+
+<h3>4. 怎样设计这项单因素检验：只删除 Lorenz 的一个必需候选项，观察错误替代结构。</h3>
+<details><summary>先作答，再展开核对</summary>
+
+
+只改变指定因素，固定数据划分与其余参数；用结构、系数/统计量和留出预测评价，并将结果联系到以下方法边界：
+• 多项式候选项数随原状态维数和阶数快速组合增长，因此高维问题依赖先验降维，而降维坐标本身会影响可发现形式。
+• 高阶多项式库可能导致回归矩阵病态和非唯一稀疏表示。
+• 流体模型在未参与训练的高能初值上仅定性复现瞬态；放宽稀疏性虽可改善拟合，却会引入高阶项。
+• 如何仅由数据选择合适的近似函数空间仍是开放问题。
+
+
+</details>
+
+<h2>作者代码与核查</h2>
+<p>代码信息为课程构建时的核查快照，可访问不等于已复现；没有定位到代码不等于作者没有公开。</p>
+<pre><code class="language-json">{
+  &quot;verified_status&quot;: &quot;unverified&quot;,
+  &quot;entrypoints&quot;: [],
+  &quot;environment&quot;: [],
+  &quot;blockers&quot;: [
+    &quot;author code not found in inspected local source; this does not establish that code does not exist&quot;,
+    &quot;required code-discovery queue remains open; missing PDF URL is not evidence of missing author code&quot;
+  ],
+  &quot;follow_up_actions&quot;: [
+    &quot;Check publisher code/data availability and supplementary attachments&quot;,
+    &quot;Follow first/corresponding author project page; verify paper title/DOI in the repository before accepting it&quot;,
+    &quot;Record author-code link or a dated availability boundary; do not close this task because PDF transcription lacks a URL&quot;,
+    &quot;The verified university page redirects via meta refresh to eigensteve.com; inspect the SINDy 2016 project/code link there&quot;
+  ]
+}
+</code></pre>
+<h2>原文定位</h2>
+<p>以下为课程整理的结论和原文页码 / 块号索引，全文通过出版页面访问。</p>
+<ul>
+<li>
+<p>核心表示把各状态导数写成候选库Theta(X)的稀疏线性组合，Xi的非零元素直接给出激活动力学项。（PDF 页 4；块号 P004-B004, P004-B005, P004-B006, P004-B007）</p>
+</li>
+<li>
+<p>顺序阈值最小二乘从全最小二乘解开始，循环删除小于lambda的系数并只在保留支撑上重拟合。（PDF 页 6；块号 P006-B002, P006-B003, P006-B006, P006-B010）</p>
+</li>
+<li>
+<p>稀疏阈值lambda可用留出数据和准确度-复杂度Pareto前沿的elbow选择。（PDF 页 7；块号 P007-B001, P007-B002）</p>
+</li>
+<li>
+<p>Lorenz案例恢复正确线性和二次项，干净数据系数误差约0.03%；即使导数噪声很大，个别轨迹会因混沌分离，但吸引子结构仍可保持。（PDF 页 11；块号 P011-B003, P011-B004）</p>
+</li>
+<li>
+<p>圆柱尾流从二维Navier-Stokes直接数值模拟取数，再在三个主导POD坐标上识别低阶动力学；因此该案例不是直接从场恢复Navier-Stokes PDE。（PDF 页 13；块号 P013-B003, P013-B007）</p>
+</li>
+<li>
+<p>把分岔参数作为冻结状态后，方法在十个参数值采样上恢复参数化logistic映射。（PDF 页 16；块号 P016-B001, P016-B002, P016-B003, P016-B006）</p>
+</li>
+<li>
+<p>含噪Hopf数据中激活项识别正确，但三次项系数仍偏差近8%，增加数据或降低噪声可改善。（PDF 页 17；块号 P017-B004）</p>
+</li>
+</ul></main></body></html>

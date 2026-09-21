@@ -1,0 +1,120 @@
+<!doctype html><html lang="zh-CN"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Data-driven discovery and extrapolation of parameterized pattern-forming dynamics · 物理规律发现</title><link rel="stylesheet" href="../style.css"><link rel="stylesheet" href="../public.css"></head><body><main class="doc"><div class="links"><a href="../">返回课程</a><a href="../spectrum/">三维谱图</a></div><h1>P70 · Data-driven discovery and extrapolation of parameterized pattern-forming dynamics</h1>
+<p>Zachary G. Nicolaou; Guanyu Huo; Yihui Chen; Steven L. Brunton; J. Nathan Kutz. Data-driven discovery and extrapolation of parameterized pattern-forming dynamics. Physical Review Research, 2023, 5(4): L042017. DOI: 10.1103/physrevresearch.5.l042017</p>
+<p><a href="https://doi.org/10.1103/physrevresearch.5.l042017">出版页面</a> · 第 26 天 · 粗粒化与跨参数</p>
+<h2>研究问题</h2>
+<p>从有限控制参数下的图样演化学习可跨参数外推的分岔动力学。</p>
+<h2>规律表示</h2>
+<p>状态项、空间导数与控制参数的张量积候选库。</p>
+<h2>方法</h2>
+<p>SINDyCP以组稀疏方式让同一物理项的参数依赖整体入选，再作参数连续外推和分岔延拓。</p>
+<h2>假设</h2>
+<p>• 控制参数显式进入系数
+• 反射或奇偶对称
+• 低阶参数依赖</p>
+<h2>必做推导</h2>
+<p>写出状态项与控制参数基的张量积，解释怎样从参数化方程延拓未见分岔。</p>
+<h2>复现目标</h2>
+<p>在作者代码中选一个支持核心结论的案例：• 复杂Ginzburg-Landau
+• Oregonator
+• Swift-Hohenberg局域态。先运行小样例，再恢复该案例原文配置；运行前登记原文指标/目标图、统计量和容差，运行后交付结构或等价结构、系数/统计量、留出预测、耗时和日志。</p>
+<h2>单因素检验</h2>
+<p>只改变训练参数区间宽度。</p>
+<h2>适用范围与限制</h2>
+<p>• 控制参数形式需预设
+• 所有案例为已知模拟系统
+• 错误参数基可能给出伪外推</p>
+<h2>闭卷自测</h2>
+<h3>1. P70 实际辨识的未知对象是什么，哪些对象预先给定？</h3>
+<details><summary>先作答，再展开核对</summary>
+
+
+从有限控制参数下的图样演化学习可跨参数外推的分岔动力学。
+表示：状态项、空间导数与控制参数的张量积候选库。
+
+
+</details>
+
+<h3>2. P70 从数据到模型采用什么路线？按顺序解释各步骤。</h3>
+<details><summary>先作答，再展开核对</summary>
+
+
+SINDyCP以组稀疏方式让同一物理项的参数依赖整体入选，再作参数连续外推和分岔延拓。
+
+
+</details>
+
+<h3>3. P70 哪些假设或限制使结果不能直接推广？至少说出两项。</h3>
+<details><summary>先作答，再展开核对</summary>
+
+
+• 控制参数显式进入系数
+• 反射或奇偶对称
+• 低阶参数依赖
+• 控制参数形式需预设
+• 所有案例为已知模拟系统
+• 错误参数基可能给出伪外推
+
+
+</details>
+
+<h3>4. 怎样设计这项单因素检验：只改变训练参数区间宽度。</h3>
+<details><summary>先作答，再展开核对</summary>
+
+
+只改变指定因素，固定数据划分与其余参数；用结构、系数/统计量和留出预测评价，并将结果联系到以下方法边界：
+• 控制参数形式需预设
+• 所有案例为已知模拟系统
+• 错误参数基可能给出伪外推
+
+
+</details>
+
+<h2>作者代码与核查</h2>
+<p>代码信息为课程构建时的核查快照，可访问不等于已复现；没有定位到代码不等于作者没有公开。</p>
+<ul>
+<li><a href="https://github.com/dynamicslab/pysindy">https://github.com/dynamicslab/pysindy</a></li>
+</ul>
+<pre><code class="language-json">{
+  &quot;verified_status&quot;: &quot;public_verified&quot;,
+  &quot;entrypoints&quot;: [
+    {
+      &quot;path&quot;: &quot;examples&quot;,
+      &quot;basis&quot;: &quot;observed root path; not executed&quot;,
+      &quot;repository&quot;: &quot;https://github.com/dynamicslab/pysindy&quot;
+    },
+    {
+      &quot;path&quot;: &quot;examples/17_parameterized_pattern_formation/parameterized_pattern_formation.ipynb&quot;,
+      &quot;basis&quot;: &quot;paper supplement S1.B states all results are reproduced by this notebook; not executed&quot;
+    }
+  ],
+  &quot;environment&quot;: [
+    {
+      &quot;path&quot;: &quot;pyproject.toml&quot;,
+      &quot;basis&quot;: &quot;observed dependency/config file; compatibility not tested&quot;,
+      &quot;repository&quot;: &quot;https://github.com/dynamicslab/pysindy&quot;
+    },
+    {
+      &quot;requirement_excerpt&quot;: &quot;The preferred way to install is with pip or conda e.g. ``pip install pysindy``.&quot;,
+      &quot;source_url&quot;: &quot;https://raw.githubusercontent.com/dynamicslab/pysindy/main/README.rst&quot;,
+      &quot;line&quot;: 22,
+      &quot;basis&quot;: &quot;literal README statement; environment not constructed&quot;
+    },
+    {
+      &quot;requirement_excerpt&quot;: &quot;Pysindy also provides several extras, e.g. ``pip install pysindy[miosr]``:&quot;,
+      &quot;source_url&quot;: &quot;https://raw.githubusercontent.com/dynamicslab/pysindy/main/README.rst&quot;,
+      &quot;line&quot;: 24,
+      &quot;basis&quot;: &quot;literal README statement; environment not constructed&quot;
+    },
+    {
+      &quot;requirement_excerpt&quot;: &quot;some cells require up to 100GB RAM; source recommends cluster or downsampling&quot;,
+      &quot;basis&quot;: &quot;paper supplement S1.B&quot;
+    }
+  ],
+  &quot;blockers&quot;: [
+    &quot;paper-result T2 reproduction not run; public access or README inspection is not reproduction&quot;
+  ],
+  &quot;follow_up_actions&quot;: []
+}
+</code></pre>
+<h2>原文定位</h2>
+<p>以下为课程整理的结论和原文页码 / 块号索引，全文通过出版页面访问。</p></main></body></html>

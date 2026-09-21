@@ -1,0 +1,156 @@
+<!doctype html><html lang="zh-CN"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>PDE-LEARN: Using deep learning to discover partial differential equations from noisy, limited data · 物理规律发现</title><link rel="stylesheet" href="../style.css"><link rel="stylesheet" href="../public.css"></head><body><main class="doc"><div class="links"><a href="../">返回课程</a><a href="../spectrum/">三维谱图</a></div><h1>P38 · PDE-LEARN: Using deep learning to discover partial differential equations from noisy, limited data</h1>
+<p>Robert Stephany; Christopher Earls. PDE-LEARN: Using deep learning to discover partial differential equations from noisy, limited data. Neural Networks, 2024, 174: 106242. DOI: 10.1016/j.neunet.2024.106242</p>
+<p><a href="https://doi.org/10.1016/j.neunet.2024.106242">出版页面</a> · 第 10 天 · 神经代理与导数</p>
+<h2>研究问题</h2>
+<p>从少量且强噪声的时空观测中同时拟合连续场和稀疏PDE系数，支持任意预先指定的左端项及多响应函数共享定律。</p>
+<h2>规律表示</h2>
+<p>用户给定的左端项等于右端候选库的稀疏线性组合；本文实现只使用状态及其偏导数的单项式候选，但左端不必是时间一阶导数。</p>
+<h2>方法</h2>
+<p>联合最小化数据损失、随机/靶向配点上的PDE残差及迭代重加权L^p稀疏损失；依次执行burn-in、剪枝、稀疏化、再次剪枝和无稀疏惩罚微调。</p>
+<h2>假设</h2>
+<p>• 真PDE可由给定候选库稀疏表示
+• PDE残差在连续时空域成立
+• 多个实验共享同一系数向量
+• 迭代重加权L^p稀疏先验与剪枝阈值</p>
+<h2>必做推导</h2>
+<p>分离代理网络、PDE 系数和稀疏选择更新；分析代理残差小为什么不意味着项正确。</p>
+<h2>复现目标</h2>
+<p>在作者代码中选一个支持核心结论的案例：• Burgers与KdV方程
+• Kuramoto-Sivashinsky方程
+• Allen-Cahn与热方程
+• 二维波动方程
+• 共享KdV定律的两个初始条件数据集。先运行小样例，再恢复该案例原文配置；运行前登记原文指标/目标图、统计量和容差，运行后交付结构或等价结构、系数/统计量、留出预测、耗时和日志。</p>
+<h2>单因素检验</h2>
+<p>只改变稀疏化阈值。</p>
+<h2>适用范围与限制</h2>
+<p>• KdV在若干少样本高噪组合下得到过稀或含赘项结构；即使合并数据，500点50%与250点25%仍失败，约500点以下明显退化。
+• 实验没有做超参数选择，网络、损失权重、p值和候选库设置未必可迁移到其他问题。
+• 剪枝无法识别幅值低于阈值的真系数；单精度实现阈值约为10^-4。
+• 实现仅用单项式库，非单项式定律的表现未知，且算法对不同方程的鲁棒上限差异很大。</p>
+<h2>闭卷自测</h2>
+<h3>1. P38 实际辨识的未知对象是什么，哪些对象预先给定？</h3>
+<details><summary>先作答，再展开核对</summary>
+
+
+从少量且强噪声的时空观测中同时拟合连续场和稀疏PDE系数，支持任意预先指定的左端项及多响应函数共享定律。
+表示：用户给定的左端项等于右端候选库的稀疏线性组合；本文实现只使用状态及其偏导数的单项式候选，但左端不必是时间一阶导数。
+
+
+</details>
+
+<h3>2. P38 从数据到模型采用什么路线？按顺序解释各步骤。</h3>
+<details><summary>先作答，再展开核对</summary>
+
+
+联合最小化数据损失、随机/靶向配点上的PDE残差及迭代重加权L^p稀疏损失；依次执行burn-in、剪枝、稀疏化、再次剪枝和无稀疏惩罚微调。
+
+
+</details>
+
+<h3>3. P38 哪些假设或限制使结果不能直接推广？至少说出两项。</h3>
+<details><summary>先作答，再展开核对</summary>
+
+
+• 真PDE可由给定候选库稀疏表示
+• PDE残差在连续时空域成立
+• 多个实验共享同一系数向量
+• 迭代重加权L^p稀疏先验与剪枝阈值
+• KdV在若干少样本高噪组合下得到过稀或含赘项结构；即使合并数据，500点50%与250点25%仍失败，约500点以下明显退化。
+• 实验没有做超参数选择，网络、损失权重、p值和候选库设置未必可迁移到其他问题。
+• 剪枝无法识别幅值低于阈值的真系数；单精度实现阈值约为10^-4。
+• 实现仅用单项式库，非单项式定律的表现未知，且算法对不同方程的鲁棒上限差异很大。
+
+
+</details>
+
+<h3>4. 怎样设计这项单因素检验：只改变稀疏化阈值。</h3>
+<details><summary>先作答，再展开核对</summary>
+
+
+只改变指定因素，固定数据划分与其余参数；用结构、系数/统计量和留出预测评价，并将结果联系到以下方法边界：
+• KdV在若干少样本高噪组合下得到过稀或含赘项结构；即使合并数据，500点50%与250点25%仍失败，约500点以下明显退化。
+• 实验没有做超参数选择，网络、损失权重、p值和候选库设置未必可迁移到其他问题。
+• 剪枝无法识别幅值低于阈值的真系数；单精度实现阈值约为10^-4。
+• 实现仅用单项式库，非单项式定律的表现未知，且算法对不同方程的鲁棒上限差异很大。
+
+
+</details>
+
+<h2>作者代码与核查</h2>
+<p>代码信息为课程构建时的核查快照，可访问不等于已复现；没有定位到代码不等于作者没有公开。</p>
+<ul>
+<li><a href="https://github.com/punkduckable/PDE-LEARN">https://github.com/punkduckable/PDE-LEARN</a></li>
+</ul>
+<pre><code class="language-json">{
+  &quot;verified_status&quot;: &quot;public_verified&quot;,
+  &quot;entrypoints&quot;: [
+    {
+      &quot;command_excerpt&quot;: &quot;Alternatively, you can create a DataSet using one of our `MATLAB` data sets by running `Python3 ./From_MATLAB.py` when your current working directory is `Data.` The `From_MATLAB` file contains five settings: \&quot;Data_File_Name,\&quot; \&quot;Num_Spatial_Dimensions,\&quot; \&quot;Noise_Proportion,\&quot; \&quot;Num_Train_Examples,\&quot; and \&quot;Num_Test_Examples.\&quot; \&quot;Data_File_Name\&quot; should refer to one of the `.mat` files in the `MATLAB/Data` directory. \&quot;Num_Spatial_Dimensions\&quot; specifies the number of spatial dimensions in the inputs stored in the `.mat` file. \&quot;Noise_Proportion,\&quot; \&quot;Num_Train_Examples,\&quot; and \&quot;Num_Test_Examples\&quot; control the level of noise in the data, the number of training data points, and the number of testing data points, respectively.&quot;,
+      &quot;source_url&quot;: &quot;https://raw.githubusercontent.com/punkduckable/PDE-LEARN/main/README.md&quot;,
+      &quot;line&quot;: 36,
+      &quot;basis&quot;: &quot;literal README instruction; not executed&quot;
+    },
+    {
+      &quot;command_excerpt&quot;: &quot;*Plot:* The `Plot` directory contains code for visualizing the networks that `PDE-LEARN` trains. In particular, it plots the network's predictions over the problem domain. You can use the file `Plot/Settings.txt` to set up these plots. The file has two settings: \&quot;Load File Name\&quot; and \&quot;Mat File Names.\&quot; The former specifies the name of the save you want to visualize (this is the file that `PDE-LEARN` saves the system response functions to after training). The latter is a list of strings. The $i$th string should be the name of the `.mat` file that houses the noise-free data that made the noisy and limited data set you used to train the $i$th system response function. Critically, the \&quot;Load File Name\&quot; setting must refer to a file in `Saves.` To plot a saved system response function, set the appropriate settings in `Plot/Settings.txt` and then run `Python3 ./Plot_Solution.py` when your current working directory is `Plot.`&quot;,
+      &quot;source_url&quot;: &quot;https://raw.githubusercontent.com/punkduckable/PDE-LEARN/main/README.md&quot;,
+      &quot;line&quot;: 38,
+      &quot;basis&quot;: &quot;literal README instruction; not executed&quot;
+    },
+    {
+      &quot;command_excerpt&quot;: &quot;Once you have selected the appropriate settings, you can run the code by entering the `Code` directory (`cd ./Code`) and running the main file (`Python3 ./main.py`).&quot;,
+      &quot;source_url&quot;: &quot;https://raw.githubusercontent.com/punkduckable/PDE-LEARN/main/README.md&quot;,
+      &quot;line&quot;: 88,
+      &quot;basis&quot;: &quot;literal README instruction; not executed&quot;
+    }
+  ],
+  &quot;environment&quot;: [
+    {
+      &quot;requirement_excerpt&quot;: &quot;Alternatively, you can create a DataSet using one of our `MATLAB` data sets by running `Python3 ./From_MATLAB.py` when your current working directory is `Data.` The `From_MATLAB` file contains five settings: \&quot;Data_File_Name,\&quot; \&quot;Num_Spatial_Dimensions,\&quot; \&quot;Noise_Proportion,\&quot; \&quot;Num_Train_Examples,\&quot; and \&quot;Num_Test_Examples.\&quot; \&quot;Data_File_Name\&quot; should refer to one of the `.mat` files in the `MATLAB/Data` directory. \&quot;Num_Spatial_Dimensions\&quot; specifies the number of spatial dimensions in the inputs stored in the `.mat` file. \&quot;Noise_Proportion,\&quot; \&quot;Num_Train_Examples,\&quot; and \&quot;Num_Test_Examples\&quot; control the level of noise in the data, the number of training data points, and the number of testing data points, respectively.&quot;,
+      &quot;source_url&quot;: &quot;https://raw.githubusercontent.com/punkduckable/PDE-LEARN/main/README.md&quot;,
+      &quot;line&quot;: 36,
+      &quot;basis&quot;: &quot;literal README statement; environment not constructed&quot;
+    },
+    {
+      &quot;requirement_excerpt&quot;: &quot;We need the entire noise-free dataset to evaluate the network's predictions. Therefore, `PDE-LEARN` currently only supports plotting for networks trained on a data set derived from one of the `MATLAB` files.&quot;,
+      &quot;source_url&quot;: &quot;https://raw.githubusercontent.com/punkduckable/PDE-LEARN/main/README.md&quot;,
+      &quot;line&quot;: 40,
+      &quot;basis&quot;: &quot;literal README statement; environment not constructed&quot;
+    },
+    {
+      &quot;requirement_excerpt&quot;: &quot;*MATLAB:* This directory contains the `MATLAB` data sets (the `.mat` files in `MATLAB/Data`) and the scripts that create them (the `.m` files in `MATLAB/Scripts`).&quot;,
+      &quot;source_url&quot;: &quot;https://raw.githubusercontent.com/punkduckable/PDE-LEARN/main/README.md&quot;,
+      &quot;line&quot;: 48,
+      &quot;basis&quot;: &quot;literal README statement; environment not constructed&quot;
+    },
+    {
+      &quot;requirement_excerpt&quot;: &quot;# Dependencies: #&quot;,
+      &quot;source_url&quot;: &quot;https://raw.githubusercontent.com/punkduckable/PDE-LEARN/main/README.md&quot;,
+      &quot;line&quot;: 99,
+      &quot;basis&quot;: &quot;literal README statement; environment not constructed&quot;
+    }
+  ],
+  &quot;blockers&quot;: [
+    &quot;paper-result T2 reproduction not run; public access or README inspection is not reproduction&quot;
+  ],
+  &quot;follow_up_actions&quot;: []
+}
+</code></pre>
+<h2>原文定位</h2>
+<p>以下为课程整理的结论和原文页码 / 块号索引，全文通过出版页面访问。</p>
+<ul>
+<li>
+<p>总损失由数据、PDE配点残差和迭代重加权L^p稀疏项组成；用户仍必须选择能稀疏表达真式的候选库。（PDF 页 7；块号 P007-B005, P007-B006, P007-B007）</p>
+</li>
+<li>
+<p>靶向配点由上一轮绝对PDE残差超过均值三个标准差的位置组成，并逐轮累积以迫使网络修正局部高残差区。（PDF 页 8；块号 P008-B003, P008-B004, P008-B005, P008-B006, P008-B007）</p>
+</li>
+<li>
+<p>burn-in先学习场，随后L^p稀疏化和剪枝选项，最后关闭稀疏项微调系数幅值。（PDF 页 10；块号 P010-B002, P010-B003, P010-B004, P010-B005, P010-B006）</p>
+</li>
+<li>
+<p>两个KdV数据集各含1000点且50%噪声时，单独训练均失败，联合共享PDE训练却恢复真式，说明多实验可补足激励。（PDF 页 16；块号 P016-B008, P016-B009）</p>
+</li>
+<li>
+<p>Allen-Cahn在4000点时最高100%噪声仍恢复，在500点25%噪声也成功；但1000点50%噪声结构过稀，显示样本量与噪声耦合。（PDF 页 20；块号 P020-B005, P020-B007）</p>
+</li>
+</ul></main></body></html>

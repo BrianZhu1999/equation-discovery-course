@@ -1,0 +1,88 @@
+<!doctype html><html lang="zh-CN"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Learning partial differential equations for biological transport models from noisy spatio-temporal data · 物理规律发现</title><link rel="stylesheet" href="../style.css"><link rel="stylesheet" href="../public.css"></head><body><main class="doc"><div class="links"><a href="../">返回课程</a><a href="../spectrum/">三维谱图</a></div><h1>P72 · Learning partial differential equations for biological transport models from noisy spatio-temporal data</h1>
+<p>John H. Lagergren; John T. Nardini; G. Michael Lavigne; Erica M. Rutter; Kevin B. Flores. Learning partial differential equations for biological transport models from noisy spatio-temporal data. Proceedings of the Royal Society A: Mathematical, Physical and Engineering Sciences, 2020, 476(2234): 20190800. DOI: 10.1098/rspa.2019.0800</p>
+<p><a href="https://doi.org/10.1098/rspa.2019.0800">出版页面</a> · 第 11 天 · 神经代理与导数</p>
+<h2>研究问题</h2>
+<p>在生物实验常见异方差噪声下发现输运、扩散与反应PDE。</p>
+<h2>规律表示</h2>
+<p>PDE-FIND固定库中的线性和非线性输运反应项。</p>
+<h2>方法</h2>
+<p>比较有限差分、样条和神经网络代理的平滑与求导，再以PDE-FIND选项并作逆问题系数精修。</p>
+<h2>假设</h2>
+<p>• 候选输运反应项
+• 噪声模型</p>
+<h2>必做推导</h2>
+<p>写出异方差观测模型，追踪平滑误差如何进入 Fisher-KPP 的扩散和反应系数。</p>
+<h2>复现目标</h2>
+<p>在作者代码中选一个支持核心结论的案例：• 平流扩散
+• Fisher-KPP
+• 非线性Fisher-KPP合成数据。先运行小样例，再恢复该案例原文配置；运行前登记原文指标/目标图、统计量和容差，运行后交付结构或等价结构、系数/统计量、留出预测、耗时和日志。</p>
+<h2>单因素检验</h2>
+<p>只把同方差噪声改为异方差噪声。</p>
+<h2>适用范围与限制</h2>
+<p>• 只用合成生物PDE数据
+• 复杂非线性方程在高噪声下仍漏项
+• 代理训练与结构选择耦合</p>
+<h2>闭卷自测</h2>
+<h3>1. P72 实际辨识的未知对象是什么，哪些对象预先给定？</h3>
+<details><summary>先作答，再展开核对</summary>
+
+
+在生物实验常见异方差噪声下发现输运、扩散与反应PDE。
+表示：PDE-FIND固定库中的线性和非线性输运反应项。
+
+
+</details>
+
+<h3>2. P72 从数据到模型采用什么路线？按顺序解释各步骤。</h3>
+<details><summary>先作答，再展开核对</summary>
+
+
+比较有限差分、样条和神经网络代理的平滑与求导，再以PDE-FIND选项并作逆问题系数精修。
+
+
+</details>
+
+<h3>3. P72 哪些假设或限制使结果不能直接推广？至少说出两项。</h3>
+<details><summary>先作答，再展开核对</summary>
+
+
+• 候选输运反应项
+• 噪声模型
+• 只用合成生物PDE数据
+• 复杂非线性方程在高噪声下仍漏项
+• 代理训练与结构选择耦合
+
+
+</details>
+
+<h3>4. 怎样设计这项单因素检验：只把同方差噪声改为异方差噪声。</h3>
+<details><summary>先作答，再展开核对</summary>
+
+
+只改变指定因素，固定数据划分与其余参数；用结构、系数/统计量和留出预测评价，并将结果联系到以下方法边界：
+• 只用合成生物PDE数据
+• 复杂非线性方程在高噪声下仍漏项
+• 代理训练与结构选择耦合
+
+
+</details>
+
+<h2>作者代码与核查</h2>
+<p>代码信息为课程构建时的核查快照，可访问不等于已复现；没有定位到代码不等于作者没有公开。</p>
+<ul>
+<li><a href="https://github.com/biomathlab/PDElearning">https://github.com/biomathlab/PDElearning</a></li>
+</ul>
+<pre><code class="language-json">{
+  &quot;verified_status&quot;: &quot;public_verified&quot;,
+  &quot;entrypoints&quot;: [],
+  &quot;environment&quot;: [],
+  &quot;blockers&quot;: [
+    &quot;paper-result T2 reproduction not run; public access or README inspection is not reproduction&quot;,
+    &quot;no concrete execution entrypoint established by current root/README inspection&quot;,
+    &quot;dependency/environment specification unverified&quot;
+  ],
+  &quot;follow_up_actions&quot;: []
+}
+</code></pre>
+<h2>原文定位</h2>
+<p>以下为课程整理的结论和原文页码 / 块号索引，全文通过出版页面访问。</p></main></body></html>

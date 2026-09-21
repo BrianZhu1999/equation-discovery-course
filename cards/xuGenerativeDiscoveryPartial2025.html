@@ -1,0 +1,167 @@
+<!doctype html><html lang="zh-CN"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Generative discovery of partial differential equations by learning from math handbooks · 物理规律发现</title><link rel="stylesheet" href="../style.css"><link rel="stylesheet" href="../public.css"></head><body><main class="doc"><div class="links"><a href="../">返回课程</a><a href="../spectrum/">三维谱图</a></div><h1>P01 · Generative discovery of partial differential equations by learning from math handbooks</h1>
+<p>Hao Xu; Yuntian Chen; Rui Cao; Tianning Tang; Mengge Du; Jian Li; Adrian H. Callaghan; Dongxiao Zhang. Generative discovery of partial differential equations by learning from math handbooks. Nature Communications, 2025, 16(1): 10255. DOI: 10.1038/s41467-025-65114-2</p>
+<p><a href="https://doi.org/10.1038/s41467-025-65114-2">出版页面</a> · 第 19 天 · 符号搜索</p>
+<h2>研究问题</h2>
+<p>从稀疏、含噪或不规则区域的时空观测中发现自由形式PDE，并在临近破碎的强非线性表面重力波实验中提出候选新方程。</p>
+<h2>规律表示</h2>
+<p>GRE将PDE写成由算子和物理基本项交替组成的句子序列；221种手册PDE经排列增广为7072个序列，词表含56个基本组件，生成长度上限为50。</p>
+<h2>方法</h2>
+<p>GPT-2式EqGPT先从数学手册学习项的共现；每轮生成400个结构，以最小二乘拟合系数，用R2和项数惩罚构成奖励，保留前10个结构微调，迭代5轮；最终用PINN进一步优化系数。</p>
+<h2>假设</h2>
+<p>• 数学手册中已有PDE的结构共现先验
+• 项与算子交替的语法约束
+• 按问题维度屏蔽不相容的x、y、z导数和算子
+• 稀疏性奖励；多相流案例另用x-y空间对称性</p>
+<h2>必做推导</h2>
+<p>写出方程序列的生成概率、系数拟合和复杂度奖励如何组成外层搜索；标出手册预训练与数据拟合的边界。</p>
+<h2>复现目标</h2>
+<p>在作者代码中选一个支持核心结论的案例：• KdV、Burgers、对流扩散、波动、Chaffee-Infante、Klein-Gordon及两条手册复杂PDE
+• 不规则区域Poisson方程和H形弹性膜
+• 二维Burgers及三维油水两相流
+• BUBER与EURUS水槽中的临近破碎聚焦波群。先运行小样例，再恢复该案例原文配置；运行前登记原文指标/目标图、统计量和容差，运行后交付结构或等价结构、系数/统计量、留出预测、耗时和日志。</p>
+<h2>单因素检验</h2>
+<p>保持数据与搜索预算固定，只比较有无手册预训练。</p>
+<h2>适用范围与限制</h2>
+<p>• 性能受手册训练集质量和覆盖范围影响，可能有领域偏差；作者把扩大PDE语料和多模态条件生成列为未来工作。
+• 手册PDE到结构字符串的拆解目前由人工完成。</p>
+<h2>闭卷自测</h2>
+<h3>1. P01 实际辨识的未知对象是什么，哪些对象预先给定？</h3>
+<details><summary>先作答，再展开核对</summary>
+
+
+从稀疏、含噪或不规则区域的时空观测中发现自由形式PDE，并在临近破碎的强非线性表面重力波实验中提出候选新方程。
+表示：GRE将PDE写成由算子和物理基本项交替组成的句子序列；221种手册PDE经排列增广为7072个序列，词表含56个基本组件，生成长度上限为50。
+
+
+</details>
+
+<h3>2. P01 从数据到模型采用什么路线？按顺序解释各步骤。</h3>
+<details><summary>先作答，再展开核对</summary>
+
+
+GPT-2式EqGPT先从数学手册学习项的共现；每轮生成400个结构，以最小二乘拟合系数，用R2和项数惩罚构成奖励，保留前10个结构微调，迭代5轮；最终用PINN进一步优化系数。
+
+
+</details>
+
+<h3>3. P01 哪些假设或限制使结果不能直接推广？至少说出两项。</h3>
+<details><summary>先作答，再展开核对</summary>
+
+
+• 数学手册中已有PDE的结构共现先验
+• 项与算子交替的语法约束
+• 按问题维度屏蔽不相容的x、y、z导数和算子
+• 稀疏性奖励；多相流案例另用x-y空间对称性
+• 性能受手册训练集质量和覆盖范围影响，可能有领域偏差；作者把扩大PDE语料和多模态条件生成列为未来工作。
+• 手册PDE到结构字符串的拆解目前由人工完成。
+
+
+</details>
+
+<h3>4. 怎样设计这项单因素检验：保持数据与搜索预算固定，只比较有无手册预训练。</h3>
+<details><summary>先作答，再展开核对</summary>
+
+
+只改变指定因素，固定数据划分与其余参数；用结构、系数/统计量和留出预测评价，并将结果联系到以下方法边界：
+• 性能受手册训练集质量和覆盖范围影响，可能有领域偏差；作者把扩大PDE语料和多模态条件生成列为未来工作。
+• 手册PDE到结构字符串的拆解目前由人工完成。
+
+
+</details>
+
+<h2>作者代码与核查</h2>
+<p>代码信息为课程构建时的核查快照，可访问不等于已复现；没有定位到代码不等于作者没有公开。</p>
+<ul>
+<li><a href="https://github.com/woshixuhao/EqGPT">https://github.com/woshixuhao/EqGPT</a></li>
+</ul>
+<pre><code class="language-json">{
+  &quot;verified_status&quot;: &quot;public_verified&quot;,
+  &quot;entrypoints&quot;: [
+    {
+      &quot;command_excerpt&quot;: &quot;2. Run the surrogate_model.py (about 2 min for training the EqGPT model and 1~10 min {according to the data_num} for training the surrogate model from sparse and noisy data)&quot;,
+      &quot;source_url&quot;: &quot;https://raw.githubusercontent.com/woshixuhao/EqGPT/main/README.md&quot;,
+      &quot;line&quot;: 49,
+      &quot;basis&quot;: &quot;literal README instruction; not executed&quot;
+    },
+    {
+      &quot;command_excerpt&quot;: &quot;3. Run the continue_train_GPT.py to fine-tune the EqGPT with the rewards of generated PDEs calculated through meta-data and discover the optimal PDE structure (1~5 min).&quot;,
+      &quot;source_url&quot;: &quot;https://raw.githubusercontent.com/woshixuhao/EqGPT/main/README.md&quot;,
+      &quot;line&quot;: 51,
+      &quot;basis&quot;: &quot;literal README instruction; not executed&quot;
+    },
+    {
+      &quot;command_excerpt&quot;: &quot;4. Run the PINN_optimization.py to further optimize the coefficients of discovered PDEs via PINN (~1 min).&quot;,
+      &quot;source_url&quot;: &quot;https://raw.githubusercontent.com/woshixuhao/EqGPT/main/README.md&quot;,
+      &quot;line&quot;: 52,
+      &quot;basis&quot;: &quot;literal README instruction; not executed&quot;
+    }
+  ],
+  &quot;environment&quot;: [
+    {
+      &quot;requirement_excerpt&quot;: &quot;python==3.12.4&quot;,
+      &quot;source_url&quot;: &quot;https://raw.githubusercontent.com/woshixuhao/EqGPT/main/README.md&quot;,
+      &quot;line&quot;: 18,
+      &quot;basis&quot;: &quot;literal README statement; environment not constructed&quot;
+    },
+    {
+      &quot;requirement_excerpt&quot;: &quot;pandas==2.2.2&quot;,
+      &quot;source_url&quot;: &quot;https://raw.githubusercontent.com/woshixuhao/EqGPT/main/README.md&quot;,
+      &quot;line&quot;: 19,
+      &quot;basis&quot;: &quot;literal README statement; environment not constructed&quot;
+    },
+    {
+      &quot;requirement_excerpt&quot;: &quot;numpy==1.26.4&quot;,
+      &quot;source_url&quot;: &quot;https://raw.githubusercontent.com/woshixuhao/EqGPT/main/README.md&quot;,
+      &quot;line&quot;: 20,
+      &quot;basis&quot;: &quot;literal README statement; environment not constructed&quot;
+    },
+    {
+      &quot;requirement_excerpt&quot;: &quot;pytorch==2.3.1&quot;,
+      &quot;source_url&quot;: &quot;https://raw.githubusercontent.com/woshixuhao/EqGPT/main/README.md&quot;,
+      &quot;line&quot;: 21,
+      &quot;basis&quot;: &quot;literal README statement; environment not constructed&quot;
+    },
+    {
+      &quot;requirement_excerpt&quot;: &quot;scikit-learn==1.4.2&quot;,
+      &quot;source_url&quot;: &quot;https://raw.githubusercontent.com/woshixuhao/EqGPT/main/README.md&quot;,
+      &quot;line&quot;: 22,
+      &quot;basis&quot;: &quot;literal README statement; environment not constructed&quot;
+    },
+    {
+      &quot;requirement_excerpt&quot;: &quot;scipy==1.13.1&quot;,
+      &quot;source_url&quot;: &quot;https://raw.githubusercontent.com/woshixuhao/EqGPT/main/README.md&quot;,
+      &quot;line&quot;: 23,
+      &quot;basis&quot;: &quot;literal README statement; environment not constructed&quot;
+    },
+    {
+      &quot;requirement_excerpt&quot;: &quot;matplotlib==3.8.4&quot;,
+      &quot;source_url&quot;: &quot;https://raw.githubusercontent.com/woshixuhao/EqGPT/main/README.md&quot;,
+      &quot;line&quot;: 24,
+      &quot;basis&quot;: &quot;literal README statement; environment not constructed&quot;
+    }
+  ],
+  &quot;blockers&quot;: [
+    &quot;paper-result T2 reproduction not run; public access or README inspection is not reproduction&quot;
+  ],
+  &quot;follow_up_actions&quot;: []
+}
+</code></pre>
+<h2>原文定位</h2>
+<p>以下为课程整理的结论和原文页码 / 块号索引，全文通过出版页面访问。</p>
+<ul>
+<li>
+<p>目标PDE从预训练集合中逐案删除；在八个典型问题中，作者报告多数情形可承受超过50%噪声和少于1000点，并可生成u_xt及分式项。（PDF 页 5；块号 P005-B006, P005-B007, P005-B009）</p>
+</li>
+<li>
+<p>与PDE-FIND、W-SINDy、WeakIdent、DISCOVER等比较时使用同一代理元数据；EqGPT在697点的Burgers数据上报告可承受0.3噪声，而GP-SINDy在该数据量下不能承受噪声。（PDF 页 6；块号 P006-B006, P006-B009）</p>
+</li>
+<li>
+<p>不规则二维区域、断续字形边界和三维航天器区域均恢复Poisson结构；三维案例使用40万点并报告0.63%系数误差。（PDF 页 9；块号 P009-B003, P009-B006）</p>
+</li>
+<li>
+<p>12次水槽实验共同评价候选式；发现式在破碎起始附近的两侧项吻合，并可时间推进重现实测场，作者把新三阶非线性空间项与高频谐波联系起来。（PDF 页 11；块号 P011-B004, P011-B005, P011-B007, P011-B008）</p>
+</li>
+<li>
+<p>代码与数据同时存入GitHub和Zenodo。（PDF 页 14；块号 P014-B004, P014-B005, P014-B014, P014-B015）</p>
+</li>
+</ul></main></body></html>

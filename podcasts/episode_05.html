@@ -1,0 +1,42 @@
+<!doctype html><html lang="zh-CN"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>论文播客脚本 · 物理规律发现</title><link rel="stylesheet" href="../style.css"><link rel="stylesheet" href="../public.css"></head><body><main class="doc"><div class="links"><a href="../">返回课程</a><a href="../spectrum/">三维谱图</a></div><h1>第5期｜确定性方程不够时：SDE 与 SPDE 的出现</h1>
+<blockquote>
+<p>这是课程学习播客脚本，不是对论文结果的独立再验证。数字和性能结论以原文为准。</p>
+</blockquote>
+<p><strong>主持人</strong>：当同一个宏观状态对应不同的未来，确定性方程可能已经不够了。</p>
+<p><strong>研究者</strong>：这一期选了：P57《Sparse learning of stochastic dynamical equations》；P60《Discovering stochastic partial differential equations from limited data using variational Bayes inference》；P61《On Higher Order Drift and Diffusion Estimates for Stochastic SINDy》。我们只抓住一条主线，不把整篇论文念成摘要。</p>
+<h2>1. P57：Sparse learning of stochastic dynamical equations</h2>
+<p><strong>主持人</strong>：这篇工作的未知对象到底是什么？用一句话先说清楚。</p>
+<p><strong>研究者</strong>：它的研究目标是：从随机轨迹学习漂移和扩散，尤其面向投影后的分子动力学坐标。</p>
+<p><strong>主持人</strong>：那数据是怎样变成方程的？</p>
+<p><strong>研究者</strong>：方法路线是：由Kramers-Moyal条件矩估计回归目标，采用逐步稀疏回归和交叉验证选稀疏度。这里要特别注意，候选表示、数据质量和优化器都属于问题设定的一部分。</p>
+<p><strong>主持人</strong>：课程给这篇安排的推导是什么？</p>
+<p><strong>研究者</strong>：从 Itô 增量推导一阶条件矩是漂移、二阶条件矩决定扩散，明确 b² 与 b 的约定。</p>
+<p><strong>主持人</strong>：最容易被忽略的限制呢？</p>
+<p><strong>研究者</strong>：原文和课程记录的边界是：• 有限数据误差可很大
+• 字典选择显著改变最优稀疏式
+• 投影坐标的Markov性需另行检验。所以可以说它在给定假设下有效，不能直接说发现了所有系统的普适定律。</p>
+<h2>2. P60：Discovering stochastic partial differential equations from limited data using variational Bayes inference</h2>
+<p><strong>主持人</strong>：这篇工作的未知对象到底是什么？用一句话先说清楚。</p>
+<p><strong>研究者</strong>：它的研究目标是：从有限随机场样本同时识别SPDE的确定性漂移项和随机扩散项。</p>
+<p><strong>主持人</strong>：那数据是怎样变成方程的？</p>
+<p><strong>研究者</strong>：方法路线是：Spike-and-Slab先验配合变分贝叶斯近似，输出项的包含概率和系数分布。这里要特别注意，候选表示、数据质量和优化器都属于问题设定的一部分。</p>
+<p><strong>主持人</strong>：课程给这篇安排的推导是什么？</p>
+<p><strong>研究者</strong>：把随机热方程离散场增量分成条件均值和条件方差，再解释 spike-and-slab 指示变量。</p>
+<p><strong>主持人</strong>：最容易被忽略的限制呢？</p>
+<p><strong>研究者</strong>：原文和课程记录的边界是：• 真实项若不在库中会选相关替代项
+• 证据限于三条合成SPDE
+• 变分后验可能低估多峰不确定性。所以可以说它在给定假设下有效，不能直接说发现了所有系统的普适定律。</p>
+<h2>3. P61：On Higher Order Drift and Diffusion Estimates for Stochastic SINDy</h2>
+<p><strong>主持人</strong>：这篇工作的未知对象到底是什么？用一句话先说清楚。</p>
+<p><strong>研究者</strong>：它的研究目标是：提高Stochastic SINDy在有限采样频率和轨迹长度下的漂移、扩散估计精度。</p>
+<p><strong>主持人</strong>：那数据是怎样变成方程的？</p>
+<p><strong>研究者</strong>：方法路线是：分析既有有限差分估计的偏差与方差界，并构造更高阶增量估计后送入SINDy。这里要特别注意，候选表示、数据质量和优化器都属于问题设定的一部分。</p>
+<p><strong>主持人</strong>：课程给这篇安排的推导是什么？</p>
+<p><strong>研究者</strong>：用生成元展开有限时间条件矩，找出首个时间步偏差项，并区分偏差与采样方差。</p>
+<p><strong>主持人</strong>：最容易被忽略的限制呢？</p>
+<p><strong>研究者</strong>：原文和课程记录的边界是：• 理论条件要求足够光滑与混合
+• 高阶估计可能增大方差
+• 不处理库错设。所以可以说它在给定假设下有效，不能直接说发现了所有系统的普适定律。</p>
+<h2>结尾：带走三句话</h2>
+<p><strong>研究者</strong>：第一，先说清楚未知对象和候选空间；第二，区分训练拟合、结构恢复和留出预测；第三，任何漂亮的方程都要配上可辨识条件和失败边界。</p>
+<p><strong>主持人</strong>：下一期继续沿着这条线走：把公式放回数据、实验和它不能回答的问题里。</p></main></body></html>

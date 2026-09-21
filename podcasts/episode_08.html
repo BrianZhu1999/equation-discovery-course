@@ -1,0 +1,40 @@
+<!doctype html><html lang="zh-CN"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>论文播客脚本 · 物理规律发现</title><link rel="stylesheet" href="../style.css"><link rel="stylesheet" href="../public.css"></head><body><main class="doc"><div class="links"><a href="../">返回课程</a><a href="../spectrum/">三维谱图</a></div><h1>第8期｜自由形式 PDE：生成式发现离真实物理还有多远</h1>
+<blockquote>
+<p>这是课程学习播客脚本，不是对论文结果的独立再验证。数字和性能结论以原文为准。</p>
+</blockquote>
+<p><strong>主持人</strong>：自由形式 PDE 发现是这个领域最令人兴奋、也最容易过度宣称的一条线。</p>
+<p><strong>研究者</strong>：这一期选了：P1《Generative discovery of partial differential equations by learning from math handbooks》；P27《Discovery of Partial Differential Equations from Highly Noisy and Sparse Data with Physics-Informed Information Criterion》；P69《Learning fluid physics from highly turbulent data using sparse physics-informed discovery of empirical relations (SPIDER)》。我们只抓住一条主线，不把整篇论文念成摘要。</p>
+<h2>1. P1：Generative discovery of partial differential equations by learning from math handbooks</h2>
+<p><strong>主持人</strong>：这篇工作的未知对象到底是什么？用一句话先说清楚。</p>
+<p><strong>研究者</strong>：它的研究目标是：从稀疏、含噪或不规则区域的时空观测中发现自由形式PDE，并在临近破碎的强非线性表面重力波实验中提出候选新方程。</p>
+<p><strong>主持人</strong>：那数据是怎样变成方程的？</p>
+<p><strong>研究者</strong>：方法路线是：GPT-2式EqGPT先从数学手册学习项的共现；每轮生成400个结构，以最小二乘拟合系数，用R2和项数惩罚构成奖励，保留前10个结构微调，迭代5轮；最终用PINN进一步优化系数。这里要特别注意，候选表示、数据质量和优化器都属于问题设定的一部分。</p>
+<p><strong>主持人</strong>：课程给这篇安排的推导是什么？</p>
+<p><strong>研究者</strong>：写出方程序列的生成概率、系数拟合和复杂度奖励如何组成外层搜索；标出手册预训练与数据拟合的边界。</p>
+<p><strong>主持人</strong>：最容易被忽略的限制呢？</p>
+<p><strong>研究者</strong>：原文和课程记录的边界是：• 性能受手册训练集质量和覆盖范围影响，可能有领域偏差；作者把扩大PDE语料和多模态条件生成列为未来工作。
+• 手册PDE到结构字符串的拆解目前由人工完成。所以可以说它在给定假设下有效，不能直接说发现了所有系统的普适定律。</p>
+<h2>2. P27：Discovery of Partial Differential Equations from Highly Noisy and Sparse Data with Physics-Informed Information Criterion</h2>
+<p><strong>主持人</strong>：这篇工作的未知对象到底是什么？用一句话先说清楚。</p>
+<p><strong>研究者</strong>：它的研究目标是：在极少点和强噪声下从开放候选结构中筛选PDE，并从颗粒输运微观模拟提取宏观方程。</p>
+<p><strong>主持人</strong>：那数据是怎样变成方程的？</p>
+<p><strong>研究者</strong>：方法路线是：先用GA形成初步库；对所有项组合，移动时间窗回归计算冗余损失，并比较PINN与无物理ANN的误差形成精度损失，乘积最小者获选。这里要特别注意，候选表示、数据质量和优化器都属于问题设定的一部分。</p>
+<p><strong>主持人</strong>：课程给这篇安排的推导是什么？</p>
+<p><strong>研究者</strong>：逐项抄录并解释 PIC 的原文定义和实现，区分经验模型选择评分与统计信息准则定理。</p>
+<p><strong>主持人</strong>：最容易被忽略的限制呢？</p>
+<p><strong>研究者</strong>：原文和课程记录的边界是：• PIC需要训练多个网络，计算成本高；N项组合可达2^N，候选库大时呈指数增长。
+• 噪声容忍度会随噪声类型变化。所以可以说它在给定假设下有效，不能直接说发现了所有系统的普适定律。</p>
+<h2>3. P69：Learning fluid physics from highly turbulent data using sparse physics-informed discovery of empirical relations (SPIDER)</h2>
+<p><strong>主持人</strong>：这篇工作的未知对象到底是什么？用一句话先说清楚。</p>
+<p><strong>研究者</strong>：它的研究目标是：从高雷诺数湍流通道DNS中恢复体方程、派生关系和壁面边界条件。</p>
+<p><strong>主持人</strong>：那数据是怎样变成方程的？</p>
+<p><strong>研究者</strong>：方法路线是：局部弱形式、无量纲化和稀疏隐式回归共同筛选方程。这里要特别注意，候选表示、数据质量和优化器都属于问题设定的一部分。</p>
+<p><strong>主持人</strong>：课程给这篇安排的推导是什么？</p>
+<p><strong>研究者</strong>：按标量与向量类型构造湍流候选关系；分析体弱导数与壁法向导数的区别。</p>
+<p><strong>主持人</strong>：最容易被忽略的限制呢？</p>
+<p><strong>研究者</strong>：原文和课程记录的边界是：• 数据由Navier-Stokes求解器生成
+• 候选库受对称先验显著约束
+• 壁法向导数和压力分辨率仍形成误差瓶颈。所以可以说它在给定假设下有效，不能直接说发现了所有系统的普适定律。</p>
+<h2>结尾：带走三句话</h2>
+<p><strong>研究者</strong>：第一，先说清楚未知对象和候选空间；第二，区分训练拟合、结构恢复和留出预测；第三，任何漂亮的方程都要配上可辨识条件和失败边界。</p>
+<p><strong>主持人</strong>：下一期继续沿着这条线走：把公式放回数据、实验和它不能回答的问题里。</p></main></body></html>

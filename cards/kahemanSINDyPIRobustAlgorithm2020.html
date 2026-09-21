@@ -1,0 +1,139 @@
+<!doctype html><html lang="zh-CN"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>SINDy-PI: a robust algorithm for parallel implicit sparse identification of nonlinear dynamics · 物理规律发现</title><link rel="stylesheet" href="../style.css"><link rel="stylesheet" href="../public.css"></head><body><main class="doc"><div class="links"><a href="../">返回课程</a><a href="../spectrum/">三维谱图</a></div><h1>P15 · SINDy-PI: a robust algorithm for parallel implicit sparse identification of nonlinear dynamics</h1>
+<p>Kadierdan Kaheman; J. Nathan Kutz; Steven L. Brunton. SINDy-PI: a robust algorithm for parallel implicit sparse identification of nonlinear dynamics. Proceedings of the Royal Society A: Mathematical, Physical and Engineering Sciences, 2020, 476(2242). DOI: 10.1098/rspa.2020.0279</p>
+<p><a href="https://doi.org/10.1098/rspa.2020.0279">出版页面</a> · 第 3 天 · 基础与稀疏表示</p>
+<h2>研究问题</h2>
+<p>在不进行噪声敏感零空间求解的条件下，从状态与导数数据识别含隐式关系、有理非线性和外部控制的ODE/PDE及守恒量。</p>
+<h2>规律表示</h2>
+<p>规律表示为Theta(X,Xdot)中的稀疏隐式等式；通过把库中每一候选列轮流移到等式左侧，可恢复有理动力学的分子-分母关系、受控方程或守恒量。</p>
+<h2>方法</h2>
+<p>并行测试每个候选项作为左端，以STLSQ求其余列的稀疏系数；按留出测试集上的导数/预测误差选择模型，并用稀疏度、候选方程之间的一致模式和复杂度辅助筛选。</p>
+<h2>假设</h2>
+<p>• 真实隐式关系在用户给定的状态-导数候选库中稀疏
+• 正确规律的任一非零项都可作为左端并产生稀疏且低误差的等价模型
+• 多个左端候选得到的重复稀疏模式可用于交叉核验
+• 专家知识可限制三角项、导数项和控制输入以控制库规模</p>
+<h2>必做推导</h2>
+<p>将有理动力学乘去分母得到隐式关系；轮流把一项放到等号左侧并比较归一化。</p>
+<h2>复现目标</h2>
+<p>在作者代码中选一个支持核心结论的案例：• Michaelis-Menten酶动力学
+• 七维酵母糖酵解模型
+• 含有理增益项的改进KdV方程
+• 固定双摆
+• 带控制输入的小车摆
+• 简化Belousov-Zhabotinsky反应PDE
+• 双摆Lagrangian与守恒结构。先运行小样例，再恢复该案例原文配置；运行前登记原文指标/目标图、统计量和容差，运行后交付结构或等价结构、系数/统计量、留出预测、耗时和日志。</p>
+<h2>单因素检验</h2>
+<p>只改变含噪水平，固定候选项与归一化。</p>
+<h2>适用范围与限制</h2>
+<p>• 固定双摆最困难之处是构造既含真项又不过大的候选库；库过大使Theta病态并对噪声敏感，较高噪声时会识别错误结构但仍能短期预测。
+• 直接发现守恒量或Lagrangian仍受候选库爆炸限制，论文只给一个示例，作者明确指出需要进一步约束和缩小库。
+• 作者把自动建库、模型选择、精度与稀疏度及过拟合的平衡、以及进一步提高噪声鲁棒性列为尚未解决的问题。
+• 比较结果受训练长度、初值、预测步数、候选库和导数算法等多因素影响，作者没有进行穷尽超参数扫描。</p>
+<h2>闭卷自测</h2>
+<h3>1. P15 实际辨识的未知对象是什么，哪些对象预先给定？</h3>
+<details><summary>先作答，再展开核对</summary>
+
+
+在不进行噪声敏感零空间求解的条件下，从状态与导数数据识别含隐式关系、有理非线性和外部控制的ODE/PDE及守恒量。
+表示：规律表示为Theta(X,Xdot)中的稀疏隐式等式；通过把库中每一候选列轮流移到等式左侧，可恢复有理动力学的分子-分母关系、受控方程或守恒量。
+
+
+</details>
+
+<h3>2. P15 从数据到模型采用什么路线？按顺序解释各步骤。</h3>
+<details><summary>先作答，再展开核对</summary>
+
+
+并行测试每个候选项作为左端，以STLSQ求其余列的稀疏系数；按留出测试集上的导数/预测误差选择模型，并用稀疏度、候选方程之间的一致模式和复杂度辅助筛选。
+
+
+</details>
+
+<h3>3. P15 哪些假设或限制使结果不能直接推广？至少说出两项。</h3>
+<details><summary>先作答，再展开核对</summary>
+
+
+• 真实隐式关系在用户给定的状态-导数候选库中稀疏
+• 正确规律的任一非零项都可作为左端并产生稀疏且低误差的等价模型
+• 多个左端候选得到的重复稀疏模式可用于交叉核验
+• 专家知识可限制三角项、导数项和控制输入以控制库规模
+• 固定双摆最困难之处是构造既含真项又不过大的候选库；库过大使Theta病态并对噪声敏感，较高噪声时会识别错误结构但仍能短期预测。
+• 直接发现守恒量或Lagrangian仍受候选库爆炸限制，论文只给一个示例，作者明确指出需要进一步约束和缩小库。
+• 作者把自动建库、模型选择、精度与稀疏度及过拟合的平衡、以及进一步提高噪声鲁棒性列为尚未解决的问题。
+• 比较结果受训练长度、初值、预测步数、候选库和导数算法等多因素影响，作者没有进行穷尽超参数扫描。
+
+
+</details>
+
+<h3>4. 怎样设计这项单因素检验：只改变含噪水平，固定候选项与归一化。</h3>
+<details><summary>先作答，再展开核对</summary>
+
+
+只改变指定因素，固定数据划分与其余参数；用结构、系数/统计量和留出预测评价，并将结果联系到以下方法边界：
+• 固定双摆最困难之处是构造既含真项又不过大的候选库；库过大使Theta病态并对噪声敏感，较高噪声时会识别错误结构但仍能短期预测。
+• 直接发现守恒量或Lagrangian仍受候选库爆炸限制，论文只给一个示例，作者明确指出需要进一步约束和缩小库。
+• 作者把自动建库、模型选择、精度与稀疏度及过拟合的平衡、以及进一步提高噪声鲁棒性列为尚未解决的问题。
+• 比较结果受训练长度、初值、预测步数、候选库和导数算法等多因素影响，作者没有进行穷尽超参数扫描。
+
+
+</details>
+
+<h2>作者代码与核查</h2>
+<p>代码信息为课程构建时的核查快照，可访问不等于已复现；没有定位到代码不等于作者没有公开。</p>
+<ul>
+<li><a href="https://github.com/dynamicslab/SINDy-PI">https://github.com/dynamicslab/SINDy-PI</a></li>
+</ul>
+<pre><code class="language-json">{
+  &quot;verified_status&quot;: &quot;public_verified&quot;,
+  &quot;entrypoints&quot;: [
+    {
+      &quot;path&quot;: &quot;ConstrainedFormulation&quot;,
+      &quot;basis&quot;: &quot;observed root path; not executed&quot;,
+      &quot;repository&quot;: &quot;https://github.com/dynamicslab/SINDy-PI&quot;
+    }
+  ],
+  &quot;environment&quot;: [
+    {
+      &quot;requirement_excerpt&quot;: &quot;## Dependencies:&quot;,
+      &quot;source_url&quot;: &quot;https://raw.githubusercontent.com/dynamicslab/SINDy-PI/master/ReadMe.md&quot;,
+      &quot;line&quot;: 28,
+      &quot;basis&quot;: &quot;literal README statement; environment not constructed&quot;
+    },
+    {
+      &quot;requirement_excerpt&quot;: &quot;* CVX optimization packages for Matlab.  CVX is used for the constrained formulation of the SINDy-PI.&quot;,
+      &quot;source_url&quot;: &quot;https://raw.githubusercontent.com/dynamicslab/SINDy-PI/master/ReadMe.md&quot;,
+      &quot;line&quot;: 30,
+      &quot;basis&quot;: &quot;literal README statement; environment not constructed&quot;
+    }
+  ],
+  &quot;blockers&quot;: [
+    &quot;paper-result T2 reproduction not run; public access or README inspection is not reproduction&quot;
+  ],
+  &quot;follow_up_actions&quot;: []
+}
+</code></pre>
+<h2>原文定位</h2>
+<p>以下为课程整理的结论和原文页码 / 块号索引，全文通过出版页面访问。</p>
+<ul>
+<li>
+<p>SINDy-PI将库中每个候选项依次作为左端：错误候选产生稠密高误差模型，真项产生稀疏低误差模型；不同真项得到的等价结构可交叉核验并并行计算。（PDF 页 5；块号 P005-B001, P005-B002）</p>
+</li>
+<li>
+<p>模型选择对稀疏阈值和左端候选进行扫描，以留出的测试数据误差选最优模型；作者同时讨论AIC、BIC和精度-稀疏度Pareto前沿作为替代。（PDF 页 5；块号 P005-B003, P005-B004, P005-B005）</p>
+</li>
+<li>
+<p>Michaelis-Menten试验中，SINDy-PI在仍能准确恢复结构时可承受比implicit-SINDy高逾10^5倍的测量噪声。（PDF 页 7；块号 P007-B002, P007-B005, P007-B006, P007-B007）</p>
+</li>
+<li>
+<p>酵母糖酵解最困难状态方程的20次随机抽样比较显示，SINDy-PI约使用implicit-SINDy的1/12数据量；改进KdV中有理项占主导时，SINDy-PI恢复该项而PDE-FIND过拟合库。（PDF 页 8；块号 P008-B002, P008-B003, P008-B005, P008-B007, P008-B008）</p>
+</li>
+<li>
+<p>受控小车摆使用约50个基函数和约10个左端候选；所有状态加入高斯噪声后，正确结构保持至噪声幅值0.01，更高噪声只保留短期预测能力。（PDF 页 11；块号 P011-B002, P011-B004, P011-B005）</p>
+</li>
+<li>
+<p>简化Belousov-Zhabotinsky反应PDE包含强耦合和隐式行为，SINDy-PI在128点谱模拟数据上识别了目标动力学，并用80%训练、20%模型选择。（PDF 页 12；块号 P012-B002, P012-B003, P012-B004, P012-B006）</p>
+</li>
+<li>
+<p>Michaelis-Menten噪声基准使用23个高斯噪声级、每级30次实现和68个SINDy-PI稀疏参数；TVRegDiff需调参且会产生端点伪影，因此每条轨迹首尾各裁30%。（PDF 页 18；块号 P018-B006, P018-B007, P018-B008, P018-B009, P018-B010, P018-B012）</p>
+</li>
+</ul></main></body></html>

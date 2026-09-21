@@ -1,0 +1,114 @@
+<!doctype html><html lang="zh-CN"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Distilling Free-Form Natural Laws from Experimental Data · 物理规律发现</title><link rel="stylesheet" href="../style.css"><link rel="stylesheet" href="../public.css"></head><body><main class="doc"><div class="links"><a href="../">返回课程</a><a href="../spectrum/">三维谱图</a></div><h1>P08 · Distilling Free-Form Natural Laws from Experimental Data</h1>
+<p>Michael Schmidt; Hod Lipson. Distilling Free-Form Natural Laws from Experimental Data. Science, 2009, 324(5923): 81-85. DOI: 10.1126/science.1165893</p>
+<p><a href="https://doi.org/10.1126/science.1165893">出版页面</a> · 第 2 天 · 基础与稀疏表示</p>
+<h2>研究问题</h2>
+<p>不预设方程形式，从物理系统轨迹中搜索非平凡守恒量、状态流形、Lagrangian/Hamiltonian和运动方程。</p>
+<h2>规律表示</h2>
+<p>由变量、常数、代数运算和三角函数等构成的自由形式表达树；候选可表示隐式不变量、守恒式或动力学恒等式。</p>
+<h2>方法</h2>
+<p>演化符号回归随机组合、重组和变异表达式；适应度比较候选式隐含的变量偏导比与实验轨迹偏导比，并在准确度-复杂度Pareto前沿保留候选。</p>
+<h2>假设</h2>
+<p>• 非平凡规律应预测不同变量子组之间的局部导数关系
+• 规律需在留出轨迹上有效且在准确度与简洁性之间取Pareto折中
+• 允许的变量与运算符由用户指定
+• 可用较简单系统的已知项为复杂系统搜索作bootstrap初始化</p>
+<h2>必做推导</h2>
+<p>手算一个候选守恒表达式沿轨迹的总导数，并解释误差—复杂度 Pareto 前沿。</p>
+<h2>复现目标</h2>
+<p>在作者代码中选一个支持核心结论的案例：• 双弹簧单质量气轨
+• 三弹簧双质量气轨
+• 单摆
+• 混沌双摆
+• SOM中的合成几何与动力系统。先运行小样例，再恢复该案例原文配置；运行前登记原文指标/目标图、统计量和容差，运行后交付结构或等价结构、系数/统计量、留出预测、耗时和日志。</p>
+<h2>单因素检验</h2>
+<p>只限制表达式树的最大深度。</p>
+<h2>适用范围与限制</h2>
+<p>• 算法输出约10个不同复杂度候选，最终方程仍由研究者人工检查和选择。
+• 结果依赖用户提供的变量和数学构件；去掉正弦/余弦后只能以Taylor近似替代真实摆方程。
+• 最坏搜索时间随规律表达式复杂度指数增长，并随状态维数近似二次增长。
+• 机器给出的自由系数可能混合质量、长度等量，物理单位和语义仍需人类解释，量纲一致也不能消除歧义。</p>
+<h2>闭卷自测</h2>
+<h3>1. P08 实际辨识的未知对象是什么，哪些对象预先给定？</h3>
+<details><summary>先作答，再展开核对</summary>
+
+
+不预设方程形式，从物理系统轨迹中搜索非平凡守恒量、状态流形、Lagrangian/Hamiltonian和运动方程。
+表示：由变量、常数、代数运算和三角函数等构成的自由形式表达树；候选可表示隐式不变量、守恒式或动力学恒等式。
+
+
+</details>
+
+<h3>2. P08 从数据到模型采用什么路线？按顺序解释各步骤。</h3>
+<details><summary>先作答，再展开核对</summary>
+
+
+演化符号回归随机组合、重组和变异表达式；适应度比较候选式隐含的变量偏导比与实验轨迹偏导比，并在准确度-复杂度Pareto前沿保留候选。
+
+
+</details>
+
+<h3>3. P08 哪些假设或限制使结果不能直接推广？至少说出两项。</h3>
+<details><summary>先作答，再展开核对</summary>
+
+
+• 非平凡规律应预测不同变量子组之间的局部导数关系
+• 规律需在留出轨迹上有效且在准确度与简洁性之间取Pareto折中
+• 允许的变量与运算符由用户指定
+• 可用较简单系统的已知项为复杂系统搜索作bootstrap初始化
+• 算法输出约10个不同复杂度候选，最终方程仍由研究者人工检查和选择。
+• 结果依赖用户提供的变量和数学构件；去掉正弦/余弦后只能以Taylor近似替代真实摆方程。
+• 最坏搜索时间随规律表达式复杂度指数增长，并随状态维数近似二次增长。
+• 机器给出的自由系数可能混合质量、长度等量，物理单位和语义仍需人类解释，量纲一致也不能消除歧义。
+
+
+</details>
+
+<h3>4. 怎样设计这项单因素检验：只限制表达式树的最大深度。</h3>
+<details><summary>先作答，再展开核对</summary>
+
+
+只改变指定因素，固定数据划分与其余参数；用结构、系数/统计量和留出预测评价，并将结果联系到以下方法边界：
+• 算法输出约10个不同复杂度候选，最终方程仍由研究者人工检查和选择。
+• 结果依赖用户提供的变量和数学构件；去掉正弦/余弦后只能以Taylor近似替代真实摆方程。
+• 最坏搜索时间随规律表达式复杂度指数增长，并随状态维数近似二次增长。
+• 机器给出的自由系数可能混合质量、长度等量，物理单位和语义仍需人类解释，量纲一致也不能消除歧义。
+
+
+</details>
+
+<h2>作者代码与核查</h2>
+<p>代码信息为课程构建时的核查快照，可访问不等于已复现；没有定位到代码不等于作者没有公开。</p>
+<pre><code class="language-json">{
+  &quot;verified_status&quot;: &quot;unverified&quot;,
+  &quot;entrypoints&quot;: [],
+  &quot;environment&quot;: [],
+  &quot;blockers&quot;: [
+    &quot;author code not found in inspected local source; this does not establish that code does not exist&quot;,
+    &quot;required code-discovery queue remains open; missing PDF URL is not evidence of missing author code&quot;
+  ],
+  &quot;follow_up_actions&quot;: [
+    &quot;Check publisher code/data availability and supplementary attachments&quot;,
+    &quot;Follow first/corresponding author project page; verify paper title/DOI in the repository before accepting it&quot;,
+    &quot;Record author-code link or a dated availability boundary; do not close this task because PDF transcription lacks a URL&quot;
+  ]
+}
+</code></pre>
+<h2>原文定位</h2>
+<p>以下为课程整理的结论和原文页码 / 块号索引，全文通过出版页面访问。</p>
+<ul>
+<li>
+<p>候选规律通过其符号偏导比预测变量间导数关系，并与新实验轨迹计算出的偏导比比较；该准则也可识别流形和Lagrangian而不限于常数守恒量。（PDF 页 2；块号 P002-B002, P002-B003, P002-B004）</p>
+</li>
+<li>
+<p>真实气轨和单双摆均由运动跟踪获得位置，再数值计算速度和加速度；给位置、速度或加速度会分别引导发现流形、能量或运动方程。（PDF 页 2；块号 P002-B005, P002-B008, P002-B009）</p>
+</li>
+<li>
+<p>双摆只给高能混沌数据时偏向近似角动量守恒，只给低速同相数据时偏向小角度和解耦近似；合并两种激励后才收敛到精确能量规律。（PDF 页 3；块号 P003-B003, P003-B005, P003-B006, P003-B007）</p>
+</li>
+<li>
+<p>最终候选位于准确度-简洁度Pareto前沿，并以留出实验数据衡量预测误差；双摆曲线的性能跃迁点对应理论Hamiltonian。（PDF 页 4；块号 P004-B002, P004-B003）</p>
+</li>
+<li>
+<p>32核实现从简单振子数分钟到双摆约30小时；用简单系统项进行bootstrap后，双摆求解时间降到约7至8小时。（PDF 页 4；块号 P004-B004, P004-B009, P004-B010）</p>
+</li>
+</ul></main></body></html>

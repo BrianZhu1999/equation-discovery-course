@@ -1,0 +1,109 @@
+<!doctype html><html lang="zh-CN"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Stability selection enables robust learning of differential equations from limited noisy data · 物理规律发现</title><link rel="stylesheet" href="../style.css"><link rel="stylesheet" href="../public.css"></head><body><main class="doc"><div class="links"><a href="../">返回课程</a><a href="../spectrum/">三维谱图</a></div><h1>P55 · Stability selection enables robust learning of differential equations from limited noisy data</h1>
+<p>Suryanarayana Maddu; Bevan L. Cheeseman; Ivo F. Sbalzarini; Christian L. Müller. Stability selection enables robust learning of differential equations from limited noisy data. Proceedings of the Royal Society A: Mathematical, Physical and Engineering Sciences, 2022, 478(2262): 20210916. DOI: 10.1098/rspa.2021.0916</p>
+<p><a href="https://doi.org/10.1098/rspa.2021.0916">出版页面</a> · 第 5 天 · 统计选择与弱形式</p>
+<h2>研究问题</h2>
+<p>在有限、含噪时空数据中自动选择PDE结构。</p>
+<h2>规律表示</h2>
+<p>固定候选字典中的稀疏PDE项。</p>
+<h2>方法</h2>
+<p>PDE-STRIDE对设计矩阵行重采样，沿正则化路径求解多次稀疏回归，以入选频率和固定概率阈值决定结构。</p>
+<h2>假设</h2>
+<p>• 候选字典
+• 稀疏性</p>
+<h2>必做推导</h2>
+<p>计算重采样正则路径上的项选择频率，说明稳定性阈值与贝叶斯概率的差别。</p>
+<h2>复现目标</h2>
+<p>在作者代码中选一个支持核心结论的案例：• Burgers
+• 涡量输运
+• Gray-Scott
+• C. elegans膜蛋白显微数据。先运行小样例，再恢复该案例原文配置；运行前登记原文指标/目标图、统计量和容差，运行后交付结构或等价结构、系数/统计量、留出预测、耗时和日志。</p>
+<h2>单因素检验</h2>
+<p>只改变稳定性阈值。</p>
+<h2>适用范围与限制</h2>
+<p>• 稳定频率不等于结构后验
+• 高度相关候选仍会分摊入选频率
+• 求导误差来自上游处理</p>
+<h2>闭卷自测</h2>
+<h3>1. P55 实际辨识的未知对象是什么，哪些对象预先给定？</h3>
+<details><summary>先作答，再展开核对</summary>
+
+
+在有限、含噪时空数据中自动选择PDE结构。
+表示：固定候选字典中的稀疏PDE项。
+
+
+</details>
+
+<h3>2. P55 从数据到模型采用什么路线？按顺序解释各步骤。</h3>
+<details><summary>先作答，再展开核对</summary>
+
+
+PDE-STRIDE对设计矩阵行重采样，沿正则化路径求解多次稀疏回归，以入选频率和固定概率阈值决定结构。
+
+
+</details>
+
+<h3>3. P55 哪些假设或限制使结果不能直接推广？至少说出两项。</h3>
+<details><summary>先作答，再展开核对</summary>
+
+
+• 候选字典
+• 稀疏性
+• 稳定频率不等于结构后验
+• 高度相关候选仍会分摊入选频率
+• 求导误差来自上游处理
+
+
+</details>
+
+<h3>4. 怎样设计这项单因素检验：只改变稳定性阈值。</h3>
+<details><summary>先作答，再展开核对</summary>
+
+
+只改变指定因素，固定数据划分与其余参数；用结构、系数/统计量和留出预测评价，并将结果联系到以下方法边界：
+• 稳定频率不等于结构后验
+• 高度相关候选仍会分摊入选频率
+• 求导误差来自上游处理
+
+
+</details>
+
+<h2>作者代码与核查</h2>
+<p>代码信息为课程构建时的核查快照，可访问不等于已复现；没有定位到代码不等于作者没有公开。</p>
+<ul>
+<li><a href="https://github.com/SuryanarayanaMK/PDE-STRIDE">https://github.com/SuryanarayanaMK/PDE-STRIDE</a></li>
+</ul>
+<pre><code class="language-json">{
+  &quot;verified_status&quot;: &quot;public_verified&quot;,
+  &quot;entrypoints&quot;: [
+    {
+      &quot;path&quot;: &quot;Burgers_results_visualization.ipynb&quot;,
+      &quot;basis&quot;: &quot;observed root path; not executed&quot;,
+      &quot;repository&quot;: &quot;https://github.com/SuryanarayanaMK/PDE-STRIDE&quot;
+    },
+    {
+      &quot;path&quot;: &quot;basic_demo.ipynb&quot;,
+      &quot;basis&quot;: &quot;observed root path; not executed&quot;,
+      &quot;repository&quot;: &quot;https://github.com/SuryanarayanaMK/PDE-STRIDE&quot;
+    },
+    {
+      &quot;path&quot;: &quot;basic_demo_animation.ipynb&quot;,
+      &quot;basis&quot;: &quot;observed root path; not executed&quot;,
+      &quot;repository&quot;: &quot;https://github.com/SuryanarayanaMK/PDE-STRIDE&quot;
+    },
+    {
+      &quot;path&quot;: &quot;basic_demo_revised.ipynb&quot;,
+      &quot;basis&quot;: &quot;observed root path; not executed&quot;,
+      &quot;repository&quot;: &quot;https://github.com/SuryanarayanaMK/PDE-STRIDE&quot;
+    }
+  ],
+  &quot;environment&quot;: [],
+  &quot;blockers&quot;: [
+    &quot;paper-result T2 reproduction not run; public access or README inspection is not reproduction&quot;,
+    &quot;dependency/environment specification unverified&quot;
+  ],
+  &quot;follow_up_actions&quot;: []
+}
+</code></pre>
+<h2>原文定位</h2>
+<p>以下为课程整理的结论和原文页码 / 块号索引，全文通过出版页面访问。</p></main></body></html>

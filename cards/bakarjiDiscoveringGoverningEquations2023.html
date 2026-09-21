@@ -1,0 +1,125 @@
+<!doctype html><html lang="zh-CN"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Discovering governing equations from partial measurements with deep delay autoencoders · 物理规律发现</title><link rel="stylesheet" href="../style.css"><link rel="stylesheet" href="../public.css"></head><body><main class="doc"><div class="links"><a href="../">返回课程</a><a href="../spectrum/">三维谱图</a></div><h1>P34 · Discovering governing equations from partial measurements with deep delay autoencoders</h1>
+<p>Joseph Bakarji; Kathleen Champion; J. Nathan Kutz; Steven L. Brunton. Discovering governing equations from partial measurements with deep delay autoencoders. Proceedings of the Royal Society A: Mathematical, Physical and Engineering Sciences, 2023, 479(2276). DOI: 10.1098/rspa.2023.0422</p>
+<p><a href="https://doi.org/10.1098/rspa.2023.0422">出版页面</a> · 第 15 天 · 坐标、流形与守恒</p>
+<h2>研究问题</h2>
+<p>从只有一个可测变量的非闭合系统，经时间延迟重构多维状态并发现稀疏闭式ODE。</p>
+<h2>规律表示</h2>
+<p>潜坐标上的多项式SINDy模型；真实水轮使用三阶字典。</p>
+<h2>方法</h2>
+<p>联合训练延迟autoencoder和SINDy系数，损失含重建、z/h导数一致性、第一分量锚定及RK4积分后重现延迟序列；训练中周期性单独SINDy优化。</p>
+<h2>假设</h2>
+<p>• Takens延迟嵌入条件
+• 潜动力学稀疏
+• 第一潜分量等于实测量
+• RK4多步一致性
+• 用户选择延迟窗、潜维、SVD秩和候选库</p>
+<h2>必做推导</h2>
+<p>对仅观测位置的振子构造延迟向量，解释为何一个瞬时标量不足以闭合。</p>
+<h2>复现目标</h2>
+<p>在作者代码中选一个支持核心结论的案例：• Lorenz
+• Lotka-Volterra
+• Rössler
+• 真实混沌Lorenz水轮视频。先运行小样例，再恢复该案例原文配置；运行前登记原文指标/目标图、统计量和容差，运行后交付结构或等价结构、系数/统计量、留出预测、耗时和日志。</p>
+<h2>单因素检验</h2>
+<p>只改变延迟嵌入维数。</p>
+<h2>适用范围与限制</h2>
+<p>• 随机初始化时优化易过拟合和陷入局部极小，精确恢复原系统尚无保证。
+• 并非任意标量观测都满足Takens条件；例如Lorenz第三分量不能提供所需微分同胚。
+• 网络、损失、延迟、潜维和SINDy库形成高维超参数空间，论文用并行GPU搜索。
+• 真实水轮数据太短、低帧率且含检测噪声，所得方程不够稀疏，需更多数据和更好的视频到角速度映射。</p>
+<h2>闭卷自测</h2>
+<h3>1. P34 实际辨识的未知对象是什么，哪些对象预先给定？</h3>
+<details><summary>先作答，再展开核对</summary>
+
+
+从只有一个可测变量的非闭合系统，经时间延迟重构多维状态并发现稀疏闭式ODE。
+表示：潜坐标上的多项式SINDy模型；真实水轮使用三阶字典。
+
+
+</details>
+
+<h3>2. P34 从数据到模型采用什么路线？按顺序解释各步骤。</h3>
+<details><summary>先作答，再展开核对</summary>
+
+
+联合训练延迟autoencoder和SINDy系数，损失含重建、z/h导数一致性、第一分量锚定及RK4积分后重现延迟序列；训练中周期性单独SINDy优化。
+
+
+</details>
+
+<h3>3. P34 哪些假设或限制使结果不能直接推广？至少说出两项。</h3>
+<details><summary>先作答，再展开核对</summary>
+
+
+• Takens延迟嵌入条件
+• 潜动力学稀疏
+• 第一潜分量等于实测量
+• RK4多步一致性
+• 用户选择延迟窗、潜维、SVD秩和候选库
+• 随机初始化时优化易过拟合和陷入局部极小，精确恢复原系统尚无保证。
+• 并非任意标量观测都满足Takens条件；例如Lorenz第三分量不能提供所需微分同胚。
+• 网络、损失、延迟、潜维和SINDy库形成高维超参数空间，论文用并行GPU搜索。
+• 真实水轮数据太短、低帧率且含检测噪声，所得方程不够稀疏，需更多数据和更好的视频到角速度映射。
+
+
+</details>
+
+<h3>4. 怎样设计这项单因素检验：只改变延迟嵌入维数。</h3>
+<details><summary>先作答，再展开核对</summary>
+
+
+只改变指定因素，固定数据划分与其余参数；用结构、系数/统计量和留出预测评价，并将结果联系到以下方法边界：
+• 随机初始化时优化易过拟合和陷入局部极小，精确恢复原系统尚无保证。
+• 并非任意标量观测都满足Takens条件；例如Lorenz第三分量不能提供所需微分同胚。
+• 网络、损失、延迟、潜维和SINDy库形成高维超参数空间，论文用并行GPU搜索。
+• 真实水轮数据太短、低帧率且含检测噪声，所得方程不够稀疏，需更多数据和更好的视频到角速度映射。
+
+
+</details>
+
+<h2>作者代码与核查</h2>
+<p>代码信息为课程构建时的核查快照，可访问不等于已复现；没有定位到代码不等于作者没有公开。</p>
+<ul>
+<li><a href="https://github.com/josephbakarji/deep-delay-autoencoder">https://github.com/josephbakarji/deep-delay-autoencoder</a></li>
+</ul>
+<pre><code class="language-json">{
+  &quot;verified_status&quot;: &quot;public_verified&quot;,
+  &quot;entrypoints&quot;: [],
+  &quot;environment&quot;: [
+    {
+      &quot;path&quot;: &quot;requirements.txt&quot;,
+      &quot;basis&quot;: &quot;observed dependency/config file; compatibility not tested&quot;,
+      &quot;repository&quot;: &quot;https://github.com/josephbakarji/deep-delay-autoencoder&quot;
+    },
+    {
+      &quot;path&quot;: &quot;setup.py&quot;,
+      &quot;basis&quot;: &quot;observed dependency/config file; compatibility not tested&quot;,
+      &quot;repository&quot;: &quot;https://github.com/josephbakarji/deep-delay-autoencoder&quot;
+    }
+  ],
+  &quot;blockers&quot;: [
+    &quot;paper-result T2 reproduction not run; public access or README inspection is not reproduction&quot;,
+    &quot;no concrete execution entrypoint established by current root/README inspection&quot;
+  ],
+  &quot;follow_up_actions&quot;: []
+}
+</code></pre>
+<h2>原文定位</h2>
+<p>以下为课程整理的结论和原文页码 / 块号索引，全文通过出版页面访问。</p>
+<ul>
+<li>
+<p>延迟SINDy autoencoder新增SVD、第一潜分量锚定和RK4积分一致性三类约束，以缩小非唯一映射的假设类。（PDF 页 9；块号 P009-B001, P009-B003, P009-B004, P009-B005, P009-B006, P009-B007, P009-B008, P009-B009）</p>
+</li>
+<li>
+<p>Lorenz从x1单变量恢复六项潜方程，比原七项更稀疏并保留双叶吸引子；但随机初始化收敛敏感。（PDF 页 13；块号 P013-B003, P013-B004, P013-B005）</p>
+</li>
+<li>
+<p>Lotka-Volterra恢复结构相似模型；Rössler模型更不稀疏但复现第三维爆发特征。（PDF 页 15；块号 P015-B004, P015-B005, P015-B006, P015-B007）</p>
+</li>
+<li>
+<p>真实水轮视频经Hough线检测、聚类和角速度提取后，学得双叶Lorenz样吸引子与混沌动力学。（PDF 页 15；块号 P015-B003, P015-B008）</p>
+</li>
+<li>
+<p>附录明确真实视频受稀疏、检测噪声、24 fps和短时长限制，三阶字典只能重建粗略混沌，作者认为更多数据可得到更稀疏泛化模型。（PDF 页 19；块号 P019-B002, P019-B003, P019-B004, P019-B005）</p>
+</li>
+</ul></main></body></html>

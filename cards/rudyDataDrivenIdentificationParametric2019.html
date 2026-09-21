@@ -1,0 +1,139 @@
+<!doctype html><html lang="zh-CN"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Data-Driven Identification of Parametric Partial Differential Equations · 物理规律发现</title><link rel="stylesheet" href="../style.css"><link rel="stylesheet" href="../public.css"></head><body><main class="doc"><div class="links"><a href="../">返回课程</a><a href="../spectrum/">三维谱图</a></div><h1>P32 · Data-Driven Identification of Parametric Partial Differential Equations</h1>
+<p>Samuel Rudy; Alessandro Alla; Steven L. Brunton; J. Nathan Kutz. Data-Driven Identification of Parametric Partial Differential Equations. SIAM Journal on Applied Dynamical Systems, 2019, 18(2): 643-660. DOI: 10.1137/18m1191944</p>
+<p><a href="https://doi.org/10.1137/18m1191944">出版页面</a> · 第 26 天 · 粗粒化与跨参数</p>
+<h2>研究问题</h2>
+<p>在PDE结构全局不变但系数随时间或空间变化时，同时找出活动项与系数函数。</p>
+<h2>规律表示</h2>
+<p>固定活动项支撑上的时变或空变系数序列；候选库为u幂与空间导数乘积。</p>
+<h2>方法</h2>
+<p>Sequential Grouped Threshold Ridge Regression反复按组范数删项、ridge重拟合并OLS去偏；50个阈值模型用AIC启发损失选择，并与group LASSO比较。</p>
+<h2>假设</h2>
+<p>• 活动PDE项跨时间/空间共享
+• 每项系数可自由随单一坐标变化
+• 候选库有限且以单项式和导数为主
+• 结构稀疏</p>
+<h2>必做推导</h2>
+<p>构造空间或时间变系数的分组特征矩阵，说明跨位置共享项结构的意义。</p>
+<h2>复现目标</h2>
+<p>在作者代码中选一个支持核心结论的案例：• 时变Burgers
+• 圆柱绕流Navier-Stokes
+• 空变对流扩散
+• 空变Kuramoto-Sivashinsky。先运行小样例，再恢复该案例原文配置；运行前登记原文指标/目标图、统计量和容差，运行后交付结构或等价结构、系数/统计量、留出预测、耗时和日志。</p>
+<h2>单因素检验</h2>
+<p>只改变系数变化尺度。</p>
+<h2>适用范围与限制</h2>
+<p>• 方法仍受数值微分精度和有限候选库限制。
+• 含四阶导数的KS对噪声极敏感，1%噪声不能正确识别。
+• 当前拆分只允许系数随时间或空间之一变化；同时空变化需分箱并损失分辨率。
+• 错误测量变量可能从根本上阻止方程发现，例如仅有强度不能恢复Schrodinger相位动力学。</p>
+<h2>闭卷自测</h2>
+<h3>1. P32 实际辨识的未知对象是什么，哪些对象预先给定？</h3>
+<details><summary>先作答，再展开核对</summary>
+
+
+在PDE结构全局不变但系数随时间或空间变化时，同时找出活动项与系数函数。
+表示：固定活动项支撑上的时变或空变系数序列；候选库为u幂与空间导数乘积。
+
+
+</details>
+
+<h3>2. P32 从数据到模型采用什么路线？按顺序解释各步骤。</h3>
+<details><summary>先作答，再展开核对</summary>
+
+
+Sequential Grouped Threshold Ridge Regression反复按组范数删项、ridge重拟合并OLS去偏；50个阈值模型用AIC启发损失选择，并与group LASSO比较。
+
+
+</details>
+
+<h3>3. P32 哪些假设或限制使结果不能直接推广？至少说出两项。</h3>
+<details><summary>先作答，再展开核对</summary>
+
+
+• 活动PDE项跨时间/空间共享
+• 每项系数可自由随单一坐标变化
+• 候选库有限且以单项式和导数为主
+• 结构稀疏
+• 方法仍受数值微分精度和有限候选库限制。
+• 含四阶导数的KS对噪声极敏感，1%噪声不能正确识别。
+• 当前拆分只允许系数随时间或空间之一变化；同时空变化需分箱并损失分辨率。
+• 错误测量变量可能从根本上阻止方程发现，例如仅有强度不能恢复Schrodinger相位动力学。
+
+
+</details>
+
+<h3>4. 怎样设计这项单因素检验：只改变系数变化尺度。</h3>
+<details><summary>先作答，再展开核对</summary>
+
+
+只改变指定因素，固定数据划分与其余参数；用结构、系数/统计量和留出预测评价，并将结果联系到以下方法边界：
+• 方法仍受数值微分精度和有限候选库限制。
+• 含四阶导数的KS对噪声极敏感，1%噪声不能正确识别。
+• 当前拆分只允许系数随时间或空间之一变化；同时空变化需分箱并损失分辨率。
+• 错误测量变量可能从根本上阻止方程发现，例如仅有强度不能恢复Schrodinger相位动力学。
+
+
+</details>
+
+<h2>作者代码与核查</h2>
+<p>代码信息为课程构建时的核查快照，可访问不等于已复现；没有定位到代码不等于作者没有公开。</p>
+<ul>
+<li><a href="https://github.com/snagcliffs/parametric-discovery">https://github.com/snagcliffs/parametric-discovery</a></li>
+</ul>
+<pre><code class="language-json">{
+  &quot;verified_status&quot;: &quot;public_verified&quot;,
+  &quot;entrypoints&quot;: [
+    {
+      &quot;path&quot;: &quot;Parametric Burgers.ipynb&quot;,
+      &quot;basis&quot;: &quot;observed root path; not executed&quot;,
+      &quot;repository&quot;: &quot;https://github.com/snagcliffs/parametric-discovery&quot;
+    },
+    {
+      &quot;path&quot;: &quot;Parametric Navier Stokes.ipynb&quot;,
+      &quot;basis&quot;: &quot;observed root path; not executed&quot;,
+      &quot;repository&quot;: &quot;https://github.com/snagcliffs/parametric-discovery&quot;
+    },
+    {
+      &quot;path&quot;: &quot;Spatial_Advection_Diffusiuon.ipynb&quot;,
+      &quot;basis&quot;: &quot;observed root path; not executed&quot;,
+      &quot;repository&quot;: &quot;https://github.com/snagcliffs/parametric-discovery&quot;
+    },
+    {
+      &quot;path&quot;: &quot;Spatial_KS_Equation_Chaotic.ipynb&quot;,
+      &quot;basis&quot;: &quot;observed root path; not executed&quot;,
+      &quot;repository&quot;: &quot;https://github.com/snagcliffs/parametric-discovery&quot;
+    }
+  ],
+  &quot;environment&quot;: [
+    {
+      &quot;requirement_excerpt&quot;: &quot;and their parametric dependencies. Group sparsity is used to ensure parsimonious representations&quot;,
+      &quot;source_url&quot;: &quot;https://raw.githubusercontent.com/snagcliffs/parametric-discovery/master/README.md&quot;,
+      &quot;line&quot;: 13,
+      &quot;basis&quot;: &quot;literal README statement; environment not constructed&quot;
+    }
+  ],
+  &quot;blockers&quot;: [
+    &quot;paper-result T2 reproduction not run; public access or README inspection is not reproduction&quot;
+  ],
+  &quot;follow_up_actions&quot;: []
+}
+</code></pre>
+<h2>原文定位</h2>
+<p>以下为课程整理的结论和原文页码 / 块号索引，全文通过出版页面访问。</p>
+<ul>
+<li>
+<p>块对角回归按同一候选项跨时间或空间编组，强制共享活动支撑而允许系数任意变化。（PDF 页 7；块号 P007-B001, P007-B002, P007-B003, P007-B004, P007-B005）</p>
+</li>
+<li>
+<p>SGTR在无噪和1%噪声Burgers中均正确识别两项及其时变系数，GLASSO两者均失败。（PDF 页 10；块号 P010-B001, P010-B002, P010-B003）</p>
+</li>
+<li>
+<p>圆柱尾流Re从100跳到75，SGTR与GLASSO均找对活动项和跳变；噪声案例需大量空间抽样。（PDF 页 11；块号 P011-B001, P011-B002, P011-B003）</p>
+</li>
+<li>
+<p>空变对流扩散在无噪和1%噪声下两法都正确恢复。（PDF 页 12；块号 P012-B001, P012-B002, P012-B003）</p>
+</li>
+<li>
+<p>KS在1%噪声下失败，降到0.01%才找对支撑且系数误差仍显著。（PDF 页 13；块号 P013-B002, P013-B003）</p>
+</li>
+</ul></main></body></html>

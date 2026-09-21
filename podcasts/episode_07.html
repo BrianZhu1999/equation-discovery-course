@@ -1,0 +1,40 @@
+<!doctype html><html lang="zh-CN"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>论文播客脚本 · 物理规律发现</title><link rel="stylesheet" href="../style.css"><link rel="stylesheet" href="../public.css"></head><body><main class="doc"><div class="links"><a href="../">返回课程</a><a href="../spectrum/">三维谱图</a></div><h1>第7期｜符号搜索、强化学习与人机共创</h1>
+<blockquote>
+<p>这是课程学习播客脚本，不是对论文结果的独立再验证。数字和性能结论以原文为准。</p>
+</blockquote>
+<p><strong>主持人</strong>：符号搜索很强，但搜索空间越大就越容易找到看起来对的错误答案。</p>
+<p><strong>研究者</strong>：这一期选了：P35《DISCOVER: Deep identification of symbolically concise open-form partial differential equations via enhanced reinforcement learning》；P40《Interactive symbolic regression with co-design mechanism through offline reinforcement learning》；P2《Discovering physical laws with parallel symbolic enumeration》。我们只抓住一条主线，不把整篇论文念成摘要。</p>
+<h2>1. P35：DISCOVER: Deep identification of symbolically concise open-form partial differential equations via enhanced reinforcement learning</h2>
+<p><strong>主持人</strong>：这篇工作的未知对象到底是什么？用一句话先说清楚。</p>
+<p><strong>研究者</strong>：它的研究目标是：从时空观测中发现不局限于预设候选库的PDE结构，并把开放式符号搜索扩展到高维、多变量海洋次网格参数化。</p>
+<p><strong>主持人</strong>：那数据是怎样变成方程的？</p>
+<p><strong>研究者</strong>：方法路线是：候选经语法和可选物理规则屏蔽，以拟合、复杂度和树深构成奖励；仅高奖励尾部样本用于风险寻求策略梯度更新。系数用STRidge求解，海洋长表达式另用迭代残差拟合和特征重要性删项。这里要特别注意，候选表示、数据质量和优化器都属于问题设定的一部分。</p>
+<p><strong>主持人</strong>：课程给这篇安排的推导是什么？</p>
+<p><strong>研究者</strong>：写出表达式 token 策略、终止条件、系数拟合和强化学习奖励；区分生成概率和物理可信度。</p>
+<p><strong>主持人</strong>：最容易被忽略的限制呢？</p>
+<p><strong>研究者</strong>：原文和课程记录的边界是：• 开放式搜索即使较SGA加速，仍比闭合候选库方法慢若干数量级；早期持续生成差候选还可能把策略推离真式，形成探索失败。
+• 作者明确称当前框架不适用于高噪且稀疏场景，并建议未来引入弱形式；任意高阶函数项的可靠求值仍是瓶颈。所以可以说它在给定假设下有效，不能直接说发现了所有系统的普适定律。</p>
+<h2>2. P40：Interactive symbolic regression with co-design mechanism through offline reinforcement learning</h2>
+<p><strong>主持人</strong>：这篇工作的未知对象到底是什么？用一句话先说清楚。</p>
+<p><strong>研究者</strong>：它的研究目标是：从数值输入输出对恢复表达式树，并允许专家把已知的部分表达式作为前缀状态注入，以补全未知修正项或复杂公式。</p>
+<p><strong>主持人</strong>：那数据是怎样变成方程的？</p>
+<p><strong>研究者</strong>：方法路线是：用含最优与次优轨迹的离线数据训练保守Q学习网络；推理时按Q值和beam search扩展树，随后BFGS调常数。交互模式从用户给定的部分树继续生成。这里要特别注意，候选表示、数据质量和优化器都属于问题设定的一部分。</p>
+<p><strong>主持人</strong>：课程给这篇安排的推导是什么？</p>
+<p><strong>研究者</strong>：区分离线数据集、策略奖励与人工表达式约束；列出共设计介入搜索的时点。</p>
+<p><strong>主持人</strong>：最容易被忽略的限制呢？</p>
+<p><strong>研究者</strong>：原文和课程记录的边界是：• 验证主要局限于二变量，三变量仅作扩展；高维表达式及ODE/PDE仍是未来方向。
+• 模型把常数离散值当作独立动作且不直接拟合，常出现常数错误；最终精度依赖额外BFGS。所以可以说它在给定假设下有效，不能直接说发现了所有系统的普适定律。</p>
+<h2>3. P2：Discovering physical laws with parallel symbolic enumeration</h2>
+<p><strong>主持人</strong>：这篇工作的未知对象到底是什么？用一句话先说清楚。</p>
+<p><strong>研究者</strong>：它的研究目标是：在给定输入变量、输出和算子集合时，高效恢复可解释代数关系或ODE右端项，并应用于混沌系统、机电定位装置和湍流摩阻关系。</p>
+<p><strong>主持人</strong>：那数据是怎样变成方程的？</p>
+<p><strong>研究者</strong>：方法路线是：GPU上并行枚举数百万至数亿候选并共享公共子树计算；GP为默认token生成器，也比较MCTS和随机生成；候选常数先采样、再用最小二乘统一细化，最终保留误差-复杂度Pareto前沿。这里要特别注意，候选表示、数据质量和优化器都属于问题设定的一部分。</p>
+<p><strong>主持人</strong>：课程给这篇安排的推导是什么？</p>
+<p><strong>研究者</strong>：手算一个深度为2的表达式树枚举，说明代数等价去重如何减少候选数。</p>
+<p><strong>主持人</strong>：最容易被忽略的限制呢？</p>
+<p><strong>研究者</strong>：原文和课程记录的边界是：• PSRN显存随层数急剧增长；20输入、3层、常用算子估算超过10^5 GB，常规实现直接处理的树深不超过3。
+• 深而不可分解的表达式可能使token生成器停在局部最优；真实系数若远离初始采样范围，最小二乘细化也可能找不到全局最优。
+• 高噪声下可能过度正则为简单式，也可能因偏好分式而用复杂有理函数拟合噪声；仍受预定义算子集限制。所以可以说它在给定假设下有效，不能直接说发现了所有系统的普适定律。</p>
+<h2>结尾：带走三句话</h2>
+<p><strong>研究者</strong>：第一，先说清楚未知对象和候选空间；第二，区分训练拟合、结构恢复和留出预测；第三，任何漂亮的方程都要配上可辨识条件和失败边界。</p>
+<p><strong>主持人</strong>：下一期继续沿着这条线走：把公式放回数据、实验和它不能回答的问题里。</p></main></body></html>

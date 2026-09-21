@@ -1,0 +1,111 @@
+<!doctype html><html lang="zh-CN"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>DLGA-PDE: Discovery of PDEs with incomplete candidate library via combination of deep learning and genetic algorithm · 物理规律发现</title><link rel="stylesheet" href="../style.css"><link rel="stylesheet" href="../public.css"></head><body><main class="doc"><div class="links"><a href="../">返回课程</a><a href="../spectrum/">三维谱图</a></div><h1>P45 · DLGA-PDE: Discovery of PDEs with incomplete candidate library via combination of deep learning and genetic algorithm</h1>
+<p>Hao Xu; Haibin Chang; Dongxiao Zhang. DLGA-PDE: Discovery of PDEs with incomplete candidate library via combination of deep learning and genetic algorithm. Journal of Computational Physics, 2020, 418: 109584. DOI: 10.1016/j.jcp.2020.109584</p>
+<p><a href="https://doi.org/10.1016/j.jcp.2020.109584">出版页面</a> · 第 12 天 · 符号搜索</p>
+<h2>研究问题</h2>
+<p>在初始候选库缺少真方程所需高阶导数或乘积项时，利用神经网络生成平滑元数据和自动导数，再由遗传变异产生缺失结构。</p>
+<h2>规律表示</h2>
+<p>PDE编码为左右两侧的基因组：模块内部把u及导数基因相乘，模块之间相加；当前简化要求左端只有一个时间导数项，右端可经组合与突变形成高阶或非线性项。</p>
+<h2>方法</h2>
+<p>种群从基本基因随机生成，以最小二乘残差加L0长度惩罚为适应度；选择后的基因组通过交叉、删除、增加与阶数突变演化，稳定出现的最优个体作为最终PDE。</p>
+<h2>假设</h2>
+<p>• 左端限制为单个时间导数模块
+• 用户给定基本基因和允许的最高导数阶数
+• L0复杂度惩罚偏好短基因组
+• 常系数时空齐次PDE假设</p>
+<h2>必做推导</h2>
+<p>说明遗传算子如何扩展不完整初始候选库，列出仍无法生成的语法结构。</p>
+<h2>复现目标</h2>
+<p>在作者代码中选一个支持核心结论的案例：• KdV方程
+• 一维波动方程
+• Burgers方程
+• Chafee-Infante方程
+• 缺失高阶空间或时间导数的候选库消融。先运行小样例，再恢复该案例原文配置；运行前登记原文指标/目标图、统计量和容差，运行后交付结构或等价结构、系数/统计量、留出预测、耗时和日志。</p>
+<h2>单因素检验</h2>
+<p>只从初始库删去一个正确项。</p>
+<h2>适用范围与限制</h2>
+<p>• L0正则超参数对正确结构至关重要，但当前只凭经验设置；同时方法只支持时空常系数，不能处理分段常数或平滑变系数。
+• 当前编码把左端限制为单个时间导数项，虽称可扩展，但论文实验没有验证多项或混合导数左端。
+• 极低样本和较高噪声存在明确结构失败边界：波动方程100点产生赘项，20%噪声不再恢复真方程。</p>
+<h2>闭卷自测</h2>
+<h3>1. P45 实际辨识的未知对象是什么，哪些对象预先给定？</h3>
+<details><summary>先作答，再展开核对</summary>
+
+
+在初始候选库缺少真方程所需高阶导数或乘积项时，利用神经网络生成平滑元数据和自动导数，再由遗传变异产生缺失结构。
+表示：PDE编码为左右两侧的基因组：模块内部把u及导数基因相乘，模块之间相加；当前简化要求左端只有一个时间导数项，右端可经组合与突变形成高阶或非线性项。
+
+
+</details>
+
+<h3>2. P45 从数据到模型采用什么路线？按顺序解释各步骤。</h3>
+<details><summary>先作答，再展开核对</summary>
+
+
+种群从基本基因随机生成，以最小二乘残差加L0长度惩罚为适应度；选择后的基因组通过交叉、删除、增加与阶数突变演化，稳定出现的最优个体作为最终PDE。
+
+
+</details>
+
+<h3>3. P45 哪些假设或限制使结果不能直接推广？至少说出两项。</h3>
+<details><summary>先作答，再展开核对</summary>
+
+
+• 左端限制为单个时间导数模块
+• 用户给定基本基因和允许的最高导数阶数
+• L0复杂度惩罚偏好短基因组
+• 常系数时空齐次PDE假设
+• L0正则超参数对正确结构至关重要，但当前只凭经验设置；同时方法只支持时空常系数，不能处理分段常数或平滑变系数。
+• 当前编码把左端限制为单个时间导数项，虽称可扩展，但论文实验没有验证多项或混合导数左端。
+• 极低样本和较高噪声存在明确结构失败边界：波动方程100点产生赘项，20%噪声不再恢复真方程。
+
+
+</details>
+
+<h3>4. 怎样设计这项单因素检验：只从初始库删去一个正确项。</h3>
+<details><summary>先作答，再展开核对</summary>
+
+
+只改变指定因素，固定数据划分与其余参数；用结构、系数/统计量和留出预测评价，并将结果联系到以下方法边界：
+• L0正则超参数对正确结构至关重要，但当前只凭经验设置；同时方法只支持时空常系数，不能处理分段常数或平滑变系数。
+• 当前编码把左端限制为单个时间导数项，虽称可扩展，但论文实验没有验证多项或混合导数左端。
+• 极低样本和较高噪声存在明确结构失败边界：波动方程100点产生赘项，20%噪声不再恢复真方程。
+
+
+</details>
+
+<h2>作者代码与核查</h2>
+<p>代码信息为课程构建时的核查快照，可访问不等于已复现；没有定位到代码不等于作者没有公开。</p>
+<pre><code class="language-json">{
+  &quot;verified_status&quot;: &quot;unverified&quot;,
+  &quot;entrypoints&quot;: [],
+  &quot;environment&quot;: [],
+  &quot;blockers&quot;: [
+    &quot;author code not found in inspected local source; this does not establish that code does not exist&quot;,
+    &quot;required code-discovery queue remains open; missing PDF URL is not evidence of missing author code&quot;
+  ],
+  &quot;follow_up_actions&quot;: [
+    &quot;Check publisher code/data availability and supplementary attachments&quot;,
+    &quot;Follow first/corresponding author project page; verify paper title/DOI in the repository before accepting it&quot;,
+    &quot;Record author-code link or a dated availability boundary; do not close this task because PDF transcription lacks a URL&quot;
+  ]
+}
+</code></pre>
+<h2>原文定位</h2>
+<p>以下为课程整理的结论和原文页码 / 块号索引，全文通过出版页面访问。</p>
+<ul>
+<li>
+<p>框架先训练全连接神经网络近似观测场并计算导数，再以编码、交叉、突变和适应度选择搜索不完整候选库中的PDE。（PDF 页 4；块号 P004-B006）</p>
+</li>
+<li>
+<p>标准设置允许右端到三阶导数、种群200且最多100代；四个合成PDE均恢复正确项与接近真值的系数，尽管初始候选库并未显式枚举所有组合。（PDF 页 10；块号 P010-B003, P010-B004, P010-B006）</p>
+</li>
+<li>
+<p>从基本基因中删除KdV所需三阶空间导数后，突变在第二代生成该导数并最终恢复正确PDE。（PDF 页 12；块号 P012-B003, P012-B004, P012-B008）</p>
+</li>
+<li>
+<p>从基本基因中删除波动方程左端所需的二阶时间导数后，突变仍在第二代产生u_tt并快速恢复正确形式。（PDF 页 13；块号 P013-B001, P013-B002, P013-B005）</p>
+</li>
+<li>
+<p>波动方程补充实验显示100个训练点时出现额外二阶空间项；噪声从0至15%仍保持真结构，而20%时退化为错误方程。（PDF 页 25；块号 P025-B001, P025-B002, P025-B004）</p>
+</li>
+</ul></main></body></html>

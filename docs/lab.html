@@ -1,0 +1,205 @@
+<!doctype html><html lang="zh-CN"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>lab · 物理规律发现</title><link rel="stylesheet" href="../style.css"><link rel="stylesheet" href="../public.css"></head><body><main class="doc"><div class="links"><a href="../">返回课程</a><a href="../spectrum/">三维谱图</a></div><p class="notice">公网版：笔记和进度保存在当前浏览器，可在首页导出 / 导入 JSON。文中本地命令与文件约定适用于下载后的实验；站点不能执行代码或核验本机日志。论文全文请通过出版页面访问。</p><h1>第一天：用手写 STLSQ 从观测恢复 Lorenz 方程</h1>
+<p>今天要弄清楚三个问题：为什么“候选项已知”能把方程发现变成线性回归；稀疏约束怎么去掉多余项；为什么低拟合误差还不等于发现正确规律。</p>
+<p>这是本课程的<strong>独立教学实现</strong>，只使用 NumPy 和 SciPy，不是 Brunton 等论文作者代码的复现。完成本实验可作为“等价最小实现”的运行证据，不能记录成论文主要图表的 T2 复现。</p>
+<h2>1. 先预测，再运行</h2>
+<p>暂时不要看最后的核对结果。用自己的话写下四个预测：</p>
+<ol>
+<li>如果候选库包含常数、一次项和所有二次项，三个方程各应保留哪些项？一共几个非零系数？</li>
+<li>如果从候选库删除 <code>xy</code>，算法能否通过增加样本重新发现 <code>xy</code>？它可能用哪些其他项降低残差？</li>
+<li>如果每个坐标加入其训练标准差 1% 的观测噪声，中心差分中的除以 <code>dt</code> 会怎样影响导数？这是否必然让稀疏结构识别失败？</li>
+<li>一组系数非常接近真值，是否能保证混沌系统的轨迹永远与真值重合？准备比较哪些互补指标？</li>
+</ol>
+<p>先写下答案，再运行。预测错了也保留原答案，最后说明修改了哪条判断。</p>
+<h2>2. 运行与输出</h2>
+<p>下载课程仓库，安装 NumPy 和 SciPy 后运行（Python 3.10+）：</p>
+<pre><code class="language-powershell">cd equation-discovery-course
+python downloads/lab_sindy.py
+</code></pre>
+<p>脚本会在 <code>labs/runs/</code> 创建带时间戳的新目录。显式隔离输出时可使用一个尚未使用的路径：</p>
+<pre><code class="language-powershell">python downloads/lab_sindy.py --out 'labs/runs/my_first_sindy_run'
+</code></pre>
+<p>同名输出已存在时会拒绝覆盖。不要把复跑结果写到旧结果上。环境只需要 <code>numpy</code>、<code>scipy</code>；已验证环境为 Python 3.11、NumPy 2.4.6、SciPy 1.17.1，实际精确版本会写入 JSON。</p>
+<table>
+<thead>
+<tr>
+<th>文件</th>
+<th>用途</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>summary.json</code></td>
+<td>完整参数、版本、脚本 SHA256、STLSQ 迭代记录、结构和误差检查</td>
+</tr>
+<tr>
+<td><code>coefficients.csv</code></td>
+<td>三种情形下每个候选项的拟合系数及评分用真值，删掉的项明确标记</td>
+</tr>
+<tr>
+<td><code>training_samples.csv</code></td>
+<td>干净与有噪训练观测；可手算差分并核对</td>
+</tr>
+<tr>
+<td><code>test_trajectories.csv</code></td>
+<td>整条未见初值参考轨迹，以及三种识别方程的积分预测</td>
+</tr>
+</tbody>
+</table>
+<p>默认同时运行三种情形。删项实验只改变候选库中的 <code>xy</code>；噪声实验只改变训练观测。其余采样、阈值、求导方式和测试协议保持相同。</p>
+<h2>3. 数据如何产生，哪些信息能进入训练</h2>
+<p>模拟器的参考系统为：</p>
+<pre><code class="language-text">dx/dt = 10(y − x)
+dy/dt = 28x − y − xz
+dz/dt = xy − (8/3)z
+</code></pre>
+<p>训练初值为 <code>[-8, 8, 27]</code>，时间区间 <code>[0, 12]</code>；测试初值为 <code>[8, 7, 25]</code>，时间区间 <code>[0, 6]</code>。步长 <code>dt=0.005</code>。两条轨迹分别积分，测试轨迹没有任何采样点进入训练。测试是同一参数系统的未见初值验证，不能据此声称对任意状态、参数或其他系统有效。</p>
+<p>估计器接收训练状态采样，导数由采样的二阶中心差分估计：</p>
+<pre><code class="language-text">时刻 k 的导数估计 = (X[k+1] − X[k−1]) / (2Δt)
+</code></pre>
+<p>首尾点被丢弃，候选库使用对齐的 <code>X[1:-1]</code>。即使数据没有观测噪声，差分仍有截断误差，因此系数不必与真值完全相等。</p>
+<p><code>fit_model()</code> 和 <code>stlsq()</code> 不接收真实系数、模拟器导数或测试数据。脚本先拟合全部模型，随后才创建用于评分的真值系数矩阵和测试轨迹。阈值固定为 <code>0.1</code>，没有按测试结果搜索阈值。固定种子 <code>20260917</code> 只控制训练噪声。</p>
+<p>完整二次库是预先设计的表示先验，并且在这个受控问题中包含真实方程所需的项。这里检查的是给定候选空间后的结构选择；“没有输入真实系数”不等于“完全没有先验”。</p>
+<h2>4. 每个变量的形状</h2>
+<p>完整二次候选库依次为：</p>
+<pre><code class="language-text">Θ(X) = [1, x, y, z, x², xy, xz, y², yz, z²]
+</code></pre>
+<table>
+<thead>
+<tr>
+<th>变量</th>
+<th>默认形状</th>
+<th>每一维表示什么</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>train_times</code></td>
+<td><code>(2401,)</code></td>
+<td>训练采样时刻</td>
+</tr>
+<tr>
+<td><code>training</code>、<code>noisy_training</code></td>
+<td><code>(2401, 3)</code></td>
+<td>时刻 × 状态坐标</td>
+</tr>
+<tr>
+<td><code>aligned_states</code></td>
+<td><code>(2399, 3)</code></td>
+<td>丢弃首尾后与差分对齐的状态</td>
+</tr>
+<tr>
+<td><code>derivatives</code></td>
+<td><code>(2399, 3)</code></td>
+<td>时刻 × 三个导数</td>
+</tr>
+<tr>
+<td><code>theta</code></td>
+<td><code>(2399, 10)</code></td>
+<td>时刻 × 候选项；删 <code>xy</code> 后为 <code>(2399, 9)</code></td>
+</tr>
+<tr>
+<td><code>coefficients</code>，记为 <code>Xi</code></td>
+<td><code>(10, 3)</code></td>
+<td>候选项 × 导数方程；删项后为 <code>(9, 3)</code></td>
+</tr>
+<tr>
+<td><code>theta @ coefficients</code></td>
+<td><code>(2399, 3)</code></td>
+<td>三个导数的拟合值</td>
+</tr>
+<tr>
+<td><code>test_states</code>、各预测轨迹</td>
+<td><code>(1201, 3)</code></td>
+<td>完整测试时刻 × 坐标</td>
+</tr>
+</tbody>
+</table>
+<p>关键区别：方程对状态可以是非线性的，但只要候选函数固定，<code>Theta @ Xi</code> 对未知系数 <code>Xi</code> 是线性的。<code>xy</code> 是已计算好的特征列，不需要再对 <code>x</code> 和 <code>y</code> 做非线性优化。</p>
+<h2>5. STLSQ 在做什么</h2>
+<p>STLSQ 是顺序阈值最小二乘。先解一次没有稀疏约束的最小二乘：</p>
+<pre><code class="language-text">初始 Ξ = 使 ‖ΘΞ − 观测导数估计‖²_F 最小的系数矩阵
+</code></pre>
+<p>F表示把矩阵所有元素的残差平方相加。</p>
+<p>然后重复下列操作，每个方程分别处理：</p>
+<ol>
+<li>将绝对值小于 <code>threshold=0.1</code> 的系数置零。</li>
+<li>只保留当前非零候选列，再解一次最小二乘，重新估计剩余系数。</li>
+<li>比较保留项集合；集合稳定后停止。</li>
+</ol>
+<p>第二步很关键：删除一个项后，其余系数需要重新分配，不能只阈值化一次就结束。实现使用 <code>numpy.linalg.lstsq</code>，不显式求 <code>(Theta.T @ Theta)</code> 的逆。最多迭代 20 次；没有稳定时会报错，不会默认为收敛。</p>
+<p>本实验直接对原始物理系数阈值化，没有列归一化。因此 <code>0.1</code> 依赖变量单位和缩放，不能照搬到任意数据。完整库的默认条件数约为 <code>8.54e3</code>，也提醒我们：很多候选列在同一条轨迹上相关，有限数据中的回归不等于数学上唯一的结构识别。</p>
+<h2>6. 读结果时不要只看一个误差</h2>
+<p>先看 <code>structure_recovered_exactly</code>，再看每个系数和 <code>maximum_true_active_coefficient_relative_error</code>。整体相对系数误差会被 <code>28</code>、<code>10</code> 等较大的系数主导，可能掩盖一个 <code>−1</code> 系数的明显偏差。</p>
+<p>再比较三个不同问题：</p>
+<ul>
+<li>训练导数残差：方程能否解释用于回归的有限差分导数？</li>
+<li>测试向量场误差：在测试轨迹的真实状态处，识别方程给出的瞬时导数是否正确？真实导数仅在评分时调用模拟器计算。</li>
+<li>测试积分轨迹误差：从未见初值独立积分 6 秒，是否仍接近参考轨迹？同时保留前 1 秒误差，以解释混沌系统中的误差增长。</li>
+</ul>
+<p>轨迹 NRMSE 先用完整干净测试轨迹各坐标的标准差归一，再对时间、坐标取均方根：</p>
+<pre><code class="language-text">每个坐标 j 的归一化误差 = mean_t[(预测 Xj − 真值 Xj)²] / var_t(真值 Xj)
+NRMSE = sqrt[(坐标1误差 + 坐标2误差 + 坐标3误差) / 3]
+</code></pre>
+<p>前 1 秒也使用相同的完整测试尺度，方便比较。该尺度只用于评分，不参与拟合。若识别方程提前发散，脚本会记录停止时间，全程误差记为 <code>null</code>，CSV 中缺失预测留空，不能用成功积分的前缀冒充整轨迹完成。</p>
+<p>干净数据的教学检查在运行前固定：7 个真实支持项完全正确、真实非零系数的整体相对误差不超过 2%、最大单项相对误差不超过 5%。这个门槛用于排查教学实现和设置，不是论文级充分证明。</p>
+<h2>7. 默认设置的实际核对结果</h2>
+<p>下面是本地默认运行的实际结果，保存在 <code>labs/runs/sindy_day1_verified_20260917/</code>。新环境应核对趋势与指标，不要求最后一位浮点数相同。</p>
+<table>
+<thead>
+<tr>
+<th>情形</th>
+<th style="text-align: right;">结构完全正确</th>
+<th style="text-align: right;">全部系数相对误差</th>
+<th style="text-align: right;">训练导数残差</th>
+<th style="text-align: right;">测试向量场相对误差</th>
+<th style="text-align: right;">完整 6 秒轨迹 NRMSE</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>干净数据、完整库</td>
+<td style="text-align: right;">是，7 项</td>
+<td style="text-align: right;">0.155%</td>
+<td style="text-align: right;">0.0823%</td>
+<td style="text-align: right;">0.0956%</td>
+<td style="text-align: right;">0.0388</td>
+</tr>
+<tr>
+<td>干净数据、删除 <code>xy</code></td>
+<td style="text-align: right;">否，漏 1 项且多 6 项</td>
+<td style="text-align: right;">135.8%</td>
+<td style="text-align: right;">6.43%</td>
+<td style="text-align: right;">4.00%</td>
+<td style="text-align: right;">0.528</td>
+</tr>
+<tr>
+<td>1% 观测噪声、完整库</td>
+<td style="text-align: right;">是，7 项</td>
+<td style="text-align: right;">0.176%</td>
+<td style="text-align: right;">18.0%</td>
+<td style="text-align: right;">0.287%</td>
+<td style="text-align: right;">0.0463</td>
+</tr>
+</tbody>
+</table>
+<p>干净数据得到：</p>
+<pre><code class="language-text">dx/dt = -9.99503*x + 9.995*y
+dy/dt = 27.9524*x - 0.990972*y - 0.998654*xz
+dz/dt = -2.66482*z + 0.999291*xy
+</code></pre>
+<p>最大真实系数相对误差约 0.903%，教学检查通过。前 1 秒轨迹 NRMSE 为 0.00462，完整 6 秒为 0.0388：很小的局部误差也可能在积分中累积。</p>
+<p>删除 <code>xy</code> 后，第三个方程使用常数、<code>x</code>、<code>y</code>、<code>x^2</code>、<code>y^2</code>、<code>z^2</code> 等替代项补偿，甚至把 <code>z</code> 系数的符号拟合反了。它仍然可以积分到 6 秒，却没有恢复正确规律。这里的失败是结构错误和预测退化，不是“必然数值爆炸”。</p>
+<p>1% 噪声下结构仍正确，并不意味着求导没有受到影响。训练观测各坐标噪声标准差约为 <code>0.0711、0.0825、0.0835</code>；差分导数中的噪声标准差约为 <code>10.3、11.6、12</code>，导数整体扰动约 18.3%。独立观测噪声的中心差分标准差近似为</p>
+<pre><code class="language-text">导数噪声标准差 ≈ 观测噪声标准差 / (√2 × Δt)
+</code></pre>
+<p>这次样本量、噪声 realization 和固定阈值仍允许正确筛选支持项。有些系数甚至偶然比干净差分更接近真值；单个噪声种子不能支撑“加噪更好”或普遍稳健的结论。不要为了制造失败去查看测试结果后反复改阈值。</p>
+<h2>8. 运行后解释与提交</h2>
+<p>完成下面五项，才结束今天实验：</p>
+<ol>
+<li>对照 <code>coefficients.csv</code>，指出 <code>Xi</code> 的哪个单元格对应 <code>dy/dt</code> 中的 <code>xz</code>。</li>
+<li>手算两个相邻观测参与的一次中心差分，核对候选库对应的是哪个中间时刻。</li>
+<li>用自己的话解释为什么删掉 <code>xy</code> 后，继续收集同类观测也无法直接输出不在库中的 <code>xy</code> 项。</li>
+<li>对照运行前预测，解释“训练残差小”“支持项正确”“未见初值轨迹接近”之间的区别。</li>
+<li>保存命令、输出目录、脚本 SHA256 和一个失败边界。明确注明“教学独立实现”，把结构反例和单种子噪声结果的限度写清楚。</li>
+</ol>
+<p>可选的下一次受控实验：只把 <code>--dt</code> 从 <code>0.005</code> 改成 <code>0.01</code>，其余保持不变，运行前预测截断误差与噪声放大如何变化。时间网格改变会改变所采样噪声，需如实记录；不要把它描述为完全相同噪声 realization。默认脚本没有平滑、弱形式、交叉验证或多种子统计，这些都是后续课程要解决的问题。</p></main></body></html>

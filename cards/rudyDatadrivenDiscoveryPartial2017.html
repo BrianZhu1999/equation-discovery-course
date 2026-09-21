@@ -1,0 +1,113 @@
+<!doctype html><html lang="zh-CN"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Data-driven discovery of partial differential equations · 物理规律发现</title><link rel="stylesheet" href="../style.css"><link rel="stylesheet" href="../public.css"></head><body><main class="doc"><div class="links"><a href="../">返回课程</a><a href="../spectrum/">三维谱图</a></div><h1>P04 · Data-driven discovery of partial differential equations</h1>
+<p>Samuel H. Rudy; Steven L. Brunton; Joshua L. Proctor; J. Nathan Kutz. Data-driven discovery of partial differential equations. Science Advances, 2017, 3(4): e1602614. DOI: 10.1126/sciadv.1602614</p>
+<p><a href="https://doi.org/10.1126/sciadv.1602614">出版页面</a> · 第 3 天 · 基础与稀疏表示</p>
+<h2>研究问题</h2>
+<p>从Euler或Lagrange框架的时空序列识别参数化PDE右端项及系数，并区分对单一轨迹等价的候选动力学。</p>
+<h2>规律表示</h2>
+<p>预定义过完备候选库Theta(U,Q)的稀疏线性组合，每个非零系数对应一个状态、参数或空间导数项；时间导数固定为回归左端。</p>
+<h2>方法</h2>
+<p>以顺序阈值岭回归STRidge近似L0稀疏选择，迭代搜索阈值，并用残差、条件数相关惩罚和非零项数形成Pareto式模型选择。</p>
+<h2>假设</h2>
+<p>• 真PDE在候选库中存在且相对稀疏
+• 较少项的简约偏好
+• 可把已知必非零项或外部输入加入惩罚/候选库</p>
+<h2>必做推导</h2>
+<p>为 Burgers 方程列出 u、u²、u_x、u_xx、u u_x 的特征列，写出阈值岭回归和未见初值检验。</p>
+<h2>复现目标</h2>
+<p>在作者代码中选一个支持核心结论的案例：• 圆柱绕流Navier-Stokes涡量方程
+• Brownian运动对应扩散/平流扩散
+• 多振幅KdV孤子
+• Burgers、Schrodinger、非线性Schrodinger、Kuramoto-Sivashinsky和反应扩散。先运行小样例，再恢复该案例原文配置；运行前登记原文指标/目标图、统计量和容差，运行后交付结构或等价结构、系数/统计量、留出预测、耗时和日志。</p>
+<h2>单因素检验</h2>
+<p>保持观测数固定，只提高测量噪声。</p>
+<h2>适用范围与限制</h2>
+<p>• 低误差识别所需时间序列长度没有理论估计，仅建议用Pareto误差陡降作为经验指引。
+• Kuramoto-Sivashinsky在含噪时虽选对项但系数明显低估，归因于数值微分误差。
+• 多项式求导在边界附近不可靠，边界剔除会强烈影响结果；作者称该求导方法远非完美。</p>
+<h2>闭卷自测</h2>
+<h3>1. P04 实际辨识的未知对象是什么，哪些对象预先给定？</h3>
+<details><summary>先作答，再展开核对</summary>
+
+
+从Euler或Lagrange框架的时空序列识别参数化PDE右端项及系数，并区分对单一轨迹等价的候选动力学。
+表示：预定义过完备候选库Theta(U,Q)的稀疏线性组合，每个非零系数对应一个状态、参数或空间导数项；时间导数固定为回归左端。
+
+
+</details>
+
+<h3>2. P04 从数据到模型采用什么路线？按顺序解释各步骤。</h3>
+<details><summary>先作答，再展开核对</summary>
+
+
+以顺序阈值岭回归STRidge近似L0稀疏选择，迭代搜索阈值，并用残差、条件数相关惩罚和非零项数形成Pareto式模型选择。
+
+
+</details>
+
+<h3>3. P04 哪些假设或限制使结果不能直接推广？至少说出两项。</h3>
+<details><summary>先作答，再展开核对</summary>
+
+
+• 真PDE在候选库中存在且相对稀疏
+• 较少项的简约偏好
+• 可把已知必非零项或外部输入加入惩罚/候选库
+• 低误差识别所需时间序列长度没有理论估计，仅建议用Pareto误差陡降作为经验指引。
+• Kuramoto-Sivashinsky在含噪时虽选对项但系数明显低估，归因于数值微分误差。
+• 多项式求导在边界附近不可靠，边界剔除会强烈影响结果；作者称该求导方法远非完美。
+
+
+</details>
+
+<h3>4. 怎样设计这项单因素检验：保持观测数固定，只提高测量噪声。</h3>
+<details><summary>先作答，再展开核对</summary>
+
+
+只改变指定因素，固定数据划分与其余参数；用结构、系数/统计量和留出预测评价，并将结果联系到以下方法边界：
+• 低误差识别所需时间序列长度没有理论估计，仅建议用Pareto误差陡降作为经验指引。
+• Kuramoto-Sivashinsky在含噪时虽选对项但系数明显低估，归因于数值微分误差。
+• 多项式求导在边界附近不可靠，边界剔除会强烈影响结果；作者称该求导方法远非完美。
+
+
+</details>
+
+<h2>作者代码与核查</h2>
+<p>代码信息为课程构建时的核查快照，可访问不等于已复现；没有定位到代码不等于作者没有公开。</p>
+<ul>
+<li><a href="https://github.com/snagcliffs/PDE-FIND">https://github.com/snagcliffs/PDE-FIND</a></li>
+</ul>
+<pre><code class="language-json">{
+  &quot;verified_status&quot;: &quot;public_verified&quot;,
+  &quot;entrypoints&quot;: [
+    {
+      &quot;path&quot;: &quot;Examples&quot;,
+      &quot;basis&quot;: &quot;observed root path; not executed&quot;,
+      &quot;repository&quot;: &quot;https://github.com/snagcliffs/PDE-FIND&quot;
+    }
+  ],
+  &quot;environment&quot;: [],
+  &quot;blockers&quot;: [
+    &quot;paper-result T2 reproduction not run; public access or README inspection is not reproduction&quot;,
+    &quot;dependency/environment specification unverified&quot;
+  ],
+  &quot;follow_up_actions&quot;: []
+}
+</code></pre>
+<h2>原文定位</h2>
+<p>以下为课程整理的结论和原文页码 / 块号索引，全文通过出版页面访问。</p>
+<ul>
+<li>
+<p>圆柱绕流案例从稠密或稀疏采样中恢复Navier-Stokes涡量方程，并报告系数与Reynolds数达到百分之一量级以内的误差。（PDF 页 2；块号 P002-B005, P002-B006, P002-B007, P002-B008）</p>
+</li>
+<li>
+<p>单一KdV孤子与线性平流方程不可区分；加入不同振幅的第二条解后才恢复非线性KdV结构。（PDF 页 3；块号 P003-B005, P003-B009, P003-B013）</p>
+</li>
+<li>
+<p>跨多个典型PDE，作者在显著空间子采样和高斯噪声下仍报告结构恢复；表1列出无噪和含噪系数误差。（PDF 页 3；块号 P003-B006, P003-B008）</p>
+</li>
+<li>
+<p>STRidge用于避免相关候选下L1回归表现不佳，并以非零项数惩罚控制过拟合。（PDF 页 5；块号 P005-B005, P005-B006, P005-B007, P005-B009）</p>
+</li>
+<li>
+<p>论文与补充材料所用数据和代码公开在GitHub。（PDF 页 6；块号 P006-B055）</p>
+</li>
+</ul></main></body></html>

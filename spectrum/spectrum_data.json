@@ -1,0 +1,2584 @@
+{
+  "meta": {
+    "title": "方程发现领域谱图",
+    "version": "2026-09-19",
+    "paper_count": 61,
+    "course_count": 76,
+    "scope_note": "覆盖课程 76 篇中的关键锚点与桥接论文；分类、位置和连线是学习用途的综合整理，不等同于作者原文提出的谱系。"
+  },
+  "stages": [
+    {
+      "id": "observe",
+      "label": "观测与采样",
+      "short": "观测",
+      "x": 0,
+      "question": "拿到什么数据？"
+    },
+    {
+      "id": "operator",
+      "label": "表示与算子",
+      "short": "算子",
+      "x": 1,
+      "question": "如何把噪声数据变成可用的导数、弱式或坐标？"
+    },
+    {
+      "id": "space",
+      "label": "结构空间",
+      "short": "结构",
+      "x": 2,
+      "question": "在哪个候选空间里搜索规律？"
+    },
+    {
+      "id": "infer",
+      "label": "结构与系数推断",
+      "short": "推断",
+      "x": 3,
+      "question": "怎样同时决定项和系数？"
+    },
+    {
+      "id": "select",
+      "label": "物理选择",
+      "short": "选择",
+      "x": 4,
+      "question": "怎样避免只追求训练误差？"
+    },
+    {
+      "id": "validate",
+      "label": "跨条件验证",
+      "short": "验证",
+      "x": 5,
+      "question": "方程能否在新条件和真实场中工作？"
+    }
+  ],
+  "families": [
+    {
+      "id": "sparse",
+      "label": "库约束稀疏投影",
+      "short": "稀疏投影",
+      "color": "#58d8e8",
+      "y": 0,
+      "summary": "先规定候选库，再用稀疏回归选择少数激活项。"
+    },
+    {
+      "id": "symbolic",
+      "label": "开放式符号 / 程序搜索",
+      "short": "符号搜索",
+      "color": "#ffab68",
+      "y": 1,
+      "summary": "直接在表达式树、程序或方程语法空间中搜索结构。"
+    },
+    {
+      "id": "neural",
+      "label": "可微代理与数值—符号混合",
+      "short": "神经—符号",
+      "color": "#b28cff",
+      "y": 2,
+      "summary": "用神经代理、自动微分或可学习差分算子稳定地产生可回归量。"
+    },
+    {
+      "id": "geometry",
+      "label": "几何、潜坐标、守恒与对称",
+      "short": "几何与守恒",
+      "color": "#75ddae",
+      "y": 3,
+      "summary": "先寻找流形坐标、守恒量、对称或不变量，再发现动力学。"
+    },
+    {
+      "id": "stochastic",
+      "label": "随机、记忆与 SPDE",
+      "short": "随机与记忆",
+      "color": "#f479a6",
+      "y": 4,
+      "summary": "把漂移、扩散、记忆核和随机项纳入可辨识方程。"
+    },
+    {
+      "id": "coarse",
+      "label": "粗粒化、多尺度与参数泛化",
+      "short": "粗粒化与尺度",
+      "color": "#f2d56b",
+      "y": 5,
+      "summary": "从粒子、代理或多参数数据学习有效的宏观闭合。"
+    }
+  ],
+  "bridges": [
+    {
+      "id": "weak",
+      "label": "弱 / 变分算子",
+      "color": "#77b7ff",
+      "summary": "把导数转移到测试函数或基函数上，减少直接差分。",
+      "paper_ids": [
+        5,
+        16,
+        17,
+        19,
+        50,
+        53,
+        54,
+        64,
+        66,
+        68,
+        69
+      ]
+    },
+    {
+      "id": "prior",
+      "label": "物理先验与守恒约束",
+      "color": "#d0a7ff",
+      "summary": "用单位、对称、守恒、能量或可实现性缩小结构空间。",
+      "paper_ids": [
+        21,
+        22,
+        24,
+        25,
+        44,
+        50,
+        51,
+        56,
+        67,
+        69,
+        71
+      ]
+    },
+    {
+      "id": "evidence",
+      "label": "真实物理与跨尺度证据",
+      "color": "#8fe2aa",
+      "summary": "把候选方程放回实验场、粒子数据或未见参数条件检验。",
+      "paper_ids": [
+        24,
+        50,
+        51,
+        52,
+        62,
+        67,
+        69,
+        71,
+        72,
+        73
+      ]
+    }
+  ],
+  "papers": [
+    {
+      "id": "P62",
+      "corpus_index": 62,
+      "key": "nardiniLearningDifferentialEquation2021",
+      "title": "Learning differential equation models from stochastic agent-based model simulations",
+      "authors": [
+        "John T. Nardini",
+        "Ruth E. Baker",
+        "Matthew J. Simpson",
+        "Kevin B. Flores"
+      ],
+      "year": 2021,
+      "journal": "Journal of The Royal Society Interface",
+      "doi": "10.1098/rsif.2020.0987",
+      "family": "coarse",
+      "stage": "observe",
+      "importance": 2,
+      "topic": "粗粒化与跨参数",
+      "focus": "从随机个体模型模拟中学习可解释的平均动力学方程。",
+      "method": "对多次ABM模拟求统计量，经去噪后用方程学习和模型选择恢复有效微分方程。",
+      "representation": "群体变量的ODE/PDE候选项，作为传统均场闭合的替代或校验。",
+      "assumptions": "• 低维群体变量\n• 稀疏有效动力学",
+      "limitations": "• 不同参数区间可能需要不同有效方程\n• 有限训练窗口外推不可靠\n• 新闭合仍需从微观规则解释",
+      "derivation": "区分个体模拟、轨迹集均值和一次实现的密度场，说明何时能拟合确定性宏观 PDE。",
+      "card_url": "../cards/nardiniLearningDifferentialEquation2021.html",
+      "source_url": null,
+      "tags": [
+        "粗粒化与跨参数",
+        "对多次ABM模拟求统计量，经去噪后用方程学习和模型选择恢复有效微分方程。"
+      ],
+      "note": "论文事实来自课程条目；谱图中的家族和连线是便于学习的综合整理。"
+    },
+    {
+      "id": "P64",
+      "corpus_index": 64,
+      "key": "messengerLearningMeanfieldEquations2022",
+      "title": "Learning mean-field equations from particle data using WSINDy",
+      "authors": [
+        "Daniel A. Messenger",
+        "David M. Bortz"
+      ],
+      "year": 2022,
+      "journal": "Physica D: Nonlinear Phenomena",
+      "doi": "10.1016/j.physd.2022.133406",
+      "family": "coarse",
+      "stage": "operator",
+      "importance": 3,
+      "topic": "粗粒化与跨参数",
+      "focus": "由大量相互作用粒子的离散轨迹恢复均场非局域PDE及相互作用、势和扩散。",
+      "method": "先将粒子经验测度核化为密度，再用WSINDy弱形式和稀疏阈值选择项。",
+      "representation": "Fokker-Planck型均场方程中的卷积相互作用、局部势与扩散候选。",
+      "assumptions": "• 均场极限\n• 守恒形式\n• 相互作用力和扩散的候选库",
+      "limitations": "• 依赖大粒子数均场条件\n• 核密度和测试函数尺度需设定\n• 有限N相关性可违反收敛假设",
+      "derivation": "从粒子经验测度的弱积分构造连续方程特征，避免逐点先估完整密度导数。",
+      "card_url": "../cards/messengerLearningMeanfieldEquations2022.html",
+      "source_url": null,
+      "tags": [
+        "粗粒化与跨参数",
+        "先将粒子经验测度核化为密度，再用WSINDy弱形式和稀疏阈值选择项。"
+      ],
+      "note": "论文事实来自课程条目；谱图中的家族和连线是便于学习的综合整理。"
+    },
+    {
+      "id": "P51",
+      "corpus_index": 51,
+      "key": "supekarLearningHydrodynamicEquations2023",
+      "title": "Learning hydrodynamic equations for active matter from particle simulations and experiments",
+      "authors": [
+        "Rohit Supekar",
+        "Boya Song",
+        "Alasdair Hastewell",
+        "Gary P. T. Choi",
+        "Alexander Mietke",
+        "Jörn Dunkel"
+      ],
+      "year": 2023,
+      "journal": "Proceedings of the National Academy of Sciences",
+      "doi": "10.1073/pnas.2206994120",
+      "family": "coarse",
+      "stage": "operator",
+      "importance": 3,
+      "topic": "物理机制与真实场",
+      "focus": "由粒子轨迹和视频显微数据直接学习主动粒子系统的宏观水动力PDE。",
+      "method": "先以核方法粗粒化粒子轨迹，再用Chebyshev谱表示和稀疏回归选择PDE项与系数。",
+      "representation": "满足平移、旋转和反射对称的密度、极化与速度场候选项，并显式允许参数化耦合。",
+      "assumptions": "• 场的张量类型\n• 几何对称性\n• 局域低阶水动力闭合",
+      "limitations": "• 粗粒化坐标与尺度由研究者设定\n• 代数衰减涨落情形可能需要SPDE而非确定性PDE\n• 实验验证仍集中于特定主动体系",
+      "derivation": "从粒子密度/极化的核粗粒化写到谱截断；解释确定性闭合为何依赖快慢涨落分离。",
+      "card_url": "../cards/supekarLearningHydrodynamicEquations2023.html",
+      "source_url": null,
+      "tags": [
+        "物理机制与真实场",
+        "先以核方法粗粒化粒子轨迹，再用Chebyshev谱表示和稀疏回归选择PDE项与系数。"
+      ],
+      "note": "论文事实来自课程条目；谱图中的家族和连线是便于学习的综合整理。"
+    },
+    {
+      "id": "P75",
+      "corpus_index": 75,
+      "key": "owensDatadrivenDiscoveryGoverning2023",
+      "title": "Data-Driven Discovery of Governing Equations for Coarse-Grained Heterogeneous Network Dynamics",
+      "authors": [
+        "Katherine Owens",
+        "J. Nathan Kutz"
+      ],
+      "year": 2023,
+      "journal": "SIAM Journal on Applied Dynamical Systems",
+      "doi": "10.1137/22m1497882",
+      "family": "coarse",
+      "stage": "operator",
+      "importance": 2,
+      "topic": "粗粒化与跨参数",
+      "focus": "从异质耦合振子网络发现集体行为的低维坐标和快慢尺度动力学。",
+      "method": "降维、稳健数据修剪和SINDy结合，自动分离松弛振荡的内外层。",
+      "representation": "SVD低维坐标上的分段或多尺度稀疏ODE。",
+      "assumptions": "• 低秩集体动力学\n• 快慢尺度可分\n• 稀疏ODE",
+      "limitations": "• 证据来自模拟振子网络\n• 低秩条件并非所有耦合区间成立\n• 数据修剪可能掩盖关键瞬态",
+      "derivation": "将网络数据的低秩坐标与快慢时间尺度分开，分析修剪异常点何时删掉真实瞬态。",
+      "card_url": "../cards/owensDatadrivenDiscoveryGoverning2023.html",
+      "source_url": null,
+      "tags": [
+        "粗粒化与跨参数",
+        "降维、稳健数据修剪和SINDy结合，自动分离松弛振荡的内外层。"
+      ],
+      "note": "论文事实来自课程条目；谱图中的家族和连线是便于学习的综合整理。"
+    },
+    {
+      "id": "P66",
+      "corpus_index": 66,
+      "key": "jugLearningMacroscopicEquations2024",
+      "title": "Learning macroscopic equations of motion from dissipative particle dynamics simulations of fluids",
+      "authors": [
+        "Matevž Jug",
+        "Daniel Svenšek",
+        "Tilen Potisk",
+        "Matej Praprotnik"
+      ],
+      "year": 2024,
+      "journal": "Computer Methods in Applied Mechanics and Engineering",
+      "doi": "10.1016/j.cma.2024.117379",
+      "family": "coarse",
+      "stage": "operator",
+      "importance": 2,
+      "topic": "粗粒化与跨参数",
+      "focus": "从耗散粒子动力学轨迹恢复质量连续方程、动量守恒和状态方程。",
+      "method": "弱形式稀疏回归，并用模型稳定性与平均误差的联合评分自动选取简约结构。",
+      "representation": "密度与动量场的守恒型弱形式候选项。",
+      "assumptions": "• 守恒型结构\n• 少量场变量\n• 局域宏观闭合",
+      "limitations": "• 预先知道目标为可压缩Navier-Stokes类\n• 弱形式表达受散度结构限制\n• 边界动力学未发现",
+      "derivation": "把质量和动量守恒写成弱形式，说明如何从粒子平均识别状态方程系数。",
+      "card_url": "../cards/jugLearningMacroscopicEquations2024.html",
+      "source_url": null,
+      "tags": [
+        "粗粒化与跨参数",
+        "弱形式稀疏回归，并用模型稳定性与平均误差的联合评分自动选取简约结构。"
+      ],
+      "note": "论文事实来自课程条目；谱图中的家族和连线是便于学习的综合整理。"
+    },
+    {
+      "id": "P56",
+      "corpus_index": 56,
+      "key": "madduLearningPhysicallyConsistent2021",
+      "title": "Learning physically consistent differential equation models from data using group sparsity",
+      "authors": [
+        "Suryanarayana Maddu",
+        "Bevan L. Cheeseman",
+        "Christian L. Müller",
+        "Ivo F. Sbalzarini"
+      ],
+      "year": 2021,
+      "journal": "Physical Review E",
+      "doi": "10.1103/physreve.103.042310",
+      "family": "coarse",
+      "stage": "select",
+      "importance": 2,
+      "topic": "粗粒化与跨参数",
+      "focus": "在含噪数据中恢复满足守恒、等价关系或对称性的微分方程。",
+      "method": "非凸组稀疏迭代硬阈值与稳定性选择共同决定组级结构。",
+      "representation": "把必须共同出现或共同消失的系数组成候选组。",
+      "assumptions": "• 守恒律\n• 模型等价\n• 对称相关项的组结构",
+      "limitations": "• 需要事先知道正确分组\n• 错误或过强分组可系统排除真实结构\n• 主要在合成数据上验证",
+      "derivation": "将守恒要求绑成必须共同入选的系数组，手算一个组阈值与逐项阈值的区别。",
+      "card_url": "../cards/madduLearningPhysicallyConsistent2021.html",
+      "source_url": null,
+      "tags": [
+        "粗粒化与跨参数",
+        "非凸组稀疏迭代硬阈值与稳定性选择共同决定组级结构。"
+      ],
+      "note": "论文事实来自课程条目；谱图中的家族和连线是便于学习的综合整理。"
+    },
+    {
+      "id": "P32",
+      "corpus_index": 32,
+      "key": "rudyDataDrivenIdentificationParametric2019",
+      "title": "Data-Driven Identification of Parametric Partial Differential Equations",
+      "authors": [
+        "Samuel Rudy",
+        "Alessandro Alla",
+        "Steven L. Brunton",
+        "J. Nathan Kutz"
+      ],
+      "year": 2019,
+      "journal": "SIAM Journal on Applied Dynamical Systems",
+      "doi": "10.1137/18m1191944",
+      "family": "coarse",
+      "stage": "space",
+      "importance": 2,
+      "topic": "粗粒化与跨参数",
+      "focus": "在PDE结构全局不变但系数随时间或空间变化时，同时找出活动项与系数函数。",
+      "method": "Sequential Grouped Threshold Ridge Regression反复按组范数删项、ridge重拟合并OLS去偏；50个阈值模型用AIC启发损失选择，并与group LASSO比较。",
+      "representation": "固定活动项支撑上的时变或空变系数序列；候选库为u幂与空间导数乘积。",
+      "assumptions": "• 活动PDE项跨时间/空间共享\n• 每项系数可自由随单一坐标变化\n• 候选库有限且以单项式和导数为主\n• 结构稀疏",
+      "limitations": "• 方法仍受数值微分精度和有限候选库限制。\n• 含四阶导数的KS对噪声极敏感，1%噪声不能正确识别。\n• 当前拆分只允许系数随时间或空间之一变化；同时空变化需分箱并损失分辨率。\n• 错误测量变量可能从根本上阻止方程发现，例如仅有强度不能恢复Schrodinger相位动力学。",
+      "derivation": "构造空间或时间变系数的分组特征矩阵，说明跨位置共享项结构的意义。",
+      "card_url": "../cards/rudyDataDrivenIdentificationParametric2019.html",
+      "source_url": null,
+      "tags": [
+        "粗粒化与跨参数",
+        "Sequential Grouped Threshold Ridge Regress"
+      ],
+      "note": "论文事实来自课程条目；谱图中的家族和连线是便于学习的综合整理。"
+    },
+    {
+      "id": "P63",
+      "corpus_index": 63,
+      "key": "bakarjiDatadrivenDiscoveryCoarsegrained2021",
+      "title": "Data-driven discovery of coarse-grained equations",
+      "authors": [
+        "Joseph Bakarji",
+        "Daniel M. Tartakovsky"
+      ],
+      "year": 2021,
+      "journal": "Journal of Computational Physics",
+      "doi": "10.1016/j.jcp.2021.110219",
+      "family": "coarse",
+      "stage": "space",
+      "importance": 2,
+      "topic": "粗粒化与跨参数",
+      "focus": "由随机细尺度模型或Monte Carlo数据学习状态概率密度或累积分布的粗粒化PDE。",
+      "method": "直接方程学习与受约束方程学习两种稀疏回归模式。",
+      "representation": "PDF/CDF演化算子的候选字典；区分全算子发现与只学习未知闭合。",
+      "assumptions": "• Pawula定理\n• 概率守恒\n• 局域线性PDF/CDF方程",
+      "limitations": "• 局域候选库不含非局域或分数阶机制\n• KDE带宽和阈值敏感\n• 训练数据来自已知模拟器",
+      "derivation": "从概率密度的漂移—扩散平衡写出粗粒化方程，列出Markov闭合的检验对象。",
+      "card_url": "../cards/bakarjiDatadrivenDiscoveryCoarsegrained2021.html",
+      "source_url": null,
+      "tags": [
+        "粗粒化与跨参数",
+        "直接方程学习与受约束方程学习两种稀疏回归模式。"
+      ],
+      "note": "论文事实来自课程条目；谱图中的家族和连线是便于学习的综合整理。"
+    },
+    {
+      "id": "P52",
+      "corpus_index": 52,
+      "key": "zhangDatadrivenDiscoveryGoverning2020",
+      "title": "Data-driven discovery of governing equations for fluid dynamics based on molecular simulation",
+      "authors": [
+        "Jun Zhang",
+        "Wenjun Ma"
+      ],
+      "year": 2020,
+      "journal": "Journal of Fluid Mechanics",
+      "doi": "10.1017/jfm.2020.184",
+      "family": "coarse",
+      "stage": "validate",
+      "importance": 2,
+      "topic": "粗粒化与跨参数",
+      "focus": "题名和书目信息表明其研究分子模拟到流体控制方程的发现。",
+      "method": "未获全文，正文不据此归纳具体算法。",
+      "representation": "未获全文，不能可靠判定候选库、方程形式或闭合假设。",
+      "assumptions": "",
+      "limitations": "• 无合法开放全文或机构授权副本\n• 所有内容判断均暂缓",
+      "derivation": "先取得合法全文并定位宏观量定义、候选结构和代码声明；获得全文前不指定未经核实的推导。",
+      "card_url": "../cards/zhangDatadrivenDiscoveryGoverning2020.html",
+      "source_url": null,
+      "tags": [
+        "粗粒化与跨参数",
+        "未获全文，正文不据此归纳具体算法。"
+      ],
+      "note": "论文事实来自课程条目；谱图中的家族和连线是便于学习的综合整理。"
+    },
+    {
+      "id": "P70",
+      "corpus_index": 70,
+      "key": "nicolaouDatadrivenDiscoveryExtrapolation2023",
+      "title": "Data-driven discovery and extrapolation of parameterized pattern-forming dynamics",
+      "authors": [
+        "Zachary G. Nicolaou",
+        "Guanyu Huo",
+        "Yihui Chen",
+        "Steven L. Brunton",
+        "J. Nathan Kutz"
+      ],
+      "year": 2023,
+      "journal": "Physical Review Research",
+      "doi": "10.1103/physrevresearch.5.l042017",
+      "family": "coarse",
+      "stage": "validate",
+      "importance": 2,
+      "topic": "粗粒化与跨参数",
+      "focus": "从有限控制参数下的图样演化学习可跨参数外推的分岔动力学。",
+      "method": "SINDyCP以组稀疏方式让同一物理项的参数依赖整体入选，再作参数连续外推和分岔延拓。",
+      "representation": "状态项、空间导数与控制参数的张量积候选库。",
+      "assumptions": "• 控制参数显式进入系数\n• 反射或奇偶对称\n• 低阶参数依赖",
+      "limitations": "• 控制参数形式需预设\n• 所有案例为已知模拟系统\n• 错误参数基可能给出伪外推",
+      "derivation": "写出状态项与控制参数基的张量积，解释怎样从参数化方程延拓未见分岔。",
+      "card_url": "../cards/nicolaouDatadrivenDiscoveryExtrapolation2023.html",
+      "source_url": null,
+      "tags": [
+        "粗粒化与跨参数",
+        "SINDyCP以组稀疏方式让同一物理项的参数依赖整体入选，再作参数连续外推和分岔延拓"
+      ],
+      "note": "论文事实来自课程条目；谱图中的家族和连线是便于学习的综合整理。"
+    },
+    {
+      "id": "P65",
+      "corpus_index": 65,
+      "key": "vandenheuvelPushingCoarsegrainedModels2024",
+      "title": "Pushing coarse-grained models beyond the continuum limit using equation learning",
+      "authors": [
+        "Daniel J. VandenHeuvel",
+        "Pascal R. Buenzli",
+        "Matthew J. Simpson"
+      ],
+      "year": 2024,
+      "journal": "Proceedings of the Royal Society A: Mathematical, Physical and Engineering Sciences",
+      "doi": "10.1098/rspa.2023.0619",
+      "family": "coarse",
+      "stage": "validate",
+      "importance": 2,
+      "topic": "粗粒化与跨参数",
+      "focus": "在传统连续极限不准确时，从离散细胞组织模型学习宏观密度、边界和增殖规律。",
+      "method": "按机制模块逐步回归和剔除，冻结已学模块后继续辨识后续项。",
+      "representation": "质量守恒PDE中的扩散、源项、自由边界速度和力学机制分步表示。",
+      "assumptions": "• 质量守恒\n• 自由边界运动学\n• 机制模块的因果顺序",
+      "limitations": "• 证据来自单一离散模型族\n• 分步冻结可能传播早期误选\n• 需要较多重复模拟估计宏观场",
+      "derivation": "分别列出密度输运、增殖和自由边界速度的模块方程，解释冻结前一模块如何传错。",
+      "card_url": "../cards/vandenheuvelPushingCoarsegrainedModels2024.html",
+      "source_url": null,
+      "tags": [
+        "粗粒化与跨参数",
+        "按机制模块逐步回归和剔除，冻结已学模块后继续辨识后续项。"
+      ],
+      "note": "论文事实来自课程条目；谱图中的家族和连线是便于学习的综合整理。"
+    },
+    {
+      "id": "P26",
+      "corpus_index": 26,
+      "key": "luDiscoveringConservationLaws2023",
+      "title": "Discovering conservation laws using optimal transport and manifold learning",
+      "authors": [
+        "Peter Y. Lu",
+        "Rumen Dangovski",
+        "Marin Soljačić"
+      ],
+      "year": 2023,
+      "journal": "Nature Communications",
+      "doi": "10.1038/s41467-023-40325-7",
+      "family": "geometry",
+      "stage": "operator",
+      "importance": 3,
+      "topic": "坐标、流形与守恒",
+      "focus": "无需方程、时间导数或预设符号形式，从多条轨迹的经验分布发现守恒量坐标。",
+      "method": "计算全体轨迹的最优传输距离，做diffusion maps嵌入，再以相关性、可预测性和冗余的启发式评分选择坐标数。",
+      "representation": "守恒量以轨迹分布流形的扩散映射坐标或其非线性重参数化表示，不输出显式解析公式。",
+      "assumptions": "• 同一守恒等值面上的轨迹具有稳定物理测度\n• Wasserstein地面度量能表达物理相似性\n• 多轨迹覆盖不同守恒值\n• 低维流形假设",
+      "limitations": "• 方法不输出守恒量的显式符号表达式。\n• 需要每个等值面上的轨迹近似其遍历物理测度。\n• 流形拓扑或相变可使扩散坐标数不同于独立守恒量数。\n• 地面度量与单位决定显著性，Wasserstein距离受采样不均影响。",
+      "derivation": "对两个均匀圆轨道算 Wasserstein 距离，再说明扩散映射坐标为何只确定守恒量的重参数化。",
+      "card_url": "../cards/luDiscoveringConservationLaws2023.html",
+      "source_url": null,
+      "tags": [
+        "坐标、流形与守恒",
+        "计算全体轨迹的最优传输距离，做diffusion maps嵌入，再以相关性、可预测性"
+      ],
+      "note": "论文事实来自课程条目；谱图中的家族和连线是便于学习的综合整理。"
+    },
+    {
+      "id": "P34",
+      "corpus_index": 34,
+      "key": "bakarjiDiscoveringGoverningEquations2023",
+      "title": "Discovering governing equations from partial measurements with deep delay autoencoders",
+      "authors": [
+        "Joseph Bakarji",
+        "Kathleen Champion",
+        "J. Nathan Kutz",
+        "Steven L. Brunton"
+      ],
+      "year": 2023,
+      "journal": "Proceedings of the Royal Society A: Mathematical, Physical and Engineering Sciences",
+      "doi": "10.1098/rspa.2023.0422",
+      "family": "geometry",
+      "stage": "operator",
+      "importance": 3,
+      "topic": "坐标、流形与守恒",
+      "focus": "从只有一个可测变量的非闭合系统，经时间延迟重构多维状态并发现稀疏闭式ODE。",
+      "method": "联合训练延迟autoencoder和SINDy系数，损失含重建、z/h导数一致性、第一分量锚定及RK4积分后重现延迟序列；训练中周期性单独SINDy优化。",
+      "representation": "潜坐标上的多项式SINDy模型；真实水轮使用三阶字典。",
+      "assumptions": "• Takens延迟嵌入条件\n• 潜动力学稀疏\n• 第一潜分量等于实测量\n• RK4多步一致性\n• 用户选择延迟窗、潜维、SVD秩和候选库",
+      "limitations": "• 随机初始化时优化易过拟合和陷入局部极小，精确恢复原系统尚无保证。\n• 并非任意标量观测都满足Takens条件；例如Lorenz第三分量不能提供所需微分同胚。\n• 网络、损失、延迟、潜维和SINDy库形成高维超参数空间，论文用并行GPU搜索。\n• 真实水轮数据太短、低帧率且含检测噪声，所得方程不够稀疏，需更多数据和更好的视频到角速度映射。",
+      "derivation": "对仅观测位置的振子构造延迟向量，解释为何一个瞬时标量不足以闭合。",
+      "card_url": "../cards/bakarjiDiscoveringGoverningEquations2023.html",
+      "source_url": null,
+      "tags": [
+        "坐标、流形与守恒",
+        "联合训练延迟autoencoder和SINDy系数，损失含重建、z/h导数一致性、第"
+      ],
+      "note": "论文事实来自课程条目；谱图中的家族和连线是便于学习的综合整理。"
+    },
+    {
+      "id": "P30",
+      "corpus_index": 30,
+      "key": "marsgaoBayesianAutoencodersDatadriven2024",
+      "title": "Bayesian autoencoders for data-driven discovery of coordinates, governing equations and fundamental constants",
+      "authors": [
+        "L. Mars Gao",
+        "J. Nathan Kutz"
+      ],
+      "year": 2024,
+      "journal": "Proceedings of the Royal Society A: Mathematical, Physical and Engineering Sciences",
+      "doi": "10.1098/rspa.2023.0506",
+      "family": "geometry",
+      "stage": "operator",
+      "importance": 2,
+      "topic": "坐标、流形与守恒",
+      "focus": "在低样本、高噪声视频中同时学习低维物理坐标、控制该坐标的稀疏方程及系数不确定性。",
+      "method": "用SINDy-autoencoder联合损失训练坐标和方程；经验贝叶斯EM更新包含概率与先验超参数，循环SGLD以小批量梯度采样；真实视频另用50%随机遮罩增强。",
+      "representation": "潜空间中预定义多项式和三角函数库上的SINDy稀疏组合；每个候选系数带spike-and-slab Gaussian-Laplace先验及包含变量。",
+      "assumptions": "• 低维潜坐标\n• 预设SINDy函数库\n• SSGL稀疏先验\n• 摆案例预设二阶动力学和sin候选\n• 真实视频的一维潜变量与摆角对应",
+      "limitations": "• 框架有十余个超参数且高度依赖人工调节。\n• 损失权重设错会导致训练不稳定或次优解；完整贝叶斯化超参数会显著增加计算与实现难度。\n• 非凸训练无全局最优保证，网络宽深选择不当会产生欠定和过拟合坐标。",
+      "derivation": "解释潜在坐标分布和动力学参数分布各自表示什么；写出坐标缩放导致参数变化的例子。",
+      "card_url": "../cards/marsgaoBayesianAutoencodersDatadriven2024.html",
+      "source_url": null,
+      "tags": [
+        "坐标、流形与守恒",
+        "用SINDy-autoencoder联合损失训练坐标和方程；经验贝叶斯EM更新包含概"
+      ],
+      "note": "论文事实来自课程条目；谱图中的家族和连线是便于学习的综合整理。"
+    },
+    {
+      "id": "P44",
+      "corpus_index": 44,
+      "key": "loiseauConstrainedSparseGalerkin2018",
+      "title": "Constrained sparse Galerkin regression",
+      "authors": [
+        "Jean-Christophe Loiseau",
+        "Steven L. Brunton"
+      ],
+      "year": 2018,
+      "journal": "Journal of Fluid Mechanics",
+      "doi": "10.1017/jfm.2017.823",
+      "family": "geometry",
+      "stage": "select",
+      "importance": 2,
+      "topic": "坐标、流形与守恒",
+      "focus": "从流动模态系数时间序列识别稀疏低维ODE，同时把能量守恒、对称性、已知系数或谱性质写成跨方程约束，避免逐方程拟合产生物理上错误的降阶模型。",
+      "method": "在序贯阈值最小二乘或L1回归中反复加入零系数约束，并用KKT/约束最小二乘求解；用户提供的等式可固定系数、耦合不同状态方程或强制二次非线性保持能量。",
+      "representation": "模态幅值的稀疏多项式ODE，候选含线性、二次及可选三次项；所有方程系数向量化后，由线性等式矩阵Cxi=d同时施加稀疏零约束与物理耦合约束。",
+      "assumptions": "• Navier-Stokes二次非线性应保持扰动动能的线性等式约束\n• 流动对称性和已知零系数\n• Lorenz示例中已知参数sigma的系数约束\n• 可选已知特征值或线性稳定性信息，但非凸谱约束不在当前CVXOPT范围",
+      "limitations": "• 物理约束并非必然改善轨迹预测：方腔流的受约束二次模型严重高估瞬态持续时间，作者当时不能解释原因；所需谱约束又是当前凸求解器无法处理的非凸条件。\n• 作者明确指出当前案例本质上都是低维流动，尚不能代表过渡或湍流的高维性；向此类流动扩展仍是未来工作。\n• 最终结构对稀疏旋钮lambda至关重要：过小保留过多项、过大则误删并损失精度，因此仍需结合非零项数与R2人工选模。",
+      "derivation": "对低阶二次模型算能量时间导数，把能量保持写成系数的线性约束。",
+      "card_url": "../cards/loiseauConstrainedSparseGalerkin2018.html",
+      "source_url": null,
+      "tags": [
+        "坐标、流形与守恒",
+        "在序贯阈值最小二乘或L1回归中反复加入零系数约束，并用KKT/约束最小二乘求解；用户"
+      ],
+      "note": "论文事实来自课程条目；谱图中的家族和连线是便于学习的综合整理。"
+    },
+    {
+      "id": "P31",
+      "corpus_index": 31,
+      "key": "championDatadrivenDiscoveryCoordinates2019",
+      "title": "Data-driven discovery of coordinates and governing equations",
+      "authors": [
+        "Kathleen Champion",
+        "Bethany Lusch",
+        "J. Nathan Kutz",
+        "Steven L. Brunton"
+      ],
+      "year": 2019,
+      "journal": "Proceedings of the National Academy of Sciences",
+      "doi": "10.1073/pnas.1906995116",
+      "family": "geometry",
+      "stage": "space",
+      "importance": 3,
+      "topic": "坐标、流形与守恒",
+      "focus": "从高维、非线性混合观测中找到允许简洁动力学的潜坐标，并同时识别闭式ODE。",
+      "method": "联合最小化状态重建、潜空间SINDy残差、观测空间导数一致性和L1稀疏损失；训练中周期性顺序阈值近似L0。",
+      "representation": "潜空间中预定义多项式或三角函数候选库的SINDy稀疏组合，一阶或二阶方程均可。",
+      "assumptions": "• 低维瓶颈\n• 预定义SINDy库\n• 潜动力学稀疏\n• 坐标映射可由前馈网络表示\n• 重建与导数一致性",
+      "limitations": "• 当前方法要求近似无噪的干净测量，因为连续时间SINDy依赖可靠导数。\n• 学得的autoencoder坐标可能不能泛化到远离训练分布的状态。\n• 混沌Lorenz长期相位因参数和初值敏感而很快偏离。",
+      "derivation": "推导 z′=Dencoder(x)x′ 与 decoder 方向的一致性损失，解释坐标规范自由度。",
+      "card_url": "../cards/championDatadrivenDiscoveryCoordinates2019.html",
+      "source_url": null,
+      "tags": [
+        "坐标、流形与守恒",
+        "联合最小化状态重建、潜空间SINDy残差、观测空间导数一致性和L1稀疏损失；训练中周"
+      ],
+      "note": "论文事实来自课程条目；谱图中的家族和连线是便于学习的综合整理。"
+    },
+    {
+      "id": "P25",
+      "corpus_index": 25,
+      "key": "liuMachineLearningConservation2021",
+      "title": "Machine Learning Conservation Laws from Trajectories",
+      "authors": [
+        "Ziming Liu",
+        "Max Tegmark"
+      ],
+      "year": 2021,
+      "journal": "Physical Review Letters",
+      "doi": "10.1103/physrevlett.126.180604",
+      "family": "geometry",
+      "stage": "space",
+      "importance": 2,
+      "topic": "坐标、流形与守恒",
+      "focus": "在未知方程时，从轨迹几何估计独立守恒量数目，并尝试恢复其解析表达式及近似守恒破缺。",
+      "method": "神经经验贝叶斯迭代地把加噪点拉回数据流形，在多个邻域尺度做局部PCA并寻找稳定维数平台；再训练恒定于轨迹的神经函数并符号回归。",
+      "representation": "第一阶段以轨迹流形余维表示守恒量数量，第二阶段用AI Feynman将候选不变量符号化。",
+      "assumptions": "• 轨迹在等守恒量流形上稠密采样\n• 局部低维流形假设\n• 守恒量函数可由神经网络和AI Feynman表示\n• 尺度平台对应有效维数",
+      "limitations": "• Runge-Lenz矢量、大角度摆能量和三体能量未被AI Feynman恢复为正确符号式。\n• 理论依赖轨迹在其闭包/等值面上足够稠密的遍历性假设。\n• 作者把原始实验数据应用列为未来方向，正文证据仍是合成轨迹。",
+      "derivation": "从 ∇C·f=0 解释守恒量梯度的线性独立性；说明常数函数为何是平凡解。",
+      "card_url": "../cards/liuMachineLearningConservation2021.html",
+      "source_url": null,
+      "tags": [
+        "坐标、流形与守恒",
+        "神经经验贝叶斯迭代地把加噪点拉回数据流形，在多个邻域尺度做局部PCA并寻找稳定维数平"
+      ],
+      "note": "论文事实来自课程条目；谱图中的家族和连线是便于学习的综合整理。"
+    },
+    {
+      "id": "P21",
+      "corpus_index": 21,
+      "key": "xieDatadrivenDiscoveryDimensionless2022",
+      "title": "Data-driven discovery of dimensionless numbers and governing laws from scarce measurements",
+      "authors": [
+        "Xiaoyu Xie",
+        "Arash Samaei",
+        "Jiachen Guo",
+        "Wing Kam Liu",
+        "Zhengtao Gan"
+      ],
+      "year": 2022,
+      "journal": "Nature Communications",
+      "doi": "10.1038/s41467-022-35084-w",
+      "family": "geometry",
+      "stage": "space",
+      "importance": 2,
+      "topic": "坐标、流形与守恒",
+      "focus": "从少量测量中发现无量纲群、尺度律，以及满足量纲齐次性的ODE/PDE。",
+      "method": "先求Buckingham-Pi零空间基，再以外层指数基变换和内层回归做两级优化；方程发现采用SINDy或对称不变量SINDy。",
+      "representation": "无量纲群是量纲矩阵零空间中的有理指数乘积；尺度关系由多项式、幂律或XGBoost表示；微分规律由量纲齐次候选项的稀疏组合表示。",
+      "assumptions": "• 基本物理量纲\n• 有理指数和低复杂度偏好\n• 用户提供的充分变量集合\n• 指定的尺度关系函数族或方程候选库",
+      "limitations": "• 候选变量必须充分；省略热扩散率后Rayleigh-Benard案例最大R2降到0.80以下。\n• 零阶指数搜索可能陷入局部极小值。\n• PDE恢复仍取决于噪声和候选库，库设计高度依赖专家经验。",
+      "derivation": "对一个量纲矩阵求零空间，构造无量纲组合并说明其基并不唯一。",
+      "card_url": "../cards/xieDatadrivenDiscoveryDimensionless2022.html",
+      "source_url": null,
+      "tags": [
+        "坐标、流形与守恒",
+        "先求Buckingham-Pi零空间基，再以外层指数基变换和内层回归做两级优化；方程"
+      ],
+      "note": "论文事实来自课程条目；谱图中的家族和连线是便于学习的综合整理。"
+    },
+    {
+      "id": "P22",
+      "corpus_index": 22,
+      "key": "liuMachineLearningHidden2022",
+      "title": "Machine Learning Hidden Symmetries",
+      "authors": [
+        "Ziming Liu",
+        "Max Tegmark"
+      ],
+      "year": 2022,
+      "journal": "Physical Review Letters",
+      "doi": "10.1103/physrevlett.128.180201",
+      "family": "geometry",
+      "stage": "space",
+      "importance": 2,
+      "topic": "坐标、流形与守恒",
+      "focus": "寻找把已知动力学或张量场变换到满足给定对称条件的坐标系，并进一步把神经坐标变换符号化。",
+      "method": "针对用户指定的候选对称类型，训练可逆神经网络最小化归一化对称PDE残差，再用AI Feynman对学得坐标变换做符号回归。",
+      "representation": "目标规律不是新ODE项，而是变换后对象满足的线性偏微分对称约束，例如Lie不变性、Hamilton结构、平移不变与模块化。",
+      "assumptions": "• 预先列出的对称类别\n• 可逆坐标变换\n• 张量变换律\n• 低残差与可符号化变换偏好",
+      "limitations": "• 方法只在用户预定义的对称清单中检验，不能直接发明未知对称生成元。\n• 匀速运动问题存在无穷多个有效变换，欠约束导致符号回归不能恢复唯一真式。\n• 主体实验是解析、合成且无噪声，噪声鲁棒性仅由单一附录案例支持。",
+      "derivation": "用坐标变换的链式法则说明隐藏对称如何改变方程形式，并列出可验证的不变量。",
+      "card_url": "../cards/liuMachineLearningHidden2022.html",
+      "source_url": null,
+      "tags": [
+        "坐标、流形与守恒",
+        "针对用户指定的候选对称类型，训练可逆神经网络最小化归一化对称PDE残差，再用AI F"
+      ],
+      "note": "论文事实来自课程条目；谱图中的家族和连线是便于学习的综合整理。"
+    },
+    {
+      "id": "P23",
+      "corpus_index": 23,
+      "key": "luDiscoveringSparseInterpretable2022",
+      "title": "Discovering sparse interpretable dynamics from partial observations",
+      "authors": [
+        "Peter Y. Lu",
+        "Joan Ariño Bernad",
+        "Marin Soljačić"
+      ],
+      "year": 2022,
+      "journal": "Communications Physics",
+      "doi": "10.1038/s42005-022-00987-z",
+      "family": "geometry",
+      "stage": "space",
+      "importance": 2,
+      "topic": "坐标、流形与守恒",
+      "focus": "从缺失一个或多个关键状态的观测中，同时重建隐变量并发现闭合、可解释的ODE/PDE。",
+      "method": "联合优化隐状态编码器和稀疏系数，并将符号方程反复求时间导数，与观测的有限差分高阶导数匹配。",
+      "representation": "预定义多项式/导数候选库上的稀疏符号方程；损失同时匹配多个阶次的符号时间导数。",
+      "assumptions": "• 预定义符号候选库\n• 稀疏性\n• 观测与隐状态组成闭合自治系统\n• 多阶时间导数一致性",
+      "limitations": "• 高阶有限差分使方法对噪声敏感；作者指出显式积分式损失可能更稳健。\n• 当前符号候选库是预定义且有限的。\n• 相位嵌入随数据集大小增长，且不能直接映射未来隐藏状态。",
+      "derivation": "对仅观测位置的系统写出高阶时间导数链，解释如何用符号导数约束隐藏动力学。",
+      "card_url": "../cards/luDiscoveringSparseInterpretable2022.html",
+      "source_url": null,
+      "tags": [
+        "坐标、流形与守恒",
+        "联合优化隐状态编码器和稀疏系数，并将符号方程反复求时间导数，与观测的有限差分高阶导数"
+      ],
+      "note": "论文事实来自课程条目；谱图中的家族和连线是便于学习的综合整理。"
+    },
+    {
+      "id": "P18",
+      "corpus_index": 18,
+      "key": "chenPhysicsinformedLearningGoverning2021",
+      "title": "Physics-informed learning of governing equations from scarce data",
+      "authors": [
+        "Zhao Chen",
+        "Yang Liu",
+        "Hao Sun"
+      ],
+      "year": 2021,
+      "journal": "Nature Communications",
+      "doi": "10.1038/s41467-021-26434-1",
+      "family": "neural",
+      "stage": "infer",
+      "importance": 2,
+      "topic": "神经代理与导数",
+      "focus": "从稀疏、含噪、可能来自多个初始/边界条件的时空观测中，同时重建连续响应并识别稀疏闭式PDE；进一步在真实细胞划痕实验中恢复迁移-增殖方程。",
+      "method": "先用L1正则联合预训练DNN与系数，再以交替方向优化在STRidge结构更新和Adam/L-BFGS网络更新之间迭代，最后可在固定结构上后训练微调系数；beta由残差-稀疏度Pareto前沿选择。",
+      "representation": "预定义常数、多项式、三角项和空间导数及其乘积组成候选库phi，稀疏系数矩阵Lambda给出一阶时间PDE；二阶时间系统先改写为状态空间，未知源项也须以候选函数加入库。",
+      "assumptions": "• 真PDE可在预定义候选库中稀疏表示\n• 多个初始/边界条件共享同一组PDE结构与系数\n• 配点上的PDE残差与L0型稀疏约束\n• FitzHugh-Nagumo案例预知扩散项形式但未知系数\n• 细胞案例预设扩散加局部反应形式rho_t=gamma rho_xx+F(rho)",
+      "limitations": "• 未知源项只有在候选形式已设计时才能并行发现；若源项表达式复杂且完全未知，就需要异常庞大的库并显著增加计算复杂度。\n• PINN-SR因DNN训练远慢于SINDy；全连接网络扩展到三维需要海量配点，而root-branch的参数、配点和内存又随独立数据集数近线性增长。\n• 当前方法不能处理时空变系数PDE；PINN全局基对混沌和尖锐传播前沿建模较差，稀疏含噪数据下会造成系数偏差。\n• 成功依赖预定义库既包含真项又不过大；千量级候选易秩亏和病态，漏掉关键项仍会得到看似简洁的假阳性最佳拟合方程。\n• 数据-物理权重alpha等超参数采用启发式尺度规则，作者明确称其选择仍是PINN领域的关键开放问题，并报告某些反应扩散案例需例外调大。",
+      "derivation": "分别写出数据拟合、物理残差和稀疏结构更新步骤，分析稀疏观测如何约束代理。",
+      "card_url": "../cards/chenPhysicsinformedLearningGoverning2021.html",
+      "source_url": null,
+      "tags": [
+        "神经代理与导数",
+        "先用L1正则联合预训练DNN与系数，再以交替方向优化在STRidge结构更新和Ada"
+      ],
+      "note": "论文事实来自课程条目；谱图中的家族和连线是便于学习的综合整理。"
+    },
+    {
+      "id": "P47",
+      "corpus_index": 47,
+      "key": "stephanyPDEREADHumanreadablePartial2022",
+      "title": "PDE-READ: Human-readable partial differential equation discovery using deep learning",
+      "authors": [
+        "Robert Stephany",
+        "Christopher Earls"
+      ],
+      "year": 2022,
+      "journal": "Neural Networks",
+      "doi": "10.1016/j.neunet.2022.07.008",
+      "family": "neural",
+      "stage": "infer",
+      "importance": 2,
+      "topic": "神经代理与导数",
+      "focus": "从一维空间的稀疏高噪观测中同时学习连续解代理和未知PDE右端，再把神经右端蒸馏为人可读的稀疏多项式。",
+      "method": "先联合训练两个有理激活网络，使U拟合数据且时间导数匹配N；再在大量元数据点上用无固定阈值的递归特征消除逐项删库，按删除最重要项引起的残差跃升排序候选。",
+      "representation": "目标限定为u及其一维空间导数的稀疏多项式，左端是某阶纯时间导数；候选库枚举给定最高空间导数阶和多项式次数下的单项式。",
+      "assumptions": "• 一维空间、加性独立同分布零均值高斯噪声假设\n• PDE左端为纯时间导数，右端为u及空间导数的稀疏多项式\n• 用户预设最高空间导数阶和候选多项式次数\n• 配点PDE一致性及稀疏递归特征消除",
+      "limitations": "• 当前形式不能学习含二维空间和时空混合导数的KP方程，也不能学习右端为有理函数的PDE；进一步放宽形式还会允许动力网络退化为恒零映射。\n• 配点数主导运行时间，且每个配点都要计算U及高阶导数；PDE阶数越高成本越大，因此可用配点数存在实际上限。\n• 识别系数普遍向零收缩且噪声越强越严重；作者未找到根因，只能把缓解该问题列为未来研究。\n• 单条响应轨迹可能同时满足多个PDE；热方程构造例中算法对另一解释给出极高置信，作者明确把这归结为逆问题非唯一性。",
+      "derivation": "推导一个有理激活函数的一阶导数，并说明逐步消除如何改变 PDE 支撑集。",
+      "card_url": "../cards/stephanyPDEREADHumanreadablePartial2022.html",
+      "source_url": null,
+      "tags": [
+        "神经代理与导数",
+        "先联合训练两个有理激活网络，使U拟合数据且时间导数匹配N；再在大量元数据点上用无固定"
+      ],
+      "note": "论文事实来自课程条目；谱图中的家族和连线是便于学习的综合整理。"
+    },
+    {
+      "id": "P38",
+      "corpus_index": 38,
+      "key": "stephanyPDELEARNUsingDeep2024",
+      "title": "PDE-LEARN: Using deep learning to discover partial differential equations from noisy, limited data",
+      "authors": [
+        "Robert Stephany",
+        "Christopher Earls"
+      ],
+      "year": 2024,
+      "journal": "Neural Networks",
+      "doi": "10.1016/j.neunet.2024.106242",
+      "family": "neural",
+      "stage": "infer",
+      "importance": 2,
+      "topic": "神经代理与导数",
+      "focus": "从少量且强噪声的时空观测中同时拟合连续场和稀疏PDE系数，支持任意预先指定的左端项及多响应函数共享定律。",
+      "method": "联合最小化数据损失、随机/靶向配点上的PDE残差及迭代重加权L^p稀疏损失；依次执行burn-in、剪枝、稀疏化、再次剪枝和无稀疏惩罚微调。",
+      "representation": "用户给定的左端项等于右端候选库的稀疏线性组合；本文实现只使用状态及其偏导数的单项式候选，但左端不必是时间一阶导数。",
+      "assumptions": "• 真PDE可由给定候选库稀疏表示\n• PDE残差在连续时空域成立\n• 多个实验共享同一系数向量\n• 迭代重加权L^p稀疏先验与剪枝阈值",
+      "limitations": "• KdV在若干少样本高噪组合下得到过稀或含赘项结构；即使合并数据，500点50%与250点25%仍失败，约500点以下明显退化。\n• 实验没有做超参数选择，网络、损失权重、p值和候选库设置未必可迁移到其他问题。\n• 剪枝无法识别幅值低于阈值的真系数；单精度实现阈值约为10^-4。\n• 实现仅用单项式库，非单项式定律的表现未知，且算法对不同方程的鲁棒上限差异很大。",
+      "derivation": "分离代理网络、PDE 系数和稀疏选择更新；分析代理残差小为什么不意味着项正确。",
+      "card_url": "../cards/stephanyPDELEARNUsingDeep2024.html",
+      "source_url": null,
+      "tags": [
+        "神经代理与导数",
+        "联合最小化数据损失、随机/靶向配点上的PDE残差及迭代重加权L^p稀疏损失；依次执行"
+      ],
+      "note": "论文事实来自课程条目；谱图中的家族和连线是便于学习的综合整理。"
+    },
+    {
+      "id": "P12",
+      "corpus_index": 12,
+      "key": "raissiHiddenPhysicsModels2018",
+      "title": "Hidden physics models: Machine learning of nonlinear partial differential equations",
+      "authors": [
+        "Maziar Raissi",
+        "George Em Karniadakis"
+      ],
+      "year": 2018,
+      "journal": "Journal of Computational Physics",
+      "doi": "10.1016/j.jcp.2017.11.039",
+      "family": "neural",
+      "stage": "operator",
+      "importance": 3,
+      "topic": "神经代理与导数",
+      "focus": "在已知参数化PDE结构下，仅用相邻两个含噪稀疏快照，通过把离散物理嵌入高斯过程协方差来估计未知系数或分数阶参数。",
+      "method": "用L-BFGS最小化多输出GP的负对数边缘似然，同时估计核超参数、PDE参数和独立高斯噪声方差。",
+      "representation": "规律结构Nx^lambda由研究者预先给出，待学的是其中参数lambda；后向Euler和以前一快照冻结非线性所得线性算子被解析写入多输出GP核。",
+      "assumptions": "• 参数化PDE的函数结构和所需算子预先已知\n• 相邻快照时间间隔足够小，后向Euler近似有效\n• 平方指数核对应平滑隐状态\n• 观测噪声独立同分布高斯\n• Navier-Stokes速度由流函数生成以严格满足不可压连续性",
+      "limitations": "• 负对数边缘似然没有避免多局部极小值的理论保证；完全贝叶斯参数估计虽更稳健，但需昂贵MCMC。\n• 训练需反演稠密协方差矩阵，计算量随总训练点数三次增长。\n• 相邻快照间隔必须足够小才能使用后向Euler；作者的灵敏度试验确认较大间隔会带来明显参数偏差。",
+      "derivation": "从一次隐式时间推进写出两时刻观测的协方差块；解释未知 PDE 参数如何进入 GP 核。",
+      "card_url": "../cards/raissiHiddenPhysicsModels2018.html",
+      "source_url": null,
+      "tags": [
+        "神经代理与导数",
+        "用L-BFGS最小化多输出GP的负对数边缘似然，同时估计核超参数、PDE参数和独立高"
+      ],
+      "note": "论文事实来自课程条目；谱图中的家族和连线是便于学习的综合整理。"
+    },
+    {
+      "id": "P13",
+      "corpus_index": 13,
+      "key": "longPDENet20Learning2019",
+      "title": "PDE-Net 2.0: Learning PDEs from data with a numeric-symbolic hybrid deep network",
+      "authors": [
+        "Zichao Long",
+        "Yiping Lu",
+        "Bin Dong"
+      ],
+      "year": 2019,
+      "journal": "Journal of Computational Physics",
+      "doi": "10.1016/j.jcp.2019.108925",
+      "family": "neural",
+      "stage": "operator",
+      "importance": 3,
+      "topic": "神经代理与导数",
+      "focus": "从规则网格时空场数据中同时学习空间微分算子的离散化、非线性响应函数的解析形式及可用于跨初值预测的PDE演化器。",
+      "method": "按层增加共享参数的时间步块，以多步预测误差联合优化卷积矩阵和SymNet参数；Huber型稀疏正则压缩符号网络，训练后用符号代数展开并读取PDE项及系数。",
+      "representation": "规律写成U_t=F(U,U_x,U_y,U_xx,...)；微分算子由受约束卷积核表示，非线性F由只含线性组合与乘法单元的SymNet组合成可展开的多项式解析式。",
+      "assumptions": "• 未知动力学可写为有限最高空间导数阶的局部自治PDE\n• 卷积矩条件把各滤波器约束为指定偏导数的一致离散近似\n• 非线性响应可由少量加法和乘法复合为稀疏多项式\n• 所有时间块共享同一组规律参数\n• 数值实验采用规则周期网格，空间平移不变性由卷积编码",
+      "limitations": "• 当前SymNet只使用加法和乘法，作者明确指出表达力仍受限，可能需要加入除法。\n• 时间离散仅采用前向Euler，作者指出更复杂时间格式可能改善模型恢复和预测。\n• 论文尚未在真实生物动力学数据上验证，并把可靠性和发现具有科学解释的新规律列为后续研究。",
+      "derivation": "用 Taylor 展开推导卷积核矩条件如何对应一阶、二阶差分，再解释符号层的作用。",
+      "card_url": "../cards/longPDENet20Learning2019.html",
+      "source_url": null,
+      "tags": [
+        "神经代理与导数",
+        "按层增加共享参数的时间步块，以多步预测误差联合优化卷积矩阵和SymNet参数；Hub"
+      ],
+      "note": "论文事实来自课程条目；谱图中的家族和连线是便于学习的综合整理。"
+    },
+    {
+      "id": "P14",
+      "corpus_index": 14,
+      "key": "bothDeepMoDDeepLearning2021",
+      "title": "DeepMoD: Deep learning for model discovery in noisy data",
+      "authors": [
+        "Gert-Jan Both",
+        "Subham Choudhury",
+        "Pierre Sens",
+        "Remy Kusters"
+      ],
+      "year": 2021,
+      "journal": "Journal of Computational Physics",
+      "doi": "10.1016/j.jcp.2020.109985",
+      "family": "neural",
+      "stage": "operator",
+      "importance": 3,
+      "topic": "神经代理与导数",
+      "focus": "从稀疏、非规则且含噪的时空样本中重建连续场和导数，并在预设候选库内发现显式PDE结构及系数。",
+      "method": "联合最小化数据MSE、PDE回归残差和系数L1惩罚；待系数收敛后按无量纲缩放系数阈值剪枝，再移除L1并仅用保留项重训以减小系数偏差。",
+      "representation": "规律表示为预设函数与导数库Theta中的稀疏线性组合u_t=Theta xi；库可含状态多项式、导数和交叉项。",
+      "assumptions": "• 真实PDE在用户给定候选库中稀疏\n• 坐标到状态的神经网络提供可微连续代理\n• 数据、回归残差和L1稀疏性可通过联合损失互相约束\n• 方程结构不依赖训练数据的具体边界条件",
+      "limitations": "• 真实规律的函数项必须已经包含在候选库中，否则DeepMoD不能返回正确方程。\n• 高噪声或实验伪影会使小而非零的高阶项破坏自动阈值策略，需要更先进的稀疏选择或人工阈值。",
+      "derivation": "写出数据损失、PDE 残差和稀疏系数三者的关系，区分自动微分的精确性与代理场偏差。",
+      "card_url": "../cards/bothDeepMoDDeepLearning2021.html",
+      "source_url": null,
+      "tags": [
+        "神经代理与导数",
+        "联合最小化数据MSE、PDE回归残差和系数L1惩罚；待系数收敛后按无量纲缩放系数阈值"
+      ],
+      "note": "论文事实来自课程条目；谱图中的家族和连线是便于学习的综合整理。"
+    },
+    {
+      "id": "P27",
+      "corpus_index": 27,
+      "key": "xuDiscoveryPartialDifferential2023",
+      "title": "Discovery of Partial Differential Equations from Highly Noisy and Sparse Data with Physics-Informed Information Criterion",
+      "authors": [
+        "Hao Xu",
+        "Junsheng Zeng",
+        "Dongxiao Zhang"
+      ],
+      "year": 2023,
+      "journal": "Research",
+      "doi": "10.34133/research.0147",
+      "family": "neural",
+      "stage": "select",
+      "importance": 2,
+      "topic": "神经代理与导数",
+      "focus": "在极少点和强噪声下从开放候选结构中筛选PDE，并从颗粒输运微观模拟提取宏观方程。",
+      "method": "先用GA形成初步库；对所有项组合，移动时间窗回归计算冗余损失，并比较PINN与无物理ANN的误差形成精度损失，乘积最小者获选。",
+      "representation": "广义遗传算法产生的候选PDE项集合；PIC以移动窗口系数稳定性和PINN物理一致性共同评价整个组合。",
+      "assumptions": "• PDE项的遗传语法\n• 稀疏结构\n• 真实项系数跨移动窗口应稳定\n• 正确PDE作为PINN约束应改善场重建",
+      "limitations": "• PIC需要训练多个网络，计算成本高；N项组合可达2^N，候选库大时呈指数增长。\n• 噪声容忍度会随噪声类型变化。",
+      "derivation": "逐项抄录并解释 PIC 的原文定义和实现，区分经验模型选择评分与统计信息准则定理。",
+      "card_url": "../cards/xuDiscoveryPartialDifferential2023.html",
+      "source_url": null,
+      "tags": [
+        "神经代理与导数",
+        "先用GA形成初步库；对所有项组合，移动时间窗回归计算冗余损失，并比较PINN与无物理"
+      ],
+      "note": "论文事实来自课程条目；谱图中的家族和连线是便于学习的综合整理。"
+    },
+    {
+      "id": "P49",
+      "corpus_index": 49,
+      "key": "thanasutivesNoiseawarePhysicsinformedMachine2023",
+      "title": "Noise-aware physics-informed machine learning for robust PDE discovery",
+      "authors": [
+        "Pongpisit Thanasutives",
+        "Takashi Morita",
+        "Masayuki Numao",
+        "Ken-ichi Fukui"
+      ],
+      "year": 2023,
+      "journal": "Machine Learning: Science and Technology",
+      "doi": "10.1088/2632-2153/acb1f0",
+      "family": "neural",
+      "stage": "select",
+      "importance": 2,
+      "topic": "神经代理与导数",
+      "focus": "在时空坐标和状态均受噪、数据稀少的条件下，先用神经代理与预选择器准备导数和筛选候选，再以稀疏回归识别结构，最后用频域去噪的物理信息网络精修系数。",
+      "method": "多任务训练先让求解器拟合数据并让预选择器预测时间导数，按特征重要性裁剪候选；在不同STRidge阈值下用pseudo-BIC选结构，随后以DFT去噪和物理残差精调，附录再以ACS沿最佳子集Pareto前沿自动选复杂度。",
+      "representation": "真PDE假定可由用户构造的过完备候选库稀疏表示；STRidge给出初始项集和系数，dPINN在固定结构上联合修正代理、坐标/状态投影及系数。",
+      "assumptions": "• 过完备候选库必须包含真项\n• PDE残差作为多任务和dPINN约束\n• 频域功率谱阈值与坐标/状态仿射投影去噪\n• 稀疏性、pseudo-BIC和ACS复杂度停止规则",
+      "limitations": "• 早期导数准备和稀疏回归没有显式去噪，未知分布噪声可伪造初始过程并使全流程失败；未知物理又会使投影网络退化，DFT阈值也不易选择。\n• 作者明确承认ACS没有保证总能找到真实函数，它只是根据实验中BIC下降率启发得到的可行算法。\n• 在三维反应扩散中，低时空分辨率会使方法即使在无噪条件下也选错结构，说明稀疏性本身可比测量噪声更致命。",
+      "derivation": "将观测噪声、代理拟合误差与 PDE 残差逐层分开，解释频域去噪引入的偏差。",
+      "card_url": "../cards/thanasutivesNoiseawarePhysicsinformedMachine2023.html",
+      "source_url": null,
+      "tags": [
+        "神经代理与导数",
+        "多任务训练先让求解器拟合数据并让预选择器预测时间导数，按特征重要性裁剪候选；在不同S"
+      ],
+      "note": "论文事实来自课程条目；谱图中的家族和连线是便于学习的综合整理。"
+    },
+    {
+      "id": "P11",
+      "corpus_index": 11,
+      "key": "schaefferLearningPartialDifferential2017a",
+      "title": "Learning partial differential equations via data discovery and sparse optimization",
+      "authors": [
+        "Hayden Schaeffer"
+      ],
+      "year": 2017,
+      "journal": "Proceedings of the Royal Society A: Mathematical, Physical and Engineering Sciences",
+      "doi": "10.1098/rspa.2016.0446",
+      "family": "sparse",
+      "stage": "infer",
+      "importance": 2,
+      "topic": "基础与稀疏表示",
+      "focus": "从时空场数据及其数值导数中，在多项式与空间导数组成的大候选空间内恢复稀疏演化PDE。",
+      "method": "求带L1惩罚的最小二乘问题，采用Douglas-Rachford迭代，并可在选中支撑上重新最小二乘去偏；正则参数控制项数。",
+      "representation": "PDE右端表示为问题依赖候选特征矩阵的稀疏线性组合；非零系数定义强形式局部PDE。",
+      "assumptions": "• 真PDE在用户构造的多项式-导数特征空间中稀疏\n• 周期边界允许稳定的Fourier谱微分\n• L1正则优先选择项数更少的解释\n• 高Re数据可能由主导的Euler极限方程而非模拟器完整方程解释",
+      "limitations": "• 真方程项必须包含在按问题构造的候选特征空间内。\n• 当同一数据可由多个PDE解释时，稀疏优化可能选择有效但非研究者预期的更简方程。\n• 若噪声直接加入状态，数值求导会失稳；该实验在约3%状态噪声后出现恢复转变并需要额外平滑。",
+      "derivation": "把 PDE 系数辨识写为稀疏优化，列出字典、采样和正则化假设如何进入恢复结论。",
+      "card_url": "../cards/schaefferLearningPartialDifferential2017a.html",
+      "source_url": null,
+      "tags": [
+        "基础与稀疏表示",
+        "求带L1惩罚的最小二乘问题，采用Douglas-Rachford迭代，并可在选中支撑"
+      ],
+      "note": "论文事实来自课程条目；谱图中的家族和连线是便于学习的综合整理。"
+    },
+    {
+      "id": "P15",
+      "corpus_index": 15,
+      "key": "kahemanSINDyPIRobustAlgorithm2020",
+      "title": "SINDy-PI: a robust algorithm for parallel implicit sparse identification of nonlinear dynamics",
+      "authors": [
+        "Kadierdan Kaheman",
+        "J. Nathan Kutz",
+        "Steven L. Brunton"
+      ],
+      "year": 2020,
+      "journal": "Proceedings of the Royal Society A: Mathematical, Physical and Engineering Sciences",
+      "doi": "10.1098/rspa.2020.0279",
+      "family": "sparse",
+      "stage": "infer",
+      "importance": 2,
+      "topic": "基础与稀疏表示",
+      "focus": "在不进行噪声敏感零空间求解的条件下，从状态与导数数据识别含隐式关系、有理非线性和外部控制的ODE/PDE及守恒量。",
+      "method": "并行测试每个候选项作为左端，以STLSQ求其余列的稀疏系数；按留出测试集上的导数/预测误差选择模型，并用稀疏度、候选方程之间的一致模式和复杂度辅助筛选。",
+      "representation": "规律表示为Theta(X,Xdot)中的稀疏隐式等式；通过把库中每一候选列轮流移到等式左侧，可恢复有理动力学的分子-分母关系、受控方程或守恒量。",
+      "assumptions": "• 真实隐式关系在用户给定的状态-导数候选库中稀疏\n• 正确规律的任一非零项都可作为左端并产生稀疏且低误差的等价模型\n• 多个左端候选得到的重复稀疏模式可用于交叉核验\n• 专家知识可限制三角项、导数项和控制输入以控制库规模",
+      "limitations": "• 固定双摆最困难之处是构造既含真项又不过大的候选库；库过大使Theta病态并对噪声敏感，较高噪声时会识别错误结构但仍能短期预测。\n• 直接发现守恒量或Lagrangian仍受候选库爆炸限制，论文只给一个示例，作者明确指出需要进一步约束和缩小库。\n• 作者把自动建库、模型选择、精度与稀疏度及过拟合的平衡、以及进一步提高噪声鲁棒性列为尚未解决的问题。\n• 比较结果受训练长度、初值、预测步数、候选库和导数算法等多因素影响，作者没有进行穷尽超参数扫描。",
+      "derivation": "将有理动力学乘去分母得到隐式关系；轮流把一项放到等号左侧并比较归一化。",
+      "card_url": "../cards/kahemanSINDyPIRobustAlgorithm2020.html",
+      "source_url": null,
+      "tags": [
+        "基础与稀疏表示",
+        "并行测试每个候选项作为左端，以STLSQ求其余列的稀疏系数；按留出测试集上的导数/预"
+      ],
+      "note": "论文事实来自课程条目；谱图中的家族和连线是便于学习的综合整理。"
+    },
+    {
+      "id": "P53",
+      "corpus_index": 53,
+      "key": "gurevichRobustOptimalSparse2019",
+      "title": "Robust and optimal sparse regression for nonlinear PDE models",
+      "authors": [
+        "Daniel R. Gurevich",
+        "Patrick A. K. Reinbold",
+        "Roman O. Grigoriev"
+      ],
+      "year": 2019,
+      "journal": "Chaos: An Interdisciplinary Journal of Nonlinear Science",
+      "doi": "10.1063/1.5120861",
+      "family": "sparse",
+      "stage": "operator",
+      "importance": 3,
+      "topic": "统计选择与弱形式",
+      "focus": "从高噪声时空场辨识非线性PDE，重点处理高阶导数。",
+      "method": "弱形式、奇异向量求解与逐项阈值相结合，并推导窗口尺度、分辨率和噪声之间的误差标度。",
+      "representation": "一般隐式线性组合的候选PDE项，不预先固定时间导数为左端项。",
+      "assumptions": "• 局域性\n• 平滑性\n• 候选项阶数",
+      "limitations": "• 主要证据来自单一已知数值PDE\n• 标度推导依赖平稳噪声和相关尺度假设",
+      "derivation": "对 KS 的四阶项分部积分，并讨论窗口尺度、求积误差与噪声方差如何共同作用。",
+      "card_url": "../cards/gurevichRobustOptimalSparse2019.html",
+      "source_url": null,
+      "tags": [
+        "统计选择与弱形式",
+        "弱形式、奇异向量求解与逐项阈值相结合，并推导窗口尺度、分辨率和噪声之间的误差标度。"
+      ],
+      "note": "论文事实来自课程条目；谱图中的家族和连线是便于学习的综合整理。"
+    },
+    {
+      "id": "P42",
+      "corpus_index": 42,
+      "key": "manganModelSelectionDynamical2017",
+      "title": "Model selection for dynamical systems via sparse regression and information criteria",
+      "authors": [
+        "N. M. Mangan",
+        "J. N. Kutz",
+        "S. L. Brunton",
+        "J. L. Proctor"
+      ],
+      "year": 2017,
+      "journal": "Proceedings of the Royal Society A: Mathematical, Physical and Engineering Sciences",
+      "doi": "10.1098/rspa.2017.0009",
+      "family": "sparse",
+      "stage": "select",
+      "importance": 2,
+      "topic": "统计选择与弱形式",
+      "focus": "从时间序列出发，在组合数量巨大的非线性动力系统候选中先筛出稀疏模型，再用AIC或BIC给候选的相对证据排序，以替代依赖Pareto前沿目测拐点的选择。",
+      "method": "扫描SINDy稀疏化参数获得Pareto前沿附近的少量结构，对每个结构重新拟合并前向积分，再计算小样本修正AICc或BIC；以相对分数Delta区分强支持、弱支持与无支持。",
+      "representation": "预设多项式函数库中的稀疏线性组合；每个状态方程有一组非零项，模型复杂度由总非零项或自由参数数目表征。",
+      "assumptions": "• 状态变量集合及其是否冗余由用户给定\n• 候选函数库的最高多项式阶数预先设定\n• SINDy稀疏性约束用于组合空间压缩\n• 初值分布、验证轨迹长度及采样方案共同定义信息准则的观测单位",
+      "limitations": "• 混沌系统的模型排序对验证时长敏感；即使系数误差约为百万分之一，Lorenz轨迹也会在有限时间后发散，而实际应用通常预先不知道该特征时标。\n• 高噪时真模型可能在稀疏回归阶段被彻底排除，且相对信息准则不能提示所有候选的绝对拟合都很差。\n• 仅用两条交叉验证轨迹时，一个错误的一项模型可获得比真模型更低的AICc；增加验证轨迹才纠正排序。",
+      "derivation": "从高斯残差似然推导 AIC，并解释动力系统中独立轨迹与相关时间点的区别。",
+      "card_url": "../cards/manganModelSelectionDynamical2017.html",
+      "source_url": null,
+      "tags": [
+        "统计选择与弱形式",
+        "扫描SINDy稀疏化参数获得Pareto前沿附近的少量结构，对每个结构重新拟合并前向"
+      ],
+      "note": "论文事实来自课程条目；谱图中的家族和连线是便于学习的综合整理。"
+    },
+    {
+      "id": "P43",
+      "corpus_index": 43,
+      "key": "zhangRobustDatadrivenDiscovery2018",
+      "title": "Robust data-driven discovery of governing physical laws with error bars",
+      "authors": [
+        "Sheng Zhang",
+        "Guang Lin"
+      ],
+      "year": 2018,
+      "journal": "Proceedings of the Royal Society A: Mathematical, Physical and Engineering Sciences",
+      "doi": "10.1098/rspa.2018.0305",
+      "family": "sparse",
+      "stage": "select",
+      "importance": 2,
+      "topic": "统计选择与弱形式",
+      "focus": "在左端项也可能未知的条件下，从带量纲的状态及导数张量积中搜索微分关系，同时给出系数误差条并用发现方程进行区间外预测。",
+      "method": "先按量纲齐次性切分和压缩张量积库，再对每个候选回归运行稀疏贝叶斯推断；迭代删除绝对均值小于阈值倍标准差的项，并按预测误差条选择方程与逐阶停止。",
+      "representation": "同一物理量纲组内基函数的稀疏线性关系；系数具有层次高斯先验，噪声方差与自动相关确定参数通过type-II最大似然估计。",
+      "assumptions": "• 方程各项必须满足量纲齐次性\n• 候选导数最高阶与张量积次数按从低到高自适应扩展\n• 稀疏层次先验和用户给定的阈值删除规则\n• 用户预设可接受误差条delta作为停止条件",
+      "limitations": "• 导数与变量张量积的基函数数目随维度和阶数快速爆炸；作者要求在有先验时预删不可能项，并从低阶库顺序搜索。\n• 阈值接近0时不能去除扰动，接近0.5时又会误删绝对值为0.5的真系数；该例只有约0.15至0.4的中间范围表现良好。\n• 论文明确说明没有主动采集人类数据，实验只使用计算机模拟，因此误差条和外推结论尚未接受真实测量机制检验。",
+      "derivation": "用线性回归协方差公式追踪导数噪声到系数误差条，列出自变量也含噪时的问题。",
+      "card_url": "../cards/zhangRobustDatadrivenDiscovery2018.html",
+      "source_url": null,
+      "tags": [
+        "统计选择与弱形式",
+        "先按量纲齐次性切分和压缩张量积库，再对每个候选回归运行稀疏贝叶斯推断；迭代删除绝对均"
+      ],
+      "note": "论文事实来自课程条目；谱图中的家族和连线是便于学习的综合整理。"
+    },
+    {
+      "id": "P20",
+      "corpus_index": 20,
+      "key": "faselEnsembleSINDyRobustSparse2022",
+      "title": "Ensemble-SINDy: Robust sparse model discovery in the low-data, high-noise limit, with active learning and control",
+      "authors": [
+        "U. Fasel",
+        "J. N. Kutz",
+        "B. W. Brunton",
+        "S. L. Brunton"
+      ],
+      "year": 2022,
+      "journal": "Proceedings of the Royal Society A: Mathematical, Physical and Engineering Sciences",
+      "doi": "10.1098/rspa.2021.0904",
+      "family": "sparse",
+      "stage": "select",
+      "importance": 2,
+      "topic": "统计选择与弱形式",
+      "focus": "在少样本、高噪声和候选库不确定时，提高SINDy的结构选择稳定性，并把系数不确定性用于主动采样和控制。",
+      "method": "对数据行做bagging、对候选函数做library bagging，组合为双重集成；系数用均值或稳健中位数聚合，弱形式PDE版本构成E-WSINDy。",
+      "representation": "预定义候选函数库上的稀疏线性组合；以不同重采样模型中各项的入选频率表示结构可信度。",
+      "assumptions": "• 候选函数库\n• 稀疏动力学假设\n• PDE弱形式积分结构\n• 控制案例中的已知输入与控制目标",
+      "limitations": "• 候选函数库的选择对能否找到正确模型至关重要。\n• 直接PDE微分对噪声敏感，因此实验需要弱形式缓解。\n• 混沌轨迹对系数误差高度敏感，长期轨迹误差不能仅由短期拟合判断。",
+      "derivation": "分别写出数据行重采样和候选列重采样；计算一个项的入选频率并解释它不是后验。",
+      "card_url": "../cards/faselEnsembleSINDyRobustSparse2022.html",
+      "source_url": null,
+      "tags": [
+        "统计选择与弱形式",
+        "对数据行做bagging、对候选函数做library bagging，组合为双重集成"
+      ],
+      "note": "论文事实来自课程条目；谱图中的家族和连线是便于学习的综合整理。"
+    },
+    {
+      "id": "P55",
+      "corpus_index": 55,
+      "key": "madduStabilitySelectionEnables2022",
+      "title": "Stability selection enables robust learning of differential equations from limited noisy data",
+      "authors": [
+        "Suryanarayana Maddu",
+        "Bevan L. Cheeseman",
+        "Ivo F. Sbalzarini",
+        "Christian L. Müller"
+      ],
+      "year": 2022,
+      "journal": "Proceedings of the Royal Society A: Mathematical, Physical and Engineering Sciences",
+      "doi": "10.1098/rspa.2021.0916",
+      "family": "sparse",
+      "stage": "select",
+      "importance": 2,
+      "topic": "统计选择与弱形式",
+      "focus": "在有限、含噪时空数据中自动选择PDE结构。",
+      "method": "PDE-STRIDE对设计矩阵行重采样，沿正则化路径求解多次稀疏回归，以入选频率和固定概率阈值决定结构。",
+      "representation": "固定候选字典中的稀疏PDE项。",
+      "assumptions": "• 候选字典\n• 稀疏性",
+      "limitations": "• 稳定频率不等于结构后验\n• 高度相关候选仍会分摊入选频率\n• 求导误差来自上游处理",
+      "derivation": "计算重采样正则路径上的项选择频率，说明稳定性阈值与贝叶斯概率的差别。",
+      "card_url": "../cards/madduStabilitySelectionEnables2022.html",
+      "source_url": null,
+      "tags": [
+        "统计选择与弱形式",
+        "PDE-STRIDE对设计矩阵行重采样，沿正则化路径求解多次稀疏回归，以入选频率和固"
+      ],
+      "note": "论文事实来自课程条目；谱图中的家族和连线是便于学习的综合整理。"
+    },
+    {
+      "id": "P29",
+      "corpus_index": 29,
+      "key": "eganAutomaticallyDiscoveringOrdinary2024",
+      "title": "Automatically discovering ordinary differential equations from data with sparse regression",
+      "authors": [
+        "Kevin Egan",
+        "Weizhen Li",
+        "Rui Carvalho"
+      ],
+      "year": 2024,
+      "journal": "Communications Physics",
+      "doi": "10.1038/s42005-023-01516-2",
+      "family": "sparse",
+      "stage": "select",
+      "importance": 2,
+      "topic": "统计选择与弱形式",
+      "focus": "减少SINDy对平滑、阈值和模型选择的人工调参，并为候选系数提供bootstrap置信区间。",
+      "method": "网格优化Savitzky-Golay窗口并微分；lasso或adaptive lasso初筛、按最高入选次数截库；阈值网格加OLS去偏，最小BIC选点估计；2000次bootstrap形成区间。",
+      "representation": "最高五次多项式候选库上的稀疏线性组合。",
+      "assumptions": "• 动力学稀疏\n• 真实项包含在五次多项式库\n• 加性回归误差近似同方差\n• BIC偏好简洁模型",
+      "limitations": "• 要求真动力学稀疏且真实项已在设计矩阵中。\n• 确定性/无噪Lorenz违反回归同方差假设，性能反而下降并产生额外项。\n• 三维非线性系统仍需中等样本量和较高信号质量。",
+      "derivation": "画出平滑→LASSO→信息准则→去偏重估→bootstrap 的依赖链，找出会传播误差的步骤。",
+      "card_url": "../cards/eganAutomaticallyDiscoveringOrdinary2024.html",
+      "source_url": null,
+      "tags": [
+        "统计选择与弱形式",
+        "网格优化Savitzky-Golay窗口并微分；lasso或adaptive las"
+      ],
+      "note": "论文事实来自课程条目；谱图中的家族和连线是便于学习的综合整理。"
+    },
+    {
+      "id": "P36",
+      "corpus_index": 36,
+      "key": "fungRapidBayesianIdentification2025",
+      "title": "Rapid Bayesian identification of sparse nonlinear dynamics from scarce and noisy data",
+      "authors": [
+        "Lloyd Fung",
+        "Urban Fasel",
+        "Matthew Juniper"
+      ],
+      "year": 2025,
+      "journal": "Proceedings of the Royal Society A: Mathematical, Physical and Engineering Sciences",
+      "doi": "10.1098/rspa.2024.0200",
+      "family": "sparse",
+      "stage": "select",
+      "importance": 2,
+      "topic": "统计选择与弱形式",
+      "focus": "在采样稀少、观测噪声较强且需要快速计算的条件下，从候选函数库中选择ODE/PDE稀疏结构，并同时估计参数不确定性。",
+      "method": "把观测噪声方差传播到导数和每个非线性候选项，噪声方差随系数迭代更新；从全模型出发，以边际似然增益逐项后向删除，直到继续删除不能提高证据。",
+      "representation": "预定义到三阶的多项式候选库及稀疏系数向量；结构由保留的列决定，系数后验在高斯先验和近似高斯异方差似然下解析计算。",
+      "assumptions": "• 稀疏多项式候选库\n• 零均值高斯系数先验及由证据设定的先验尺度\n• 已知观测噪声方差传播模型\n• 主动采样中以预期信息增益选择新观测点",
+      "limitations": "• 后向贪心删除复杂度为O(M^2/2)，虽远低于穷举，却不保证全局证据最大值，可能过早删除真项。\n• 独立性、对角协方差与高斯近似在低信噪比或高度偏斜噪声下不可靠；作者建议此时改用更昂贵的采样方法。",
+      "derivation": "区分系数后验、模型证据与阈值删项；写出一个线性高斯后验的均值与协方差。",
+      "card_url": "../cards/fungRapidBayesianIdentification2025.html",
+      "source_url": null,
+      "tags": [
+        "统计选择与弱形式",
+        "把观测噪声方差传播到导数和每个非线性候选项，噪声方差随系数迭代更新；从全模型出发，以"
+      ],
+      "note": "论文事实来自课程条目；谱图中的家族和连线是便于学习的综合整理。"
+    },
+    {
+      "id": "P10",
+      "corpus_index": 10,
+      "key": "bruntonDiscoveringGoverningEquations2016",
+      "title": "Discovering governing equations from data by sparse identification of nonlinear dynamical systems",
+      "authors": [
+        "Steven L. Brunton",
+        "Joshua L. Proctor",
+        "J. Nathan Kutz"
+      ],
+      "year": 2016,
+      "journal": "Proceedings of the National Academy of Sciences",
+      "doi": "10.1073/pnas.1517384113",
+      "family": "sparse",
+      "stage": "space",
+      "importance": 3,
+      "topic": "基础与稀疏表示",
+      "focus": "从状态及其时间导数数据中，在候选非线性函数库内识别少量激活项，从而得到可解释ODE、参数化映射或降阶流体动力学。",
+      "method": "以顺序阈值最小二乘反复拟合、删除小系数并在保留项上重拟合；稀疏阈值lambda通过留出数据和准确度-复杂度Pareto elbow选择。",
+      "representation": "每个状态导数表示为候选库Theta(X)的稀疏线性组合，系数矩阵Xi的非零项定义显式动力学。",
+      "assumptions": "• 动力学在选定候选函数空间中稀疏\n• 高维系统存在可由POD提取的低秩相干坐标\n• 复杂度与预测误差应在Pareto前沿折中\n• 参数可作为状态变量嵌入以恢复分岔法则",
+      "limitations": "• 多项式候选项数随原状态维数和阶数快速组合增长，因此高维问题依赖先验降维，而降维坐标本身会影响可发现形式。\n• 高阶多项式库可能导致回归矩阵病态和非唯一稀疏表示。\n• 流体模型在未参与训练的高能初值上仅定性复现瞬态；放宽稀疏性虽可改善拟合，却会引入高阶项。\n• 如何仅由数据选择合适的近似函数空间仍是开放问题。",
+      "derivation": "由 x′=f(x) 构造 Θ(X)Ξ=X′；在三列的小矩阵上手算一次最小二乘、阈值和重新拟合。",
+      "card_url": "../cards/bruntonDiscoveringGoverningEquations2016.html",
+      "source_url": null,
+      "tags": [
+        "基础与稀疏表示",
+        "以顺序阈值最小二乘反复拟合、删除小系数并在保留项上重拟合；稀疏阈值lambda通过留"
+      ],
+      "note": "论文事实来自课程条目；谱图中的家族和连线是便于学习的综合整理。"
+    },
+    {
+      "id": "P04",
+      "corpus_index": 4,
+      "key": "rudyDatadrivenDiscoveryPartial2017",
+      "title": "Data-driven discovery of partial differential equations",
+      "authors": [
+        "Samuel H. Rudy",
+        "Steven L. Brunton",
+        "Joshua L. Proctor",
+        "J. Nathan Kutz"
+      ],
+      "year": 2017,
+      "journal": "Science Advances",
+      "doi": "10.1126/sciadv.1602614",
+      "family": "sparse",
+      "stage": "space",
+      "importance": 3,
+      "topic": "基础与稀疏表示",
+      "focus": "从Euler或Lagrange框架的时空序列识别参数化PDE右端项及系数，并区分对单一轨迹等价的候选动力学。",
+      "method": "以顺序阈值岭回归STRidge近似L0稀疏选择，迭代搜索阈值，并用残差、条件数相关惩罚和非零项数形成Pareto式模型选择。",
+      "representation": "预定义过完备候选库Theta(U,Q)的稀疏线性组合，每个非零系数对应一个状态、参数或空间导数项；时间导数固定为回归左端。",
+      "assumptions": "• 真PDE在候选库中存在且相对稀疏\n• 较少项的简约偏好\n• 可把已知必非零项或外部输入加入惩罚/候选库",
+      "limitations": "• 低误差识别所需时间序列长度没有理论估计，仅建议用Pareto误差陡降作为经验指引。\n• Kuramoto-Sivashinsky在含噪时虽选对项但系数明显低估，归因于数值微分误差。\n• 多项式求导在边界附近不可靠，边界剔除会强烈影响结果；作者称该求导方法远非完美。",
+      "derivation": "为 Burgers 方程列出 u、u²、u_x、u_xx、u u_x 的特征列，写出阈值岭回归和未见初值检验。",
+      "card_url": "../cards/rudyDatadrivenDiscoveryPartial2017.html",
+      "source_url": null,
+      "tags": [
+        "基础与稀疏表示",
+        "以顺序阈值岭回归STRidge近似L0稀疏选择，迭代搜索阈值，并用残差、条件数相关惩"
+      ],
+      "note": "论文事实来自课程条目；谱图中的家族和连线是便于学习的综合整理。"
+    },
+    {
+      "id": "P48",
+      "corpus_index": 48,
+      "key": "kaptanogluPySINDyComprehensivePython2022",
+      "title": "PySINDy: A comprehensive Python package for robust sparse system identification",
+      "authors": [
+        "Alan Kaptanoglu",
+        "Brian de Silva",
+        "Urban Fasel",
+        "Kadierdan Kaheman",
+        "Andy Goldschmidt",
+        "Jared Callaham",
+        "Charles Delahunt",
+        "Zachary Nicolaou",
+        "Kathleen Champion",
+        "Jean-Christophe Loiseau",
+        "J. Kutz",
+        "Steven Brunton"
+      ],
+      "year": 2022,
+      "journal": "Journal of Open Source Software",
+      "doi": "10.21105/joss.03994",
+      "family": "sparse",
+      "stage": "validate",
+      "importance": 2,
+      "topic": "基础与稀疏表示",
+      "focus": "提供统一、可维护且可组合的Python实现，使研究者可在同一接口下选择候选库、微分方法和稀疏优化器，覆盖ODE、PDE、控制、隐式与弱形式识别。",
+      "method": "包内组合多种贪心、阈值、正则和约束优化器求解Q_t约等于Theta(Q)Xi；软件侧重模块化选择和可复现实验，而非提出单一新的结构搜索准则。",
+      "representation": "动力函数表示为用户候选库Theta中的稀疏线性组合；GeneralizedLibrary可张量化、拼接并限制每个子库使用的输入，从而构建ODE、PDE和隐式关系。",
+      "assumptions": "• 候选函数库由背景科学知识选择\n• 稀疏正则偏好少量非零系数\n• 可选物理约束、稳定性和控制输入扩展\n• 微分器与优化器需按数据噪声和任务结构人工选择",
+      "limitations": "• SINDy成功的必要条件是候选库张成空间中存在足够准确且稀疏的真动力学表示；背景知识不足或库遗漏会使优化器无法恢复真结构。\n• 软件功能图明确区分已实现与尚未实现的SINDy变体，因此论文所综述的文献功能不能全部视为当时包内可用能力。",
+      "derivation": "把 differentiation、feature library、optimizer 三个接口对回 SINDy 数学步骤。",
+      "card_url": "../cards/kaptanogluPySINDyComprehensivePython2022.html",
+      "source_url": null,
+      "tags": [
+        "基础与稀疏表示",
+        "包内组合多种贪心、阈值、正则和约束优化器求解Q_t约等于Theta(Q)Xi；软件侧"
+      ],
+      "note": "论文事实来自课程条目；谱图中的家族和连线是便于学习的综合整理。"
+    },
+    {
+      "id": "P57",
+      "corpus_index": 57,
+      "key": "boninsegnaSparseLearningStochastic2018",
+      "title": "Sparse learning of stochastic dynamical equations",
+      "authors": [
+        "Lorenzo Boninsegna",
+        "Feliks Nüske",
+        "Cecilia Clementi"
+      ],
+      "year": 2018,
+      "journal": "The Journal of Chemical Physics",
+      "doi": "10.1063/1.5018409",
+      "family": "stochastic",
+      "stage": "infer",
+      "importance": 3,
+      "topic": "随机与记忆",
+      "focus": "从随机轨迹学习漂移和扩散，尤其面向投影后的分子动力学坐标。",
+      "method": "由Kramers-Moyal条件矩估计回归目标，采用逐步稀疏回归和交叉验证选稀疏度。",
+      "representation": "漂移与扩散分别在固定基函数字典中稀疏展开。",
+      "assumptions": "• Itô扩散过程\n• Markov近似\n• 候选字典",
+      "limitations": "• 有限数据误差可很大\n• 字典选择显著改变最优稀疏式\n• 投影坐标的Markov性需另行检验",
+      "derivation": "从 Itô 增量推导一阶条件矩是漂移、二阶条件矩决定扩散，明确 b² 与 b 的约定。",
+      "card_url": "../cards/boninsegnaSparseLearningStochastic2018.html",
+      "source_url": null,
+      "tags": [
+        "随机与记忆",
+        "由Kramers-Moyal条件矩估计回归目标，采用逐步稀疏回归和交叉验证选稀疏度。"
+      ],
+      "note": "论文事实来自课程条目；谱图中的家族和连线是便于学习的综合整理。"
+    },
+    {
+      "id": "P59",
+      "corpus_index": 59,
+      "key": "wangDataDrivenDiscoveryStochastic2022",
+      "title": "Data-Driven Discovery of Stochastic Differential Equations",
+      "authors": [
+        "Yasen Wang",
+        "Huazhen Fang",
+        "Junyang Jin",
+        "Guijun Ma",
+        "Xin He",
+        "Xing Dai",
+        "Zuogong Yue",
+        "Cheng Cheng",
+        "Hai-Tao Zhang",
+        "Donglin Pu",
+        "Dongrui Wu",
+        "Ye Yuan",
+        "Jorge Gonçalves",
+        "Jürgen Kurths",
+        "Han Ding"
+      ],
+      "year": 2022,
+      "journal": "Engineering",
+      "doi": "10.1016/j.eng.2022.02.007",
+      "family": "stochastic",
+      "stage": "infer",
+      "importance": 2,
+      "topic": "随机与记忆",
+      "focus": "用有限时间序列辨识随机微分方程的漂移、扩散和结构。",
+      "method": "BISDE使用稀疏贝叶斯学习生成候选，再按模型证据或信息量选择结构并无偏重估系数。",
+      "representation": "漂移与扩散的候选函数库。",
+      "assumptions": "• Itô SDE\n• 稀疏漂移与扩散",
+      "limitations": "• 现实序列可能非平稳\n• 短时增量近似受采样间隔影响\n• 候选库错设仍未解决",
+      "derivation": "从条件增量似然写出漂移和扩散候选模型比较，说明无偏重估修正的对象。",
+      "card_url": "../cards/wangDataDrivenDiscoveryStochastic2022.html",
+      "source_url": null,
+      "tags": [
+        "随机与记忆",
+        "BISDE使用稀疏贝叶斯学习生成候选，再按模型证据或信息量选择结构并无偏重估系数。"
+      ],
+      "note": "论文事实来自课程条目；谱图中的家族和连线是便于学习的综合整理。"
+    },
+    {
+      "id": "P76",
+      "corpus_index": 76,
+      "key": "stephanyDDEFindLearning2025",
+      "title": "DDE-Find: learning delay differential equations from noisy, limited data",
+      "authors": [
+        "Robert Stephany"
+      ],
+      "year": 2025,
+      "journal": "Proceedings of the Royal Society A: Mathematical, Physical and Engineering Sciences",
+      "doi": "10.1098/rspa.2024.0403",
+      "family": "stochastic",
+      "stage": "infer",
+      "importance": 2,
+      "topic": "随机与记忆",
+      "focus": "从有限含噪轨迹联合估计延迟微分方程参数、时滞和初始历史函数。",
+      "method": "求解DDE前向轨迹，以伴随方程高效计算关于参数、时滞和历史函数的梯度，再作梯度优化。",
+      "representation": "给定可微DDE右端项和参数化历史函数；也可用神经网络参数化。",
+      "assumptions": "• DDE结构族\n• 单一固定时滞\n• 参数化初始历史",
+      "limitations": "• 部分历史参数的损失梯度为零或极小\n• 神经网络右端项可用错误时滞拟合相同轨迹\n• 需要预先给定DDE结构族",
+      "derivation": "对 x(t−τ) 写出时滞参数的链式导数，解释初始历史为什么是函数而非一个数。",
+      "card_url": "../cards/stephanyDDEFindLearning2025.html",
+      "source_url": null,
+      "tags": [
+        "随机与记忆",
+        "求解DDE前向轨迹，以伴随方程高效计算关于参数、时滞和历史函数的梯度，再作梯度优化。"
+      ],
+      "note": "论文事实来自课程条目；谱图中的家族和连线是便于学习的综合整理。"
+    },
+    {
+      "id": "P74",
+      "corpus_index": 74,
+      "key": "snyderDatadrivenStochasticModeling2021",
+      "title": "Data-driven stochastic modeling of coarse-grained dynamics with finite-size effects using Langevin regression",
+      "authors": [
+        "Jordan Snyder",
+        "Jared L. Callaham",
+        "Steven L. Brunton",
+        "J. Nathan Kutz"
+      ],
+      "year": 2021,
+      "journal": "Physica D: Nonlinear Phenomena",
+      "doi": "10.1016/j.physd.2021.133004",
+      "family": "stochastic",
+      "stage": "observe",
+      "importance": 2,
+      "topic": "随机与记忆",
+      "focus": "学习有限规模Kuramoto群体序参量的随机粗粒化动力学。",
+      "method": "Langevin regression从多条现实采样轨迹估计漂移、扩散并比较系统尺度标度。",
+      "representation": "线性与三次漂移加加性白噪声的低维Langevin SDE。",
+      "assumptions": "• 序参量坐标\n• Ott-Antonsen极限给出的漂移结构\n• 白噪声有效模型",
+      "limitations": "• 漂移定量值与无限规模理论仍有偏差\n• 白噪声与低维Markov假设需检验\n• 对象限于Kuramoto模型",
+      "derivation": "写出 Kuramoto 序参量的线性/三次漂移和有限尺寸噪声，区分分岔变化与扩散变化。",
+      "card_url": "../cards/snyderDatadrivenStochasticModeling2021.html",
+      "source_url": null,
+      "tags": [
+        "随机与记忆",
+        "Langevin regression从多条现实采样轨迹估计漂移、扩散并比较系统尺度"
+      ],
+      "note": "论文事实来自课程条目；谱图中的家族和连线是便于学习的综合整理。"
+    },
+    {
+      "id": "P54",
+      "corpus_index": 54,
+      "key": "reinboldDatadrivenDiscoveryPartial2019",
+      "title": "Data-driven discovery of partial differential equation models with latent variables",
+      "authors": [
+        "Patrick A. K. Reinbold",
+        "Roman O. Grigoriev"
+      ],
+      "year": 2019,
+      "journal": "Physical Review E",
+      "doi": "10.1103/physreve.100.022219",
+      "family": "stochastic",
+      "stage": "operator",
+      "importance": 2,
+      "topic": "统计选择与弱形式",
+      "focus": "在压力和外力场不可直接观测时，从速度测量辨识准二维流体PDE。",
+      "method": "设计微分算子消去潜变量，再用局部多项式插值、稀疏回归和残差尺度阈值选择结构。",
+      "representation": "由空间对称性限定的九项非线性流体候选模型。",
+      "assumptions": "• 空间对称性\n• 不可压缩近似\n• 潜变量的微分消元结构",
+      "limitations": "• 高阶导数导致噪声敏感\n• 阈值选择仍影响弱项\n• 案例中的对称结构预先给定",
+      "derivation": "对动量方程取旋度以消去压力，说明消元后导数阶数和噪声敏感性怎样变化。",
+      "card_url": "../cards/reinboldDatadrivenDiscoveryPartial2019.html",
+      "source_url": null,
+      "tags": [
+        "统计选择与弱形式",
+        "设计微分算子消去潜变量，再用局部多项式插值、稀疏回归和残差尺度阈值选择结构。"
+      ],
+      "note": "论文事实来自课程条目；谱图中的家族和连线是便于学习的综合整理。"
+    },
+    {
+      "id": "P61",
+      "corpus_index": 61,
+      "key": "wannerHigherOrderDrift2024",
+      "title": "On Higher Order Drift and Diffusion Estimates for Stochastic SINDy",
+      "authors": [
+        "Mathias Wanner",
+        "Igor Mezić"
+      ],
+      "year": 2024,
+      "journal": "SIAM Journal on Applied Dynamical Systems",
+      "doi": "10.1137/23m1567011",
+      "family": "stochastic",
+      "stage": "operator",
+      "importance": 2,
+      "topic": "随机与记忆",
+      "focus": "提高Stochastic SINDy在有限采样频率和轨迹长度下的漂移、扩散估计精度。",
+      "method": "分析既有有限差分估计的偏差与方差界，并构造更高阶增量估计后送入SINDy。",
+      "representation": "漂移和扩散在固定字典中的稀疏系数。",
+      "assumptions": "• Itô SDE正则性\n• 候选字典",
+      "limitations": "• 理论条件要求足够光滑与混合\n• 高阶估计可能增大方差\n• 不处理库错设",
+      "derivation": "用生成元展开有限时间条件矩，找出首个时间步偏差项，并区分偏差与采样方差。",
+      "card_url": "../cards/wannerHigherOrderDrift2024.html",
+      "source_url": null,
+      "tags": [
+        "随机与记忆",
+        "分析既有有限差分估计的偏差与方差界，并构造更高阶增量估计后送入SINDy。"
+      ],
+      "note": "论文事实来自课程条目；谱图中的家族和连线是便于学习的综合整理。"
+    },
+    {
+      "id": "P58",
+      "corpus_index": 58,
+      "key": "huangSparseInferenceActive2022",
+      "title": "Sparse inference and active learning of stochastic differential equations from data",
+      "authors": [
+        "Yunfei Huang",
+        "Youssef Mabrouk",
+        "Gerhard Gompper",
+        "Benedikt Sabass"
+      ],
+      "year": 2022,
+      "journal": "Scientific Reports",
+      "doi": "10.1038/s41598-022-25638-9",
+      "family": "stochastic",
+      "stage": "select",
+      "importance": 2,
+      "topic": "随机与记忆",
+      "focus": "以统一稀疏贝叶斯流程辨识ODE、SDE和PDE，并主动选择下一批测量。",
+      "method": "Laplacian先验诱导稀疏，阈值稀疏贝叶斯学习反复剔除弱项；主动学习按预测不确定性选择数据。",
+      "representation": "候选库中的漂移、扩散或PDE项。",
+      "assumptions": "• 稀疏候选库\n• SDE局部增量模型",
+      "limitations": "• 主动准则在错设模型下可能自我强化\n• PDE去噪与结构选择耦合\n• 实验证据有限",
+      "derivation": "写出稀疏贝叶斯增量模型与预测不确定性，检查主动选择是否只在既有库内有效。",
+      "card_url": "../cards/huangSparseInferenceActive2022.html",
+      "source_url": null,
+      "tags": [
+        "随机与记忆",
+        "Laplacian先验诱导稀疏，阈值稀疏贝叶斯学习反复剔除弱项；主动学习按预测不确定"
+      ],
+      "note": "论文事实来自课程条目；谱图中的家族和连线是便于学习的综合整理。"
+    },
+    {
+      "id": "P60",
+      "corpus_index": 60,
+      "key": "mathpatiDiscoveringStochasticPartial2024",
+      "title": "Discovering stochastic partial differential equations from limited data using variational Bayes inference",
+      "authors": [
+        "Yogesh Chandrakant Mathpati",
+        "Tapas Tripura",
+        "Rajdip Nayek",
+        "Souvik Chakraborty"
+      ],
+      "year": 2024,
+      "journal": "Computer Methods in Applied Mechanics and Engineering",
+      "doi": "10.1016/j.cma.2023.116512",
+      "family": "stochastic",
+      "stage": "select",
+      "importance": 3,
+      "topic": "随机与记忆",
+      "focus": "从有限随机场样本同时识别SPDE的确定性漂移项和随机扩散项。",
+      "method": "Spike-and-Slab先验配合变分贝叶斯近似，输出项的包含概率和系数分布。",
+      "representation": "扩展Kramers-Moyal目标上的候选空间微分项与噪声项。",
+      "assumptions": "• Markov SPDE\n• 候选基函数\n• 稀疏Spike-and-Slab先验",
+      "limitations": "• 真实项若不在库中会选相关替代项\n• 证据限于三条合成SPDE\n• 变分后验可能低估多峰不确定性",
+      "derivation": "把随机热方程离散场增量分成条件均值和条件方差，再解释 spike-and-slab 指示变量。",
+      "card_url": "../cards/mathpatiDiscoveringStochasticPartial2024.html",
+      "source_url": null,
+      "tags": [
+        "随机与记忆",
+        "Spike-and-Slab先验配合变分贝叶斯近似，输出项的包含概率和系数分布。"
+      ],
+      "note": "论文事实来自课程条目；谱图中的家族和连线是便于学习的综合整理。"
+    },
+    {
+      "id": "P09",
+      "corpus_index": 9,
+      "key": "bongardAutomatedReverseEngineering2007",
+      "title": "Automated reverse engineering of nonlinear dynamical systems",
+      "authors": [
+        "Josh Bongard",
+        "Hod Lipson"
+      ],
+      "year": 2007,
+      "journal": "Proceedings of the National Academy of Sciences",
+      "doi": "10.1073/pnas.0609476104",
+      "family": "symbolic",
+      "stage": "infer",
+      "importance": 2,
+      "topic": "基础与稀疏表示",
+      "focus": "从可主动扰动的系统或已有含噪时间序列中，自动反演多变量耦合非线性ODE结构，并提高搜索规模和模型简洁性。",
+      "method": "partitioning分解变量方程搜索；主动probing在候选模型预测分歧最大的初值处获取新数据；snipping把输出近常数的臃肿子树替换为常数，迭代演化精度和简洁性。",
+      "representation": "每个状态方程由嵌套数学子表达式构成的自由形式符号树表示，多个方程共同组成动力系统模型。",
+      "assumptions": "• 系统可由全可观测状态上的耦合ODE描述\n• 候选模型分歧最大的实验最有判别力\n• 不同状态方程可分区优化后组合\n• 近常数子表达式多为过拟合膨胀，可被snipping简化",
+      "limitations": "• 验证规模最高六个变量，仍比系统生物学中数百或数千组分低多个数量级。\n• 当前框架要求全部状态变量可观测；未观测变量会使受其影响的方程持续保持高误差。\n• 离散采样频率可能使某些不同结构在观测时刻不可区分，并对识别结构产生偏置。",
+      "derivation": "写出模型群体、轨迹仿真误差和下一轮数据选择之间的循环，列出需要先验给定的算子。",
+      "card_url": "../cards/bongardAutomatedReverseEngineering2007.html",
+      "source_url": null,
+      "tags": [
+        "基础与稀疏表示",
+        "partitioning分解变量方程搜索；主动probing在候选模型预测分歧最大的"
+      ],
+      "note": "论文事实来自课程条目；谱图中的家族和连线是便于学习的综合整理。"
+    },
+    {
+      "id": "P45",
+      "corpus_index": 45,
+      "key": "xuDLGAPDEDiscoveryPDEs2020",
+      "title": "DLGA-PDE: Discovery of PDEs with incomplete candidate library via combination of deep learning and genetic algorithm",
+      "authors": [
+        "Hao Xu",
+        "Haibin Chang",
+        "Dongxiao Zhang"
+      ],
+      "year": 2020,
+      "journal": "Journal of Computational Physics",
+      "doi": "10.1016/j.jcp.2020.109584",
+      "family": "symbolic",
+      "stage": "infer",
+      "importance": 2,
+      "topic": "符号搜索",
+      "focus": "在初始候选库缺少真方程所需高阶导数或乘积项时，利用神经网络生成平滑元数据和自动导数，再由遗传变异产生缺失结构。",
+      "method": "种群从基本基因随机生成，以最小二乘残差加L0长度惩罚为适应度；选择后的基因组通过交叉、删除、增加与阶数突变演化，稳定出现的最优个体作为最终PDE。",
+      "representation": "PDE编码为左右两侧的基因组：模块内部把u及导数基因相乘，模块之间相加；当前简化要求左端只有一个时间导数项，右端可经组合与突变形成高阶或非线性项。",
+      "assumptions": "• 左端限制为单个时间导数模块\n• 用户给定基本基因和允许的最高导数阶数\n• L0复杂度惩罚偏好短基因组\n• 常系数时空齐次PDE假设",
+      "limitations": "• L0正则超参数对正确结构至关重要，但当前只凭经验设置；同时方法只支持时空常系数，不能处理分段常数或平滑变系数。\n• 当前编码把左端限制为单个时间导数项，虽称可扩展，但论文实验没有验证多项或混合导数左端。\n• 极低样本和较高噪声存在明确结构失败边界：波动方程100点产生赘项，20%噪声不再恢复真方程。",
+      "derivation": "说明遗传算子如何扩展不完整初始候选库，列出仍无法生成的语法结构。",
+      "card_url": "../cards/xuDLGAPDEDiscoveryPDEs2020.html",
+      "source_url": null,
+      "tags": [
+        "符号搜索",
+        "种群从基本基因随机生成，以最小二乘残差加L0长度惩罚为适应度；选择后的基因组通过交叉"
+      ],
+      "note": "论文事实来自课程条目；谱图中的家族和连线是便于学习的综合整理。"
+    },
+    {
+      "id": "P37",
+      "corpus_index": 37,
+      "key": "chenSymbolicGeneticAlgorithm2022",
+      "title": "Symbolic genetic algorithm for discovering open-form partial differential equations (SGA-PDE)",
+      "authors": [
+        "Yuntian Chen",
+        "Yingtao Luo",
+        "Qiang Liu",
+        "Hao Xu",
+        "Dongxiao Zhang"
+      ],
+      "year": 2022,
+      "journal": "Physical Review Research",
+      "doi": "10.1103/physrevresearch.4.023174",
+      "family": "symbolic",
+      "stage": "infer",
+      "importance": 2,
+      "topic": "符号搜索",
+      "focus": "在不预先枚举完整候选函数项的条件下，从观测中发现可含复合函数或分式结构的开放式PDE右端。",
+      "method": "对森林执行交叉、变异与替换来改动节点和拓扑；每代用STRidge求各树系数，再以AIC平衡残差与项数并选择下一代。",
+      "representation": "树节点含加、减、乘、除、一二阶微分、平方、立方以及u、x、0等操作数；森林可随代际改变项数和拓扑，因而比固定候选矩阵开放。",
+      "assumptions": "• 基本操作符与操作数集合\n• 树高、项数和代数阈值\n• AIC对函数项数的复杂度惩罚\n• 框架允许加入预置扩散项等专家先验，但主实验声称不提供候选函数项先验",
+      "limitations": "• AIC单独最小化可能偏好含冗余项的结构，收敛AIC阈值也是需要按具体问题调整的超参数。\n• 作者把优化效率列为主要限制；无限开放搜索使当前遗传优化可能难以用于大问题，真实稀疏含噪数据尚待研究。",
+      "derivation": "手工执行一次表达式树变异/交叉，检查新 PDE 是否语法合法且可数值评价。",
+      "card_url": "../cards/chenSymbolicGeneticAlgorithm2022.html",
+      "source_url": null,
+      "tags": [
+        "符号搜索",
+        "对森林执行交叉、变异与替换来改动节点和拓扑；每代用STRidge求各树系数，再以AI"
+      ],
+      "note": "论文事实来自课程条目；谱图中的家族和连线是便于学习的综合整理。"
+    },
+    {
+      "id": "P35",
+      "corpus_index": 35,
+      "key": "duDISCOVERDeepIdentification2024",
+      "title": "DISCOVER: Deep identification of symbolically concise open-form partial differential equations via enhanced reinforcement learning",
+      "authors": [
+        "Mengge Du",
+        "Yuntian Chen",
+        "Dongxiao Zhang"
+      ],
+      "year": 2024,
+      "journal": "Physical Review Research",
+      "doi": "10.1103/physrevresearch.6.013182",
+      "family": "symbolic",
+      "stage": "infer",
+      "importance": 3,
+      "topic": "符号搜索",
+      "focus": "从时空观测中发现不局限于预设候选库的PDE结构，并把开放式符号搜索扩展到高维、多变量海洋次网格参数化。",
+      "method": "候选经语法和可选物理规则屏蔽，以拟合、复杂度和树深构成奖励；仅高奖励尾部样本用于风险寻求策略梯度更新。系数用STRidge求解，海洋长表达式另用迭代残差拟合和特征重要性删项。",
+      "representation": "结构感知LSTM逐token生成可变深度PDE树，符号库可含导数、复合和除法结构；树拆成函数项后由稀疏回归估计线性系数。",
+      "assumptions": "• 表达式树合法性和结构感知token屏蔽\n• 可按问题注入拉普拉斯算子等先验；Cahn-Hilliard案例比较了有无拉普拉斯先验\n• 海洋案例禁止湍流中不合理或罕见的项组合，并联合两层相关性评价\n• 稀疏性、表达式长度与树深惩罚",
+      "limitations": "• 开放式搜索即使较SGA加速，仍比闭合候选库方法慢若干数量级；早期持续生成差候选还可能把策略推离真式，形成探索失败。\n• 作者明确称当前框架不适用于高噪且稀疏场景，并建议未来引入弱形式；任意高阶函数项的可靠求值仍是瓶颈。",
+      "derivation": "写出表达式 token 策略、终止条件、系数拟合和强化学习奖励；区分生成概率和物理可信度。",
+      "card_url": "../cards/duDISCOVERDeepIdentification2024.html",
+      "source_url": null,
+      "tags": [
+        "符号搜索",
+        "候选经语法和可选物理规则屏蔽，以拟合、复杂度和树深构成奖励；仅高奖励尾部样本用于风险"
+      ],
+      "note": "论文事实来自课程条目；谱图中的家族和连线是便于学习的综合整理。"
+    },
+    {
+      "id": "P02",
+      "corpus_index": 2,
+      "key": "ruanDiscoveringPhysicalLaws2025",
+      "title": "Discovering physical laws with parallel symbolic enumeration",
+      "authors": [
+        "Kai Ruan",
+        "Yilong Xu",
+        "Ze-Feng Gao",
+        "Yang Liu",
+        "Yike Guo",
+        "Ji-Rong Wen",
+        "Hao Sun"
+      ],
+      "year": 2025,
+      "journal": "Nature Computational Science",
+      "doi": "10.1038/s43588-025-00904-8",
+      "family": "symbolic",
+      "stage": "infer",
+      "importance": 3,
+      "topic": "符号搜索",
+      "focus": "在给定输入变量、输出和算子集合时，高效恢复可解释代数关系或ODE右端项，并应用于混沌系统、机电定位装置和湍流摩阻关系。",
+      "method": "GPU上并行枚举数百万至数亿候选并共享公共子树计算；GP为默认token生成器，也比较MCTS和随机生成；候选常数先采样、再用最小二乘统一细化，最终保留误差-复杂度Pareto前沿。",
+      "representation": "数学表达式树；PSRN的符号层把所有浅层子树值张量化并复用，偏移张量可从最优数值位置反向还原符号树。",
+      "assumptions": "• 离散预定义算子集合和最大树深\n• 复杂度惩罚与Pareto最优\n• 机电案例预设牛顿第二定律的状态依赖形式并加入sign摩擦算子\n• 摩阻案例先采用已有数据坍缩变量",
+      "limitations": "• PSRN显存随层数急剧增长；20输入、3层、常用算子估算超过10^5 GB，常规实现直接处理的树深不超过3。\n• 深而不可分解的表达式可能使token生成器停在局部最优；真实系数若远离初始采样范围，最小二乘细化也可能找不到全局最优。\n• 高噪声下可能过度正则为简单式，也可能因偏好分式而用复杂有理函数拟合噪声；仍受预定义算子集限制。",
+      "derivation": "手算一个深度为2的表达式树枚举，说明代数等价去重如何减少候选数。",
+      "card_url": "../cards/ruanDiscoveringPhysicalLaws2025.html",
+      "source_url": null,
+      "tags": [
+        "符号搜索",
+        "GPU上并行枚举数百万至数亿候选并共享公共子树计算；GP为默认token生成器，也比"
+      ],
+      "note": "论文事实来自课程条目；谱图中的家族和连线是便于学习的综合整理。"
+    },
+    {
+      "id": "P46",
+      "corpus_index": 46,
+      "key": "vaddireddyFeatureEngineeringSymbolic2020",
+      "title": "Feature engineering and symbolic regression methods for detecting hidden physics from sparse sensor observation data",
+      "authors": [
+        "Harsha Vaddireddy",
+        "Adil Rasheed",
+        "Anne E. Staples",
+        "Omer San"
+      ],
+      "year": 2020,
+      "journal": "Physics of Fluids",
+      "doi": "10.1063/1.5136351",
+      "family": "symbolic",
+      "stage": "operator",
+      "importance": 2,
+      "topic": "符号搜索",
+      "focus": "比较开放组合的基因表达编程GEP与固定候选库STRidge，研究如何从稀疏时空采样恢复PDE、数值截断误差、未知源项和LES湍流闭合核。",
+      "method": "GEP通过种群、基因连接、变异和随机数常量模块进化表达式；STRidge通过岭回归与序贯阈值删项。发现的湍流核及系数随后嵌回LES作前向模拟。",
+      "representation": "GEP用可变表达式染色体表示复杂组合、三角和指数函数；STRidge用预定义候选列的稀疏线性组合。研究范围主要为二次非线性、最高五阶空间导数，以及已知方程残差中的源项或闭合核。",
+      "assumptions": "• 已知PDE部分先移到响应端，只发现残差源项或闭合项\n• GEP的函数集、终端集、基因数与常数范围预先配置\n• STRidge的完整特征库由研究者显式枚举\n• Kawahara案例人工移除会导致更稀疏替代解释的u_x，并向GEP核心库加入uu_x",
+      "limitations": "• GEP超参数来自既有例子加试错且所有案例共用同一设置；算法对常数拟合先天较差，需预设随机常数范围，增大种群又显著增加计算开销。\n• 固定库稀疏回归的预测能力受特征库表达力限制，不能表示复杂函数组合；Sine-Gordon案例即暴露了这一边界。\n• 单轨迹可能同时满足更简单的错误或替代PDE；Kawahara案例只有人工删去替代项并注入目标非线性后才得到期望结构。",
+      "derivation": "把稀疏传感观测经特征工程变成回归输入，追踪哪些导数或特征来自额外先验。",
+      "card_url": "../cards/vaddireddyFeatureEngineeringSymbolic2020.html",
+      "source_url": null,
+      "tags": [
+        "符号搜索",
+        "GEP通过种群、基因连接、变异和随机数常量模块进化表达式；STRidge通过岭回归与"
+      ],
+      "note": "论文事实来自课程条目；谱图中的家族和连线是便于学习的综合整理。"
+    },
+    {
+      "id": "P39",
+      "corpus_index": 39,
+      "key": "huLearningInterpretableNetwork2025",
+      "title": "Learning interpretable network dynamics via universal neural symbolic regression",
+      "authors": [
+        "Jiao Hu",
+        "Jiaxu Cui",
+        "Bo Yang"
+      ],
+      "year": 2025,
+      "journal": "Nature Communications",
+      "doi": "10.1038/s41467-025-61575-7",
+      "family": "symbolic",
+      "stage": "operator",
+      "importance": 2,
+      "topic": "符号搜索",
+      "focus": "从高维网络节点时间序列中恢复节点自动力学与成对相互作用的显式方程，并用于合成、混沌及真实疫情和行人系统。",
+      "method": "先以物理分解和方差最小化损失解耦高维信号，再从拟合函数用K-means选代表点，送入预训练符号回归模型一次前向推断和常数优化；若方程不满意可循环增加观测。",
+      "representation": "预训练NSRA transformer把神经网络采样的输入输出对映射为前缀表达式树，可选BFGS/梯度法优化常数；每个节点维度或异质群体可共享或分别建式。",
+      "assumptions": "• 状态变化由自身状态和一阶邻居状态决定\n• 动力学可加性分解为自项与成对相互作用项\n• 实验通常假定拓扑已知\n• 符号transformer的训练表达式分布和运算词表",
+      "limitations": "• 底层拓扑如何获得仍是开放问题；时变外力、随机系统、PDE及高阶相互作用超出当前主要范围。\n• 有限差分会放大观测噪声并直接降低神经网络解耦质量，当前依赖Savitzky-Golay与五点差分预处理。\n• 预训练transformer假设独立同分布样本，而网络轨迹有时间相关性；K-means取样只是缓解分布失配的启发式处理。",
+      "derivation": "将节点自身动力学与邻边相互作用拆开，解释网络拓扑如何限定候选式。",
+      "card_url": "../cards/huLearningInterpretableNetwork2025.html",
+      "source_url": null,
+      "tags": [
+        "符号搜索",
+        "先以物理分解和方差最小化损失解耦高维信号，再从拟合函数用K-means选代表点，送入"
+      ],
+      "note": "论文事实来自课程条目；谱图中的家族和连线是便于学习的综合整理。"
+    },
+    {
+      "id": "P28",
+      "corpus_index": 28,
+      "key": "cohenPhysicsinformedGeneticProgramming2024",
+      "title": "Physics-informed genetic programming for discovery of partial differential equations from scarce and noisy data",
+      "authors": [
+        "Benjamin G. Cohen",
+        "Burcu Beykal",
+        "George M. Bollas"
+      ],
+      "year": 2024,
+      "journal": "Journal of Computational Physics",
+      "doi": "10.1016/j.jcp.2024.113261",
+      "family": "symbolic",
+      "stage": "select",
+      "importance": 2,
+      "topic": "符号搜索",
+      "focus": "从极少传感器和噪声观测中，利用前向PDE求解器直接搜索可解释方程结构。",
+      "method": "外层GP变异/交叉搜索结构，内层通过PDE前向积分和梯度优化系数，最终以BIC权衡残差与复杂度。",
+      "representation": "遗传编程表达式树，可由专家将变量、导数和算子分区并规定组合方式；系数为连续参数。",
+      "assumptions": "• 给定初始与边界条件\n• 专家指定符号分区和表达式组合\n• 可数值积分的PDE形式\n• BIC复杂度惩罚",
+      "limitations": "• GP随符号空间扩展不良，PDE积分昂贵，且关键初始/边界条件在现实中可能不可得。\n• 内层信赖域优化没有全局最优保证。\n• 符号空间和组合策略需专家选择。",
+      "derivation": "写出遗传表达式搜索与物理残差评价的内外层关系；说明语法限制如何排除候选。",
+      "card_url": "../cards/cohenPhysicsinformedGeneticProgramming2024.html",
+      "source_url": null,
+      "tags": [
+        "符号搜索",
+        "外层GP变异/交叉搜索结构，内层通过PDE前向积分和梯度优化系数，最终以BIC权衡残"
+      ],
+      "note": "论文事实来自课程条目；谱图中的家族和连线是便于学习的综合整理。"
+    },
+    {
+      "id": "P40",
+      "corpus_index": 40,
+      "key": "tianInteractiveSymbolicRegression2025",
+      "title": "Interactive symbolic regression with co-design mechanism through offline reinforcement learning",
+      "authors": [
+        "Yuan Tian",
+        "Wenqi Zhou",
+        "Michele Viscione",
+        "Hao Dong",
+        "David S. Kammer",
+        "Olga Fink"
+      ],
+      "year": 2025,
+      "journal": "Nature Communications",
+      "doi": "10.1038/s41467-025-59288-y",
+      "family": "symbolic",
+      "stage": "select",
+      "importance": 3,
+      "topic": "符号搜索",
+      "focus": "从数值输入输出对恢复表达式树，并允许专家把已知的部分表达式作为前缀状态注入，以补全未知修正项或复杂公式。",
+      "method": "用含最优与次优轨迹的离线数据训练保守Q学习网络；推理时按Q值和beam search扩展树，随后BFGS调常数。交互模式从用户给定的部分树继续生成。",
+      "representation": "逐步构造前缀表达式树；beam search保留128条候选轨迹，树完成后可用BFGS连续优化常数。专家知识表现为预先填入树中的一段动作序列。",
+      "assumptions": "• 表达式树语法和完整性检查\n• 专家提供的部分树/教材公式前缀\n• 漂移实验预设已知核心物理公式\n• 系外行星案例人工从散点推断反比和对数比例，并加入天体物理常数",
+      "limitations": "• 验证主要局限于二变量，三变量仅作扩展；高维表达式及ODE/PDE仍是未来方向。\n• 模型把常数离散值当作独立动作且不直接拟合，常出现常数错误；最终精度依赖额外BFGS。",
+      "derivation": "区分离线数据集、策略奖励与人工表达式约束；列出共设计介入搜索的时点。",
+      "card_url": "../cards/tianInteractiveSymbolicRegression2025.html",
+      "source_url": null,
+      "tags": [
+        "符号搜索",
+        "用含最优与次优轨迹的离线数据训练保守Q学习网络；推理时按Q值和beam search"
+      ],
+      "note": "论文事实来自课程条目；谱图中的家族和连线是便于学习的综合整理。"
+    },
+    {
+      "id": "P08",
+      "corpus_index": 8,
+      "key": "schmidtDistillingFreeFormNatural2009",
+      "title": "Distilling Free-Form Natural Laws from Experimental Data",
+      "authors": [
+        "Michael Schmidt",
+        "Hod Lipson"
+      ],
+      "year": 2009,
+      "journal": "Science",
+      "doi": "10.1126/science.1165893",
+      "family": "symbolic",
+      "stage": "space",
+      "importance": 2,
+      "topic": "基础与稀疏表示",
+      "focus": "不预设方程形式，从物理系统轨迹中搜索非平凡守恒量、状态流形、Lagrangian/Hamiltonian和运动方程。",
+      "method": "演化符号回归随机组合、重组和变异表达式；适应度比较候选式隐含的变量偏导比与实验轨迹偏导比，并在准确度-复杂度Pareto前沿保留候选。",
+      "representation": "由变量、常数、代数运算和三角函数等构成的自由形式表达树；候选可表示隐式不变量、守恒式或动力学恒等式。",
+      "assumptions": "• 非平凡规律应预测不同变量子组之间的局部导数关系\n• 规律需在留出轨迹上有效且在准确度与简洁性之间取Pareto折中\n• 允许的变量与运算符由用户指定\n• 可用较简单系统的已知项为复杂系统搜索作bootstrap初始化",
+      "limitations": "• 算法输出约10个不同复杂度候选，最终方程仍由研究者人工检查和选择。\n• 结果依赖用户提供的变量和数学构件；去掉正弦/余弦后只能以Taylor近似替代真实摆方程。\n• 最坏搜索时间随规律表达式复杂度指数增长，并随状态维数近似二次增长。\n• 机器给出的自由系数可能混合质量、长度等量，物理单位和语义仍需人类解释，量纲一致也不能消除歧义。",
+      "derivation": "手算一个候选守恒表达式沿轨迹的总导数，并解释误差—复杂度 Pareto 前沿。",
+      "card_url": "../cards/schmidtDistillingFreeFormNatural2009.html",
+      "source_url": null,
+      "tags": [
+        "基础与稀疏表示",
+        "演化符号回归随机组合、重组和变异表达式；适应度比较候选式隐含的变量偏导比与实验轨迹偏"
+      ],
+      "note": "论文事实来自课程条目；谱图中的家族和连线是便于学习的综合整理。"
+    },
+    {
+      "id": "P03",
+      "corpus_index": 3,
+      "key": "udrescuAIFeynmanPhysicsInspired2020",
+      "title": "AI Feynman: a Physics-Inspired Method for Symbolic Regression",
+      "authors": [
+        "Silviu-Marian Udrescu",
+        "Max Tegmark"
+      ],
+      "year": 2020,
+      "journal": null,
+      "doi": "10.48550/arXiv.1905.11481",
+      "family": "symbolic",
+      "stage": "space",
+      "importance": 2,
+      "topic": "符号搜索",
+      "focus": "从多变量数值表恢复未知代数物理公式；论文主体不直接发现含导数或积分的ODE/PDE。",
+      "method": "顺序尝试量纲分析、多项式拟合、按描述长度控制的暴力符号搜索、NN探测平移/尺度对称与加法/乘法可分性、变量相等及输出变换，并对简化后的子问题递归求解。",
+      "representation": "由有限基本函数和常数组成的符号串/逆波兰表达式；复杂问题递归分解为更低维子表达式，再拼回完整公式。",
+      "assumptions": "• 量纲齐次性\n• 平移、尺度等对称性\n• 加法和乘法可分性\n• 组合性、简单常数与最短描述长度偏好",
+      "limitations": "• 100条基础公式实际是开发训练集而非严格独立测试集。\n• 高动态范围会使NN错过可分性阈值；复杂串的暴力搜索可需数年甚至远超可行时间。\n• 在非物理、任意组合函数集上的恢复率降至66.7%，说明优势依赖物理式常见的对称和可分结构。\n• 未评估自变量噪声或真实数据，NN拟合本身会引入事实噪声。",
+      "derivation": "对可分离函数 f(x,y)=g(x)h(y) 推导可检验的分解关系，区分数值检测和符号恒等。",
+      "card_url": "../cards/udrescuAIFeynmanPhysicsInspired2020.html",
+      "source_url": null,
+      "tags": [
+        "符号搜索",
+        "顺序尝试量纲分析、多项式拟合、按描述长度控制的暴力符号搜索、NN探测平移/尺度对称与"
+      ],
+      "note": "论文事实来自课程条目；谱图中的家族和连线是便于学习的综合整理。"
+    },
+    {
+      "id": "P41",
+      "corpus_index": 41,
+      "key": "tenachiDeepSymbolicRegression2023",
+      "title": "Deep Symbolic Regression for Physics Guided by Units Constraints: Toward the Automated Discovery of Physical Laws",
+      "authors": [
+        "Wassim Tenachi",
+        "Rodrigo Ibata",
+        "Foivos I. Diakogiannis"
+      ],
+      "year": 2023,
+      "journal": "The Astrophysical Journal",
+      "doi": "10.3847/1538-4357/ad014c",
+      "family": "symbolic",
+      "stage": "space",
+      "importance": 2,
+      "topic": "符号搜索",
+      "focus": "在一般符号回归中原位施加物理量纲一致性，使搜索只生成单位可闭合的表达式，并用于物理教科书关系和天体物理函数恢复。",
+      "method": "每个任务从头初始化RNN，以风险寻求策略梯度只强化最佳5%候选，并用熵正则维持探索；局部量纲规则先屏蔽不可能token，再以拟合-复杂度Pareto前沿输出候选。",
+      "representation": "前缀token序列与等价表达式树；词表含变量、固定/自由常数及算术、三角、指数和对数运算。系统持续追踪整棵树的语法与单位。",
+      "assumptions": "• 目标与各变量/常数的物理单位\n• 加减同量纲、乘除单位传播及维度函数输入约束\n• 表达式长度小于35、偏好长度8、限制三角嵌套、禁止exp/log自嵌套和无效逆操作\n• 自由常数及其单位由用户预先提供",
+      "limitations": "• 自由常数及其物理单位必须预先给出；新经验问题中常数数量和单位未知时，搜索更困难，增加多种自由常数又会扩大空间。\n• 每个符号回归任务都从头初始化和训练RNN，不能复用以往物理表达式经验。\n• 当前不发现ODE/PDE或微积分算子；微分和积分操作符仅是未来计划。",
+      "derivation": "手算加法、乘法与微分节点的量纲传播；证明不相容量纲的加法应被屏蔽。",
+      "card_url": "../cards/tenachiDeepSymbolicRegression2023.html",
+      "source_url": null,
+      "tags": [
+        "符号搜索",
+        "每个任务从头初始化RNN，以风险寻求策略梯度只强化最佳5%候选，并用熵正则维持探索；"
+      ],
+      "note": "论文事实来自课程条目；谱图中的家族和连线是便于学习的综合整理。"
+    },
+    {
+      "id": "P01",
+      "corpus_index": 1,
+      "key": "xuGenerativeDiscoveryPartial2025",
+      "title": "Generative discovery of partial differential equations by learning from math handbooks",
+      "authors": [
+        "Hao Xu",
+        "Yuntian Chen",
+        "Rui Cao",
+        "Tianning Tang",
+        "Mengge Du",
+        "Jian Li",
+        "Adrian H. Callaghan",
+        "Dongxiao Zhang"
+      ],
+      "year": 2025,
+      "journal": "Nature Communications",
+      "doi": "10.1038/s41467-025-65114-2",
+      "family": "symbolic",
+      "stage": "space",
+      "importance": 3,
+      "topic": "符号搜索",
+      "focus": "从稀疏、含噪或不规则区域的时空观测中发现自由形式PDE，并在临近破碎的强非线性表面重力波实验中提出候选新方程。",
+      "method": "GPT-2式EqGPT先从数学手册学习项的共现；每轮生成400个结构，以最小二乘拟合系数，用R2和项数惩罚构成奖励，保留前10个结构微调，迭代5轮；最终用PINN进一步优化系数。",
+      "representation": "GRE将PDE写成由算子和物理基本项交替组成的句子序列；221种手册PDE经排列增广为7072个序列，词表含56个基本组件，生成长度上限为50。",
+      "assumptions": "• 数学手册中已有PDE的结构共现先验\n• 项与算子交替的语法约束\n• 按问题维度屏蔽不相容的x、y、z导数和算子\n• 稀疏性奖励；多相流案例另用x-y空间对称性",
+      "limitations": "• 性能受手册训练集质量和覆盖范围影响，可能有领域偏差；作者把扩大PDE语料和多模态条件生成列为未来工作。\n• 手册PDE到结构字符串的拆解目前由人工完成。",
+      "derivation": "写出方程序列的生成概率、系数拟合和复杂度奖励如何组成外层搜索；标出手册预训练与数据拟合的边界。",
+      "card_url": "../cards/xuGenerativeDiscoveryPartial2025.html",
+      "source_url": null,
+      "tags": [
+        "符号搜索",
+        "GPT-2式EqGPT先从数学手册学习项的共现；每轮生成400个结构，以最小二乘拟合"
+      ],
+      "note": "论文事实来自课程条目；谱图中的家族和连线是便于学习的综合整理。"
+    }
+  ],
+  "edges": [
+    {
+      "source": "stage:sparse:observe",
+      "target": "stage:sparse:operator",
+      "kind": "pipeline"
+    },
+    {
+      "source": "stage:sparse:operator",
+      "target": "stage:sparse:space",
+      "kind": "pipeline"
+    },
+    {
+      "source": "stage:sparse:space",
+      "target": "stage:sparse:infer",
+      "kind": "pipeline"
+    },
+    {
+      "source": "stage:sparse:infer",
+      "target": "stage:sparse:select",
+      "kind": "pipeline"
+    },
+    {
+      "source": "stage:sparse:select",
+      "target": "stage:sparse:validate",
+      "kind": "pipeline"
+    },
+    {
+      "source": "stage:symbolic:observe",
+      "target": "stage:symbolic:operator",
+      "kind": "pipeline"
+    },
+    {
+      "source": "stage:symbolic:operator",
+      "target": "stage:symbolic:space",
+      "kind": "pipeline"
+    },
+    {
+      "source": "stage:symbolic:space",
+      "target": "stage:symbolic:infer",
+      "kind": "pipeline"
+    },
+    {
+      "source": "stage:symbolic:infer",
+      "target": "stage:symbolic:select",
+      "kind": "pipeline"
+    },
+    {
+      "source": "stage:symbolic:select",
+      "target": "stage:symbolic:validate",
+      "kind": "pipeline"
+    },
+    {
+      "source": "stage:neural:observe",
+      "target": "stage:neural:operator",
+      "kind": "pipeline"
+    },
+    {
+      "source": "stage:neural:operator",
+      "target": "stage:neural:space",
+      "kind": "pipeline"
+    },
+    {
+      "source": "stage:neural:space",
+      "target": "stage:neural:infer",
+      "kind": "pipeline"
+    },
+    {
+      "source": "stage:neural:infer",
+      "target": "stage:neural:select",
+      "kind": "pipeline"
+    },
+    {
+      "source": "stage:neural:select",
+      "target": "stage:neural:validate",
+      "kind": "pipeline"
+    },
+    {
+      "source": "stage:geometry:observe",
+      "target": "stage:geometry:operator",
+      "kind": "pipeline"
+    },
+    {
+      "source": "stage:geometry:operator",
+      "target": "stage:geometry:space",
+      "kind": "pipeline"
+    },
+    {
+      "source": "stage:geometry:space",
+      "target": "stage:geometry:infer",
+      "kind": "pipeline"
+    },
+    {
+      "source": "stage:geometry:infer",
+      "target": "stage:geometry:select",
+      "kind": "pipeline"
+    },
+    {
+      "source": "stage:geometry:select",
+      "target": "stage:geometry:validate",
+      "kind": "pipeline"
+    },
+    {
+      "source": "stage:stochastic:observe",
+      "target": "stage:stochastic:operator",
+      "kind": "pipeline"
+    },
+    {
+      "source": "stage:stochastic:operator",
+      "target": "stage:stochastic:space",
+      "kind": "pipeline"
+    },
+    {
+      "source": "stage:stochastic:space",
+      "target": "stage:stochastic:infer",
+      "kind": "pipeline"
+    },
+    {
+      "source": "stage:stochastic:infer",
+      "target": "stage:stochastic:select",
+      "kind": "pipeline"
+    },
+    {
+      "source": "stage:stochastic:select",
+      "target": "stage:stochastic:validate",
+      "kind": "pipeline"
+    },
+    {
+      "source": "stage:coarse:observe",
+      "target": "stage:coarse:operator",
+      "kind": "pipeline"
+    },
+    {
+      "source": "stage:coarse:operator",
+      "target": "stage:coarse:space",
+      "kind": "pipeline"
+    },
+    {
+      "source": "stage:coarse:space",
+      "target": "stage:coarse:infer",
+      "kind": "pipeline"
+    },
+    {
+      "source": "stage:coarse:infer",
+      "target": "stage:coarse:select",
+      "kind": "pipeline"
+    },
+    {
+      "source": "stage:coarse:select",
+      "target": "stage:coarse:validate",
+      "kind": "pipeline"
+    },
+    {
+      "source": "stage:sparse:space",
+      "target": "P10",
+      "kind": "paper-placement"
+    },
+    {
+      "source": "stage:sparse:space",
+      "target": "P04",
+      "kind": "paper-placement"
+    },
+    {
+      "source": "stage:sparse:infer",
+      "target": "P11",
+      "kind": "paper-placement"
+    },
+    {
+      "source": "stage:sparse:infer",
+      "target": "P15",
+      "kind": "paper-placement"
+    },
+    {
+      "source": "stage:sparse:validate",
+      "target": "P48",
+      "kind": "paper-placement"
+    },
+    {
+      "source": "stage:sparse:select",
+      "target": "P42",
+      "kind": "paper-placement"
+    },
+    {
+      "source": "stage:sparse:select",
+      "target": "P43",
+      "kind": "paper-placement"
+    },
+    {
+      "source": "stage:sparse:operator",
+      "target": "P53",
+      "kind": "paper-placement"
+    },
+    {
+      "source": "stage:sparse:select",
+      "target": "P55",
+      "kind": "paper-placement"
+    },
+    {
+      "source": "stage:sparse:select",
+      "target": "P20",
+      "kind": "paper-placement"
+    },
+    {
+      "source": "stage:sparse:select",
+      "target": "P29",
+      "kind": "paper-placement"
+    },
+    {
+      "source": "stage:sparse:select",
+      "target": "P36",
+      "kind": "paper-placement"
+    },
+    {
+      "source": "stage:symbolic:space",
+      "target": "P08",
+      "kind": "paper-placement"
+    },
+    {
+      "source": "stage:symbolic:infer",
+      "target": "P09",
+      "kind": "paper-placement"
+    },
+    {
+      "source": "stage:symbolic:space",
+      "target": "P03",
+      "kind": "paper-placement"
+    },
+    {
+      "source": "stage:symbolic:infer",
+      "target": "P37",
+      "kind": "paper-placement"
+    },
+    {
+      "source": "stage:symbolic:infer",
+      "target": "P45",
+      "kind": "paper-placement"
+    },
+    {
+      "source": "stage:symbolic:operator",
+      "target": "P46",
+      "kind": "paper-placement"
+    },
+    {
+      "source": "stage:symbolic:select",
+      "target": "P28",
+      "kind": "paper-placement"
+    },
+    {
+      "source": "stage:symbolic:infer",
+      "target": "P35",
+      "kind": "paper-placement"
+    },
+    {
+      "source": "stage:symbolic:infer",
+      "target": "P02",
+      "kind": "paper-placement"
+    },
+    {
+      "source": "stage:symbolic:space",
+      "target": "P01",
+      "kind": "paper-placement"
+    },
+    {
+      "source": "stage:symbolic:select",
+      "target": "P40",
+      "kind": "paper-placement"
+    },
+    {
+      "source": "stage:symbolic:space",
+      "target": "P41",
+      "kind": "paper-placement"
+    },
+    {
+      "source": "stage:symbolic:operator",
+      "target": "P39",
+      "kind": "paper-placement"
+    },
+    {
+      "source": "stage:neural:operator",
+      "target": "P12",
+      "kind": "paper-placement"
+    },
+    {
+      "source": "stage:neural:operator",
+      "target": "P13",
+      "kind": "paper-placement"
+    },
+    {
+      "source": "stage:neural:operator",
+      "target": "P14",
+      "kind": "paper-placement"
+    },
+    {
+      "source": "stage:neural:infer",
+      "target": "P18",
+      "kind": "paper-placement"
+    },
+    {
+      "source": "stage:neural:select",
+      "target": "P27",
+      "kind": "paper-placement"
+    },
+    {
+      "source": "stage:neural:infer",
+      "target": "P38",
+      "kind": "paper-placement"
+    },
+    {
+      "source": "stage:neural:infer",
+      "target": "P47",
+      "kind": "paper-placement"
+    },
+    {
+      "source": "stage:neural:select",
+      "target": "P49",
+      "kind": "paper-placement"
+    },
+    {
+      "source": "stage:geometry:space",
+      "target": "P21",
+      "kind": "paper-placement"
+    },
+    {
+      "source": "stage:geometry:space",
+      "target": "P22",
+      "kind": "paper-placement"
+    },
+    {
+      "source": "stage:geometry:space",
+      "target": "P23",
+      "kind": "paper-placement"
+    },
+    {
+      "source": "stage:geometry:space",
+      "target": "P25",
+      "kind": "paper-placement"
+    },
+    {
+      "source": "stage:geometry:operator",
+      "target": "P26",
+      "kind": "paper-placement"
+    },
+    {
+      "source": "stage:geometry:operator",
+      "target": "P30",
+      "kind": "paper-placement"
+    },
+    {
+      "source": "stage:geometry:space",
+      "target": "P31",
+      "kind": "paper-placement"
+    },
+    {
+      "source": "stage:geometry:operator",
+      "target": "P34",
+      "kind": "paper-placement"
+    },
+    {
+      "source": "stage:geometry:select",
+      "target": "P44",
+      "kind": "paper-placement"
+    },
+    {
+      "source": "stage:stochastic:infer",
+      "target": "P57",
+      "kind": "paper-placement"
+    },
+    {
+      "source": "stage:stochastic:select",
+      "target": "P58",
+      "kind": "paper-placement"
+    },
+    {
+      "source": "stage:stochastic:infer",
+      "target": "P59",
+      "kind": "paper-placement"
+    },
+    {
+      "source": "stage:stochastic:select",
+      "target": "P60",
+      "kind": "paper-placement"
+    },
+    {
+      "source": "stage:stochastic:operator",
+      "target": "P61",
+      "kind": "paper-placement"
+    },
+    {
+      "source": "stage:stochastic:observe",
+      "target": "P74",
+      "kind": "paper-placement"
+    },
+    {
+      "source": "stage:stochastic:infer",
+      "target": "P76",
+      "kind": "paper-placement"
+    },
+    {
+      "source": "stage:stochastic:operator",
+      "target": "P54",
+      "kind": "paper-placement"
+    },
+    {
+      "source": "stage:coarse:space",
+      "target": "P32",
+      "kind": "paper-placement"
+    },
+    {
+      "source": "stage:coarse:operator",
+      "target": "P51",
+      "kind": "paper-placement"
+    },
+    {
+      "source": "stage:coarse:validate",
+      "target": "P52",
+      "kind": "paper-placement"
+    },
+    {
+      "source": "stage:coarse:select",
+      "target": "P56",
+      "kind": "paper-placement"
+    },
+    {
+      "source": "stage:coarse:observe",
+      "target": "P62",
+      "kind": "paper-placement"
+    },
+    {
+      "source": "stage:coarse:space",
+      "target": "P63",
+      "kind": "paper-placement"
+    },
+    {
+      "source": "stage:coarse:operator",
+      "target": "P64",
+      "kind": "paper-placement"
+    },
+    {
+      "source": "stage:coarse:validate",
+      "target": "P65",
+      "kind": "paper-placement"
+    },
+    {
+      "source": "stage:coarse:operator",
+      "target": "P66",
+      "kind": "paper-placement"
+    },
+    {
+      "source": "stage:coarse:validate",
+      "target": "P70",
+      "kind": "paper-placement"
+    },
+    {
+      "source": "stage:coarse:operator",
+      "target": "P75",
+      "kind": "paper-placement"
+    },
+    {
+      "source": "P10",
+      "target": "P04",
+      "kind": "learning-bridge",
+      "label": "从 ODE 稀疏库到 PDE 候选库"
+    },
+    {
+      "source": "P03",
+      "target": "P01",
+      "kind": "learning-bridge",
+      "label": "符号搜索到生成式 PDE"
+    },
+    {
+      "source": "P01",
+      "target": "P02",
+      "kind": "learning-bridge",
+      "label": "生成模型与大规模枚举"
+    },
+    {
+      "source": "P26",
+      "target": "P31",
+      "kind": "learning-bridge",
+      "label": "流形坐标与动力学识别"
+    },
+    {
+      "source": "P57",
+      "target": "P60",
+      "kind": "learning-bridge",
+      "label": "SDE 到 SPDE 不确定性"
+    },
+    {
+      "source": "P64",
+      "target": "P51",
+      "kind": "learning-bridge",
+      "label": "均场闭合到实验水动力"
+    }
+  ]
+}

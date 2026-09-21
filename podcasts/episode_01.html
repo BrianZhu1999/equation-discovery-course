@@ -1,0 +1,31 @@
+<!doctype html><html lang="zh-CN"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>论文播客脚本 · 物理规律发现</title><link rel="stylesheet" href="../style.css"><link rel="stylesheet" href="../public.css"></head><body><main class="doc"><div class="links"><a href="../">返回课程</a><a href="../spectrum/">三维谱图</a></div><h1>第1期｜SINDy：为什么发现方程会变成稀疏回归</h1>
+<blockquote>
+<p>这是课程学习播客脚本，不是对论文结果的独立再验证。数字和性能结论以原文为准。</p>
+</blockquote>
+<p><strong>主持人</strong>：今天先回答一个看似简单、其实很关键的问题：方程发现为什么可以变成回归？</p>
+<p><strong>研究者</strong>：这一期选了：P10《Discovering governing equations from data by sparse identification of nonlinear dynamical systems》；P48《PySINDy: A comprehensive Python package for robust sparse system identification》。我们只抓住一条主线，不把整篇论文念成摘要。</p>
+<h2>1. P10：Discovering governing equations from data by sparse identification of nonlinear dynamical systems</h2>
+<p><strong>主持人</strong>：这篇工作的未知对象到底是什么？用一句话先说清楚。</p>
+<p><strong>研究者</strong>：它的研究目标是：从状态及其时间导数数据中，在候选非线性函数库内识别少量激活项，从而得到可解释ODE、参数化映射或降阶流体动力学。</p>
+<p><strong>主持人</strong>：那数据是怎样变成方程的？</p>
+<p><strong>研究者</strong>：方法路线是：以顺序阈值最小二乘反复拟合、删除小系数并在保留项上重拟合；稀疏阈值lambda通过留出数据和准确度-复杂度Pareto elbow选择。这里要特别注意，候选表示、数据质量和优化器都属于问题设定的一部分。</p>
+<p><strong>主持人</strong>：课程给这篇安排的推导是什么？</p>
+<p><strong>研究者</strong>：由 x′=f(x) 构造 Θ(X)Ξ=X′；在三列的小矩阵上手算一次最小二乘、阈值和重新拟合。</p>
+<p><strong>主持人</strong>：最容易被忽略的限制呢？</p>
+<p><strong>研究者</strong>：原文和课程记录的边界是：• 多项式候选项数随原状态维数和阶数快速组合增长，因此高维问题依赖先验降维，而降维坐标本身会影响可发现形式。
+• 高阶多项式库可能导致回归矩阵病态和非唯一稀疏表示。
+• 流体模型在未参与训练的高能初值上仅定性复现瞬态；放宽稀疏性虽可改善拟合，却会引入高阶项。
+• 如何仅由数据选择合适的近似函数空间仍是开放问题。所以可以说它在给定假设下有效，不能直接说发现了所有系统的普适定律。</p>
+<h2>2. P48：PySINDy: A comprehensive Python package for robust sparse system identification</h2>
+<p><strong>主持人</strong>：这篇工作的未知对象到底是什么？用一句话先说清楚。</p>
+<p><strong>研究者</strong>：它的研究目标是：提供统一、可维护且可组合的Python实现，使研究者可在同一接口下选择候选库、微分方法和稀疏优化器，覆盖ODE、PDE、控制、隐式与弱形式识别。</p>
+<p><strong>主持人</strong>：那数据是怎样变成方程的？</p>
+<p><strong>研究者</strong>：方法路线是：包内组合多种贪心、阈值、正则和约束优化器求解Q_t约等于Theta(Q)Xi；软件侧重模块化选择和可复现实验，而非提出单一新的结构搜索准则。这里要特别注意，候选表示、数据质量和优化器都属于问题设定的一部分。</p>
+<p><strong>主持人</strong>：课程给这篇安排的推导是什么？</p>
+<p><strong>研究者</strong>：把 differentiation、feature library、optimizer 三个接口对回 SINDy 数学步骤。</p>
+<p><strong>主持人</strong>：最容易被忽略的限制呢？</p>
+<p><strong>研究者</strong>：原文和课程记录的边界是：• SINDy成功的必要条件是候选库张成空间中存在足够准确且稀疏的真动力学表示；背景知识不足或库遗漏会使优化器无法恢复真结构。
+• 软件功能图明确区分已实现与尚未实现的SINDy变体，因此论文所综述的文献功能不能全部视为当时包内可用能力。所以可以说它在给定假设下有效，不能直接说发现了所有系统的普适定律。</p>
+<h2>结尾：带走三句话</h2>
+<p><strong>研究者</strong>：第一，先说清楚未知对象和候选空间；第二，区分训练拟合、结构恢复和留出预测；第三，任何漂亮的方程都要配上可辨识条件和失败边界。</p>
+<p><strong>主持人</strong>：下一期继续沿着这条线走：把公式放回数据、实验和它不能回答的问题里。</p></main></body></html>

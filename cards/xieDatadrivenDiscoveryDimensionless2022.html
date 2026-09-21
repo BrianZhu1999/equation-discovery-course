@@ -1,0 +1,392 @@
+<!doctype html><html lang="zh-CN"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Data-driven discovery of dimensionless numbers and governing laws from scarce measurements · 物理规律发现</title><link rel="stylesheet" href="../style.css"><link rel="stylesheet" href="../public.css"></head><body><main class="doc"><div class="links"><a href="../">返回课程</a><a href="../spectrum/">三维谱图</a></div><h1>P21 · Data-driven discovery of dimensionless numbers and governing laws from scarce measurements</h1>
+<p>Xiaoyu Xie; Arash Samaei; Jiachen Guo; Wing Kam Liu; Zhengtao Gan. Data-driven discovery of dimensionless numbers and governing laws from scarce measurements. Nature Communications, 2022, 13(1). DOI: 10.1038/s41467-022-35084-w</p>
+<p><a href="https://doi.org/10.1038/s41467-022-35084-w">出版页面</a> · 第 16 天 · 坐标、流形与守恒</p>
+<h2>研究问题</h2>
+<p>从少量测量中发现无量纲群、尺度律，以及满足量纲齐次性的ODE/PDE。</p>
+<h2>规律表示</h2>
+<p>无量纲群是量纲矩阵零空间中的有理指数乘积；尺度关系由多项式、幂律或XGBoost表示；微分规律由量纲齐次候选项的稀疏组合表示。</p>
+<h2>方法</h2>
+<p>先求Buckingham-Pi零空间基，再以外层指数基变换和内层回归做两级优化；方程发现采用SINDy或对称不变量SINDy。</p>
+<h2>假设</h2>
+<p>• 基本物理量纲
+• 有理指数和低复杂度偏好
+• 用户提供的充分变量集合
+• 指定的尺度关系函数族或方程候选库</p>
+<h2>必做推导</h2>
+<p>对一个量纲矩阵求零空间，构造无量纲组合并说明其基并不唯一。</p>
+<h2>复现目标</h2>
+<p>在作者代码中选一个支持核心结论的案例：• Rayleigh-Benard对流
+• 激光匙孔焊接
+• 冲击波尺度数据
+• Navier-Stokes涡量等五类微分方程。先运行小样例，再恢复该案例原文配置；运行前登记原文指标/目标图、统计量和容差，运行后交付结构或等价结构、系数/统计量、留出预测、耗时和日志。</p>
+<h2>单因素检验</h2>
+<p>只更换输入变量的单位。</p>
+<h2>适用范围与限制</h2>
+<p>• 候选变量必须充分；省略热扩散率后Rayleigh-Benard案例最大R2降到0.80以下。
+• 零阶指数搜索可能陷入局部极小值。
+• PDE恢复仍取决于噪声和候选库，库设计高度依赖专家经验。</p>
+<h2>闭卷自测</h2>
+<h3>1. P21 实际辨识的未知对象是什么，哪些对象预先给定？</h3>
+<details><summary>先作答，再展开核对</summary>
+
+
+从少量测量中发现无量纲群、尺度律，以及满足量纲齐次性的ODE/PDE。
+表示：无量纲群是量纲矩阵零空间中的有理指数乘积；尺度关系由多项式、幂律或XGBoost表示；微分规律由量纲齐次候选项的稀疏组合表示。
+
+
+</details>
+
+<h3>2. P21 从数据到模型采用什么路线？按顺序解释各步骤。</h3>
+<details><summary>先作答，再展开核对</summary>
+
+
+先求Buckingham-Pi零空间基，再以外层指数基变换和内层回归做两级优化；方程发现采用SINDy或对称不变量SINDy。
+
+
+</details>
+
+<h3>3. P21 哪些假设或限制使结果不能直接推广？至少说出两项。</h3>
+<details><summary>先作答，再展开核对</summary>
+
+
+• 基本物理量纲
+• 有理指数和低复杂度偏好
+• 用户提供的充分变量集合
+• 指定的尺度关系函数族或方程候选库
+• 候选变量必须充分；省略热扩散率后Rayleigh-Benard案例最大R2降到0.80以下。
+• 零阶指数搜索可能陷入局部极小值。
+• PDE恢复仍取决于噪声和候选库，库设计高度依赖专家经验。
+
+
+</details>
+
+<h3>4. 怎样设计这项单因素检验：只更换输入变量的单位。</h3>
+<details><summary>先作答，再展开核对</summary>
+
+
+只改变指定因素，固定数据划分与其余参数；用结构、系数/统计量和留出预测评价，并将结果联系到以下方法边界：
+• 候选变量必须充分；省略热扩散率后Rayleigh-Benard案例最大R2降到0.80以下。
+• 零阶指数搜索可能陷入局部极小值。
+• PDE恢复仍取决于噪声和候选库，库设计高度依赖专家经验。
+
+
+</details>
+
+<h2>作者代码与核查</h2>
+<p>代码信息为课程构建时的核查快照，可访问不等于已复现；没有定位到代码不等于作者没有公开。</p>
+<ul>
+<li><a href="https://github.com/xiaoyuxie-vico/PyDimension">https://github.com/xiaoyuxie-vico/PyDimension</a></li>
+</ul>
+<pre><code class="language-json">{
+  &quot;verified_status&quot;: &quot;public_verified&quot;,
+  &quot;entrypoints&quot;: [
+    {
+      &quot;path&quot;: &quot;run_pipeline.py&quot;,
+      &quot;basis&quot;: &quot;observed root path; not executed&quot;,
+      &quot;repository&quot;: &quot;https://github.com/xiaoyuxie-vico/PyDimension&quot;
+    },
+    {
+      &quot;command_excerpt&quot;: &quot;python test_environment.py&quot;,
+      &quot;source_url&quot;: &quot;https://raw.githubusercontent.com/xiaoyuxie-vico/PyDimension/main/README.md&quot;,
+      &quot;line&quot;: 136,
+      &quot;basis&quot;: &quot;literal README instruction; not executed&quot;
+    },
+    {
+      &quot;command_excerpt&quot;: &quot;python run_pipeline.py --pipeline-version v3 --config pydimension/configs/config_translation.json&quot;,
+      &quot;source_url&quot;: &quot;https://raw.githubusercontent.com/xiaoyuxie-vico/PyDimension/main/README.md&quot;,
+      &quot;line&quot;: 137,
+      &quot;basis&quot;: &quot;literal README instruction; not executed&quot;
+    },
+    {
+      &quot;command_excerpt&quot;: &quot;python test_environment.py&quot;,
+      &quot;source_url&quot;: &quot;https://raw.githubusercontent.com/xiaoyuxie-vico/PyDimension/main/README.md&quot;,
+      &quot;line&quot;: 144,
+      &quot;basis&quot;: &quot;literal README instruction; not executed&quot;
+    },
+    {
+      &quot;command_excerpt&quot;: &quot;python run_pipeline.py --pipeline-version v3 --config pydimension/configs/config_translation.json&quot;,
+      &quot;source_url&quot;: &quot;https://raw.githubusercontent.com/xiaoyuxie-vico/PyDimension/main/README.md&quot;,
+      &quot;line&quot;: 145,
+      &quot;basis&quot;: &quot;literal README instruction; not executed&quot;
+    },
+    {
+      &quot;command_excerpt&quot;: &quot;python test_environment.py&quot;,
+      &quot;source_url&quot;: &quot;https://raw.githubusercontent.com/xiaoyuxie-vico/PyDimension/main/README.md&quot;,
+      &quot;line&quot;: 152,
+      &quot;basis&quot;: &quot;literal README instruction; not executed&quot;
+    },
+    {
+      &quot;command_excerpt&quot;: &quot;python run_pipeline.py --pipeline-version v3 --config pydimension/configs/config_translation.json&quot;,
+      &quot;source_url&quot;: &quot;https://raw.githubusercontent.com/xiaoyuxie-vico/PyDimension/main/README.md&quot;,
+      &quot;line&quot;: 153,
+      &quot;basis&quot;: &quot;literal README instruction; not executed&quot;
+    },
+    {
+      &quot;command_excerpt&quot;: &quot;python test_environment.py&quot;,
+      &quot;source_url&quot;: &quot;https://raw.githubusercontent.com/xiaoyuxie-vico/PyDimension/main/README.md&quot;,
+      &quot;line&quot;: 161,
+      &quot;basis&quot;: &quot;literal README instruction; not executed&quot;
+    },
+    {
+      &quot;command_excerpt&quot;: &quot;python run_pipeline.py --pipeline-version v3 --config pydimension/configs/config_translation.json&quot;,
+      &quot;source_url&quot;: &quot;https://raw.githubusercontent.com/xiaoyuxie-vico/PyDimension/main/README.md&quot;,
+      &quot;line&quot;: 162,
+      &quot;basis&quot;: &quot;literal README instruction; not executed&quot;
+    },
+    {
+      &quot;command_excerpt&quot;: &quot;python run_pipeline.py --pipeline-version v3 --config pydimension/configs/config_translation.json&quot;,
+      &quot;source_url&quot;: &quot;https://raw.githubusercontent.com/xiaoyuxie-vico/PyDimension/main/README.md&quot;,
+      &quot;line&quot;: 183,
+      &quot;basis&quot;: &quot;literal README instruction; not executed&quot;
+    },
+    {
+      &quot;command_excerpt&quot;: &quot;python generate_data.py --config pydimension/configs/config_translation.json --plot&quot;,
+      &quot;source_url&quot;: &quot;https://raw.githubusercontent.com/xiaoyuxie-vico/PyDimension/main/README.md&quot;,
+      &quot;line&quot;: 187,
+      &quot;basis&quot;: &quot;literal README instruction; not executed&quot;
+    },
+    {
+      &quot;command_excerpt&quot;: &quot;streamlit run streamlit_app.py&quot;,
+      &quot;source_url&quot;: &quot;https://raw.githubusercontent.com/xiaoyuxie-vico/PyDimension/main/README.md&quot;,
+      &quot;line&quot;: 205,
+      &quot;basis&quot;: &quot;literal README instruction; not executed&quot;
+    },
+    {
+      &quot;command_excerpt&quot;: &quot;| 1 | **Data Generation** | translational, rotational\\*, scaling\\* | `python generate_data.py --config pydimension/configs/config_translation.json` |&quot;,
+      &quot;source_url&quot;: &quot;https://raw.githubusercontent.com/xiaoyuxie-vico/PyDimension/main/README.md&quot;,
+      &quot;line&quot;: 276,
+      &quot;basis&quot;: &quot;literal README instruction; not executed&quot;
+    },
+    {
+      &quot;command_excerpt&quot;: &quot;| 2 | **Data Preprocessing** | dimensional analysis (merged) | `python preprocess_data.py --config pydimension/configs/config_translation.json` |&quot;,
+      &quot;source_url&quot;: &quot;https://raw.githubusercontent.com/xiaoyuxie-vico/PyDimension/main/README.md&quot;,
+      &quot;line&quot;: 277,
+      &quot;basis&quot;: &quot;literal README instruction; not executed&quot;
+    },
+    {
+      &quot;command_excerpt&quot;: &quot;| 3 | **Intrinsic Coordinate** | PCA, SIR, autoencoder\\* | `python intrinsic_coordinate.py --config pydimension/configs/config_translation.json` |&quot;,
+      &quot;source_url&quot;: &quot;https://raw.githubusercontent.com/xiaoyuxie-vico/PyDimension/main/README.md&quot;,
+      &quot;line&quot;: 278,
+      &quot;basis&quot;: &quot;literal README instruction; not executed&quot;
+    },
+    {
+      &quot;command_excerpt&quot;: &quot;| 4 | **Symmetry Discovery** | translational encoder, rotational\\*, scaling\\* | `python discover_symmetry.py --config pydimension/configs/config_translation.json` |&quot;,
+      &quot;source_url&quot;: &quot;https://raw.githubusercontent.com/xiaoyuxie-vico/PyDimension/main/README.md&quot;,
+      &quot;line&quot;: 279,
+      &quot;basis&quot;: &quot;literal README instruction; not executed&quot;
+    },
+    {
+      &quot;command_excerpt&quot;: &quot;| Dimensional Analysis | `python legacy/analyze_dimensions.py --config pydimension/configs/config_synthetic.json` |&quot;,
+      &quot;source_url&quot;: &quot;https://raw.githubusercontent.com/xiaoyuxie-vico/PyDimension/main/README.md&quot;,
+      &quot;line&quot;: 287,
+      &quot;basis&quot;: &quot;literal README instruction; not executed&quot;
+    },
+    {
+      &quot;command_excerpt&quot;: &quot;| Constraint Filtering | `python legacy/filter_constraints.py --config pydimension/configs/config_synthetic.json` |&quot;,
+      &quot;source_url&quot;: &quot;https://raw.githubusercontent.com/xiaoyuxie-vico/PyDimension/main/README.md&quot;,
+      &quot;line&quot;: 288,
+      &quot;basis&quot;: &quot;literal README instruction; not executed&quot;
+    },
+    {
+      &quot;command_excerpt&quot;: &quot;| Optimization Discovery | `python legacy/optimize_discovery.py --config pydimension/configs/config_synthetic.json --plot` |&quot;,
+      &quot;source_url&quot;: &quot;https://raw.githubusercontent.com/xiaoyuxie-vico/PyDimension/main/README.md&quot;,
+      &quot;line&quot;: 289,
+      &quot;basis&quot;: &quot;literal README instruction; not executed&quot;
+    },
+    {
+      &quot;command_excerpt&quot;: &quot;python run_pipeline.py --pipeline-version v3 --config pydimension/configs/config_translation.json&quot;,
+      &quot;source_url&quot;: &quot;https://raw.githubusercontent.com/xiaoyuxie-vico/PyDimension/main/README.md&quot;,
+      &quot;line&quot;: 297,
+      &quot;basis&quot;: &quot;literal README instruction; not executed&quot;
+    },
+    {
+      &quot;command_excerpt&quot;: &quot;python generate_data.py     --config pydimension/configs/config_translation.json --plot&quot;,
+      &quot;source_url&quot;: &quot;https://raw.githubusercontent.com/xiaoyuxie-vico/PyDimension/main/README.md&quot;,
+      &quot;line&quot;: 300,
+      &quot;basis&quot;: &quot;literal README instruction; not executed&quot;
+    },
+    {
+      &quot;command_excerpt&quot;: &quot;python preprocess_data.py   --config pydimension/configs/config_translation.json --plot&quot;,
+      &quot;source_url&quot;: &quot;https://raw.githubusercontent.com/xiaoyuxie-vico/PyDimension/main/README.md&quot;,
+      &quot;line&quot;: 301,
+      &quot;basis&quot;: &quot;literal README instruction; not executed&quot;
+    },
+    {
+      &quot;command_excerpt&quot;: &quot;python intrinsic_coordinate.py --config pydimension/configs/config_translation.json&quot;,
+      &quot;source_url&quot;: &quot;https://raw.githubusercontent.com/xiaoyuxie-vico/PyDimension/main/README.md&quot;,
+      &quot;line&quot;: 302,
+      &quot;basis&quot;: &quot;literal README instruction; not executed&quot;
+    },
+    {
+      &quot;command_excerpt&quot;: &quot;python discover_symmetry.py --config pydimension/configs/config_translation.json&quot;,
+      &quot;source_url&quot;: &quot;https://raw.githubusercontent.com/xiaoyuxie-vico/PyDimension/main/README.md&quot;,
+      &quot;line&quot;: 303,
+      &quot;basis&quot;: &quot;literal README instruction; not executed&quot;
+    },
+    {
+      &quot;command_excerpt&quot;: &quot;python run_pipeline.py --pipeline-version v2 --config legacy/pydimension_v2/configs/config_synthetic_v2.json&quot;,
+      &quot;source_url&quot;: &quot;https://raw.githubusercontent.com/xiaoyuxie-vico/PyDimension/main/README.md&quot;,
+      &quot;line&quot;: 310,
+      &quot;basis&quot;: &quot;literal README instruction; not executed&quot;
+    },
+    {
+      &quot;command_excerpt&quot;: &quot;python generate_data.py                --config pydimension/configs/config_synthetic.json --plot&quot;,
+      &quot;source_url&quot;: &quot;https://raw.githubusercontent.com/xiaoyuxie-vico/PyDimension/main/README.md&quot;,
+      &quot;line&quot;: 313,
+      &quot;basis&quot;: &quot;literal README instruction; not executed&quot;
+    },
+    {
+      &quot;command_excerpt&quot;: &quot;python preprocess_data.py              --config pydimension/configs/config_synthetic.json --plot&quot;,
+      &quot;source_url&quot;: &quot;https://raw.githubusercontent.com/xiaoyuxie-vico/PyDimension/main/README.md&quot;,
+      &quot;line&quot;: 314,
+      &quot;basis&quot;: &quot;literal README instruction; not executed&quot;
+    },
+    {
+      &quot;command_excerpt&quot;: &quot;python legacy/analyze_dimensions.py    --config pydimension/configs/config_synthetic.json --plot&quot;,
+      &quot;source_url&quot;: &quot;https://raw.githubusercontent.com/xiaoyuxie-vico/PyDimension/main/README.md&quot;,
+      &quot;line&quot;: 315,
+      &quot;basis&quot;: &quot;literal README instruction; not executed&quot;
+    },
+    {
+      &quot;command_excerpt&quot;: &quot;python legacy/filter_constraints.py    --config pydimension/configs/config_synthetic.json --plot&quot;,
+      &quot;source_url&quot;: &quot;https://raw.githubusercontent.com/xiaoyuxie-vico/PyDimension/main/README.md&quot;,
+      &quot;line&quot;: 316,
+      &quot;basis&quot;: &quot;literal README instruction; not executed&quot;
+    },
+    {
+      &quot;command_excerpt&quot;: &quot;python legacy/optimize_discovery.py    --config pydimension/configs/config_synthetic.json --plot&quot;,
+      &quot;source_url&quot;: &quot;https://raw.githubusercontent.com/xiaoyuxie-vico/PyDimension/main/README.md&quot;,
+      &quot;line&quot;: 317,
+      &quot;basis&quot;: &quot;literal README instruction; not executed&quot;
+    },
+    {
+      &quot;command_excerpt&quot;: &quot;streamlit run streamlit_app.py&quot;,
+      &quot;source_url&quot;: &quot;https://raw.githubusercontent.com/xiaoyuxie-vico/PyDimension/main/README.md&quot;,
+      &quot;line&quot;: 351,
+      &quot;basis&quot;: &quot;literal README instruction; not executed&quot;
+    },
+    {
+      &quot;command_excerpt&quot;: &quot;python generate_data.py --config pydimension/configs/config_translation.json --plot&quot;,
+      &quot;source_url&quot;: &quot;https://raw.githubusercontent.com/xiaoyuxie-vico/PyDimension/main/README.md&quot;,
+      &quot;line&quot;: 363,
+      &quot;basis&quot;: &quot;literal README instruction; not executed&quot;
+    },
+    {
+      &quot;command_excerpt&quot;: &quot;python discover_symmetry.py --config pydimension/configs/config_translation.json&quot;,
+      &quot;source_url&quot;: &quot;https://raw.githubusercontent.com/xiaoyuxie-vico/PyDimension/main/README.md&quot;,
+      &quot;line&quot;: 364,
+      &quot;basis&quot;: &quot;literal README instruction; not executed&quot;
+    }
+  ],
+  &quot;environment&quot;: [
+    {
+      &quot;path&quot;: &quot;Dockerfile&quot;,
+      &quot;basis&quot;: &quot;observed dependency/config file; compatibility not tested&quot;,
+      &quot;repository&quot;: &quot;https://github.com/xiaoyuxie-vico/PyDimension&quot;
+    },
+    {
+      &quot;path&quot;: &quot;environment.yml&quot;,
+      &quot;basis&quot;: &quot;observed dependency/config file; compatibility not tested&quot;,
+      &quot;repository&quot;: &quot;https://github.com/xiaoyuxie-vico/PyDimension&quot;
+    },
+    {
+      &quot;path&quot;: &quot;requirements.txt&quot;,
+      &quot;basis&quot;: &quot;observed dependency/config file; compatibility not tested&quot;,
+      &quot;repository&quot;: &quot;https://github.com/xiaoyuxie-vico/PyDimension&quot;
+    },
+    {
+      &quot;path&quot;: &quot;setup.py&quot;,
+      &quot;basis&quot;: &quot;observed dependency/config file; compatibility not tested&quot;,
+      &quot;repository&quot;: &quot;https://github.com/xiaoyuxie-vico/PyDimension&quot;
+    },
+    {
+      &quot;path&quot;: &quot;test_environment.py&quot;,
+      &quot;basis&quot;: &quot;observed dependency/config file; compatibility not tested&quot;,
+      &quot;repository&quot;: &quot;https://github.com/xiaoyuxie-vico/PyDimension&quot;
+    },
+    {
+      &quot;requirement_excerpt&quot;: &quot;pip install -e .&quot;,
+      &quot;source_url&quot;: &quot;https://raw.githubusercontent.com/xiaoyuxie-vico/PyDimension/main/README.md&quot;,
+      &quot;line&quot;: 110,
+      &quot;basis&quot;: &quot;literal README statement; environment not constructed&quot;
+    },
+    {
+      &quot;requirement_excerpt&quot;: &quot;pip install .&quot;,
+      &quot;source_url&quot;: &quot;https://raw.githubusercontent.com/xiaoyuxie-vico/PyDimension/main/README.md&quot;,
+      &quot;line&quot;: 113,
+      &quot;basis&quot;: &quot;literal README statement; environment not constructed&quot;
+    },
+    {
+      &quot;requirement_excerpt&quot;: &quot;conda activate pydimension  # Use conda activate even with mamba&quot;,
+      &quot;source_url&quot;: &quot;https://raw.githubusercontent.com/xiaoyuxie-vico/PyDimension/main/README.md&quot;,
+      &quot;line&quot;: 143,
+      &quot;basis&quot;: &quot;literal README statement; environment not constructed&quot;
+    },
+    {
+      &quot;requirement_excerpt&quot;: &quot;**Option 3: Conda (Standard)**&quot;,
+      &quot;source_url&quot;: &quot;https://raw.githubusercontent.com/xiaoyuxie-vico/PyDimension/main/README.md&quot;,
+      &quot;line&quot;: 148,
+      &quot;basis&quot;: &quot;literal README statement; environment not constructed&quot;
+    },
+    {
+      &quot;requirement_excerpt&quot;: &quot;conda env create -f environment.yml&quot;,
+      &quot;source_url&quot;: &quot;https://raw.githubusercontent.com/xiaoyuxie-vico/PyDimension/main/README.md&quot;,
+      &quot;line&quot;: 150,
+      &quot;basis&quot;: &quot;literal README statement; environment not constructed&quot;
+    },
+    {
+      &quot;requirement_excerpt&quot;: &quot;conda activate pydimension&quot;,
+      &quot;source_url&quot;: &quot;https://raw.githubusercontent.com/xiaoyuxie-vico/PyDimension/main/README.md&quot;,
+      &quot;line&quot;: 151,
+      &quot;basis&quot;: &quot;literal README statement; environment not constructed&quot;
+    },
+    {
+      &quot;requirement_excerpt&quot;: &quot;pip install -r requirements.txt&quot;,
+      &quot;source_url&quot;: &quot;https://raw.githubusercontent.com/xiaoyuxie-vico/PyDimension/main/README.md&quot;,
+      &quot;line&quot;: 160,
+      &quot;basis&quot;: &quot;literal README statement; environment not constructed&quot;
+    },
+    {
+      &quot;requirement_excerpt&quot;: &quot;&gt; - **Micromamba**: Fastest, standalone (no conda installation needed)&quot;,
+      &quot;source_url&quot;: &quot;https://raw.githubusercontent.com/xiaoyuxie-vico/PyDimension/main/README.md&quot;,
+      &quot;line&quot;: 166,
+      &quot;basis&quot;: &quot;literal README statement; environment not constructed&quot;
+    },
+    {
+      &quot;requirement_excerpt&quot;: &quot;## Requirements&quot;,
+      &quot;source_url&quot;: &quot;https://raw.githubusercontent.com/xiaoyuxie-vico/PyDimension/main/README.md&quot;,
+      &quot;line&quot;: 406,
+      &quot;basis&quot;: &quot;literal README statement; environment not constructed&quot;
+    },
+    {
+      &quot;requirement_excerpt&quot;: &quot;- Python 3.7+&quot;,
+      &quot;source_url&quot;: &quot;https://raw.githubusercontent.com/xiaoyuxie-vico/PyDimension/main/README.md&quot;,
+      &quot;line&quot;: 408,
+      &quot;basis&quot;: &quot;literal README statement; environment not constructed&quot;
+    }
+  ],
+  &quot;blockers&quot;: [
+    &quot;paper-result T2 reproduction not run; public access or README inspection is not reproduction&quot;
+  ],
+  &quot;follow_up_actions&quot;: []
+}
+</code></pre>
+<h2>原文定位</h2>
+<p>以下为课程整理的结论和原文页码 / 块号索引，全文通过出版页面访问。</p>
+<ul>
+<li>
+<p>182个Rayleigh-Benard实验按80/20划分，恢复Rayleigh数并取得测试R2=0.999。（PDF 页 4；块号 P004-B008, P004-B009）</p>
+</li>
+<li>
+<p>90个跨三种合金的匙孔实验中，局部拟合R2约0.64，而跨材料全局量纲关系提升到0.98。（PDF 页 5；块号 P005-B005, P005-B006）</p>
+</li>
+<li>
+<p>涡量Navier-Stokes实验恢复与Reynolds数倒数一致的系数，并在1%高斯噪声下保持正确结构。（PDF 页 8；块号 P008-B004, P008-B005, P008-B006, P008-B007）</p>
+</li>
+<li>
+<p>三组真实案例分别只有182、90、92点，作者汇总训练和测试R2均超过0.95。（PDF 页 9；块号 P009-B008）</p>
+</li>
+<li>
+<p>代码和数据分别在GitHub与Zenodo公开。（PDF 页 10；块号 P010-B006, P010-B007, P010-B008, P010-B009）</p>
+</li>
+</ul></main></body></html>

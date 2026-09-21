@@ -1,0 +1,112 @@
+<!doctype html><html lang="zh-CN"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Learning interpretable network dynamics via universal neural symbolic regression · 物理规律发现</title><link rel="stylesheet" href="../style.css"><link rel="stylesheet" href="../public.css"></head><body><main class="doc"><div class="links"><a href="../">返回课程</a><a href="../spectrum/">三维谱图</a></div><h1>P39 · Learning interpretable network dynamics via universal neural symbolic regression</h1>
+<p>Jiao Hu; Jiaxu Cui; Bo Yang. Learning interpretable network dynamics via universal neural symbolic regression. Nature Communications, 2025, 16(1). DOI: 10.1038/s41467-025-61575-7</p>
+<p><a href="https://doi.org/10.1038/s41467-025-61575-7">出版页面</a> · 第 20 天 · 符号搜索</p>
+<h2>研究问题</h2>
+<p>从高维网络节点时间序列中恢复节点自动力学与成对相互作用的显式方程，并用于合成、混沌及真实疫情和行人系统。</p>
+<h2>规律表示</h2>
+<p>预训练NSRA transformer把神经网络采样的输入输出对映射为前缀表达式树，可选BFGS/梯度法优化常数；每个节点维度或异质群体可共享或分别建式。</p>
+<h2>方法</h2>
+<p>先以物理分解和方差最小化损失解耦高维信号，再从拟合函数用K-means选代表点，送入预训练符号回归模型一次前向推断和常数优化；若方程不满意可循环增加观测。</p>
+<h2>假设</h2>
+<p>• 状态变化由自身状态和一阶邻居状态决定
+• 动力学可加性分解为自项与成对相互作用项
+• 实验通常假定拓扑已知
+• 符号transformer的训练表达式分布和运算词表</p>
+<h2>必做推导</h2>
+<p>将节点自身动力学与邻边相互作用拆开，解释网络拓扑如何限定候选式。</p>
+<h2>复现目标</h2>
+<p>在作者代码中选一个支持核心结论的案例：• 生化、基因调控、互利、Lotka-Volterra、神经与流行病网络
+• FitzHugh-Nagumo、捕食-被捕食与异质网络
+• 耦合Rössler混沌系统及分岔图
+• 全球COVID-19早期病例与OpenFlights航空网络
+• 真实行人运动轨迹。先运行小样例，再恢复该案例原文配置；运行前登记原文指标/目标图、统计量和容差，运行后交付结构或等价结构、系数/统计量、留出预测、耗时和日志。</p>
+<h2>单因素检验</h2>
+<p>只改变测试图的节点数量。</p>
+<h2>适用范围与限制</h2>
+<p>• 底层拓扑如何获得仍是开放问题；时变外力、随机系统、PDE及高阶相互作用超出当前主要范围。
+• 有限差分会放大观测噪声并直接降低神经网络解耦质量，当前依赖Savitzky-Golay与五点差分预处理。
+• 预训练transformer假设独立同分布样本，而网络轨迹有时间相关性；K-means取样只是缓解分布失配的启发式处理。</p>
+<h2>闭卷自测</h2>
+<h3>1. P39 实际辨识的未知对象是什么，哪些对象预先给定？</h3>
+<details><summary>先作答，再展开核对</summary>
+
+
+从高维网络节点时间序列中恢复节点自动力学与成对相互作用的显式方程，并用于合成、混沌及真实疫情和行人系统。
+表示：预训练NSRA transformer把神经网络采样的输入输出对映射为前缀表达式树，可选BFGS/梯度法优化常数；每个节点维度或异质群体可共享或分别建式。
+
+
+</details>
+
+<h3>2. P39 从数据到模型采用什么路线？按顺序解释各步骤。</h3>
+<details><summary>先作答，再展开核对</summary>
+
+
+先以物理分解和方差最小化损失解耦高维信号，再从拟合函数用K-means选代表点，送入预训练符号回归模型一次前向推断和常数优化；若方程不满意可循环增加观测。
+
+
+</details>
+
+<h3>3. P39 哪些假设或限制使结果不能直接推广？至少说出两项。</h3>
+<details><summary>先作答，再展开核对</summary>
+
+
+• 状态变化由自身状态和一阶邻居状态决定
+• 动力学可加性分解为自项与成对相互作用项
+• 实验通常假定拓扑已知
+• 符号transformer的训练表达式分布和运算词表
+• 底层拓扑如何获得仍是开放问题；时变外力、随机系统、PDE及高阶相互作用超出当前主要范围。
+• 有限差分会放大观测噪声并直接降低神经网络解耦质量，当前依赖Savitzky-Golay与五点差分预处理。
+• 预训练transformer假设独立同分布样本，而网络轨迹有时间相关性；K-means取样只是缓解分布失配的启发式处理。
+
+
+</details>
+
+<h3>4. 怎样设计这项单因素检验：只改变测试图的节点数量。</h3>
+<details><summary>先作答，再展开核对</summary>
+
+
+只改变指定因素，固定数据划分与其余参数；用结构、系数/统计量和留出预测评价，并将结果联系到以下方法边界：
+• 底层拓扑如何获得仍是开放问题；时变外力、随机系统、PDE及高阶相互作用超出当前主要范围。
+• 有限差分会放大观测噪声并直接降低神经网络解耦质量，当前依赖Savitzky-Golay与五点差分预处理。
+• 预训练transformer假设独立同分布样本，而网络轨迹有时间相关性；K-means取样只是缓解分布失配的启发式处理。
+
+
+</details>
+
+<h2>作者代码与核查</h2>
+<p>代码信息为课程构建时的核查快照，可访问不等于已复现；没有定位到代码不等于作者没有公开。</p>
+<ul>
+<li><a href="https://doi.org/10.24433/CO.3947449.v2">https://doi.org/10.24433/CO.3947449.v2</a></li>
+</ul>
+<pre><code class="language-json">{
+  &quot;verified_status&quot;: &quot;author_link&quot;,
+  &quot;entrypoints&quot;: [],
+  &quot;environment&quot;: [],
+  &quot;blockers&quot;: [
+    &quot;paper-result T2 reproduction not run; public access or README inspection is not reproduction&quot;,
+    &quot;SSLError: HTTPSConnectionPool(host='doi.org', port=443): Max retries exceeded with url: /10.24433/CO.3947449.v2 (Caused by SSLError(SSLEOFError(8, 'EOF occurred in violation of protocol (_ssl.c:1002)')))&quot;,
+    &quot;no concrete execution entrypoint established by current root/README inspection&quot;,
+    &quot;dependency/environment specification unverified&quot;
+  ],
+  &quot;follow_up_actions&quot;: []
+}
+</code></pre>
+<h2>原文定位</h2>
+<p>以下为课程整理的结论和原文页码 / 块号索引，全文通过出版页面访问。</p>
+<ul>
+<li>
+<p>框架以自动态和成对交互的物理先验拆解网络方程，再由神经网络降维并由预训练符号回归解析白盒表达式。（PDF 页 2；块号 P002-B010, P002-B011）</p>
+</li>
+<li>
+<p>六类一维系统中LLC-NSRA在约6.5分钟内完成，兼顾结构恢复与预测精度；依赖更强候选库的TPSINDy约5.2分钟。（PDF 页 5；块号 P005-B005）</p>
+</li>
+<li>
+<p>高斯、Poisson和相位噪声从70降到40 dB时误差保持接近0，进一步加噪后尤其相位噪声会退化；随机删边实验也显示较高容忍度。（PDF 页 5；块号 P005-B006, P005-B007）</p>
+</li>
+<li>
+<p>Rössler网络的发现方程不仅拟合轨迹，还复现从周期1、2、4到混沌、周期3再到混沌的分岔序列与关键分岔点。（PDF 页 7；块号 P007-B005）</p>
+</li>
+<li>
+<p>真实行人数据中发现式产生分散、聚集和排队行为，区别于基线并通过含行人距离的交互项与territorial effect联系。（PDF 页 8；块号 P008-B007）</p>
+</li>
+</ul></main></body></html>

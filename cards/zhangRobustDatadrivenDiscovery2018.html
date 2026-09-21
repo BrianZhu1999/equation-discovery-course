@@ -1,0 +1,114 @@
+<!doctype html><html lang="zh-CN"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Robust data-driven discovery of governing physical laws with error bars · 物理规律发现</title><link rel="stylesheet" href="../style.css"><link rel="stylesheet" href="../public.css"></head><body><main class="doc"><div class="links"><a href="../">返回课程</a><a href="../spectrum/">三维谱图</a></div><h1>P43 · Robust data-driven discovery of governing physical laws with error bars</h1>
+<p>Sheng Zhang; Guang Lin. Robust data-driven discovery of governing physical laws with error bars. Proceedings of the Royal Society A: Mathematical, Physical and Engineering Sciences, 2018, 474(2217): 20180305. DOI: 10.1098/rspa.2018.0305</p>
+<p><a href="https://doi.org/10.1098/rspa.2018.0305">出版页面</a> · 第 5 天 · 统计选择与弱形式</p>
+<h2>研究问题</h2>
+<p>在左端项也可能未知的条件下，从带量纲的状态及导数张量积中搜索微分关系，同时给出系数误差条并用发现方程进行区间外预测。</p>
+<h2>规律表示</h2>
+<p>同一物理量纲组内基函数的稀疏线性关系；系数具有层次高斯先验，噪声方差与自动相关确定参数通过type-II最大似然估计。</p>
+<h2>方法</h2>
+<p>先按量纲齐次性切分和压缩张量积库，再对每个候选回归运行稀疏贝叶斯推断；迭代删除绝对均值小于阈值倍标准差的项，并按预测误差条选择方程与逐阶停止。</p>
+<h2>假设</h2>
+<p>• 方程各项必须满足量纲齐次性
+• 候选导数最高阶与张量积次数按从低到高自适应扩展
+• 稀疏层次先验和用户给定的阈值删除规则
+• 用户预设可接受误差条delta作为停止条件</p>
+<h2>必做推导</h2>
+<p>用线性回归协方差公式追踪导数噪声到系数误差条，列出自变量也含噪时的问题。</p>
+<h2>复现目标</h2>
+<p>在作者代码中选一个支持核心结论的案例：• 二维非线性ODE随机回归基准
+• Laguerre型二阶微分方程及低阶近似
+• 二维浅水方程
+• Navier-Stokes速度与连续性关系
+• 从[0,3]拟合并预测[3,6]的合成函数。先运行小样例，再恢复该案例原文配置；运行前登记原文指标/目标图、统计量和容差，运行后交付结构或等价结构、系数/统计量、留出预测、耗时和日志。</p>
+<h2>单因素检验</h2>
+<p>只增加候选列共线性。</p>
+<h2>适用范围与限制</h2>
+<p>• 导数与变量张量积的基函数数目随维度和阶数快速爆炸；作者要求在有先验时预删不可能项，并从低阶库顺序搜索。
+• 阈值接近0时不能去除扰动，接近0.5时又会误删绝对值为0.5的真系数；该例只有约0.15至0.4的中间范围表现良好。
+• 论文明确说明没有主动采集人类数据，实验只使用计算机模拟，因此误差条和外推结论尚未接受真实测量机制检验。</p>
+<h2>闭卷自测</h2>
+<h3>1. P43 实际辨识的未知对象是什么，哪些对象预先给定？</h3>
+<details><summary>先作答，再展开核对</summary>
+
+
+在左端项也可能未知的条件下，从带量纲的状态及导数张量积中搜索微分关系，同时给出系数误差条并用发现方程进行区间外预测。
+表示：同一物理量纲组内基函数的稀疏线性关系；系数具有层次高斯先验，噪声方差与自动相关确定参数通过type-II最大似然估计。
+
+
+</details>
+
+<h3>2. P43 从数据到模型采用什么路线？按顺序解释各步骤。</h3>
+<details><summary>先作答，再展开核对</summary>
+
+
+先按量纲齐次性切分和压缩张量积库，再对每个候选回归运行稀疏贝叶斯推断；迭代删除绝对均值小于阈值倍标准差的项，并按预测误差条选择方程与逐阶停止。
+
+
+</details>
+
+<h3>3. P43 哪些假设或限制使结果不能直接推广？至少说出两项。</h3>
+<details><summary>先作答，再展开核对</summary>
+
+
+• 方程各项必须满足量纲齐次性
+• 候选导数最高阶与张量积次数按从低到高自适应扩展
+• 稀疏层次先验和用户给定的阈值删除规则
+• 用户预设可接受误差条delta作为停止条件
+• 导数与变量张量积的基函数数目随维度和阶数快速爆炸；作者要求在有先验时预删不可能项，并从低阶库顺序搜索。
+• 阈值接近0时不能去除扰动，接近0.5时又会误删绝对值为0.5的真系数；该例只有约0.15至0.4的中间范围表现良好。
+• 论文明确说明没有主动采集人类数据，实验只使用计算机模拟，因此误差条和外推结论尚未接受真实测量机制检验。
+
+
+</details>
+
+<h3>4. 怎样设计这项单因素检验：只增加候选列共线性。</h3>
+<details><summary>先作答，再展开核对</summary>
+
+
+只改变指定因素，固定数据划分与其余参数；用结构、系数/统计量和留出预测评价，并将结果联系到以下方法边界：
+• 导数与变量张量积的基函数数目随维度和阶数快速爆炸；作者要求在有先验时预删不可能项，并从低阶库顺序搜索。
+• 阈值接近0时不能去除扰动，接近0.5时又会误删绝对值为0.5的真系数；该例只有约0.15至0.4的中间范围表现良好。
+• 论文明确说明没有主动采集人类数据，实验只使用计算机模拟，因此误差条和外推结论尚未接受真实测量机制检验。
+
+
+</details>
+
+<h2>作者代码与核查</h2>
+<p>代码信息为课程构建时的核查快照，可访问不等于已复现；没有定位到代码不等于作者没有公开。</p>
+<pre><code class="language-json">{
+  &quot;verified_status&quot;: &quot;unverified&quot;,
+  &quot;entrypoints&quot;: [],
+  &quot;environment&quot;: [],
+  &quot;blockers&quot;: [
+    &quot;author code not found in inspected local source; this does not establish that code does not exist&quot;,
+    &quot;required code-discovery queue remains open; missing PDF URL is not evidence of missing author code&quot;
+  ],
+  &quot;follow_up_actions&quot;: [
+    &quot;Check publisher code/data availability and supplementary attachments&quot;,
+    &quot;Follow first/corresponding author project page; verify paper title/DOI in the repository before accepting it&quot;,
+    &quot;Record author-code link or a dated availability boundary; do not close this task because PDF transcription lacks a URL&quot;
+  ]
+}
+</code></pre>
+<h2>原文定位</h2>
+<p>以下为课程整理的结论和原文页码 / 块号索引，全文通过出版页面访问。</p>
+<ul>
+<li>
+<p>量纲齐次性只允许同量纲项相加；作者据此把基函数分组，减少张量积库的规模和共线性，并以力等于质量乘加速度说明筛选可唯一留下候选。（PDF 页 5；块号 P005-B006, P005-B008）</p>
+</li>
+<li>
+<p>随机噪声比较对每种回归方法和每个噪声水平做30次模拟，每次使用200个数据点，且各方法在同一噪声水平共享同一批含噪数据。（PDF 页 9；块号 P009-B003）</p>
+</li>
+<li>
+<p>二阶方程只用20个等距点并按误差条从低阶库逐步扩展；最小误差条结构既拟合数据也预测真解，低阶近似即便不等价也能预测趋势。（PDF 页 10；块号 P010-B005, P010-B007, P010-B008）</p>
+</li>
+<li>
+<p>浅水方程案例按量纲构建候选并恢复与真系统等价的形式，但幅值较小的平流项容易被噪声遮蔽、系数误差明显更大。（PDF 页 13；块号 P013-B006, P013-B007）</p>
+</li>
+<li>
+<p>Navier-Stokes案例给出两个动量关系的系数均值、标准差和约10^-5量级误差条，并进一步发现不可压连续性恒等式。（PDF 页 15；块号 P015-B006, P015-B007, P015-B008）</p>
+</li>
+<li>
+<p>区间外实验以[0,3]的31点观测、27个中心差分点识别方程，在[3,6]的0至10%噪声预测中均优于多项式回归；10000次系数抽样形成预测均值和标准差。（PDF 页 17；块号 P017-B003, P017-B005, P017-B006, P017-B007）</p>
+</li>
+</ul></main></body></html>

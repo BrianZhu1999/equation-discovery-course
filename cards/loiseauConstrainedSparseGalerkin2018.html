@@ -1,0 +1,131 @@
+<!doctype html><html lang="zh-CN"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Constrained sparse Galerkin regression · 物理规律发现</title><link rel="stylesheet" href="../style.css"><link rel="stylesheet" href="../public.css"></head><body><main class="doc"><div class="links"><a href="../">返回课程</a><a href="../spectrum/">三维谱图</a></div><h1>P44 · Constrained sparse Galerkin regression</h1>
+<p>Jean-Christophe Loiseau; Steven L. Brunton. Constrained sparse Galerkin regression. Journal of Fluid Mechanics, 2018, 838: 42-67. DOI: 10.1017/jfm.2017.823</p>
+<p><a href="https://doi.org/10.1017/jfm.2017.823">出版页面</a> · 第 17 天 · 坐标、流形与守恒</p>
+<h2>研究问题</h2>
+<p>从流动模态系数时间序列识别稀疏低维ODE，同时把能量守恒、对称性、已知系数或谱性质写成跨方程约束，避免逐方程拟合产生物理上错误的降阶模型。</p>
+<h2>规律表示</h2>
+<p>模态幅值的稀疏多项式ODE，候选含线性、二次及可选三次项；所有方程系数向量化后，由线性等式矩阵Cxi=d同时施加稀疏零约束与物理耦合约束。</p>
+<h2>方法</h2>
+<p>在序贯阈值最小二乘或L1回归中反复加入零系数约束，并用KKT/约束最小二乘求解；用户提供的等式可固定系数、耦合不同状态方程或强制二次非线性保持能量。</p>
+<h2>假设</h2>
+<p>• Navier-Stokes二次非线性应保持扰动动能的线性等式约束
+• 流动对称性和已知零系数
+• Lorenz示例中已知参数sigma的系数约束
+• 可选已知特征值或线性稳定性信息，但非凸谱约束不在当前CVXOPT范围</p>
+<h2>必做推导</h2>
+<p>对低阶二次模型算能量时间导数，把能量保持写成系数的线性约束。</p>
+<h2>复现目标</h2>
+<p>在作者代码中选一个支持核心结论的案例：• Lorenz系统约束系数示例
+• Re=100二维圆柱绕流POD模态
+• 剪切驱动方腔流低维模态
+• 标准Galerkin投影、无约束与受约束二次/三次模型。先运行小样例，再恢复该案例原文配置；运行前登记原文指标/目标图、统计量和容差，运行后交付结构或等价结构、系数/统计量、留出预测、耗时和日志。</p>
+<h2>单因素检验</h2>
+<p>只关闭能量约束。</p>
+<h2>适用范围与限制</h2>
+<p>• 物理约束并非必然改善轨迹预测：方腔流的受约束二次模型严重高估瞬态持续时间，作者当时不能解释原因；所需谱约束又是当前凸求解器无法处理的非凸条件。
+• 作者明确指出当前案例本质上都是低维流动，尚不能代表过渡或湍流的高维性；向此类流动扩展仍是未来工作。
+• 最终结构对稀疏旋钮lambda至关重要：过小保留过多项、过大则误删并损失精度，因此仍需结合非零项数与R2人工选模。</p>
+<h2>闭卷自测</h2>
+<h3>1. P44 实际辨识的未知对象是什么，哪些对象预先给定？</h3>
+<details><summary>先作答，再展开核对</summary>
+
+
+从流动模态系数时间序列识别稀疏低维ODE，同时把能量守恒、对称性、已知系数或谱性质写成跨方程约束，避免逐方程拟合产生物理上错误的降阶模型。
+表示：模态幅值的稀疏多项式ODE，候选含线性、二次及可选三次项；所有方程系数向量化后，由线性等式矩阵Cxi=d同时施加稀疏零约束与物理耦合约束。
+
+
+</details>
+
+<h3>2. P44 从数据到模型采用什么路线？按顺序解释各步骤。</h3>
+<details><summary>先作答，再展开核对</summary>
+
+
+在序贯阈值最小二乘或L1回归中反复加入零系数约束，并用KKT/约束最小二乘求解；用户提供的等式可固定系数、耦合不同状态方程或强制二次非线性保持能量。
+
+
+</details>
+
+<h3>3. P44 哪些假设或限制使结果不能直接推广？至少说出两项。</h3>
+<details><summary>先作答，再展开核对</summary>
+
+
+• Navier-Stokes二次非线性应保持扰动动能的线性等式约束
+• 流动对称性和已知零系数
+• Lorenz示例中已知参数sigma的系数约束
+• 可选已知特征值或线性稳定性信息，但非凸谱约束不在当前CVXOPT范围
+• 物理约束并非必然改善轨迹预测：方腔流的受约束二次模型严重高估瞬态持续时间，作者当时不能解释原因；所需谱约束又是当前凸求解器无法处理的非凸条件。
+• 作者明确指出当前案例本质上都是低维流动，尚不能代表过渡或湍流的高维性；向此类流动扩展仍是未来工作。
+• 最终结构对稀疏旋钮lambda至关重要：过小保留过多项、过大则误删并损失精度，因此仍需结合非零项数与R2人工选模。
+
+
+</details>
+
+<h3>4. 怎样设计这项单因素检验：只关闭能量约束。</h3>
+<details><summary>先作答，再展开核对</summary>
+
+
+只改变指定因素，固定数据划分与其余参数；用结构、系数/统计量和留出预测评价，并将结果联系到以下方法边界：
+• 物理约束并非必然改善轨迹预测：方腔流的受约束二次模型严重高估瞬态持续时间，作者当时不能解释原因；所需谱约束又是当前凸求解器无法处理的非凸条件。
+• 作者明确指出当前案例本质上都是低维流动，尚不能代表过渡或湍流的高维性；向此类流动扩展仍是未来工作。
+• 最终结构对稀疏旋钮lambda至关重要：过小保留过多项、过大则误删并损失精度，因此仍需结合非零项数与R2人工选模。
+
+
+</details>
+
+<h2>作者代码与核查</h2>
+<p>代码信息为课程构建时的核查快照，可访问不等于已复现；没有定位到代码不等于作者没有公开。</p>
+<ul>
+<li><a href="https://github.com/loiseaujc/SINDy">https://github.com/loiseaujc/SINDy</a></li>
+</ul>
+<pre><code class="language-json">{
+  &quot;verified_status&quot;: &quot;public_verified&quot;,
+  &quot;entrypoints&quot;: [
+    {
+      &quot;path&quot;: &quot;examples&quot;,
+      &quot;basis&quot;: &quot;observed root path; not executed&quot;,
+      &quot;repository&quot;: &quot;https://github.com/loiseaujc/SINDy&quot;
+    }
+  ],
+  &quot;environment&quot;: [
+    {
+      &quot;path&quot;: &quot;requirements.txt&quot;,
+      &quot;basis&quot;: &quot;observed dependency/config file; compatibility not tested&quot;,
+      &quot;repository&quot;: &quot;https://github.com/loiseaujc/SINDy&quot;
+    },
+    {
+      &quot;path&quot;: &quot;setup.py&quot;,
+      &quot;basis&quot;: &quot;observed dependency/config file; compatibility not tested&quot;,
+      &quot;repository&quot;: &quot;https://github.com/loiseaujc/SINDy&quot;
+    },
+    {
+      &quot;requirement_excerpt&quot;: &quot;**SINDy** is a python 2.7 library for system identification problems. It is based on the original paper by Brunton *et al.* (Discovering governing equations from data by sparse identification of nonlinear dynamical systems, *PNAS*, vol. **113** (15), pp. 3932--3937, 2016).&quot;,
+      &quot;source_url&quot;: &quot;https://raw.githubusercontent.com/loiseaujc/SINDy/master/README.md&quot;,
+      &quot;line&quot;: 4,
+      &quot;basis&quot;: &quot;literal README statement; environment not constructed&quot;
+    }
+  ],
+  &quot;blockers&quot;: [
+    &quot;paper-result T2 reproduction not run; public access or README inspection is not reproduction&quot;
+  ],
+  &quot;follow_up_actions&quot;: []
+}
+</code></pre>
+<h2>原文定位</h2>
+<p>以下为课程整理的结论和原文页码 / 块号索引，全文通过出版页面访问。</p>
+<ul>
+<li>
+<p>算法把全部系数向量化并用Cxi=d表示线性等式；同一机制既执行序贯稀疏删项，也可固定已知系数或编码能量守恒等跨方程物理关系。（PDF 页 5；块号 P005-B002, P005-B003, P005-B006）</p>
+</li>
+<li>
+<p>Lorenz示例固定已知sigma后，受约束SINDy的识别轨迹比原始无约束SINDy更贴近真轨迹。（PDF 页 6；块号 P006-B004, P006-B005, P006-B006, P006-B007）</p>
+</li>
+<li>
+<p>由Navier-Stokes扰动能量平衡得到反对称和系数和为零的条件，最终形成十条线性等式并耦合三个模态ODE，而非逐式独立拟合。（PDF 页 8；块号 P008-B006）</p>
+</li>
+<li>
+<p>圆柱绕流的三次Galerkin回归几乎完全拟合原动力学：极限环幅值偏差低于0.5%，平均流畸变饱和值偏差低于0.1%，但不稳定增长率仍略高估。（PDF 页 15；块号 P015-B003）</p>
+</li>
+<li>
+<p>方腔流的无约束三次模型把均值畸变方向错误识别为线性不稳定；能量保持约束耦合各方程后，该方向变为物理上合理的稳定方向。（PDF 页 17；块号 P017-B001, P017-B002）</p>
+</li>
+</ul></main></body></html>
