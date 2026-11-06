@@ -238,7 +238,7 @@ def run(args: argparse.Namespace) -> Path:
     for name, model in models.items():
         results[name], predictions[name] = evaluate(model, oracle, test_times, test_states)
     clean = results["clean_full"]
-    gate = {"purpose": "teaching sanity check; not a paper reproduction claim",
+    gate = {"purpose": "Exact support recovery and coefficient-error checks for the clean-data teaching example",
             "criteria_fixed_before_run": {"exact_support": True, "maximum_active_coefficient_relative_l2_error": 0.02,
                                           "maximum_single_active_coefficient_relative_error": 0.05},
             "passed": clean["structure_recovered_exactly"] and clean["true_active_coefficient_relative_l2_error"] <= 0.02
