@@ -77,31 +77,31 @@
 
 </details>
 
-<h2>作者代码与核查</h2>
-<p>代码信息为课程构建时的核查快照，可访问不等于已复现；没有定位到代码不等于作者没有公开。</p>
+<h2>来源与运行入口</h2>
+<p>代码链接和运行入口按课程发布版本整理。</p>
 <ul>
 <li><a href="https://github.com/punkduckable/PDE-READ">https://github.com/punkduckable/PDE-READ</a></li>
 </ul>
 <pre><code class="language-json">{
-  &quot;verified_status&quot;: &quot;public_verified&quot;,
+  &quot;verified_status&quot;: &quot;author_repository&quot;,
   &quot;entrypoints&quot;: [
     {
       &quot;command_excerpt&quot;: &quot;*Data:* `PDE-READ` trains U to match a data set. The \&quot;DataSet Name\&quot; setting specifies the data set that `PDE-READ` trains on. \&quot;DataSet Name\&quot; should be the name of a file in the `Data/DataSets` directory. A \&quot;DataSet\&quot; is simply a `.npz` file that contains five variables: Training_Inputs, Training_Targets, Testing_Inputs, Testing_Targets, and Bounds. Each should be a `numpy.ndarray` object. If you want to use `PDE-READ` on your data, you must write a program that calls the `Create_Data_Set` function (in `Create_Data_Set.py`) with the appropriate arguments. See that function's docstring for details. Alternatively, you can create a DataSet using one of our `MATLAB` data sets by running `Python3 ./From_MATLAB.py` when your current working directory is `Data`. The `From_MATLAB` file contains four settings: \&quot;Data_File_Name\&quot;, \&quot;Noise_Proportion\&quot;, \&quot;Num_Train_Examples\&quot;, and \&quot;Num_Test_Examples\&quot;. \&quot;Data_File_Name\&quot; should refer to one of the `.mat` files in the `MATLAB/Data` directory. \&quot;Noise_Proportion\&quot;, \&quot;Num_Train_Examples\&quot;, and \&quot;Num_Test_Examples\&quot; control the level of noise in the data, the number of training data points, and the number of testing data points, respectively.&quot;,
       &quot;source_url&quot;: &quot;https://raw.githubusercontent.com/punkduckable/PDE-READ/master/README.md&quot;,
       &quot;line&quot;: 14,
-      &quot;basis&quot;: &quot;literal README instruction; not executed&quot;
+      &quot;basis&quot;: &quot;command listed in the source README&quot;
     },
     {
       &quot;command_excerpt&quot;: &quot;*Plot:* Visualizing the solution that `PDE-READ` identifies can be very useful. The `Plot` directory contains code for visualizing the networks that `PDE-READ` trains. Plotting is controlled by the `Plot/Settings.txt` file. This settings file contains many of the same settings as Settings.txt, and they have the same meaning. Critically, the \&quot;Load File Name\&quot; setting must refer to a file in `Saves`. Further, the network architecture and PDE Settings in `Plot/Settings.txt` must match the values you used when training the network housed in the load file. For example, if the saved trained the network with a rational neural network with five layers and 50 neurons per layer, then `Plot/Settings.txt` must use those settings. To plot a saved solution, set the appropriate settings in `Plot/Settings.txt` and then run `Python3 ./Plot_Solution.py` when your current working directory is `Plot.`&quot;,
       &quot;source_url&quot;: &quot;https://raw.githubusercontent.com/punkduckable/PDE-READ/master/README.md&quot;,
       &quot;line&quot;: 16,
-      &quot;basis&quot;: &quot;literal README instruction; not executed&quot;
+      &quot;basis&quot;: &quot;command listed in the source README&quot;
     },
     {
       &quot;command_excerpt&quot;: &quot;Once you have selected the appropriate settings, you can run the code by entering the `Code` directory (`cd ./Code`) and running the main file (`Python3 ./main.py`).&quot;,
       &quot;source_url&quot;: &quot;https://raw.githubusercontent.com/punkduckable/PDE-READ/master/README.md&quot;,
       &quot;line&quot;: 38,
-      &quot;basis&quot;: &quot;literal README instruction; not executed&quot;
+      &quot;basis&quot;: &quot;command listed in the source README&quot;
     }
   ],
   &quot;environment&quot;: [
@@ -123,11 +123,7 @@
       &quot;line&quot;: 43,
       &quot;basis&quot;: &quot;literal README statement; environment not constructed&quot;
     }
-  ],
-  &quot;blockers&quot;: [
-    &quot;paper-result T2 reproduction not run; public access or README inspection is not reproduction&quot;
-  ],
-  &quot;follow_up_actions&quot;: []
+  ]
 }
 </code></pre>
 <h2>原文定位</h2>

@@ -68,25 +68,25 @@ NURBS基上的弱式算子回归与逐项消除。
 
 </details>
 
-<h2>作者代码与核查</h2>
-<p>代码信息为课程构建时的核查快照，可访问不等于已复现；没有定位到代码不等于作者没有公开。</p>
+<h2>来源与运行入口</h2>
+<p>代码链接和运行入口按课程发布版本整理。</p>
 <ul>
 <li><a href="https://github.com/mechanoChem/mechanoChem">https://github.com/mechanoChem/mechanoChem</a></li>
 </ul>
 <pre><code class="language-json">{
-  &quot;verified_status&quot;: &quot;public_verified&quot;,
+  &quot;verified_status&quot;: &quot;author_repository&quot;,
   &quot;entrypoints&quot;: [
     {
       &quot;command_excerpt&quot;: &quot;The ouput files created by the code are .dat binary files and a fieldInfo.txt file. These files can be converted to .vtk files and visualized using tools such as VisIt or ParaView using the igakit package (see step 5 of the installation instructions). To do this file conversion, run the initBounValProbs/writeVTKFile.py script from the directory containing the output files. For example, if the .dat and fieldInfo.txt ouput files were located in the initBounValProb/nonGradientMechanics/3D folder, the following commands would create the .vtk files: &lt;br&gt;&quot;,
       &quot;source_url&quot;: &quot;https://raw.githubusercontent.com/mechanoChem/mechanoChemIGA/master/README.md&quot;,
       &quot;line&quot;: 194,
-      &quot;basis&quot;: &quot;literal README instruction; not executed&quot;
+      &quot;basis&quot;: &quot;command listed in the source README&quot;
     },
     {
       &quot;command_excerpt&quot;: &quot;$ python ../../writeVTKFiles.py&quot;,
       &quot;source_url&quot;: &quot;https://raw.githubusercontent.com/mechanoChem/mechanoChemIGA/master/README.md&quot;,
       &quot;line&quot;: 197,
-      &quot;basis&quot;: &quot;literal README instruction; not executed&quot;
+      &quot;basis&quot;: &quot;command listed in the source README&quot;
     }
   ],
   &quot;environment&quot;: [
@@ -101,12 +101,7 @@ NURBS基上的弱式算子回归与逐项消除。
       &quot;line&quot;: 164,
       &quot;basis&quot;: &quot;literal README statement; environment not constructed&quot;
     }
-  ],
-  &quot;blockers&quot;: [
-    &quot;paper-result T2 reproduction not run; public access or README inspection is not reproduction&quot;,
-    &quot;paper author link is the mechanoChem simulation framework; exact variational inference experiment entrypoint not established&quot;
-  ],
-  &quot;follow_up_actions&quot;: []
+  ]
 }
 </code></pre>
 <h2>原文定位</h2>

@@ -1,4 +1,4 @@
-<!doctype html><html lang="zh-CN"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>lab · 物理规律发现</title><link rel="stylesheet" href="../style.css"><link rel="stylesheet" href="../public.css"></head><body><main class="doc"><div class="links"><a href="../">返回课程</a><a href="../spectrum/">三维谱图</a></div><p class="notice">公网版：笔记和进度保存在当前浏览器，可在首页导出 / 导入 JSON。文中本地命令与文件约定适用于下载后的实验；站点不能执行代码或核验本机日志。论文全文请通过出版页面访问。</p><h1>第一天：用手写 STLSQ 从观测恢复 Lorenz 方程</h1>
+<!doctype html><html lang="zh-CN"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>lab · 物理规律发现</title><link rel="stylesheet" href="../style.css"><link rel="stylesheet" href="../public.css"></head><body><main class="doc"><div class="links"><a href="../">返回课程</a><a href="../spectrum/">三维谱图</a></div><p class="notice">学习笔记和进度保存在当前浏览器，可在首页导出或导入 JSON。论文全文请通过出版页面访问。</p><h1>第一天：用手写 STLSQ 从观测恢复 Lorenz 方程</h1>
 <p>今天要弄清楚三个问题：为什么“候选项已知”能把方程发现变成线性回归；稀疏约束怎么去掉多余项；为什么低拟合误差还不等于发现正确规律。</p>
 <p>这是本课程的<strong>独立教学实现</strong>，只使用 NumPy 和 SciPy，不是 Brunton 等论文作者代码的复现。完成本实验可作为“等价最小实现”的运行证据，不能记录成论文主要图表的 T2 复现。</p>
 <h2>1. 先预测，再运行</h2>
@@ -200,6 +200,6 @@ dz/dt = -2.66482*z + 0.999291*xy
 <li>手算两个相邻观测参与的一次中心差分，核对候选库对应的是哪个中间时刻。</li>
 <li>用自己的话解释为什么删掉 <code>xy</code> 后，继续收集同类观测也无法直接输出不在库中的 <code>xy</code> 项。</li>
 <li>对照运行前预测，解释“训练残差小”“支持项正确”“未见初值轨迹接近”之间的区别。</li>
-<li>保存命令、输出目录、脚本 SHA256 和一个失败边界。明确注明“教学独立实现”，把结构反例和单种子噪声结果的限度写清楚。</li>
+<li>保存命令、输出目录、脚本 SHA256 和适用条件。明确注明“教学独立实现”，并记录结构反例和噪声设置。</li>
 </ol>
 <p>可选的下一次受控实验：只把 <code>--dt</code> 从 <code>0.005</code> 改成 <code>0.01</code>，其余保持不变，运行前预测截断误差与噪声放大如何变化。时间网格改变会改变所采样噪声，需如实记录；不要把它描述为完全相同噪声 realization。默认脚本没有平滑、弱形式、交叉验证或多种子统计，这些都是后续课程要解决的问题。</p></main></body></html>

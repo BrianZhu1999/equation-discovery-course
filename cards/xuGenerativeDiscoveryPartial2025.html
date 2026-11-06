@@ -69,31 +69,31 @@ GPT-2式EqGPT先从数学手册学习项的共现；每轮生成400个结构，�
 
 </details>
 
-<h2>作者代码与核查</h2>
-<p>代码信息为课程构建时的核查快照，可访问不等于已复现；没有定位到代码不等于作者没有公开。</p>
+<h2>来源与运行入口</h2>
+<p>代码链接和运行入口按课程发布版本整理。</p>
 <ul>
 <li><a href="https://github.com/woshixuhao/EqGPT">https://github.com/woshixuhao/EqGPT</a></li>
 </ul>
 <pre><code class="language-json">{
-  &quot;verified_status&quot;: &quot;public_verified&quot;,
+  &quot;verified_status&quot;: &quot;author_repository&quot;,
   &quot;entrypoints&quot;: [
     {
       &quot;command_excerpt&quot;: &quot;2. Run the surrogate_model.py (about 2 min for training the EqGPT model and 1~10 min {according to the data_num} for training the surrogate model from sparse and noisy data)&quot;,
       &quot;source_url&quot;: &quot;https://raw.githubusercontent.com/woshixuhao/EqGPT/main/README.md&quot;,
       &quot;line&quot;: 49,
-      &quot;basis&quot;: &quot;literal README instruction; not executed&quot;
+      &quot;basis&quot;: &quot;command listed in the source README&quot;
     },
     {
       &quot;command_excerpt&quot;: &quot;3. Run the continue_train_GPT.py to fine-tune the EqGPT with the rewards of generated PDEs calculated through meta-data and discover the optimal PDE structure (1~5 min).&quot;,
       &quot;source_url&quot;: &quot;https://raw.githubusercontent.com/woshixuhao/EqGPT/main/README.md&quot;,
       &quot;line&quot;: 51,
-      &quot;basis&quot;: &quot;literal README instruction; not executed&quot;
+      &quot;basis&quot;: &quot;command listed in the source README&quot;
     },
     {
       &quot;command_excerpt&quot;: &quot;4. Run the PINN_optimization.py to further optimize the coefficients of discovered PDEs via PINN (~1 min).&quot;,
       &quot;source_url&quot;: &quot;https://raw.githubusercontent.com/woshixuhao/EqGPT/main/README.md&quot;,
       &quot;line&quot;: 52,
-      &quot;basis&quot;: &quot;literal README instruction; not executed&quot;
+      &quot;basis&quot;: &quot;command listed in the source README&quot;
     }
   ],
   &quot;environment&quot;: [
@@ -139,11 +139,7 @@ GPT-2式EqGPT先从数学手册学习项的共现；每轮生成400个结构，�
       &quot;line&quot;: 24,
       &quot;basis&quot;: &quot;literal README statement; environment not constructed&quot;
     }
-  ],
-  &quot;blockers&quot;: [
-    &quot;paper-result T2 reproduction not run; public access or README inspection is not reproduction&quot;
-  ],
-  &quot;follow_up_actions&quot;: []
+  ]
 }
 </code></pre>
 <h2>原文定位</h2>

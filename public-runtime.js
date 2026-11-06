@@ -83,7 +83,7 @@
       if (['T2', 'T3'].includes(tier)) required.push('reproduction_kind', 'environment', 'target_reference', 'expected_result', 'tolerance');
       if (tier === 'T3' || complete) required.push('controlled_change', 'failure_boundary');
       if (complete) {
-        if (p.evidence_status === 'metadata_only' || p.code_audit?.fulltext_available === false) throw Error('该论文仍缺核查全文，不能记为完成。');
+        if (p.evidence_status === 'metadata_only' || p.code_audit?.fulltext_available === false) throw Error('该论文正文可得后再标记完成。');
         if (!yes(row.reading_done) || !yes(row.formula_done)) throw Error('完成前须阅读并独立推导。');
         const authorRequired = ['public_verified', 'author_link'].includes(p.code_audit?.verified_status);
         if (authorRequired && kind !== 'author_code') throw Error('已定位作者代码，独立实现不能替代作者代码复现。');

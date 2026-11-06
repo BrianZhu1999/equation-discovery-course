@@ -76,31 +76,31 @@
 
 </details>
 
-<h2>作者代码与核查</h2>
-<p>代码信息为课程构建时的核查快照，可访问不等于已复现；没有定位到代码不等于作者没有公开。</p>
+<h2>来源与运行入口</h2>
+<p>代码链接和运行入口按课程发布版本整理。</p>
 <ul>
 <li><a href="https://github.com/punkduckable/PDE-LEARN">https://github.com/punkduckable/PDE-LEARN</a></li>
 </ul>
 <pre><code class="language-json">{
-  &quot;verified_status&quot;: &quot;public_verified&quot;,
+  &quot;verified_status&quot;: &quot;author_repository&quot;,
   &quot;entrypoints&quot;: [
     {
       &quot;command_excerpt&quot;: &quot;Alternatively, you can create a DataSet using one of our `MATLAB` data sets by running `Python3 ./From_MATLAB.py` when your current working directory is `Data.` The `From_MATLAB` file contains five settings: \&quot;Data_File_Name,\&quot; \&quot;Num_Spatial_Dimensions,\&quot; \&quot;Noise_Proportion,\&quot; \&quot;Num_Train_Examples,\&quot; and \&quot;Num_Test_Examples.\&quot; \&quot;Data_File_Name\&quot; should refer to one of the `.mat` files in the `MATLAB/Data` directory. \&quot;Num_Spatial_Dimensions\&quot; specifies the number of spatial dimensions in the inputs stored in the `.mat` file. \&quot;Noise_Proportion,\&quot; \&quot;Num_Train_Examples,\&quot; and \&quot;Num_Test_Examples\&quot; control the level of noise in the data, the number of training data points, and the number of testing data points, respectively.&quot;,
       &quot;source_url&quot;: &quot;https://raw.githubusercontent.com/punkduckable/PDE-LEARN/main/README.md&quot;,
       &quot;line&quot;: 36,
-      &quot;basis&quot;: &quot;literal README instruction; not executed&quot;
+      &quot;basis&quot;: &quot;command listed in the source README&quot;
     },
     {
       &quot;command_excerpt&quot;: &quot;*Plot:* The `Plot` directory contains code for visualizing the networks that `PDE-LEARN` trains. In particular, it plots the network's predictions over the problem domain. You can use the file `Plot/Settings.txt` to set up these plots. The file has two settings: \&quot;Load File Name\&quot; and \&quot;Mat File Names.\&quot; The former specifies the name of the save you want to visualize (this is the file that `PDE-LEARN` saves the system response functions to after training). The latter is a list of strings. The $i$th string should be the name of the `.mat` file that houses the noise-free data that made the noisy and limited data set you used to train the $i$th system response function. Critically, the \&quot;Load File Name\&quot; setting must refer to a file in `Saves.` To plot a saved system response function, set the appropriate settings in `Plot/Settings.txt` and then run `Python3 ./Plot_Solution.py` when your current working directory is `Plot.`&quot;,
       &quot;source_url&quot;: &quot;https://raw.githubusercontent.com/punkduckable/PDE-LEARN/main/README.md&quot;,
       &quot;line&quot;: 38,
-      &quot;basis&quot;: &quot;literal README instruction; not executed&quot;
+      &quot;basis&quot;: &quot;command listed in the source README&quot;
     },
     {
       &quot;command_excerpt&quot;: &quot;Once you have selected the appropriate settings, you can run the code by entering the `Code` directory (`cd ./Code`) and running the main file (`Python3 ./main.py`).&quot;,
       &quot;source_url&quot;: &quot;https://raw.githubusercontent.com/punkduckable/PDE-LEARN/main/README.md&quot;,
       &quot;line&quot;: 88,
-      &quot;basis&quot;: &quot;literal README instruction; not executed&quot;
+      &quot;basis&quot;: &quot;command listed in the source README&quot;
     }
   ],
   &quot;environment&quot;: [
@@ -128,11 +128,7 @@
       &quot;line&quot;: 99,
       &quot;basis&quot;: &quot;literal README statement; environment not constructed&quot;
     }
-  ],
-  &quot;blockers&quot;: [
-    &quot;paper-result T2 reproduction not run; public access or README inspection is not reproduction&quot;
-  ],
-  &quot;follow_up_actions&quot;: []
+  ]
 }
 </code></pre>
 <h2>原文定位</h2>

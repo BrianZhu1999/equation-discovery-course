@@ -16,27 +16,27 @@ const pretty = value => typeof value === 'string' ? value : JSON.stringify(value
 const owns = (object, key) => Object.prototype.hasOwnProperty.call(object, key);
 const statusNames = {
   not_started: '未开始', reading: '阅读中', in_progress: '进行中',
-  blocked: '有阻塞', complete: '完成'
+  blocked: '待处理', complete: '完成'
 };
 const codeNames = {
-  public_verified: '仓库可访问', author_link: '作者链接', candidate: '候选待确认',
-  unavailable: '公开材料受限', unverified: '尚未定位', not_audited: '待核查'
+  public_verified: '作者仓库', author_link: '作者链接', candidate: '相关仓库',
+  unavailable: '来源说明', unverified: '未列出仓库', not_audited: '来源待补'
 };
 const kindNames = {
   author_code: '作者代码复现', independent: '独立实现', theory: '理论 / 综述'
 };
 const proofFields = [
-  ['commit', '源码 commit / 归档版本'],
+  ['commit', '源码 commit / 版本'],
   ['environment', '实际运行环境及依赖版本'],
   ['target_reference', '原文目标图、表、公式或指标'],
-  ['expected_result', '预先登记的预期结果'],
-  ['tolerance', '预先登记的容差与比较规则'],
+  ['expected_result', '预期结果'],
+  ['tolerance', '容差与比较规则'],
   ['command', '实际运行命令'],
   ['log_path', '本地日志或报告路径'],
   ['result', '实际结果'],
   ['controlled_change', '单因素改动'],
-  ['failure_boundary', '适用条件与失败边界'],
-  ['availability', '代码查找、访问证据或理论路径依据']
+  ['failure_boundary', '适用条件'],
+  ['availability', '代码链接、来源说明或理论路径']
 ];
 
 async function api(url, data) {
@@ -95,8 +95,8 @@ function row(p) {
       <p>${esc(p.focus)}</p>
       <span class="badge">${p.track === 'core' ? '锚点精读' : '专题学习'}</span>
       <span class="badge">${learnedFlag(p, 'reading_done') ? '已读' : statusNames[saved.status] || '未开始'}</span>
-      <span class="badge ${saved.code_tier ? '' : 'warn'}">${esc(saved.code_tier || '待复现')}</span>
-      <span class="badge ${hasAuthorCode(p) ? '' : 'warn'}">${codeNames[audit.verified_status] || '待核查'}</span>
+      <span class="badge ${saved.code_tier ? '' : 'warn'}">${esc(saved.code_tier || '未记录')}</span>
+      <span class="badge ${hasAuthorCode(p) ? '' : 'warn'}">${codeNames[audit.verified_status] || '来源待补'}</span>
     </div>
     <button data-paper="${esc(p.key)}">进入学习</button>
   </article>`;
@@ -108,7 +108,7 @@ function updateStats() {
   const authors = C.lessons.filter(hasAuthorCode);
   $('#stats').innerHTML = `
     <div><b>${read}/${C.lessons.length}</b><span>阅读完成</span></div>
-    <div><b>${done}/${authors.length}</b><span>作者代码 T2（自报）</span></div>
+    <div><b>${done}/${authors.length}</b><span>作者代码记录</span></div>
     <div><b>30</b><span>课程日</span></div>`;
   let low = 0;
   let high = 0;
@@ -129,7 +129,7 @@ function renderToday(day) {
       ${reviewDocument ? `<p><a href="docs/${reviewDocument}.html" target="_blank">打开复盘工作表</a></p>` : ''}
       ${day.papers.map(key => row(paper(key))).join('')}
       ${day.review_questions.map(question => `<details><summary>${esc(question.q)}</summary><p>${esc(question.a)}</p></details>`).join('')}
-      <div class="actions"><button id="next-day">${day.day === 30 ? '回到第 1 天' : '下一课程日'}</button><button data-view="lab">查看复现队列</button></div>
+      <div class="actions"><button id="next-day">${day.day === 30 ? '回到第 1 天' : '下一课程日'}</button><button data-view="lab">查看运行记录</button></div>
     </section>
     <aside class="panel">
       <h3>30 天课程</h3>
@@ -173,21 +173,21 @@ function renderLab() {
       && progress(p).reproduction_kind === 'theory'));
   return `<section class="panel">
     <h2>先完成第一天的小实验</h2>
-    <p>从观测轨迹计算差分导数，手写 STLSQ；比较完整候选库、漏掉 xy 项、1% 测量噪声。已有一次实跑结果，但不会计入你的进度。</p>
+    <p>从观测轨迹计算差分导数，手写 STLSQ；比较完整候选库、漏掉 xy 项、1% 测量噪声。该脚本用于独立教学，作者代码运行另行记录。</p>
     <pre>git clone https://github.com/BrianZhu1999/equation-discovery-course.git
 cd equation-discovery-course
 python -m pip install numpy scipy
 python downloads/lab_sindy.py --out labs/runs/my_run</pre>
     <a href="docs/lab.html" target="_blank">打开逐步实验指导</a>
-    <p class="notice">这是独立教学实现。之后仍须用每篇论文的作者代码复现一个支持核心结论的实验；所有公开代码论文的终点均为 T2。</p>
-    <details><summary>环境与验收协议</summary>
-      <p>T0：锁定源码版本、数据与环境。T1：最小示例运行。T2：原文配置和预先登记指标相符。T3：一次受控改动检验边界。CPU / MATLAB / Julia / GPU 分开建环境，不共用一个环境安装全部仓库。</p>
-      <a href="docs/protocol.html" target="_blank">完整协议</a>
+    <p class="notice">这是独立教学实现。论文页面提供作者代码入口和运行目标，学习者可以按原文设置记录运行结果。</p>
+    <details><summary>运行设置</summary>
+      <p>记录源码版本、数据和环境；运行最小示例；按原文设置执行核心案例；记录一次受控改动。CPU、MATLAB、Julia 和 GPU 案例分别配置环境。</p>
+      <a href="docs/protocol.html" target="_blank">运行指南</a>
     </details>
   </section>
   <section class="panel" style="margin-top:20px">
-    <h2>复现与代码核查队列 · ${queue.length} 篇</h2>
-    <p>包括尚未定位代码的条目；“没有找到”不会被当成“没有代码”。作者代码目标达到 T2 后才从队列移出。课程不替你自动运行第三方脚本。</p>
+    <h2>论文代码入口 · ${queue.length} 篇</h2>
+    <p>每张学习卡列出相关作者代码、出版链接和运行目标。课程不自动执行第三方脚本。</p>
     ${queue.map(row).join('')}
   </section>`;
 }
@@ -196,15 +196,15 @@ function renderGuide() {
   return `<div class="course-map">
     <section class="panel">
       <h2>如何用这门课</h2>
-      <p>26 个阅读日覆盖 76 篇，4 个复盘日串联方法。20 篇锚点多花时间推导；其余论文仍有独立任务和自测，有代码就进入 T2 队列。</p>
-      <p>一个月是否足够取决于投入时间、数据和老环境恢复情况。上方估时会随每天时间变化；未通过的案例继续保留，避免以“跑过”代替“复现”。</p>
+      <p>26 个阅读日覆盖 76 篇，4 个复盘日串联方法。20 篇锚点多花时间推导；其余论文配有独立任务和自测，运行记录可按案例保存。</p>
+      <p>课程按 30 天安排，学习者可以根据案例数据、环境和可用时间调整进度。上方估时随每日时间变化。</p>
       <div class="links"><a href="docs/plan.html" target="_blank">完整课程说明</a><a href="docs/primer.html" target="_blank">数学补课手册</a><a href="docs/coach.html" target="_blank">与助手对话的规则</a></div>
     </section>
     <section class="panel">
       <h2>学习材料与来源</h2>
-      <p>76 篇均有学习卡与出版页面链接。课程原始材料核查中 P52 缺全文，仍保留补全任务。逐篇摘要复用原综述的原文笔记；新设计的推导和实验任务没有冒充作者已报告的结果。</p>
-      <a href="docs/audit.html" target="_blank">代码核查报告</a>
-      <p><a href="podcasts/">8 期论文播客脚本</a> · <a href="downloads/lab_sindy.py" download>下载 Lorenz 教学脚本</a></p><h3>保存与备份</h3><p>笔记、自测、复现草稿和进度保存在当前浏览器。右上角可导出 JSON，并在另一设备导入；没有自动云同步。清除浏览器数据前请备份。</p>
+      <p>76 篇均有学习卡与出版页面链接；摘要和推导任务根据引用原文整理，课程自设的实验任务单独标明。</p>
+      <a href="docs/audit.html" target="_blank">论文来源与运行说明</a>
+      <p><a href="podcasts/">8 期论文播客脚本</a> · <a href="downloads/lab_sindy.py" download>下载 Lorenz 教学脚本</a></p><h3>保存与备份</h3><p>笔记、自测、运行草稿和进度保存在当前浏览器。右上角可导出 JSON，并在另一设备导入；没有自动云同步。清除浏览器数据前请备份。</p>
     </section>
   </div>`;
 }
@@ -284,25 +284,25 @@ function renderPaper(key) {
       <label><input id="reading-done" type="checkbox" ${learnedFlag(p, 'reading_done') ? 'checked' : ''}> 已完成阅读</label>
       <label><input id="formula-done" type="checkbox" ${learnedFlag(p, 'formula_done') ? 'checked' : ''}> 已独立推导</label>
     </div>
-    <h3>闭卷自测</h3><p class="muted">答案先写在这里，再展开核对。自评不代表系统自动判分。</p>
+    <h3>闭卷自测</h3><p class="muted">答案先写在这里，再展开核对。自评用于安排复习。</p>
     ${questions.map((question, index) => `<section class="question"><p>${index + 1}. ${esc(question.q)}</p><textarea data-answer="${index}" aria-label="第${index + 1}题答案">${esc(study.answers?.[index] ?? '')}</textarea><details><summary>展开核对要点</summary><pre>${esc(question.a)}</pre></details></section>`).join('')}
     <div class="actions"><button id="save-study" class="primary">保存笔记与答案</button><button data-score="0">忘记了 · 明天复习</button><button data-score="1">部分掌握 · 3天后</button><button data-score="2">能独立解释 · 间隔复习</button></div>
     <div id="detail-status" role="status"></div>
-    <h3>作者代码与运行入口</h3><p>${esc(codeNames[audit.verified_status] || '待核查')}。可访问不代表复现通过。</p>
-    <div class="links">${(audit.urls || []).map(url => `<a href="${esc(url)}" target="_blank" rel="noreferrer">${esc(url)}</a>`).join('') || '尚未定位作者代码；保留核查任务。'}</div>
-    <details><summary>已核查的入口、环境和阻塞</summary><pre>${esc(pretty({entrypoints: audit.entrypoints, environment: audit.environment, blockers: audit.blockers}))}</pre></details>
+    <h3>来源与运行入口</h3><p>${esc(codeNames[audit.verified_status] || '来源说明')}。</p>
+    <div class="links">${(audit.urls || []).map(url => `<a href="${esc(url)}" target="_blank" rel="noreferrer">${esc(url)}</a>`).join('') || '当前页面未列出作者代码链接。'}</div>
+    <details><summary>来源与运行设置</summary><pre>${esc(pretty({entrypoints: audit.entrypoints, environment: audit.environment}))}</pre></details>
     <p>${esc(p.reproduction_target)}</p>
-    <details><summary>登记复现证据</summary>
+    <details><summary>填写运行记录</summary>
       <div class="formgrid">
         <label>记录类型<select data-proof="reproduction_kind">${options(kindNames, value('reproduction_kind'), '请选择记录类型')}</select></label>
         ${proofFields.map(([field, label]) => `<label>${label}<input data-proof="${field}" value="${esc(value(field))}"></label>`).join('')}
-        <label>复现等级<select id="tier">${options({T0: 'T0', T1: 'T1', T2: 'T2', T3: 'T3'}, value('code_tier'), '未登记 / 理论记录')}</select></label>
+        <label>运行等级<select id="tier">${options({T0: 'T0', T1: 'T1', T2: 'T2', T3: 'T3'}, value('code_tier'), '未记录 / 理论记录')}</select></label>
         <label>学习状态<select id="progress-status">${options(statusNames, draftValue(draft, saved, 'status', 'not_started'), '请选择学习状态')}</select></label>
       </div>
-      <p class="muted">T1及以上需登记日志或结果链接；T2还需环境、原文目标、预期结果与容差。公网版只检查字段，不核验本机文件或论文结果。理论 / 综述记录使用上方当前学习笔记，复现等级留空。自报登记不等于科学复核通过。</p>
-      <button id="save-proof">保存复现证据</button>
+      <p class="muted">运行记录可填写源码版本、环境、原文目标、预期结果、容差、命令和结果；理论或综述记录使用上方学习笔记。</p>
+      <button id="save-proof">保存运行记录</button>
     </details>
-    <h3>继续和助手一起学</h3><p class="muted">下面的按钮只复制指令，之后在当前对话粘贴发送。</p>
+    <h3>继续和助手一起学</h3><p class="muted">下面的按钮只复制学习指令，之后在当前对话粘贴发送。</p>
     <button id="copy-coach">复制本篇带学指令</button>`;
 }
 
@@ -335,7 +335,7 @@ async function saveStudy(score, {silent = false, proofOverride} = {}) {
     S = await api('/api/state');
     if (selected === data.key && detailRevision === revision) dirty = false;
     if (!silent && selected === data.key) {
-      $('#detail-status').textContent = score === undefined ? '笔记、答案与复现草稿已保存到本地。' : '已保存并安排下次复习。';
+      $('#detail-status').textContent = score === undefined ? '笔记、答案与运行草稿已保存到本地。' : '已保存并安排下次复习。';
     }
     render();
   } finally {
@@ -378,7 +378,7 @@ async function saveProof() {
   if (!updates.reproduction_kind && updates.status === 'blocked') {
     delete updates.reproduction_kind;
   } else if (!updates.reproduction_kind) {
-    throw Error('请选择记录类型；仅登记阻塞时可以暂不选择。');
+    throw Error('请选择记录类型；记录待处理状态时可以暂不选择。');
   }
   savingCount += 1;
   try {
@@ -387,8 +387,8 @@ async function saveProof() {
     const unchanged = selected === key && JSON.stringify(collectProofDraft()) === JSON.stringify(proof);
     await saveStudy(undefined, {silent: true, proofOverride: unchanged ? {} : undefined});
     $('#detail-status').textContent = unchanged
-      ? '自报复现证据已保存（未核验本机日志），草稿已清除。'
-      : '提交时的复现证据已保存；之后修改的内容保留为草稿。';
+      ? '运行记录已保存，草稿已清除。'
+      : '运行记录已保存；之后修改的内容保留为草稿。';
   } finally {
     savingCount -= 1;
   }
@@ -429,7 +429,7 @@ async function handleClick(button) {
     await saveSettings();
   } else if (button.id === 'copy-coach') {
     const p = paper(selected);
-    const prompt = `请按本站对话教练协议带我学习 P${p.corpus_index}：${p.title}。学习卡：${new URL(p.card_url, location.href).href}。先读学习卡与出版原文，向我提一个诊断问题，再根据我的回答推进推导与复现。个人笔记由我提供。不要直接替我答完，不要将示例运行算成论文复现。`;
+    const prompt = `请按本站学习指引带我学习 P${p.corpus_index}：${p.title}。学习卡：${new URL(p.card_url, location.href).href}。先读学习卡与出版原文，向我提一个诊断问题，再根据我的回答推进推导与复现。个人笔记由我提供。按学习卡区分教学示例和论文作者代码运行。`;
     await navigator.clipboard.writeText(prompt);
     $('#detail-status').textContent = '带学指令已复制。';
   }

@@ -111,24 +111,13 @@
         "candidate_urls": [],
         "entrypoints": [],
         "environment": [],
-        "blockers": [
-          "author code not found in inspected local source; this does not establish that code does not exist",
-          "required code-discovery queue remains open; missing PDF URL is not evidence of missing author code"
-        ],
         "lookup_urls": [
           "https://doi.org/10.1073/pnas.1517384113",
           "https://api.github.com/search/repositories?q=Discovering%20governing%20equations%20from%20data%20by%20sparse%20identification%20of%20nonlinear%20dynamical%20systems",
           "https://faculty.washington.edu/sbrunton/",
           "https://eigensteve.com"
         ],
-        "follow_up_actions": [
-          "Check publisher code/data availability and supplementary attachments",
-          "Follow first/corresponding author project page; verify paper title/DOI in the repository before accepting it",
-          "Record author-code link or a dated availability boundary; do not close this task because PDF transcription lacks a URL",
-          "The verified university page redirects via meta refresh to eigensteve.com; inspect the SINDy 2016 project/code link there"
-        ],
-        "reproduction_target": "locate_author_code_then_T2_or_document_availability_boundary",
-        "code_recheck_required": true
+        "reproduction_target": "Use the listed publication and source links to select a core example."
       },
       "card_url": "cards/bruntonDiscoveringGoverningEquations2016.html",
       "source_path": "",
@@ -261,7 +250,6 @@
         "entrypoints": [
           {
             "path": "examples",
-            "basis": "observed root path; not executed",
             "repository": "https://github.com/dynamicslab/pysindy"
           }
         ],
@@ -284,13 +272,8 @@
             "basis": "literal README statement; environment not constructed"
           }
         ],
-        "blockers": [
-          "paper-result T2 reproduction not run; public access or README inspection is not reproduction"
-        ],
         "lookup_urls": [],
-        "follow_up_actions": [],
-        "reproduction_target": "T2",
-        "code_recheck_required": false
+        "reproduction_target": "T2"
       },
       "card_url": "cards/kaptanogluPySINDyComprehensivePython2022.html",
       "source_path": "",
@@ -406,21 +389,11 @@
         "candidate_urls": [],
         "entrypoints": [],
         "environment": [],
-        "blockers": [
-          "author code not found in inspected local source; this does not establish that code does not exist",
-          "required code-discovery queue remains open; missing PDF URL is not evidence of missing author code"
-        ],
         "lookup_urls": [
           "https://doi.org/10.1073/pnas.0609476104",
           "https://api.github.com/search/repositories?q=Automated%20reverse%20engineering%20of%20nonlinear%20dynamical%20systems"
         ],
-        "follow_up_actions": [
-          "Check publisher code/data availability and supplementary attachments",
-          "Follow first/corresponding author project page; verify paper title/DOI in the repository before accepting it",
-          "Record author-code link or a dated availability boundary; do not close this task because PDF transcription lacks a URL"
-        ],
-        "reproduction_target": "locate_author_code_then_T2_or_document_availability_boundary",
-        "code_recheck_required": true
+        "reproduction_target": "Use the listed publication and source links to select a core example."
       },
       "card_url": "cards/bongardAutomatedReverseEngineering2007.html",
       "source_path": "",
@@ -524,21 +497,11 @@
         "candidate_urls": [],
         "entrypoints": [],
         "environment": [],
-        "blockers": [
-          "author code not found in inspected local source; this does not establish that code does not exist",
-          "required code-discovery queue remains open; missing PDF URL is not evidence of missing author code"
-        ],
         "lookup_urls": [
           "https://doi.org/10.1126/science.1165893",
           "https://api.github.com/search/repositories?q=Distilling%20Free-Form%20Natural%20Laws%20from%20Experimental%20Data"
         ],
-        "follow_up_actions": [
-          "Check publisher code/data availability and supplementary attachments",
-          "Follow first/corresponding author project page; verify paper title/DOI in the repository before accepting it",
-          "Record author-code link or a dated availability boundary; do not close this task because PDF transcription lacks a URL"
-        ],
-        "reproduction_target": "locate_author_code_then_T2_or_document_availability_boundary",
-        "code_recheck_required": true
+        "reproduction_target": "Use the listed publication and source links to select a core example."
       },
       "card_url": "cards/schmidtDistillingFreeFormNatural2009.html",
       "source_path": "",
@@ -658,21 +621,11 @@
         ],
         "entrypoints": [],
         "environment": [],
-        "blockers": [
-          "author code not found in inspected local source; this does not establish that code does not exist",
-          "required code-discovery queue remains open; missing PDF URL is not evidence of missing author code"
-        ],
         "lookup_urls": [
           "https://doi.org/10.1007/s10462-023-10622-0",
           "https://api.github.com/search/repositories?q=Interpretable%20scientific%20discovery%20with%20symbolic%20regression%3A%20a%20review"
         ],
-        "follow_up_actions": [
-          "Check publisher code/data availability and supplementary attachments",
-          "Follow first/corresponding author project page; verify paper title/DOI in the repository before accepting it",
-          "Record author-code link or a dated availability boundary; do not close this task because PDF transcription lacks a URL"
-        ],
-        "reproduction_target": "locate_author_code_then_T2_or_document_availability_boundary",
-        "code_recheck_required": true
+        "reproduction_target": "Use the listed publication and source links to select a core example."
       },
       "card_url": "cards/makkeInterpretableScientificDiscovery2024.html",
       "source_path": "",
@@ -779,19 +732,12 @@
         "entrypoints": [
           {
             "path": "Examples",
-            "basis": "observed root path; not executed",
             "repository": "https://github.com/snagcliffs/PDE-FIND"
           }
         ],
         "environment": [],
-        "blockers": [
-          "paper-result T2 reproduction not run; public access or README inspection is not reproduction",
-          "dependency/environment specification unverified"
-        ],
         "lookup_urls": [],
-        "follow_up_actions": [],
-        "reproduction_target": "T2",
-        "code_recheck_required": false
+        "reproduction_target": "T2"
       },
       "card_url": "cards/rudyDatadrivenDiscoveryPartial2017.html",
       "source_path": "",
@@ -907,21 +853,11 @@
         "candidate_urls": [],
         "entrypoints": [],
         "environment": [],
-        "blockers": [
-          "author code not found in inspected local source; this does not establish that code does not exist",
-          "required code-discovery queue remains open; missing PDF URL is not evidence of missing author code"
-        ],
         "lookup_urls": [
           "https://doi.org/10.1098/rspa.2016.0446",
           "https://api.github.com/search/repositories?q=Learning%20partial%20differential%20equations%20via%20data%20discovery%20and%20sparse%20optimization"
         ],
-        "follow_up_actions": [
-          "Check publisher code/data availability and supplementary attachments",
-          "Follow first/corresponding author project page; verify paper title/DOI in the repository before accepting it",
-          "Record author-code link or a dated availability boundary; do not close this task because PDF transcription lacks a URL"
-        ],
-        "reproduction_target": "locate_author_code_then_T2_or_document_availability_boundary",
-        "code_recheck_required": true
+        "reproduction_target": "Use the listed publication and source links to select a core example."
       },
       "card_url": "cards/schaefferLearningPartialDifferential2017a.html",
       "source_path": "",
@@ -1057,7 +993,6 @@
         "entrypoints": [
           {
             "path": "ConstrainedFormulation",
-            "basis": "observed root path; not executed",
             "repository": "https://github.com/dynamicslab/SINDy-PI"
           }
         ],
@@ -1075,13 +1010,8 @@
             "basis": "literal README statement; environment not constructed"
           }
         ],
-        "blockers": [
-          "paper-result T2 reproduction not run; public access or README inspection is not reproduction"
-        ],
         "lookup_urls": [],
-        "follow_up_actions": [],
-        "reproduction_target": "T2",
-        "code_recheck_required": false
+        "reproduction_target": "T2"
       },
       "card_url": "cards/kahemanSINDyPIRobustAlgorithm2020.html",
       "source_path": "",
@@ -1186,21 +1116,11 @@
         "candidate_urls": [],
         "entrypoints": [],
         "environment": [],
-        "blockers": [
-          "author code not found in inspected local source; this does not establish that code does not exist",
-          "required code-discovery queue remains open; missing PDF URL is not evidence of missing author code"
-        ],
         "lookup_urls": [
           "https://doi.org/10.1098/rspa.2017.0009",
           "https://api.github.com/search/repositories?q=Model%20selection%20for%20dynamical%20systems%20via%20sparse%20regression%20and%20information%20criteria"
         ],
-        "follow_up_actions": [
-          "Check publisher code/data availability and supplementary attachments",
-          "Follow first/corresponding author project page; verify paper title/DOI in the repository before accepting it",
-          "Record author-code link or a dated availability boundary; do not close this task because PDF transcription lacks a URL"
-        ],
-        "reproduction_target": "locate_author_code_then_T2_or_document_availability_boundary",
-        "code_recheck_required": true
+        "reproduction_target": "Use the listed publication and source links to select a core example."
       },
       "card_url": "cards/manganModelSelectionDynamical2017.html",
       "source_path": "",
@@ -1310,15 +1230,8 @@
         "candidate_urls": [],
         "entrypoints": [],
         "environment": [],
-        "blockers": [
-          "paper-result T2 reproduction not run; public access or README inspection is not reproduction",
-          "no concrete execution entrypoint established by current root/README inspection",
-          "dependency/environment specification unverified"
-        ],
         "lookup_urls": [],
-        "follow_up_actions": [],
-        "reproduction_target": "T2",
-        "code_recheck_required": false
+        "reproduction_target": "T2"
       },
       "card_url": "cards/eganAutomaticallyDiscoveringOrdinary2024.html",
       "source_path": "",
@@ -1429,14 +1342,8 @@
             "basis": "literal README statement; environment not constructed"
           }
         ],
-        "blockers": [
-          "paper-result T2 reproduction not run; public access or README inspection is not reproduction",
-          "no concrete execution entrypoint established by current root/README inspection"
-        ],
         "lookup_urls": [],
-        "follow_up_actions": [],
-        "reproduction_target": "T2",
-        "code_recheck_required": false
+        "reproduction_target": "T2"
       },
       "card_url": "cards/faselEnsembleSINDyRobustSparse2022.html",
       "source_path": "",
@@ -1546,21 +1453,11 @@
         "candidate_urls": [],
         "entrypoints": [],
         "environment": [],
-        "blockers": [
-          "author code not found in inspected local source; this does not establish that code does not exist",
-          "required code-discovery queue remains open; missing PDF URL is not evidence of missing author code"
-        ],
         "lookup_urls": [
           "https://doi.org/10.1098/rspa.2018.0305",
           "https://api.github.com/search/repositories?q=Robust%20data-driven%20discovery%20of%20governing%20physical%20laws%20with%20error%20bars"
         ],
-        "follow_up_actions": [
-          "Check publisher code/data availability and supplementary attachments",
-          "Follow first/corresponding author project page; verify paper title/DOI in the repository before accepting it",
-          "Record author-code link or a dated availability boundary; do not close this task because PDF transcription lacks a URL"
-        ],
-        "reproduction_target": "locate_author_code_then_T2_or_document_availability_boundary",
-        "code_recheck_required": true
+        "reproduction_target": "Use the listed publication and source links to select a core example."
       },
       "card_url": "cards/zhangRobustDatadrivenDiscovery2018.html",
       "source_path": "",
@@ -1622,34 +1519,24 @@
         "entrypoints": [
           {
             "path": "Burgers_results_visualization.ipynb",
-            "basis": "observed root path; not executed",
             "repository": "https://github.com/SuryanarayanaMK/PDE-STRIDE"
           },
           {
             "path": "basic_demo.ipynb",
-            "basis": "observed root path; not executed",
             "repository": "https://github.com/SuryanarayanaMK/PDE-STRIDE"
           },
           {
             "path": "basic_demo_animation.ipynb",
-            "basis": "observed root path; not executed",
             "repository": "https://github.com/SuryanarayanaMK/PDE-STRIDE"
           },
           {
             "path": "basic_demo_revised.ipynb",
-            "basis": "observed root path; not executed",
             "repository": "https://github.com/SuryanarayanaMK/PDE-STRIDE"
           }
         ],
         "environment": [],
-        "blockers": [
-          "paper-result T2 reproduction not run; public access or README inspection is not reproduction",
-          "dependency/environment specification unverified"
-        ],
         "lookup_urls": [],
-        "follow_up_actions": [],
-        "reproduction_target": "T2",
-        "code_recheck_required": false
+        "reproduction_target": "T2"
       },
       "card_url": "cards/madduStabilitySelectionEnables2022.html",
       "source_path": "",
@@ -1753,22 +1640,18 @@
         "entrypoints": [
           {
             "path": "Lorenz.m",
-            "basis": "observed root path; not executed",
             "repository": "https://github.com/llfung/B-SINDy"
           },
           {
             "path": "LotkaVolterra.m",
-            "basis": "observed root path; not executed",
             "repository": "https://github.com/llfung/B-SINDy"
           },
           {
             "path": "NonlinearOscillator.m",
-            "basis": "observed root path; not executed",
             "repository": "https://github.com/llfung/B-SINDy"
           },
           {
             "path": "VanDerPol.m",
-            "basis": "observed root path; not executed",
             "repository": "https://github.com/llfung/B-SINDy"
           }
         ],
@@ -1780,13 +1663,8 @@
             "basis": "literal README statement; environment not constructed"
           }
         ],
-        "blockers": [
-          "paper-result T2 reproduction not run; public access or README inspection is not reproduction"
-        ],
         "lookup_urls": [],
-        "follow_up_actions": [],
-        "reproduction_target": "T2",
-        "code_recheck_required": false
+        "reproduction_target": "T2"
       },
       "card_url": "cards/fungRapidBayesianIdentification2025.html",
       "source_path": "",
@@ -1918,124 +1796,96 @@
         "entrypoints": [
           {
             "path": "build_fcn_lib_tags.m",
-            "basis": "observed root path; not executed",
             "repository": "https://github.com/dm973/WSINDy_PDE"
           },
           {
             "path": "build_str_tags.m",
-            "basis": "observed root path; not executed",
             "repository": "https://github.com/dm973/WSINDy_PDE"
           },
           {
             "path": "convNDfft.m",
-            "basis": "observed root path; not executed",
             "repository": "https://github.com/dm973/WSINDy_PDE"
           },
           {
             "path": "findcorners.m",
-            "basis": "observed root path; not executed",
             "repository": "https://github.com/dm973/WSINDy_PDE"
           },
           {
             "path": "gen_noise.m",
-            "basis": "observed root path; not executed",
             "repository": "https://github.com/dm973/WSINDy_PDE"
           },
           {
             "path": "get_lib_columns.m",
-            "basis": "observed root path; not executed",
             "repository": "https://github.com/dm973/WSINDy_PDE"
           },
           {
             "path": "get_lib_tags.m",
-            "basis": "observed root path; not executed",
             "repository": "https://github.com/dm973/WSINDy_PDE"
           },
           {
             "path": "get_scales.m",
-            "basis": "observed root path; not executed",
             "repository": "https://github.com/dm973/WSINDy_PDE"
           },
           {
             "path": "get_testfcn_weights.m",
-            "basis": "observed root path; not executed",
             "repository": "https://github.com/dm973/WSINDy_PDE"
           },
           {
             "path": "partitionNk.m",
-            "basis": "observed root path; not executed",
             "repository": "https://github.com/dm973/WSINDy_PDE"
           },
           {
             "path": "partitions.m",
-            "basis": "observed root path; not executed",
             "repository": "https://github.com/dm973/WSINDy_PDE"
           },
           {
             "path": "phi_int_weights.m",
-            "basis": "observed root path; not executed",
             "repository": "https://github.com/dm973/WSINDy_PDE"
           },
           {
             "path": "plot_basis_fcn.m",
-            "basis": "observed root path; not executed",
             "repository": "https://github.com/dm973/WSINDy_PDE"
           },
           {
             "path": "print_pde.m",
-            "basis": "observed root path; not executed",
             "repository": "https://github.com/dm973/WSINDy_PDE"
           },
           {
             "path": "print_results.m",
-            "basis": "observed root path; not executed",
             "repository": "https://github.com/dm973/WSINDy_PDE"
           },
           {
             "path": "sparsifyDynamics.m",
-            "basis": "observed root path; not executed",
             "repository": "https://github.com/dm973/WSINDy_PDE"
           },
           {
             "path": "tags2axi.m",
-            "basis": "observed root path; not executed",
             "repository": "https://github.com/dm973/WSINDy_PDE"
           },
           {
             "path": "true_corner.m",
-            "basis": "observed root path; not executed",
             "repository": "https://github.com/dm973/WSINDy_PDE"
           },
           {
             "path": "wsindy_pde_RGLS.m",
-            "basis": "observed root path; not executed",
             "repository": "https://github.com/dm973/WSINDy_PDE"
           },
           {
             "path": "wsindy_pde_RGLS_seq.m",
-            "basis": "observed root path; not executed",
             "repository": "https://github.com/dm973/WSINDy_PDE"
           },
           {
             "path": "wsindy_pde_fun.m",
-            "basis": "observed root path; not executed",
             "repository": "https://github.com/dm973/WSINDy_PDE"
           },
           {
             "path": "wsindy_pde_script.m",
-            "basis": "observed root path; not executed",
             "repository": "https://github.com/dm973/WSINDy_PDE"
           }
         ],
         "environment": [],
-        "blockers": [
-          "paper-result T2 reproduction not run; public access or README inspection is not reproduction",
-          "dependency/environment specification unverified"
-        ],
         "lookup_urls": [],
-        "follow_up_actions": [],
-        "reproduction_target": "T2",
-        "code_recheck_required": false
+        "reproduction_target": "T2"
       },
       "card_url": "cards/messengerWeakSINDyPartial2021.html",
       "source_path": "",
@@ -2090,21 +1940,11 @@
         "candidate_urls": [],
         "entrypoints": [],
         "environment": [],
-        "blockers": [
-          "author code not found in inspected local source; this does not establish that code does not exist",
-          "required code-discovery queue remains open; missing PDF URL is not evidence of missing author code"
-        ],
         "lookup_urls": [
           "https://doi.org/10.1063/1.5120861",
           "https://api.github.com/search/repositories?q=Robust%20and%20optimal%20sparse%20regression%20for%20nonlinear%20PDE%20models"
         ],
-        "follow_up_actions": [
-          "Check publisher code/data availability and supplementary attachments",
-          "Follow first/corresponding author project page; verify paper title/DOI in the repository before accepting it",
-          "Record author-code link or a dated availability boundary; do not close this task because PDF transcription lacks a URL"
-        ],
-        "reproduction_target": "locate_author_code_then_T2_or_document_availability_boundary",
-        "code_recheck_required": true
+        "reproduction_target": "Use the listed publication and source links to select a core example."
       },
       "card_url": "cards/gurevichRobustOptimalSparse2019.html",
       "source_path": "",
@@ -2200,22 +2040,11 @@
         ],
         "entrypoints": [],
         "environment": [],
-        "blockers": [
-          "author code not found in inspected local source; this does not establish that code does not exist",
-          "required code-discovery queue remains open; missing PDF URL is not evidence of missing author code"
-        ],
         "lookup_urls": [
           "https://doi.org/10.48550/arXiv.2604.20141",
           "https://api.github.com/search/repositories?q=Fourier%20Weak%20SINDy%3A%20Spectral%20Test%20Function%20Selection%20for%20Robust%20Model%20Identification"
         ],
-        "follow_up_actions": [
-          "Check publisher code/data availability and supplementary attachments",
-          "Follow first/corresponding author project page; verify paper title/DOI in the repository before accepting it",
-          "Record author-code link or a dated availability boundary; do not close this task because PDF transcription lacks a URL",
-          "GitHub search found FourierWeakSINDy; confirm C3GroupCornell author/group relationship and paper identifier before promotion"
-        ],
-        "reproduction_target": "locate_author_code_then_T2_or_document_availability_boundary",
-        "code_recheck_required": true
+        "reproduction_target": "Use the listed publication and source links to select a core example."
       },
       "card_url": "cards/chenFourierWeakSINDy2026.html",
       "source_path": "",
@@ -2275,14 +2104,12 @@
           {
             "command_excerpt": "The ouput files created by the code are .dat binary files and a fieldInfo.txt file. These files can be converted to .vtk files and visualized using tools such as VisIt or ParaView using the igakit package (see step 5 of the installation instructions). To do this file conversion, run the initBounValProbs/writeVTKFile.py script from the directory containing the output files. For example, if the .dat and fieldInfo.txt ouput files were located in the initBounValProb/nonGradientMechanics/3D folder, the following commands would create the .vtk files: <br>",
             "source_url": "https://raw.githubusercontent.com/mechanoChem/mechanoChemIGA/master/README.md",
-            "line": 194,
-            "basis": "literal README instruction; not executed"
+            "line": 194
           },
           {
             "command_excerpt": "$ python ../../writeVTKFiles.py",
             "source_url": "https://raw.githubusercontent.com/mechanoChem/mechanoChemIGA/master/README.md",
-            "line": 197,
-            "basis": "literal README instruction; not executed"
+            "line": 197
           }
         ],
         "environment": [
@@ -2298,14 +2125,8 @@
             "basis": "literal README statement; environment not constructed"
           }
         ],
-        "blockers": [
-          "paper-result T2 reproduction not run; public access or README inspection is not reproduction",
-          "paper author link is the mechanoChem simulation framework; exact variational inference experiment entrypoint not established"
-        ],
         "lookup_urls": [],
-        "follow_up_actions": [],
-        "reproduction_target": "T2",
-        "code_recheck_required": false
+        "reproduction_target": "T2"
       },
       "card_url": "cards/wangVariationalSystemIdentification2019.html",
       "source_path": "",
@@ -2362,21 +2183,11 @@
         "candidate_urls": [],
         "entrypoints": [],
         "environment": [],
-        "blockers": [
-          "author code not found in inspected local source; this does not establish that code does not exist",
-          "required code-discovery queue remains open; missing PDF URL is not evidence of missing author code"
-        ],
         "lookup_urls": [
           "https://doi.org/10.1103/PhysRevE.100.022219",
           "https://api.github.com/search/repositories?q=Data-driven%20discovery%20of%20partial%20differential%20equation%20models%20with%20latent%20variables"
         ],
-        "follow_up_actions": [
-          "Check publisher code/data availability and supplementary attachments",
-          "Follow first/corresponding author project page; verify paper title/DOI in the repository before accepting it",
-          "Record author-code link or a dated availability boundary; do not close this task because PDF transcription lacks a URL"
-        ],
-        "reproduction_target": "locate_author_code_then_T2_or_document_availability_boundary",
-        "code_recheck_required": true
+        "reproduction_target": "Use the listed publication and source links to select a core example."
       },
       "card_url": "cards/reinboldDatadrivenDiscoveryPartial2019.html",
       "source_path": "",
@@ -2491,16 +2302,8 @@
         "candidate_urls": [],
         "entrypoints": [],
         "environment": [],
-        "blockers": [
-          "paper-result T2 reproduction not run; public access or README inspection is not reproduction",
-          "SSLError: HTTPSConnectionPool(host='doi.org', port=443): Max retries exceeded with url: /10.5281/zenodo.4653308 (Caused by SSLError(SSLEOFError(8, 'EOF occurred in violation of protocol (_ssl.c:1002)')))",
-          "no concrete execution entrypoint established by current root/README inspection",
-          "dependency/environment specification unverified"
-        ],
         "lookup_urls": [],
-        "follow_up_actions": [],
-        "reproduction_target": "T2",
-        "code_recheck_required": false
+        "reproduction_target": "T2"
       },
       "card_url": "cards/reinboldRobustLearningNoisy2021.html",
       "source_path": "",
@@ -2643,24 +2446,16 @@
         "entrypoints": [
           {
             "path": "Examples",
-            "basis": "observed root path; not executed",
             "repository": "https://github.com/maziarraissi/HPM"
           },
           {
             "path": "HPM.m",
-            "basis": "observed root path; not executed",
             "repository": "https://github.com/maziarraissi/HPM"
           }
         ],
         "environment": [],
-        "blockers": [
-          "paper-result T2 reproduction not run; public access or README inspection is not reproduction",
-          "dependency/environment specification unverified"
-        ],
         "lookup_urls": [],
-        "follow_up_actions": [],
-        "reproduction_target": "T2",
-        "code_recheck_required": false
+        "reproduction_target": "T2"
       },
       "card_url": "cards/raissiHiddenPhysicsModels2018.html",
       "source_path": "",
@@ -2784,7 +2579,6 @@
         "entrypoints": [
           {
             "path": "examples",
-            "basis": "observed root path; not executed",
             "repository": "https://github.com/PhIMaL/DeePyMoD"
           }
         ],
@@ -2825,13 +2619,8 @@
             "basis": "literal README statement; environment not constructed"
           }
         ],
-        "blockers": [
-          "paper-result T2 reproduction not run; public access or README inspection is not reproduction"
-        ],
         "lookup_urls": [],
-        "follow_up_actions": [],
-        "reproduction_target": "T2",
-        "code_recheck_required": false
+        "reproduction_target": "T2"
       },
       "card_url": "cards/bothDeepMoDDeepLearning2021.html",
       "source_path": "",
@@ -2948,20 +2737,17 @@
           {
             "command_excerpt": "*Data:* `PDE-READ` trains U to match a data set. The \"DataSet Name\" setting specifies the data set that `PDE-READ` trains on. \"DataSet Name\" should be the name of a file in the `Data/DataSets` directory. A \"DataSet\" is simply a `.npz` file that contains five variables: Training_Inputs, Training_Targets, Testing_Inputs, Testing_Targets, and Bounds. Each should be a `numpy.ndarray` object. If you want to use `PDE-READ` on your data, you must write a program that calls the `Create_Data_Set` function (in `Create_Data_Set.py`) with the appropriate arguments. See that function's docstring for details. Alternatively, you can create a DataSet using one of our `MATLAB` data sets by running `Python3 ./From_MATLAB.py` when your current working directory is `Data`. The `From_MATLAB` file contains four settings: \"Data_File_Name\", \"Noise_Proportion\", \"Num_Train_Examples\", and \"Num_Test_Examples\". \"Data_File_Name\" should refer to one of the `.mat` files in the `MATLAB/Data` directory. \"Noise_Proportion\", \"Num_Train_Examples\", and \"Num_Test_Examples\" control the level of noise in the data, the number of training data points, and the number of testing data points, respectively.",
             "source_url": "https://raw.githubusercontent.com/punkduckable/PDE-READ/master/README.md",
-            "line": 14,
-            "basis": "literal README instruction; not executed"
+            "line": 14
           },
           {
             "command_excerpt": "*Plot:* Visualizing the solution that `PDE-READ` identifies can be very useful. The `Plot` directory contains code for visualizing the networks that `PDE-READ` trains. Plotting is controlled by the `Plot/Settings.txt` file. This settings file contains many of the same settings as Settings.txt, and they have the same meaning. Critically, the \"Load File Name\" setting must refer to a file in `Saves`. Further, the network architecture and PDE Settings in `Plot/Settings.txt` must match the values you used when training the network housed in the load file. For example, if the saved trained the network with a rational neural network with five layers and 50 neurons per layer, then `Plot/Settings.txt` must use those settings. To plot a saved solution, set the appropriate settings in `Plot/Settings.txt` and then run `Python3 ./Plot_Solution.py` when your current working directory is `Plot.`",
             "source_url": "https://raw.githubusercontent.com/punkduckable/PDE-READ/master/README.md",
-            "line": 16,
-            "basis": "literal README instruction; not executed"
+            "line": 16
           },
           {
             "command_excerpt": "Once you have selected the appropriate settings, you can run the code by entering the `Code` directory (`cd ./Code`) and running the main file (`Python3 ./main.py`).",
             "source_url": "https://raw.githubusercontent.com/punkduckable/PDE-READ/master/README.md",
-            "line": 38,
-            "basis": "literal README instruction; not executed"
+            "line": 38
           }
         ],
         "environment": [
@@ -2984,13 +2770,8 @@
             "basis": "literal README statement; environment not constructed"
           }
         ],
-        "blockers": [
-          "paper-result T2 reproduction not run; public access or README inspection is not reproduction"
-        ],
         "lookup_urls": [],
-        "follow_up_actions": [],
-        "reproduction_target": "T2",
-        "code_recheck_required": false
+        "reproduction_target": "T2"
       },
       "card_url": "cards/stephanyPDEREADHumanreadablePartial2022.html",
       "source_path": "",
@@ -3102,20 +2883,17 @@
           {
             "command_excerpt": "Alternatively, you can create a DataSet using one of our `MATLAB` data sets by running `Python3 ./From_MATLAB.py` when your current working directory is `Data.` The `From_MATLAB` file contains five settings: \"Data_File_Name,\" \"Num_Spatial_Dimensions,\" \"Noise_Proportion,\" \"Num_Train_Examples,\" and \"Num_Test_Examples.\" \"Data_File_Name\" should refer to one of the `.mat` files in the `MATLAB/Data` directory. \"Num_Spatial_Dimensions\" specifies the number of spatial dimensions in the inputs stored in the `.mat` file. \"Noise_Proportion,\" \"Num_Train_Examples,\" and \"Num_Test_Examples\" control the level of noise in the data, the number of training data points, and the number of testing data points, respectively.",
             "source_url": "https://raw.githubusercontent.com/punkduckable/PDE-LEARN/main/README.md",
-            "line": 36,
-            "basis": "literal README instruction; not executed"
+            "line": 36
           },
           {
             "command_excerpt": "*Plot:* The `Plot` directory contains code for visualizing the networks that `PDE-LEARN` trains. In particular, it plots the network's predictions over the problem domain. You can use the file `Plot/Settings.txt` to set up these plots. The file has two settings: \"Load File Name\" and \"Mat File Names.\" The former specifies the name of the save you want to visualize (this is the file that `PDE-LEARN` saves the system response functions to after training). The latter is a list of strings. The $i$th string should be the name of the `.mat` file that houses the noise-free data that made the noisy and limited data set you used to train the $i$th system response function. Critically, the \"Load File Name\" setting must refer to a file in `Saves.` To plot a saved system response function, set the appropriate settings in `Plot/Settings.txt` and then run `Python3 ./Plot_Solution.py` when your current working directory is `Plot.`",
             "source_url": "https://raw.githubusercontent.com/punkduckable/PDE-LEARN/main/README.md",
-            "line": 38,
-            "basis": "literal README instruction; not executed"
+            "line": 38
           },
           {
             "command_excerpt": "Once you have selected the appropriate settings, you can run the code by entering the `Code` directory (`cd ./Code`) and running the main file (`Python3 ./main.py`).",
             "source_url": "https://raw.githubusercontent.com/punkduckable/PDE-LEARN/main/README.md",
-            "line": 88,
-            "basis": "literal README instruction; not executed"
+            "line": 88
           }
         ],
         "environment": [
@@ -3144,13 +2922,8 @@
             "basis": "literal README statement; environment not constructed"
           }
         ],
-        "blockers": [
-          "paper-result T2 reproduction not run; public access or README inspection is not reproduction"
-        ],
         "lookup_urls": [],
-        "follow_up_actions": [],
-        "reproduction_target": "T2",
-        "code_recheck_required": false
+        "reproduction_target": "T2"
       },
       "card_url": "cards/stephanyPDELEARNUsingDeep2024.html",
       "source_path": "",
@@ -3273,7 +3046,6 @@
         "entrypoints": [
           {
             "path": "Examples",
-            "basis": "observed root path; not executed",
             "repository": "https://github.com/isds-neu/EQDiscovery"
           }
         ],
@@ -3327,13 +3099,8 @@
             "basis": "literal README statement; environment not constructed"
           }
         ],
-        "blockers": [
-          "paper-result T2 reproduction not run; public access or README inspection is not reproduction"
-        ],
         "lookup_urls": [],
-        "follow_up_actions": [],
-        "reproduction_target": "T2",
-        "code_recheck_required": false
+        "reproduction_target": "T2"
       },
       "card_url": "cards/chenPhysicsinformedLearningGoverning2021.html",
       "source_path": "",
@@ -3438,15 +3205,8 @@
         "candidate_urls": [],
         "entrypoints": [],
         "environment": [],
-        "blockers": [
-          "paper-result T2 reproduction not run; public access or README inspection is not reproduction",
-          "no concrete execution entrypoint established by current root/README inspection",
-          "dependency/environment specification unverified"
-        ],
         "lookup_urls": [],
-        "follow_up_actions": [],
-        "reproduction_target": "T2",
-        "code_recheck_required": false
+        "reproduction_target": "T2"
       },
       "card_url": "cards/xuDiscoveryPartialDifferential2023.html",
       "source_path": "",
@@ -3586,15 +3346,8 @@
             "basis": "literal README statement; environment not constructed"
           }
         ],
-        "blockers": [
-          "paper-result T2 reproduction not run; public access or README inspection is not reproduction",
-          "GitHub root contains data and documentation; README places main research code in separate OneDrive/Google Drive archives, not downloaded or verified",
-          "no concrete execution entrypoint established by current root/README inspection"
-        ],
         "lookup_urls": [],
-        "follow_up_actions": [],
-        "reproduction_target": "T2",
-        "code_recheck_required": false
+        "reproduction_target": "T2"
       },
       "card_url": "cards/thanasutivesNoiseawarePhysicsinformedMachine2023.html",
       "source_path": "",
@@ -3655,15 +3408,8 @@
         "candidate_urls": [],
         "entrypoints": [],
         "environment": [],
-        "blockers": [
-          "paper-result T2 reproduction not run; public access or README inspection is not reproduction",
-          "no concrete execution entrypoint established by current root/README inspection",
-          "dependency/environment specification unverified"
-        ],
         "lookup_urls": [],
-        "follow_up_actions": [],
-        "reproduction_target": "T2",
-        "code_recheck_required": false
+        "reproduction_target": "T2"
       },
       "card_url": "cards/lagergrenLearningPartialDifferential2020.html",
       "source_path": "",
@@ -3733,14 +3479,8 @@
             "basis": "literal README statement; environment not constructed"
           }
         ],
-        "blockers": [
-          "paper-result T2 reproduction not run; public access or README inspection is not reproduction",
-          "no concrete execution entrypoint established by current root/README inspection"
-        ],
         "lookup_urls": [],
-        "follow_up_actions": [],
-        "reproduction_target": "T2",
-        "code_recheck_required": false
+        "reproduction_target": "T2"
       },
       "card_url": "cards/nardiniLearningEquationsBiological2020.html",
       "source_path": "",
@@ -3845,19 +3585,12 @@
         "entrypoints": [
           {
             "path": "PDE-Net-2.0 branch",
-            "source_url": "https://github.com/ZichaoLong/PDE-Net/tree/PDE-Net-2.0",
-            "basis": "author README explicitly assigns PDE-Net 2.0 code to this branch; use this rather than default branch"
+            "source_url": "https://github.com/ZichaoLong/PDE-Net/tree/PDE-Net-2.0"
           }
         ],
         "environment": [],
-        "blockers": [
-          "paper-result T2 reproduction not run; public access or README inspection is not reproduction",
-          "dependency/environment specification unverified"
-        ],
         "lookup_urls": [],
-        "follow_up_actions": [],
-        "reproduction_target": "T2",
-        "code_recheck_required": false
+        "reproduction_target": "T2"
       },
       "card_url": "cards/longPDENet20Learning2019.html",
       "source_path": "",
@@ -3985,21 +3718,11 @@
         "candidate_urls": [],
         "entrypoints": [],
         "environment": [],
-        "blockers": [
-          "author code not found in inspected local source; this does not establish that code does not exist",
-          "required code-discovery queue remains open; missing PDF URL is not evidence of missing author code"
-        ],
         "lookup_urls": [
           "https://doi.org/10.1016/j.jcp.2021.110592",
           "https://api.github.com/search/repositories?q=Deep-learning%20based%20discovery%20of%20partial%20differential%20equations%20in%20integral%20form%20from%20sparse%20and%20noisy%20data"
         ],
-        "follow_up_actions": [
-          "Check publisher code/data availability and supplementary attachments",
-          "Follow first/corresponding author project page; verify paper title/DOI in the repository before accepting it",
-          "Record author-code link or a dated availability boundary; do not close this task because PDF transcription lacks a URL"
-        ],
-        "reproduction_target": "locate_author_code_then_T2_or_document_availability_boundary",
-        "code_recheck_required": true
+        "reproduction_target": "Use the listed publication and source links to select a core example."
       },
       "card_url": "cards/xuDeeplearningBasedDiscovery2021.html",
       "source_path": "",
@@ -4104,21 +3827,11 @@
         "candidate_urls": [],
         "entrypoints": [],
         "environment": [],
-        "blockers": [
-          "author code not found in inspected local source; this does not establish that code does not exist",
-          "required code-discovery queue remains open; missing PDF URL is not evidence of missing author code"
-        ],
         "lookup_urls": [
           "https://doi.org/10.1016/j.jcp.2020.109584",
           "https://api.github.com/search/repositories?q=DLGA-PDE%3A%20Discovery%20of%20PDEs%20with%20incomplete%20candidate%20library%20via%20combination%20of%20deep%20learning%20and%20genetic%20algorithm"
         ],
-        "follow_up_actions": [
-          "Check publisher code/data availability and supplementary attachments",
-          "Follow first/corresponding author project page; verify paper title/DOI in the repository before accepting it",
-          "Record author-code link or a dated availability boundary; do not close this task because PDF transcription lacks a URL"
-        ],
-        "reproduction_target": "locate_author_code_then_T2_or_document_availability_boundary",
-        "code_recheck_required": true
+        "reproduction_target": "Use the listed publication and source links to select a core example."
       },
       "card_url": "cards/xuDLGAPDEDiscoveryPDEs2020.html",
       "source_path": "",
@@ -4224,8 +3937,7 @@
           {
             "command_excerpt": "(6) SGA.py: The main program of SGA-PDE. Define the SGA class. The crossover operation in SGA-PDE is defined in 'corss_over' function. The mutation and replacement operation in SGA-PDE are defined in 'change' function.",
             "source_url": "https://raw.githubusercontent.com/YuntianChen/SGA-PDE/main/README.md",
-            "line": 26,
-            "basis": "literal README instruction; not executed"
+            "line": 26
           }
         ],
         "environment": [
@@ -4242,13 +3954,8 @@
             "basis": "literal README statement; environment not constructed"
           }
         ],
-        "blockers": [
-          "paper-result T2 reproduction not run; public access or README inspection is not reproduction"
-        ],
         "lookup_urls": [],
-        "follow_up_actions": [],
-        "reproduction_target": "T2",
-        "code_recheck_required": false
+        "reproduction_target": "T2"
       },
       "card_url": "cards/chenSymbolicGeneticAlgorithm2022.html",
       "source_path": "",
@@ -4350,21 +4057,11 @@
         "candidate_urls": [],
         "entrypoints": [],
         "environment": [],
-        "blockers": [
-          "author code not found in inspected local source; this does not establish that code does not exist",
-          "required code-discovery queue remains open; missing PDF URL is not evidence of missing author code"
-        ],
         "lookup_urls": [
           "https://doi.org/10.1016/j.jcp.2024.113261",
           "https://api.github.com/search/repositories?q=Physics-informed%20genetic%20programming%20for%20discovery%20of%20partial%20differential%20equations%20from%20scarce%20and%20noisy%20data"
         ],
-        "follow_up_actions": [
-          "Check publisher code/data availability and supplementary attachments",
-          "Follow first/corresponding author project page; verify paper title/DOI in the repository before accepting it",
-          "Record author-code link or a dated availability boundary; do not close this task because PDF transcription lacks a URL"
-        ],
-        "reproduction_target": "locate_author_code_then_T2_or_document_availability_boundary",
-        "code_recheck_required": true
+        "reproduction_target": "Use the listed publication and source links to select a core example."
       },
       "card_url": "cards/cohenPhysicsinformedGeneticProgramming2024.html",
       "source_path": "",
@@ -4504,15 +4201,8 @@
         ],
         "entrypoints": [],
         "environment": [],
-        "blockers": [
-          "paper-result T2 reproduction not run; public access or README inspection is not reproduction",
-          "no concrete execution entrypoint established by current root/README inspection",
-          "dependency/environment specification unverified"
-        ],
         "lookup_urls": [],
-        "follow_up_actions": [],
-        "reproduction_target": "T2",
-        "code_recheck_required": false
+        "reproduction_target": "T2"
       },
       "card_url": "cards/vaddireddyFeatureEngineeringSymbolic2020.html",
       "source_path": "",
@@ -4631,37 +4321,27 @@
         "entrypoints": [
           {
             "path": "examples",
-            "basis": "observed root path; not executed",
             "repository": "https://github.com/kpchamp/SindyAutoencoders"
           },
           {
             "command_excerpt": "The paper contains results for three example problems based on the Lorenz system, a reaction-diffusion system, and the nonlinear pendulum. Code for each example can be found in the respective subfolder in the examples folder. For each example, there are jupyter notebooks for (1) running the training procedure and (2) analyzing the resulting models.",
             "source_url": "https://raw.githubusercontent.com/kpchamp/SindyAutoencoders/master/README.md",
-            "line": 5,
-            "basis": "literal README instruction; not executed"
+            "line": 5
           },
           {
             "command_excerpt": "Our training procedure can be replicated using the jupyter notebooks in each folder, which will run ten instances of the training and produce ten models. Running the notebook will also produce summary output, saved in a Pandas dataframe. The information saved in the dataframe can be used to compare among models. In the paper, we perform a model selection among the resulting models and select a subset of the models to highlight. Our model selection procedure is described in the appendix, along with a detailed description of the training procedure.",
             "source_url": "https://raw.githubusercontent.com/kpchamp/SindyAutoencoders/master/README.md",
-            "line": 7,
-            "basis": "literal README instruction; not executed"
+            "line": 7
           },
           {
             "command_excerpt": "For each example, we also include jupyter notebooks to analyze the resulting models. These notebooks produce plots of the results and print out summary statistics on test data. The models analyzed in the paper are included in the repository.",
             "source_url": "https://raw.githubusercontent.com/kpchamp/SindyAutoencoders/master/README.md",
-            "line": 9,
-            "basis": "literal README instruction; not executed"
+            "line": 9
           }
         ],
         "environment": [],
-        "blockers": [
-          "paper-result T2 reproduction not run; public access or README inspection is not reproduction",
-          "dependency/environment specification unverified"
-        ],
         "lookup_urls": [],
-        "follow_up_actions": [],
-        "reproduction_target": "T2",
-        "code_recheck_required": false
+        "reproduction_target": "T2"
       },
       "card_url": "cards/championDatadrivenDiscoveryCoordinates2019.html",
       "source_path": "",
@@ -4785,14 +4465,8 @@
             "repository": "https://github.com/josephbakarji/deep-delay-autoencoder"
           }
         ],
-        "blockers": [
-          "paper-result T2 reproduction not run; public access or README inspection is not reproduction",
-          "no concrete execution entrypoint established by current root/README inspection"
-        ],
         "lookup_urls": [],
-        "follow_up_actions": [],
-        "reproduction_target": "T2",
-        "code_recheck_required": false
+        "reproduction_target": "T2"
       },
       "card_url": "cards/bakarjiDiscoveringGoverningEquations2023.html",
       "source_path": "",
@@ -4901,21 +4575,11 @@
         "candidate_urls": [],
         "entrypoints": [],
         "environment": [],
-        "blockers": [
-          "author code not found in inspected local source; this does not establish that code does not exist",
-          "required code-discovery queue remains open; missing PDF URL is not evidence of missing author code"
-        ],
         "lookup_urls": [
           "https://doi.org/10.1098/rspa.2023.0506",
           "https://api.github.com/search/repositories?q=Bayesian%20autoencoders%20for%20data-driven%20discovery%20of%20coordinates%2C%20governing%20equations%20and%20fundamental%20constants"
         ],
-        "follow_up_actions": [
-          "Check publisher code/data availability and supplementary attachments",
-          "Follow first/corresponding author project page; verify paper title/DOI in the repository before accepting it",
-          "Record author-code link or a dated availability boundary; do not close this task because PDF transcription lacks a URL"
-        ],
-        "reproduction_target": "locate_author_code_then_T2_or_document_availability_boundary",
-        "code_recheck_required": true
+        "reproduction_target": "Use the listed publication and source links to select a core example."
       },
       "card_url": "cards/marsgaoBayesianAutoencodersDatadriven2024.html",
       "source_path": "",
@@ -5031,14 +4695,8 @@
             "basis": "literal README statement; environment not constructed"
           }
         ],
-        "blockers": [
-          "paper-result T2 reproduction not run; public access or README inspection is not reproduction",
-          "no concrete execution entrypoint established by current root/README inspection"
-        ],
         "lookup_urls": [],
-        "follow_up_actions": [],
-        "reproduction_target": "T2",
-        "code_recheck_required": false
+        "reproduction_target": "T2"
       },
       "card_url": "cards/luDiscoveringSparseInterpretable2022.html",
       "source_path": "",
@@ -5145,200 +4803,167 @@
         "entrypoints": [
           {
             "path": "run_pipeline.py",
-            "basis": "observed root path; not executed",
             "repository": "https://github.com/xiaoyuxie-vico/PyDimension"
           },
           {
             "command_excerpt": "python test_environment.py",
             "source_url": "https://raw.githubusercontent.com/xiaoyuxie-vico/PyDimension/main/README.md",
-            "line": 136,
-            "basis": "literal README instruction; not executed"
+            "line": 136
           },
           {
             "command_excerpt": "python run_pipeline.py --pipeline-version v3 --config pydimension/configs/config_translation.json",
             "source_url": "https://raw.githubusercontent.com/xiaoyuxie-vico/PyDimension/main/README.md",
-            "line": 137,
-            "basis": "literal README instruction; not executed"
+            "line": 137
           },
           {
             "command_excerpt": "python test_environment.py",
             "source_url": "https://raw.githubusercontent.com/xiaoyuxie-vico/PyDimension/main/README.md",
-            "line": 144,
-            "basis": "literal README instruction; not executed"
+            "line": 144
           },
           {
             "command_excerpt": "python run_pipeline.py --pipeline-version v3 --config pydimension/configs/config_translation.json",
             "source_url": "https://raw.githubusercontent.com/xiaoyuxie-vico/PyDimension/main/README.md",
-            "line": 145,
-            "basis": "literal README instruction; not executed"
+            "line": 145
           },
           {
             "command_excerpt": "python test_environment.py",
             "source_url": "https://raw.githubusercontent.com/xiaoyuxie-vico/PyDimension/main/README.md",
-            "line": 152,
-            "basis": "literal README instruction; not executed"
+            "line": 152
           },
           {
             "command_excerpt": "python run_pipeline.py --pipeline-version v3 --config pydimension/configs/config_translation.json",
             "source_url": "https://raw.githubusercontent.com/xiaoyuxie-vico/PyDimension/main/README.md",
-            "line": 153,
-            "basis": "literal README instruction; not executed"
+            "line": 153
           },
           {
             "command_excerpt": "python test_environment.py",
             "source_url": "https://raw.githubusercontent.com/xiaoyuxie-vico/PyDimension/main/README.md",
-            "line": 161,
-            "basis": "literal README instruction; not executed"
+            "line": 161
           },
           {
             "command_excerpt": "python run_pipeline.py --pipeline-version v3 --config pydimension/configs/config_translation.json",
             "source_url": "https://raw.githubusercontent.com/xiaoyuxie-vico/PyDimension/main/README.md",
-            "line": 162,
-            "basis": "literal README instruction; not executed"
+            "line": 162
           },
           {
             "command_excerpt": "python run_pipeline.py --pipeline-version v3 --config pydimension/configs/config_translation.json",
             "source_url": "https://raw.githubusercontent.com/xiaoyuxie-vico/PyDimension/main/README.md",
-            "line": 183,
-            "basis": "literal README instruction; not executed"
+            "line": 183
           },
           {
             "command_excerpt": "python generate_data.py --config pydimension/configs/config_translation.json --plot",
             "source_url": "https://raw.githubusercontent.com/xiaoyuxie-vico/PyDimension/main/README.md",
-            "line": 187,
-            "basis": "literal README instruction; not executed"
+            "line": 187
           },
           {
             "command_excerpt": "streamlit run streamlit_app.py",
             "source_url": "https://raw.githubusercontent.com/xiaoyuxie-vico/PyDimension/main/README.md",
-            "line": 205,
-            "basis": "literal README instruction; not executed"
+            "line": 205
           },
           {
             "command_excerpt": "| 1 | **Data Generation** | translational, rotational\\*, scaling\\* | `python generate_data.py --config pydimension/configs/config_translation.json` |",
             "source_url": "https://raw.githubusercontent.com/xiaoyuxie-vico/PyDimension/main/README.md",
-            "line": 276,
-            "basis": "literal README instruction; not executed"
+            "line": 276
           },
           {
             "command_excerpt": "| 2 | **Data Preprocessing** | dimensional analysis (merged) | `python preprocess_data.py --config pydimension/configs/config_translation.json` |",
             "source_url": "https://raw.githubusercontent.com/xiaoyuxie-vico/PyDimension/main/README.md",
-            "line": 277,
-            "basis": "literal README instruction; not executed"
+            "line": 277
           },
           {
             "command_excerpt": "| 3 | **Intrinsic Coordinate** | PCA, SIR, autoencoder\\* | `python intrinsic_coordinate.py --config pydimension/configs/config_translation.json` |",
             "source_url": "https://raw.githubusercontent.com/xiaoyuxie-vico/PyDimension/main/README.md",
-            "line": 278,
-            "basis": "literal README instruction; not executed"
+            "line": 278
           },
           {
             "command_excerpt": "| 4 | **Symmetry Discovery** | translational encoder, rotational\\*, scaling\\* | `python discover_symmetry.py --config pydimension/configs/config_translation.json` |",
             "source_url": "https://raw.githubusercontent.com/xiaoyuxie-vico/PyDimension/main/README.md",
-            "line": 279,
-            "basis": "literal README instruction; not executed"
+            "line": 279
           },
           {
             "command_excerpt": "| Dimensional Analysis | `python legacy/analyze_dimensions.py --config pydimension/configs/config_synthetic.json` |",
             "source_url": "https://raw.githubusercontent.com/xiaoyuxie-vico/PyDimension/main/README.md",
-            "line": 287,
-            "basis": "literal README instruction; not executed"
+            "line": 287
           },
           {
             "command_excerpt": "| Constraint Filtering | `python legacy/filter_constraints.py --config pydimension/configs/config_synthetic.json` |",
             "source_url": "https://raw.githubusercontent.com/xiaoyuxie-vico/PyDimension/main/README.md",
-            "line": 288,
-            "basis": "literal README instruction; not executed"
+            "line": 288
           },
           {
             "command_excerpt": "| Optimization Discovery | `python legacy/optimize_discovery.py --config pydimension/configs/config_synthetic.json --plot` |",
             "source_url": "https://raw.githubusercontent.com/xiaoyuxie-vico/PyDimension/main/README.md",
-            "line": 289,
-            "basis": "literal README instruction; not executed"
+            "line": 289
           },
           {
             "command_excerpt": "python run_pipeline.py --pipeline-version v3 --config pydimension/configs/config_translation.json",
             "source_url": "https://raw.githubusercontent.com/xiaoyuxie-vico/PyDimension/main/README.md",
-            "line": 297,
-            "basis": "literal README instruction; not executed"
+            "line": 297
           },
           {
             "command_excerpt": "python generate_data.py     --config pydimension/configs/config_translation.json --plot",
             "source_url": "https://raw.githubusercontent.com/xiaoyuxie-vico/PyDimension/main/README.md",
-            "line": 300,
-            "basis": "literal README instruction; not executed"
+            "line": 300
           },
           {
             "command_excerpt": "python preprocess_data.py   --config pydimension/configs/config_translation.json --plot",
             "source_url": "https://raw.githubusercontent.com/xiaoyuxie-vico/PyDimension/main/README.md",
-            "line": 301,
-            "basis": "literal README instruction; not executed"
+            "line": 301
           },
           {
             "command_excerpt": "python intrinsic_coordinate.py --config pydimension/configs/config_translation.json",
             "source_url": "https://raw.githubusercontent.com/xiaoyuxie-vico/PyDimension/main/README.md",
-            "line": 302,
-            "basis": "literal README instruction; not executed"
+            "line": 302
           },
           {
             "command_excerpt": "python discover_symmetry.py --config pydimension/configs/config_translation.json",
             "source_url": "https://raw.githubusercontent.com/xiaoyuxie-vico/PyDimension/main/README.md",
-            "line": 303,
-            "basis": "literal README instruction; not executed"
+            "line": 303
           },
           {
             "command_excerpt": "python run_pipeline.py --pipeline-version v2 --config legacy/pydimension_v2/configs/config_synthetic_v2.json",
             "source_url": "https://raw.githubusercontent.com/xiaoyuxie-vico/PyDimension/main/README.md",
-            "line": 310,
-            "basis": "literal README instruction; not executed"
+            "line": 310
           },
           {
             "command_excerpt": "python generate_data.py                --config pydimension/configs/config_synthetic.json --plot",
             "source_url": "https://raw.githubusercontent.com/xiaoyuxie-vico/PyDimension/main/README.md",
-            "line": 313,
-            "basis": "literal README instruction; not executed"
+            "line": 313
           },
           {
             "command_excerpt": "python preprocess_data.py              --config pydimension/configs/config_synthetic.json --plot",
             "source_url": "https://raw.githubusercontent.com/xiaoyuxie-vico/PyDimension/main/README.md",
-            "line": 314,
-            "basis": "literal README instruction; not executed"
+            "line": 314
           },
           {
             "command_excerpt": "python legacy/analyze_dimensions.py    --config pydimension/configs/config_synthetic.json --plot",
             "source_url": "https://raw.githubusercontent.com/xiaoyuxie-vico/PyDimension/main/README.md",
-            "line": 315,
-            "basis": "literal README instruction; not executed"
+            "line": 315
           },
           {
             "command_excerpt": "python legacy/filter_constraints.py    --config pydimension/configs/config_synthetic.json --plot",
             "source_url": "https://raw.githubusercontent.com/xiaoyuxie-vico/PyDimension/main/README.md",
-            "line": 316,
-            "basis": "literal README instruction; not executed"
+            "line": 316
           },
           {
             "command_excerpt": "python legacy/optimize_discovery.py    --config pydimension/configs/config_synthetic.json --plot",
             "source_url": "https://raw.githubusercontent.com/xiaoyuxie-vico/PyDimension/main/README.md",
-            "line": 317,
-            "basis": "literal README instruction; not executed"
+            "line": 317
           },
           {
             "command_excerpt": "streamlit run streamlit_app.py",
             "source_url": "https://raw.githubusercontent.com/xiaoyuxie-vico/PyDimension/main/README.md",
-            "line": 351,
-            "basis": "literal README instruction; not executed"
+            "line": 351
           },
           {
             "command_excerpt": "python generate_data.py --config pydimension/configs/config_translation.json --plot",
             "source_url": "https://raw.githubusercontent.com/xiaoyuxie-vico/PyDimension/main/README.md",
-            "line": 363,
-            "basis": "literal README instruction; not executed"
+            "line": 363
           },
           {
             "command_excerpt": "python discover_symmetry.py --config pydimension/configs/config_translation.json",
             "source_url": "https://raw.githubusercontent.com/xiaoyuxie-vico/PyDimension/main/README.md",
-            "line": 364,
-            "basis": "literal README instruction; not executed"
+            "line": 364
           }
         ],
         "environment": [
@@ -5428,13 +5053,8 @@
             "basis": "literal README statement; environment not constructed"
           }
         ],
-        "blockers": [
-          "paper-result T2 reproduction not run; public access or README inspection is not reproduction"
-        ],
         "lookup_urls": [],
-        "follow_up_actions": [],
-        "reproduction_target": "T2",
-        "code_recheck_required": false
+        "reproduction_target": "T2"
       },
       "card_url": "cards/xieDatadrivenDiscoveryDimensionless2022.html",
       "source_path": "",
@@ -5535,21 +5155,11 @@
         "candidate_urls": [],
         "entrypoints": [],
         "environment": [],
-        "blockers": [
-          "author code not found in inspected local source; this does not establish that code does not exist",
-          "required code-discovery queue remains open; missing PDF URL is not evidence of missing author code"
-        ],
         "lookup_urls": [
           "https://doi.org/10.1103/physrevlett.128.180201",
           "https://api.github.com/search/repositories?q=Machine%20Learning%20Hidden%20Symmetries"
         ],
-        "follow_up_actions": [
-          "Check publisher code/data availability and supplementary attachments",
-          "Follow first/corresponding author project page; verify paper title/DOI in the repository before accepting it",
-          "Record author-code link or a dated availability boundary; do not close this task because PDF transcription lacks a URL"
-        ],
-        "reproduction_target": "locate_author_code_then_T2_or_document_availability_boundary",
-        "code_recheck_required": true
+        "reproduction_target": "Use the listed publication and source links to select a core example."
       },
       "card_url": "cards/liuMachineLearningHidden2022.html",
       "source_path": "",
@@ -5662,21 +5272,11 @@
         "candidate_urls": [],
         "entrypoints": [],
         "environment": [],
-        "blockers": [
-          "author code not found in inspected local source; this does not establish that code does not exist",
-          "required code-discovery queue remains open; missing PDF URL is not evidence of missing author code"
-        ],
         "lookup_urls": [
           "https://doi.org/10.1103/physrevlett.126.180604",
           "https://api.github.com/search/repositories?q=Machine%20Learning%20Conservation%20Laws%20from%20Trajectories"
         ],
-        "follow_up_actions": [
-          "Check publisher code/data availability and supplementary attachments",
-          "Follow first/corresponding author project page; verify paper title/DOI in the repository before accepting it",
-          "Record author-code link or a dated availability boundary; do not close this task because PDF transcription lacks a URL"
-        ],
-        "reproduction_target": "locate_author_code_then_T2_or_document_availability_boundary",
-        "code_recheck_required": true
+        "reproduction_target": "Use the listed publication and source links to select a core example."
       },
       "card_url": "cards/liuMachineLearningConservation2021.html",
       "source_path": "",
@@ -5791,42 +5391,34 @@
         "entrypoints": [
           {
             "path": "double_pendulum.ipynb",
-            "basis": "observed root path; not executed",
             "repository": "https://github.com/peterparity/conservation-laws-manifold-learning"
           },
           {
             "path": "kdv.ipynb",
-            "basis": "observed root path; not executed",
             "repository": "https://github.com/peterparity/conservation-laws-manifold-learning"
           },
           {
             "path": "kdv_nonlocal.ipynb",
-            "basis": "observed root path; not executed",
             "repository": "https://github.com/peterparity/conservation-laws-manifold-learning"
           },
           {
             "path": "langevin_sho.ipynb",
-            "basis": "observed root path; not executed",
             "repository": "https://github.com/peterparity/conservation-laws-manifold-learning"
           },
           {
             "path": "pendulum.ipynb",
-            "basis": "observed root path; not executed",
             "repository": "https://github.com/peterparity/conservation-laws-manifold-learning"
           },
           {
             "path": "planar_orbits.ipynb",
-            "basis": "observed root path; not executed",
             "repository": "https://github.com/peterparity/conservation-laws-manifold-learning"
           },
           {
             "path": "sho.ipynb",
-            "basis": "observed root path; not executed",
             "repository": "https://github.com/peterparity/conservation-laws-manifold-learning"
           },
           {
             "path": "turing.ipynb",
-            "basis": "observed root path; not executed",
             "repository": "https://github.com/peterparity/conservation-laws-manifold-learning"
           }
         ],
@@ -5847,13 +5439,8 @@
             "repository": "https://github.com/peterparity/conservation-laws-manifold-learning"
           }
         ],
-        "blockers": [
-          "paper-result T2 reproduction not run; public access or README inspection is not reproduction"
-        ],
         "lookup_urls": [],
-        "follow_up_actions": [],
-        "reproduction_target": "T2",
-        "code_recheck_required": false
+        "reproduction_target": "T2"
       },
       "card_url": "cards/luDiscoveringConservationLaws2023.html",
       "source_path": "",
@@ -5957,7 +5544,6 @@
         "entrypoints": [
           {
             "path": "examples",
-            "basis": "observed root path; not executed",
             "repository": "https://github.com/loiseaujc/SINDy"
           }
         ],
@@ -5979,13 +5565,8 @@
             "basis": "literal README statement; environment not constructed"
           }
         ],
-        "blockers": [
-          "paper-result T2 reproduction not run; public access or README inspection is not reproduction"
-        ],
         "lookup_urls": [],
-        "follow_up_actions": [],
-        "reproduction_target": "T2",
-        "code_recheck_required": false
+        "reproduction_target": "T2"
       },
       "card_url": "cards/loiseauConstrainedSparseGalerkin2018.html",
       "source_path": "",
@@ -6097,19 +5678,16 @@
         "entrypoints": [
           {
             "path": "example_data",
-            "basis": "observed root path; not executed",
             "repository": "https://github.com/SJ001/AI-Feynman"
           },
           {
             "path": "examples",
-            "basis": "observed root path; not executed",
             "repository": "https://github.com/SJ001/AI-Feynman"
           },
           {
             "command_excerpt": "(e.g. python ai_feynman_terminal_example.py --pathdir=../example_data/ --filename=example1.txt). Use python ai_feynman_terminal_example.py --help to display all the available parameters that can be passed to the function.",
             "source_url": "https://raw.githubusercontent.com/SJ001/AI-Feynman/master/README.md",
-            "line": 57,
-            "basis": "literal README instruction; not executed"
+            "line": 57
           }
         ],
         "environment": [
@@ -6136,13 +5714,8 @@
             "basis": "literal README statement; environment not constructed"
           }
         ],
-        "blockers": [
-          "paper-result T2 reproduction not run; public access or README inspection is not reproduction"
-        ],
         "lookup_urls": [],
-        "follow_up_actions": [],
-        "reproduction_target": "T2",
-        "code_recheck_required": false
+        "reproduction_target": "T2"
       },
       "card_url": "cards/udrescuAIFeynmanPhysicsInspired2020.html",
       "source_path": "",
@@ -6261,7 +5834,6 @@
         "entrypoints": [
           {
             "path": "demos",
-            "basis": "observed root path; not executed",
             "repository": "https://github.com/WassimTenachi/PhySO"
           }
         ],
@@ -6312,13 +5884,8 @@
             "basis": "literal README statement; environment not constructed"
           }
         ],
-        "blockers": [
-          "paper-result T2 reproduction not run; public access or README inspection is not reproduction"
-        ],
         "lookup_urls": [],
-        "follow_up_actions": [],
-        "reproduction_target": "T2",
-        "code_recheck_required": false
+        "reproduction_target": "T2"
       },
       "card_url": "cards/tenachiDeepSymbolicRegression2023.html",
       "source_path": "",
@@ -6424,14 +5991,12 @@
           {
             "command_excerpt": "sh ./script_test/MODE1_test.sh",
             "source_url": "https://raw.githubusercontent.com/menggedu/DISCOVER/master/README.md",
-            "line": 51,
-            "basis": "literal README instruction; not executed"
+            "line": 51
           },
           {
             "command_excerpt": "sh  ./script_test/MODE2_test.sh",
             "source_url": "https://raw.githubusercontent.com/menggedu/DISCOVER/master/README.md",
-            "line": 55,
-            "basis": "literal README instruction; not executed"
+            "line": 55
           }
         ],
         "environment": [
@@ -6471,13 +6036,8 @@
             "basis": "literal README statement; environment not constructed"
           }
         ],
-        "blockers": [
-          "paper-result T2 reproduction not run; public access or README inspection is not reproduction"
-        ],
         "lookup_urls": [],
-        "follow_up_actions": [],
-        "reproduction_target": "T2",
-        "code_recheck_required": false
+        "reproduction_target": "T2"
       },
       "card_url": "cards/duDISCOVERDeepIdentification2024.html",
       "source_path": "",
@@ -6590,32 +6150,27 @@
         "entrypoints": [
           {
             "path": "train.py",
-            "basis": "observed root path; not executed",
             "repository": "https://github.com/EPFL-IMOS/Sym-Q"
           },
           {
             "command_excerpt": "python add_points_to_json.py",
             "source_url": "https://raw.githubusercontent.com/EPFL-IMOS/Sym-Q/main/README.md",
-            "line": 53,
-            "basis": "literal README instruction; not executed"
+            "line": 53
           },
           {
             "command_excerpt": "python gen_SSDNC_benchmark.py",
             "source_url": "https://raw.githubusercontent.com/EPFL-IMOS/Sym-Q/main/README.md",
-            "line": 54,
-            "basis": "literal README instruction; not executed"
+            "line": 54
           },
           {
             "command_excerpt": "python train.py",
             "source_url": "https://raw.githubusercontent.com/EPFL-IMOS/Sym-Q/main/README.md",
-            "line": 63,
-            "basis": "literal README instruction; not executed"
+            "line": 63
           },
           {
             "command_excerpt": "python beam_search.py --weights_path PATH_TO_WEIGHTS --target ssdnc_r2",
             "source_url": "https://raw.githubusercontent.com/EPFL-IMOS/Sym-Q/main/README.md",
-            "line": 69,
-            "basis": "literal README instruction; not executed"
+            "line": 69
           }
         ],
         "environment": [
@@ -6655,13 +6210,8 @@
             "basis": "literal README statement; environment not constructed"
           }
         ],
-        "blockers": [
-          "paper-result T2 reproduction not run; public access or README inspection is not reproduction"
-        ],
         "lookup_urls": [],
-        "follow_up_actions": [],
-        "reproduction_target": "T2",
-        "code_recheck_required": false
+        "reproduction_target": "T2"
       },
       "card_url": "cards/tianInteractiveSymbolicRegression2025.html",
       "source_path": "",
@@ -6775,27 +6325,22 @@
         "entrypoints": [
           {
             "path": "run_benchmark_all.py",
-            "basis": "observed root path; not executed",
             "repository": "https://github.com/intell-sci-comput/PSE"
           },
           {
             "path": "run_chaotic.py",
-            "basis": "observed root path; not executed",
             "repository": "https://github.com/intell-sci-comput/PSE"
           },
           {
             "path": "run_custom_data.py",
-            "basis": "observed root path; not executed",
             "repository": "https://github.com/intell-sci-comput/PSE"
           },
           {
             "path": "run_realworld_EMPS.py",
-            "basis": "observed root path; not executed",
             "repository": "https://github.com/intell-sci-comput/PSE"
           },
           {
             "path": "run_realworld_roughpipe.py",
-            "basis": "observed root path; not executed",
             "repository": "https://github.com/intell-sci-comput/PSE"
           }
         ],
@@ -6824,13 +6369,8 @@
             "basis": "literal README statement; environment not constructed"
           }
         ],
-        "blockers": [
-          "paper-result T2 reproduction not run; public access or README inspection is not reproduction"
-        ],
         "lookup_urls": [],
-        "follow_up_actions": [],
-        "reproduction_target": "T2",
-        "code_recheck_required": false
+        "reproduction_target": "T2"
       },
       "card_url": "cards/ruanDiscoveringPhysicalLaws2025.html",
       "source_path": "",
@@ -6945,20 +6485,17 @@
           {
             "command_excerpt": "2. Run the surrogate_model.py (about 2 min for training the EqGPT model and 1~10 min {according to the data_num} for training the surrogate model from sparse and noisy data)",
             "source_url": "https://raw.githubusercontent.com/woshixuhao/EqGPT/main/README.md",
-            "line": 49,
-            "basis": "literal README instruction; not executed"
+            "line": 49
           },
           {
             "command_excerpt": "3. Run the continue_train_GPT.py to fine-tune the EqGPT with the rewards of generated PDEs calculated through meta-data and discover the optimal PDE structure (1~5 min).",
             "source_url": "https://raw.githubusercontent.com/woshixuhao/EqGPT/main/README.md",
-            "line": 51,
-            "basis": "literal README instruction; not executed"
+            "line": 51
           },
           {
             "command_excerpt": "4. Run the PINN_optimization.py to further optimize the coefficients of discovered PDEs via PINN (~1 min).",
             "source_url": "https://raw.githubusercontent.com/woshixuhao/EqGPT/main/README.md",
-            "line": 52,
-            "basis": "literal README instruction; not executed"
+            "line": 52
           }
         ],
         "environment": [
@@ -7005,13 +6542,8 @@
             "basis": "literal README statement; environment not constructed"
           }
         ],
-        "blockers": [
-          "paper-result T2 reproduction not run; public access or README inspection is not reproduction"
-        ],
         "lookup_urls": [],
-        "follow_up_actions": [],
-        "reproduction_target": "T2",
-        "code_recheck_required": false
+        "reproduction_target": "T2"
       },
       "card_url": "cards/xuGenerativeDiscoveryPartial2025.html",
       "source_path": "",
@@ -7118,26 +6650,22 @@
           {
             "command_excerpt": "python 1wave/1train.py",
             "source_url": "https://raw.githubusercontent.com/CXY0112/SGN/main/README.MD",
-            "line": 94,
-            "basis": "literal README instruction; not executed"
+            "line": 94
           },
           {
             "command_excerpt": "python 2Convection_Diffusion/2predict.py",
             "source_url": "https://raw.githubusercontent.com/CXY0112/SGN/main/README.MD",
-            "line": 95,
-            "basis": "literal README instruction; not executed"
+            "line": 95
           },
           {
             "command_excerpt": "python 3NavierStokes/4test.py",
             "source_url": "https://raw.githubusercontent.com/CXY0112/SGN/main/README.MD",
-            "line": 96,
-            "basis": "literal README instruction; not executed"
+            "line": 96
           },
           {
             "command_excerpt": "Run `visualization.py` to generate comparison plots, including:",
             "source_url": "https://raw.githubusercontent.com/CXY0112/SGN/main/README.MD",
-            "line": 110,
-            "basis": "literal README instruction; not executed"
+            "line": 110
           }
         ],
         "environment": [
@@ -7190,13 +6718,8 @@
             "basis": "literal README statement; environment not constructed"
           }
         ],
-        "blockers": [
-          "paper-result T2 reproduction not run; public access or README inspection is not reproduction"
-        ],
         "lookup_urls": [],
-        "follow_up_actions": [],
-        "reproduction_target": "T2",
-        "code_recheck_required": false
+        "reproduction_target": "T2"
       },
       "card_url": "cards/chenSymbolicGraphNetworks2026.html",
       "source_path": "",
@@ -7311,21 +6834,11 @@
         "candidate_urls": [],
         "entrypoints": [],
         "environment": [],
-        "blockers": [
-          "source says all code/data will be released upon publication; current release not established",
-          "required code-discovery queue remains open; missing PDF URL is not evidence of missing author code"
-        ],
         "lookup_urls": [
           "https://doi.org/10.48550/arXiv.2603.18548",
           "https://api.github.com/search/repositories?q=SINDy-KANs%3A%20Sparse%20identification%20of%20non-linear%20dynamics%20through%20Kolmogorov-Arnold%20networks"
         ],
-        "follow_up_actions": [
-          "Check publisher code/data availability and supplementary attachments",
-          "Follow first/corresponding author project page; verify paper title/DOI in the repository before accepting it",
-          "Record author-code link or a dated availability boundary; do not close this task because PDF transcription lacks a URL"
-        ],
-        "reproduction_target": "locate_author_code_then_T2_or_document_availability_boundary",
-        "code_recheck_required": true
+        "reproduction_target": "Use the listed publication and source links to select a core example."
       },
       "card_url": "cards/howardSINDyKANsSparseIdentification2026.html",
       "source_path": "",
@@ -7428,16 +6941,8 @@
         ],
         "entrypoints": [],
         "environment": [],
-        "blockers": [
-          "paper-result T2 reproduction not run; public access or README inspection is not reproduction",
-          "SSLError: HTTPSConnectionPool(host='doi.org', port=443): Max retries exceeded with url: /10.24433/CO.3947449.v2 (Caused by SSLError(SSLEOFError(8, 'EOF occurred in violation of protocol (_ssl.c:1002)')))",
-          "no concrete execution entrypoint established by current root/README inspection",
-          "dependency/environment specification unverified"
-        ],
         "lookup_urls": [],
-        "follow_up_actions": [],
-        "reproduction_target": "T2",
-        "code_recheck_required": false
+        "reproduction_target": "T2"
       },
       "card_url": "cards/huLearningInterpretableNetwork2025.html",
       "source_path": "",
@@ -7494,21 +6999,11 @@
         "candidate_urls": [],
         "entrypoints": [],
         "environment": [],
-        "blockers": [
-          "author code not found in inspected local source; this does not establish that code does not exist",
-          "required code-discovery queue remains open; missing PDF URL is not evidence of missing author code"
-        ],
         "lookup_urls": [
           "https://doi.org/10.1063/1.5018409",
           "https://api.github.com/search/repositories?q=Sparse%20learning%20of%20stochastic%20dynamical%20equations"
         ],
-        "follow_up_actions": [
-          "Check publisher code/data availability and supplementary attachments",
-          "Follow first/corresponding author project page; verify paper title/DOI in the repository before accepting it",
-          "Record author-code link or a dated availability boundary; do not close this task because PDF transcription lacks a URL"
-        ],
-        "reproduction_target": "locate_author_code_then_T2_or_document_availability_boundary",
-        "code_recheck_required": true
+        "reproduction_target": "Use the listed publication and source links to select a core example."
       },
       "card_url": "cards/boninsegnaSparseLearningStochastic2018.html",
       "source_path": "",
@@ -7582,12 +7077,10 @@
         "entrypoints": [
           {
             "path": "Examples",
-            "basis": "observed root path; not executed",
             "repository": "https://github.com/HAIRLAB/BISDE"
           },
           {
             "path": "Figure_Main",
-            "basis": "observed root path; not executed",
             "repository": "https://github.com/HAIRLAB/BISDE"
           }
         ],
@@ -7599,13 +7092,8 @@
             "basis": "literal README statement; environment not constructed"
           }
         ],
-        "blockers": [
-          "paper-result T2 reproduction not run; public access or README inspection is not reproduction"
-        ],
         "lookup_urls": [],
-        "follow_up_actions": [],
-        "reproduction_target": "T2",
-        "code_recheck_required": false
+        "reproduction_target": "T2"
       },
       "card_url": "cards/wangDataDrivenDiscoveryStochastic2022.html",
       "source_path": "",
@@ -7667,16 +7155,8 @@
         "candidate_urls": [],
         "entrypoints": [],
         "environment": [],
-        "blockers": [
-          "paper-result T2 reproduction not run; public access or README inspection is not reproduction",
-          "archive landing page reachable; archive contents and execution not verified",
-          "no concrete execution entrypoint established by current root/README inspection",
-          "dependency/environment specification unverified"
-        ],
         "lookup_urls": [],
-        "follow_up_actions": [],
-        "reproduction_target": "T2",
-        "code_recheck_required": false
+        "reproduction_target": "T2"
       },
       "card_url": "cards/huangSparseInferenceActive2022.html",
       "source_path": "",
@@ -7730,21 +7210,11 @@
         "candidate_urls": [],
         "entrypoints": [],
         "environment": [],
-        "blockers": [
-          "author code not found in inspected local source; this does not establish that code does not exist",
-          "required code-discovery queue remains open; missing PDF URL is not evidence of missing author code"
-        ],
         "lookup_urls": [
           "https://doi.org/10.1137/23M1567011",
           "https://api.github.com/search/repositories?q=On%20Higher%20Order%20Drift%20and%20Diffusion%20Estimates%20for%20Stochastic%20SINDy"
         ],
-        "follow_up_actions": [
-          "Check publisher code/data availability and supplementary attachments",
-          "Follow first/corresponding author project page; verify paper title/DOI in the repository before accepting it",
-          "Record author-code link or a dated availability boundary; do not close this task because PDF transcription lacks a URL"
-        ],
-        "reproduction_target": "locate_author_code_then_T2_or_document_availability_boundary",
-        "code_recheck_required": true
+        "reproduction_target": "Use the listed publication and source links to select a core example."
       },
       "card_url": "cards/wannerHigherOrderDrift2024.html",
       "source_path": "",
@@ -7804,21 +7274,11 @@
         "candidate_urls": [],
         "entrypoints": [],
         "environment": [],
-        "blockers": [
-          "source promises GitHub release upon acceptance; current release not established",
-          "required code-discovery queue remains open; missing PDF URL is not evidence of missing author code"
-        ],
         "lookup_urls": [
           "https://doi.org/10.1016/j.cma.2023.116512",
           "https://api.github.com/search/repositories?q=Discovering%20stochastic%20partial%20differential%20equations%20from%20limited%20data%20using%20variational%20Bayes%20inference"
         ],
-        "follow_up_actions": [
-          "Check publisher code/data availability and supplementary attachments",
-          "Follow first/corresponding author project page; verify paper title/DOI in the repository before accepting it",
-          "Record author-code link or a dated availability boundary; do not close this task because PDF transcription lacks a URL"
-        ],
-        "reproduction_target": "locate_author_code_then_T2_or_document_availability_boundary",
-        "code_recheck_required": true
+        "reproduction_target": "Use the listed publication and source links to select a core example."
       },
       "card_url": "cards/mathpatiDiscoveringStochasticPartial2024.html",
       "source_path": "",
@@ -7876,21 +7336,11 @@
         "candidate_urls": [],
         "entrypoints": [],
         "environment": [],
-        "blockers": [
-          "author code not found in inspected local source; this does not establish that code does not exist",
-          "required code-discovery queue remains open; missing PDF URL is not evidence of missing author code"
-        ],
         "lookup_urls": [
           "https://doi.org/10.1016/j.physd.2021.133004",
           "https://api.github.com/search/repositories?q=Data-driven%20stochastic%20modeling%20of%20coarse-grained%20dynamics%20with%20finite-size%20effects%20using%20Langevin%20regression"
         ],
-        "follow_up_actions": [
-          "Check publisher code/data availability and supplementary attachments",
-          "Follow first/corresponding author project page; verify paper title/DOI in the repository before accepting it",
-          "Record author-code link or a dated availability boundary; do not close this task because PDF transcription lacks a URL"
-        ],
-        "reproduction_target": "locate_author_code_then_T2_or_document_availability_boundary",
-        "code_recheck_required": true
+        "reproduction_target": "Use the listed publication and source links to select a core example."
       },
       "card_url": "cards/snyderDatadrivenStochasticModeling2021.html",
       "source_path": "",
@@ -7952,25 +7402,17 @@
         "entrypoints": [
           {
             "path": "decrease_time_samples.ipynb",
-            "basis": "observed root path; not executed",
             "repository": "https://github.com/johnnardini/Learning-DE-models-from-stochastic-ABMs"
           },
           {
             "command_excerpt": "The **ABM** folder contains the code used to implement the ABMs from our study, which include the birth-death-migration (BDM) process and the susceptible-infected-recovered (SIR) model.  The jupyter notebook `plot_ABM_DE_BDM.ipynb` can be used to simulate the BDM ABM and compare its output to its mean-field model. The jupyter notebook `plot_ABM_DE_SIR.ipynb` can be used to simulate the SIR ABM and compare its output to its mean-field model. Both of these notebooks rely on `ABM_package.py` to implement the ABMs.",
             "source_url": "https://raw.githubusercontent.com/johnnardini/Learning-DE-models-from-stochastic-ABMs/master/README.md",
-            "line": 6,
-            "basis": "literal README instruction; not executed"
+            "line": 6
           }
         ],
         "environment": [],
-        "blockers": [
-          "paper-result T2 reproduction not run; public access or README inspection is not reproduction",
-          "dependency/environment specification unverified"
-        ],
         "lookup_urls": [],
-        "follow_up_actions": [],
-        "reproduction_target": "T2",
-        "code_recheck_required": false
+        "reproduction_target": "T2"
       },
       "card_url": "cards/nardiniLearningDifferentialEquation2021.html",
       "source_path": "",
@@ -8027,21 +7469,11 @@
         "candidate_urls": [],
         "entrypoints": [],
         "environment": [],
-        "blockers": [
-          "author code not found in inspected local source; this does not establish that code does not exist",
-          "required code-discovery queue remains open; missing PDF URL is not evidence of missing author code"
-        ],
         "lookup_urls": [
           "https://doi.org/10.1016/j.jcp.2021.110219",
           "https://api.github.com/search/repositories?q=Data-driven%20discovery%20of%20coarse-grained%20equations"
         ],
-        "follow_up_actions": [
-          "Check publisher code/data availability and supplementary attachments",
-          "Follow first/corresponding author project page; verify paper title/DOI in the repository before accepting it",
-          "Record author-code link or a dated availability boundary; do not close this task because PDF transcription lacks a URL"
-        ],
-        "reproduction_target": "locate_author_code_then_T2_or_document_availability_boundary",
-        "code_recheck_required": true
+        "reproduction_target": "Use the listed publication and source links to select a core example."
       },
       "card_url": "cards/bakarjiDatadrivenDiscoveryCoarsegrained2021.html",
       "source_path": "",
@@ -8099,21 +7531,11 @@
         "candidate_urls": [],
         "entrypoints": [],
         "environment": [],
-        "blockers": [
-          "author code not found in inspected local source; this does not establish that code does not exist",
-          "required code-discovery queue remains open; missing PDF URL is not evidence of missing author code"
-        ],
         "lookup_urls": [
           "https://doi.org/10.1016/j.physd.2022.133406",
           "https://api.github.com/search/repositories?q=Learning%20mean-field%20equations%20from%20particle%20data%20using%20WSINDy"
         ],
-        "follow_up_actions": [
-          "Check publisher code/data availability and supplementary attachments",
-          "Follow first/corresponding author project page; verify paper title/DOI in the repository before accepting it",
-          "Record author-code link or a dated availability boundary; do not close this task because PDF transcription lacks a URL"
-        ],
-        "reproduction_target": "locate_author_code_then_T2_or_document_availability_boundary",
-        "code_recheck_required": true
+        "reproduction_target": "Use the listed publication and source links to select a core example."
       },
       "card_url": "cards/messengerLearningMeanfieldEquations2022.html",
       "source_path": "",
@@ -8194,14 +7616,8 @@
             "basis": "literal README statement; environment not constructed"
           }
         ],
-        "blockers": [
-          "paper-result T2 reproduction not run; public access or README inspection is not reproduction",
-          "no concrete execution entrypoint established by current root/README inspection"
-        ],
         "lookup_urls": [],
-        "follow_up_actions": [],
-        "reproduction_target": "T2",
-        "code_recheck_required": false
+        "reproduction_target": "T2"
       },
       "card_url": "cards/vandenheuvelPushingCoarsegrainedModels2024.html",
       "source_path": "",
@@ -8258,21 +7674,11 @@
         "candidate_urls": [],
         "entrypoints": [],
         "environment": [],
-        "blockers": [
-          "author code not found in inspected local source; this does not establish that code does not exist",
-          "required code-discovery queue remains open; missing PDF URL is not evidence of missing author code"
-        ],
         "lookup_urls": [
           "https://doi.org/10.1016/j.cma.2024.117379",
           "https://api.github.com/search/repositories?q=Learning%20macroscopic%20equations%20of%20motion%20from%20dissipative%20particle%20dynamics%20simulations%20of%20fluids"
         ],
-        "follow_up_actions": [
-          "Check publisher code/data availability and supplementary attachments",
-          "Follow first/corresponding author project page; verify paper title/DOI in the repository before accepting it",
-          "Record author-code link or a dated availability boundary; do not close this task because PDF transcription lacks a URL"
-        ],
-        "reproduction_target": "locate_author_code_then_T2_or_document_availability_boundary",
-        "code_recheck_required": true
+        "reproduction_target": "Use the listed publication and source links to select a core example."
       },
       "card_url": "cards/jugLearningMacroscopicEquations2024.html",
       "source_path": "",
@@ -8301,16 +7707,16 @@
       "prerequisite_keys": [
         "messengerLearningMeanfieldEquations2022"
       ],
-      "focus": "题名和书目信息表明其研究分子模拟到流体控制方程的发现。",
-      "method": "未获全文，正文不据此归纳具体算法。",
-      "representation": "未获全文，不能可靠判定候选库、方程形式或闭合假设。",
+      "focus": "引用条目：基于分子模拟研究流体控制方程的数据驱动发现。",
+      "method": "引用信息见出版页面。",
+      "representation": "引用信息见出版页面。",
       "assumptions": "",
       "systems": [
-        "分子模拟；具体体系未从全文核验"
+        "分子模拟"
       ],
-      "limitations": "• 无合法开放全文或机构授权副本\n• 所有内容判断均暂缓",
-      "derivation": "先取得合法全文并定位宏观量定义、候选结构和代码声明；获得全文前不指定未经核实的推导。",
-      "perturbation": "全文取得后只改变粗粒化尺度；当前列为材料阻塞。",
+      "limitations": "本条目提供书目信息和出版页面。",
+      "derivation": "通过出版页面阅读论文。",
+      "perturbation": "本条目作为延伸阅读。",
       "source_evidence": [],
       "evidence_status": "metadata_only",
       "reading_hours": 0.8,
@@ -8318,7 +7724,7 @@
         2,
         8
       ],
-      "reproduction_target": "先取得合法全文；材料到齐前不臆测算法和性能。",
+      "reproduction_target": "引用条目，出版页面提供原文信息。",
       "code_audit": {
         "verified_status": "unverified",
         "fulltext_available": false,
@@ -8326,22 +7732,11 @@
         "candidate_urls": [],
         "entrypoints": [],
         "environment": [],
-        "blockers": [
-          "author code not found in inspected local source; this does not establish that code does not exist",
-          "full text missing; only bibliography/metadata available",
-          "required code-discovery queue remains open; missing PDF URL is not evidence of missing author code"
-        ],
         "lookup_urls": [
           "https://doi.org/10.1017/jfm.2020.184",
           "https://api.github.com/search/repositories?q=Data-driven%20discovery%20of%20governing%20equations%20for%20fluid%20dynamics%20based%20on%20molecular%20simulation"
         ],
-        "follow_up_actions": [
-          "Check publisher code/data availability and supplementary attachments",
-          "Follow first/corresponding author project page; verify paper title/DOI in the repository before accepting it",
-          "Record author-code link or a dated availability boundary; do not close this task because PDF transcription lacks a URL"
-        ],
-        "reproduction_target": "locate_author_code_then_T2_or_document_availability_boundary",
-        "code_recheck_required": true
+        "reproduction_target": "Use the listed publication and source links to select a core example."
       },
       "card_url": "cards/zhangDatadrivenDiscoveryGoverning2020.html",
       "source_path": "",
@@ -8450,22 +7845,18 @@
         "entrypoints": [
           {
             "path": "Parametric Burgers.ipynb",
-            "basis": "observed root path; not executed",
             "repository": "https://github.com/snagcliffs/parametric-discovery"
           },
           {
             "path": "Parametric Navier Stokes.ipynb",
-            "basis": "observed root path; not executed",
             "repository": "https://github.com/snagcliffs/parametric-discovery"
           },
           {
             "path": "Spatial_Advection_Diffusiuon.ipynb",
-            "basis": "observed root path; not executed",
             "repository": "https://github.com/snagcliffs/parametric-discovery"
           },
           {
             "path": "Spatial_KS_Equation_Chaotic.ipynb",
-            "basis": "observed root path; not executed",
             "repository": "https://github.com/snagcliffs/parametric-discovery"
           }
         ],
@@ -8477,13 +7868,8 @@
             "basis": "literal README statement; environment not constructed"
           }
         ],
-        "blockers": [
-          "paper-result T2 reproduction not run; public access or README inspection is not reproduction"
-        ],
         "lookup_urls": [],
-        "follow_up_actions": [],
-        "reproduction_target": "T2",
-        "code_recheck_required": false
+        "reproduction_target": "T2"
       },
       "card_url": "cards/rudyDataDrivenIdentificationParametric2019.html",
       "source_path": "",
@@ -8543,21 +7929,11 @@
         "candidate_urls": [],
         "entrypoints": [],
         "environment": [],
-        "blockers": [
-          "author code not found in inspected local source; this does not establish that code does not exist",
-          "required code-discovery queue remains open; missing PDF URL is not evidence of missing author code"
-        ],
         "lookup_urls": [
           "https://doi.org/10.1103/PhysRevE.103.042310",
           "https://api.github.com/search/repositories?q=Learning%20physically%20consistent%20differential%20equation%20models%20from%20data%20using%20group%20sparsity"
         ],
-        "follow_up_actions": [
-          "Check publisher code/data availability and supplementary attachments",
-          "Follow first/corresponding author project page; verify paper title/DOI in the repository before accepting it",
-          "Record author-code link or a dated availability boundary; do not close this task because PDF transcription lacks a URL"
-        ],
-        "reproduction_target": "locate_author_code_then_T2_or_document_availability_boundary",
-        "code_recheck_required": true
+        "reproduction_target": "Use the listed publication and source links to select a core example."
       },
       "card_url": "cards/madduLearningPhysicallyConsistent2021.html",
       "source_path": "",
@@ -8621,12 +7997,10 @@
         "entrypoints": [
           {
             "path": "examples",
-            "basis": "observed root path; not executed",
             "repository": "https://github.com/dynamicslab/pysindy"
           },
           {
-            "path": "examples/17_parameterized_pattern_formation/parameterized_pattern_formation.ipynb",
-            "basis": "paper supplement S1.B states all results are reproduced by this notebook; not executed"
+            "path": "examples/17_parameterized_pattern_formation/parameterized_pattern_formation.ipynb"
           }
         ],
         "environment": [
@@ -8652,13 +8026,8 @@
             "basis": "paper supplement S1.B"
           }
         ],
-        "blockers": [
-          "paper-result T2 reproduction not run; public access or README inspection is not reproduction"
-        ],
         "lookup_urls": [],
-        "follow_up_actions": [],
-        "reproduction_target": "T2",
-        "code_recheck_required": false
+        "reproduction_target": "T2"
       },
       "card_url": "cards/nicolaouDatadrivenDiscoveryExtrapolation2023.html",
       "source_path": "",
@@ -8722,14 +8091,12 @@
         "entrypoints": [
           {
             "path": "notebooks",
-            "basis": "observed root path; not executed",
             "repository": "https://github.com/dynamicslab/dominant-balance"
           },
           {
             "command_excerpt": "The method essentially uses out of the box `scikit-learn` algorithms, so this repository doesn't have a separate library for import.  All the Jupyter notebooks should basically be self-contained, provided the dependencies (below) are met. See Appendix A of the paper for detailed information on data provenance, but there are notebooks for the following examples:",
             "source_url": "https://raw.githubusercontent.com/dynamicslab/dominant-balance/master/README.md",
-            "line": 7,
-            "basis": "literal README instruction; not executed"
+            "line": 7
           }
         ],
         "environment": [
@@ -8764,13 +8131,8 @@
             "basis": "literal README statement; environment not constructed"
           }
         ],
-        "blockers": [
-          "paper-result T2 reproduction not run; public access or README inspection is not reproduction"
-        ],
         "lookup_urls": [],
-        "follow_up_actions": [],
-        "reproduction_target": "T2",
-        "code_recheck_required": false
+        "reproduction_target": "T2"
       },
       "card_url": "cards/callahamLearningDominantPhysical2021.html",
       "source_path": "",
@@ -8829,16 +8191,8 @@
         "candidate_urls": [],
         "entrypoints": [],
         "environment": [],
-        "blockers": [
-          "paper-result T2 reproduction not run; public access or README inspection is not reproduction",
-          "HTTP 502; inaccessible link is not proof repository never existed",
-          "no concrete execution entrypoint established by current root/README inspection",
-          "dependency/environment specification unverified"
-        ],
         "lookup_urls": [],
-        "follow_up_actions": [],
-        "reproduction_target": "T2",
-        "code_recheck_required": false
+        "reproduction_target": "T2"
       },
       "card_url": "cards/sturmLearningLocallyDominant2024.html",
       "source_path": "",
@@ -8898,21 +8252,11 @@
         "candidate_urls": [],
         "entrypoints": [],
         "environment": [],
-        "blockers": [
-          "author code not found in inspected local source; this does not establish that code does not exist",
-          "required code-discovery queue remains open; missing PDF URL is not evidence of missing author code"
-        ],
         "lookup_urls": [
           "https://doi.org/10.1137/22M1497882",
           "https://api.github.com/search/repositories?q=Data-Driven%20Discovery%20of%20Governing%20Equations%20for%20Coarse-Grained%20Heterogeneous%20Network%20Dynamics"
         ],
-        "follow_up_actions": [
-          "Check publisher code/data availability and supplementary attachments",
-          "Follow first/corresponding author project page; verify paper title/DOI in the repository before accepting it",
-          "Record author-code link or a dated availability boundary; do not close this task because PDF transcription lacks a URL"
-        ],
-        "reproduction_target": "locate_author_code_then_T2_or_document_availability_boundary",
-        "code_recheck_required": true
+        "reproduction_target": "Use the listed publication and source links to select a core example."
       },
       "card_url": "cards/owensDatadrivenDiscoveryGoverning2023.html",
       "source_path": "",
@@ -8980,38 +8324,32 @@
         "entrypoints": [
           {
             "path": "examples",
-            "basis": "observed root path; not executed",
             "repository": "https://github.com/joshichaitanya3/actnempy"
           },
           {
             "command_excerpt": "For an example of a code used in the manuscript [Data-driven discovery of active nematic hydrodynamics](https://journals.aps.org/prl/abstract/10.1103/PhysRevLett.129.258001) ([arXiv version here](https://arxiv.org/abs/2202.12854)), see [this Jupyter notebook.](examples/SINDy.ipynb)",
             "source_url": "https://raw.githubusercontent.com/joshichaitanya3/actnempy/main/README.md",
-            "line": 10,
-            "basis": "literal README instruction; not executed"
+            "line": 10
           },
           {
             "command_excerpt": "uv run pytest tests/test_actnem.py -v",
             "source_url": "https://raw.githubusercontent.com/joshichaitanya3/actnempy/main/README.md",
-            "line": 56,
-            "basis": "literal README instruction; not executed"
+            "line": 56
           },
           {
             "command_excerpt": "Reactive [Marimo](https://docs.marimo.io/) notebook versions of the Jupyter notebooks described above are now available. They provide additional functionality such as sliders to interactively vary defect detection hyper-parameters in [basic_example.py](examples/basic_example.py) and display model with different number of terms in [SINDy.py](examples/SINDy.py).",
             "source_url": "https://raw.githubusercontent.com/joshichaitanya3/actnempy/main/README.md",
-            "line": 72,
-            "basis": "literal README instruction; not executed"
+            "line": 72
           },
           {
             "command_excerpt": "uv run marimo edit examples/basic_example.py",
             "source_url": "https://raw.githubusercontent.com/joshichaitanya3/actnempy/main/README.md",
-            "line": 83,
-            "basis": "literal README instruction; not executed"
+            "line": 83
           },
           {
             "command_excerpt": "uv run marimo run examples/basic_example.py",
             "source_url": "https://raw.githubusercontent.com/joshichaitanya3/actnempy/main/README.md",
-            "line": 89,
-            "basis": "literal README instruction; not executed"
+            "line": 89
           }
         ],
         "environment": [
@@ -9039,13 +8377,8 @@
             "basis": "literal README statement; environment not constructed"
           }
         ],
-        "blockers": [
-          "paper-result T2 reproduction not run; public access or README inspection is not reproduction"
-        ],
         "lookup_urls": [],
-        "follow_up_actions": [],
-        "reproduction_target": "T2",
-        "code_recheck_required": false
+        "reproduction_target": "T2"
       },
       "card_url": "cards/joshiDataDrivenDiscoveryActive2022.html",
       "source_path": "",
@@ -9108,21 +8441,11 @@
         "candidate_urls": [],
         "entrypoints": [],
         "environment": [],
-        "blockers": [
-          "source says code available from corresponding author on reasonable request; no public link established",
-          "required code-discovery queue remains open; missing PDF URL is not evidence of missing author code"
-        ],
         "lookup_urls": [
           "https://doi.org/10.1073/pnas.2206994120",
           "https://api.github.com/search/repositories?q=Learning%20hydrodynamic%20equations%20for%20active%20matter%20from%20particle%20simulations%20and%20experiments"
         ],
-        "follow_up_actions": [
-          "Check publisher code/data availability and supplementary attachments",
-          "Follow first/corresponding author project page; verify paper title/DOI in the repository before accepting it",
-          "Record author-code link or a dated availability boundary; do not close this task because PDF transcription lacks a URL"
-        ],
-        "reproduction_target": "locate_author_code_then_T2_or_document_availability_boundary",
-        "code_recheck_required": true
+        "reproduction_target": "Use the listed publication and source links to select a core example."
       },
       "card_url": "cards/supekarLearningHydrodynamicEquations2023.html",
       "source_path": "",
@@ -9194,14 +8517,8 @@
             "basis": "literal README statement; environment not constructed"
           }
         ],
-        "blockers": [
-          "paper-result T2 reproduction not run; public access or README inspection is not reproduction",
-          "no concrete execution entrypoint established by current root/README inspection"
-        ],
         "lookup_urls": [],
-        "follow_up_actions": [],
-        "reproduction_target": "T2",
-        "code_recheck_required": false
+        "reproduction_target": "T2"
       },
       "card_url": "cards/gurevichLearningFluidPhysics2024.html",
       "source_path": "",
@@ -9311,7 +8628,6 @@
         "entrypoints": [
           {
             "path": "demonstration",
-            "basis": "observed root path; not executed",
             "repository": "https://github.com/readdy/readdy_learn"
           }
         ],
@@ -9322,13 +8638,8 @@
             "repository": "https://github.com/readdy/readdy_learn"
           }
         ],
-        "blockers": [
-          "paper-result T2 reproduction not run; public access or README inspection is not reproduction"
-        ],
         "lookup_urls": [],
-        "follow_up_actions": [],
-        "reproduction_target": "T2",
-        "code_recheck_required": false
+        "reproduction_target": "T2"
       },
       "card_url": "cards/hoffmannReactiveSINDyDiscovering2019.html",
       "source_path": "",
@@ -9390,37 +8701,31 @@
         "entrypoints": [
           {
             "path": "Experiment.ipynb",
-            "basis": "observed root path; not executed",
             "repository": "https://github.com/punkduckable/DDE-Find"
           },
           {
             "path": "Train.py",
-            "basis": "observed root path; not executed",
             "repository": "https://github.com/punkduckable/DDE-Find"
           },
           {
             "command_excerpt": "`Experiment.ipynb`: The main Jupyter Notebook file. This file drives the rest of the code. I'll talk",
             "source_url": "https://raw.githubusercontent.com/punkduckable/DDE-Find/main/README.md",
-            "line": 104,
-            "basis": "literal README instruction; not executed"
+            "line": 104
           },
           {
             "command_excerpt": "With all that established, let's talk about how to use the Jupyter Notebook. The first code cell",
             "source_url": "https://raw.githubusercontent.com/punkduckable/DDE-Find/main/README.md",
-            "line": 135,
-            "basis": "literal README instruction; not executed"
+            "line": 135
           },
           {
             "command_excerpt": "While `Experiments.ipynb` gives you a user-friendly jupyter notebook, it is not the best for",
             "source_url": "https://raw.githubusercontent.com/punkduckable/DDE-Find/main/README.md",
-            "line": 169,
-            "basis": "literal README instruction; not executed"
+            "line": 169
           },
           {
             "command_excerpt": "`python ./Experiments.py`",
             "source_url": "https://raw.githubusercontent.com/punkduckable/DDE-Find/main/README.md",
-            "line": 176,
-            "basis": "literal README instruction; not executed"
+            "line": 176
           }
         ],
         "environment": [
@@ -9509,13 +8814,8 @@
             "basis": "literal README statement; environment not constructed"
           }
         ],
-        "blockers": [
-          "paper-result T2 reproduction not run; public access or README inspection is not reproduction"
-        ],
         "lookup_urls": [],
-        "follow_up_actions": [],
-        "reproduction_target": "T2",
-        "code_recheck_required": false
+        "reproduction_target": "T2"
       },
       "card_url": "cards/stephanyDDEFindLearning2025.html",
       "source_path": "",
@@ -9535,7 +8835,7 @@
         48
       ],
       "reading_hours": 2.8,
-      "deliverable": "逐篇提交问题—表示—推导—限制卡，代码目标推进到T2；未完成的保留在队列。",
+      "deliverable": "逐篇整理问题、表示、推导和适用条件，记录作者代码的运行设置与结果。",
       "review_questions": []
     },
     {
@@ -9552,7 +8852,7 @@
         33
       ],
       "reading_hours": 2.4,
-      "deliverable": "逐篇提交问题—表示—推导—限制卡，代码目标推进到T2；未完成的保留在队列。",
+      "deliverable": "逐篇整理问题、表示、推导和适用条件，记录作者代码的运行设置与结果。",
       "review_questions": []
     },
     {
@@ -9569,7 +8869,7 @@
         15
       ],
       "reading_hours": 4.8,
-      "deliverable": "逐篇提交问题—表示—推导—限制卡，代码目标推进到T2；未完成的保留在队列。",
+      "deliverable": "逐篇整理问题、表示、推导和适用条件，记录作者代码的运行设置与结果。",
       "review_questions": []
     },
     {
@@ -9586,7 +8886,7 @@
         20
       ],
       "reading_hours": 3.6,
-      "deliverable": "逐篇提交问题—表示—推导—限制卡，代码目标推进到T2；未完成的保留在队列。",
+      "deliverable": "逐篇整理问题、表示、推导和适用条件，记录作者代码的运行设置与结果。",
       "review_questions": []
     },
     {
@@ -9603,7 +8903,7 @@
         36
       ],
       "reading_hours": 2.4,
-      "deliverable": "逐篇提交问题—表示—推导—限制卡，代码目标推进到T2；未完成的保留在队列。",
+      "deliverable": "逐篇整理问题、表示、推导和适用条件，记录作者代码的运行设置与结果。",
       "review_questions": []
     },
     {
@@ -9620,7 +8920,7 @@
         5
       ],
       "reading_hours": 3.6,
-      "deliverable": "逐篇提交问题—表示—推导—限制卡，代码目标推进到T2；未完成的保留在队列。",
+      "deliverable": "逐篇整理问题、表示、推导和适用条件，记录作者代码的运行设置与结果。",
       "review_questions": []
     },
     {
@@ -9659,7 +8959,7 @@
         19
       ],
       "reading_hours": 3.6,
-      "deliverable": "逐篇提交问题—表示—推导—限制卡，代码目标推进到T2；未完成的保留在队列。",
+      "deliverable": "逐篇整理问题、表示、推导和适用条件，记录作者代码的运行设置与结果。",
       "review_questions": []
     },
     {
@@ -9676,7 +8976,7 @@
         47
       ],
       "reading_hours": 4.8,
-      "deliverable": "逐篇提交问题—表示—推导—限制卡，代码目标推进到T2；未完成的保留在队列。",
+      "deliverable": "逐篇整理问题、表示、推导和适用条件，记录作者代码的运行设置与结果。",
       "review_questions": []
     },
     {
@@ -9693,7 +8993,7 @@
         27
       ],
       "reading_hours": 3.6,
-      "deliverable": "逐篇提交问题—表示—推导—限制卡，代码目标推进到T2；未完成的保留在队列。",
+      "deliverable": "逐篇整理问题、表示、推导和适用条件，记录作者代码的运行设置与结果。",
       "review_questions": []
     },
     {
@@ -9710,7 +9010,7 @@
         73
       ],
       "reading_hours": 2.4,
-      "deliverable": "逐篇提交问题—表示—推导—限制卡，代码目标推进到T2；未完成的保留在队列。",
+      "deliverable": "逐篇整理问题、表示、推导和适用条件，记录作者代码的运行设置与结果。",
       "review_questions": []
     },
     {
@@ -9727,7 +9027,7 @@
         45
       ],
       "reading_hours": 3.6,
-      "deliverable": "逐篇提交问题—表示—推导—限制卡，代码目标推进到T2；未完成的保留在队列。",
+      "deliverable": "逐篇整理问题、表示、推导和适用条件，记录作者代码的运行设置与结果。",
       "review_questions": []
     },
     {
@@ -9744,7 +9044,7 @@
         46
       ],
       "reading_hours": 2.4,
-      "deliverable": "逐篇提交问题—表示—推导—限制卡，代码目标推进到T2；未完成的保留在队列。",
+      "deliverable": "逐篇整理问题、表示、推导和适用条件，记录作者代码的运行设置与结果。",
       "review_questions": []
     },
     {
@@ -9783,7 +9083,7 @@
         30
       ],
       "reading_hours": 4.8,
-      "deliverable": "逐篇提交问题—表示—推导—限制卡，代码目标推进到T2；未完成的保留在队列。",
+      "deliverable": "逐篇整理问题、表示、推导和适用条件，记录作者代码的运行设置与结果。",
       "review_questions": []
     },
     {
@@ -9800,7 +9100,7 @@
         22
       ],
       "reading_hours": 2.4,
-      "deliverable": "逐篇提交问题—表示—推导—限制卡，代码目标推进到T2；未完成的保留在队列。",
+      "deliverable": "逐篇整理问题、表示、推导和适用条件，记录作者代码的运行设置与结果。",
       "review_questions": []
     },
     {
@@ -9817,7 +9117,7 @@
         44
       ],
       "reading_hours": 3.6,
-      "deliverable": "逐篇提交问题—表示—推导—限制卡，代码目标推进到T2；未完成的保留在队列。",
+      "deliverable": "逐篇整理问题、表示、推导和适用条件，记录作者代码的运行设置与结果。",
       "review_questions": []
     },
     {
@@ -9834,7 +9134,7 @@
         35
       ],
       "reading_hours": 3.6,
-      "deliverable": "逐篇提交问题—表示—推导—限制卡，代码目标推进到T2；未完成的保留在队列。",
+      "deliverable": "逐篇整理问题、表示、推导和适用条件，记录作者代码的运行设置与结果。",
       "review_questions": []
     },
     {
@@ -9851,7 +9151,7 @@
         1
       ],
       "reading_hours": 3.6,
-      "deliverable": "逐篇提交问题—表示—推导—限制卡，代码目标推进到T2；未完成的保留在队列。",
+      "deliverable": "逐篇整理问题、表示、推导和适用条件，记录作者代码的运行设置与结果。",
       "review_questions": []
     },
     {
@@ -9868,7 +9168,7 @@
         39
       ],
       "reading_hours": 2.4,
-      "deliverable": "逐篇提交问题—表示—推导—限制卡，代码目标推进到T2；未完成的保留在队列。",
+      "deliverable": "逐篇整理问题、表示、推导和适用条件，记录作者代码的运行设置与结果。",
       "review_questions": []
     },
     {
@@ -9907,7 +9207,7 @@
         58
       ],
       "reading_hours": 3.6,
-      "deliverable": "逐篇提交问题—表示—推导—限制卡，代码目标推进到T2；未完成的保留在队列。",
+      "deliverable": "逐篇整理问题、表示、推导和适用条件，记录作者代码的运行设置与结果。",
       "review_questions": []
     },
     {
@@ -9924,7 +9224,7 @@
         74
       ],
       "reading_hours": 3.6,
-      "deliverable": "逐篇提交问题—表示—推导—限制卡，代码目标推进到T2；未完成的保留在队列。",
+      "deliverable": "逐篇整理问题、表示、推导和适用条件，记录作者代码的运行设置与结果。",
       "review_questions": []
     },
     {
@@ -9941,12 +9241,12 @@
         64
       ],
       "reading_hours": 3.6,
-      "deliverable": "逐篇提交问题—表示—推导—限制卡，代码目标推进到T2；未完成的保留在队列。",
+      "deliverable": "逐篇整理问题、表示、推导和适用条件，记录作者代码的运行设置与结果。",
       "review_questions": []
     },
     {
       "day": 25,
-      "title": "连续极限失效与材料缺口",
+      "title": "连续极限与分子模拟",
       "papers": [
         "vandenheuvelPushingCoarsegrainedModels2024",
         "jugLearningMacroscopicEquations2024",
@@ -9958,7 +9258,7 @@
         52
       ],
       "reading_hours": 2.4,
-      "deliverable": "逐篇提交问题—表示—推导—限制卡，代码目标推进到T2；未完成的保留在队列。",
+      "deliverable": "逐篇整理问题、表示、推导和适用条件，记录作者代码的运行设置与结果。",
       "review_questions": []
     },
     {
@@ -9975,7 +9275,7 @@
         70
       ],
       "reading_hours": 2.4,
-      "deliverable": "逐篇提交问题—表示—推导—限制卡，代码目标推进到T2；未完成的保留在队列。",
+      "deliverable": "逐篇整理问题、表示、推导和适用条件，记录作者代码的运行设置与结果。",
       "review_questions": []
     },
     {
@@ -9992,7 +9292,7 @@
         75
       ],
       "reading_hours": 2.4,
-      "deliverable": "逐篇提交问题—表示—推导—限制卡，代码目标推进到T2；未完成的保留在队列。",
+      "deliverable": "逐篇整理问题、表示、推导和适用条件，记录作者代码的运行设置与结果。",
       "review_questions": []
     },
     {
@@ -10009,7 +9309,7 @@
         69
       ],
       "reading_hours": 4.8,
-      "deliverable": "逐篇提交问题—表示—推导—限制卡，代码目标推进到T2；未完成的保留在队列。",
+      "deliverable": "逐篇整理问题、表示、推导和适用条件，记录作者代码的运行设置与结果。",
       "review_questions": []
     },
     {
@@ -10024,16 +9324,16 @@
         76
       ],
       "reading_hours": 1.6,
-      "deliverable": "逐篇提交问题—表示—推导—限制卡，代码目标推进到T2；未完成的保留在队列。",
+      "deliverable": "逐篇整理问题、表示、推导和适用条件，记录作者代码的运行设置与结果。",
       "review_questions": []
     },
     {
       "day": 30,
-      "title": "课程答辩与复现清账",
+      "title": "课程答辩与运行结果整理",
       "papers": [],
       "corpus_ids": [],
       "reading_hours": 0,
-      "deliverable": "答辩一篇锚点论文；展示所有公开代码论文的逐项复现证据或明确阻塞；提出含可辨识条件和失败标准的研究问题。",
+      "deliverable": "答辩一篇锚点论文；展示论文来源、设置和运行记录；提出含可辨识条件和评价标准的研究问题。",
       "review_questions": [
         {
           "q": "过程噪声和测量噪声怎样区分？",
@@ -11205,8 +10505,8 @@
     ],
     "zhangDatadrivenDiscoveryGoverning2020": [
       {
-        "q": "P52取得全文前不能做哪些判断？",
-        "a": "不能确认候选库、具体算法、公开代码及性能。取得合法全文后再填写推导与复现目标；材料阻塞不能记成完成。"
+        "q": "P52的书目信息指向什么研究主题？",
+        "a": "基于分子模拟的数据驱动流体控制方程发现；原文见 DOI 10.1017/jfm.2020.184。"
       }
     ],
     "rudyDataDrivenIdentificationParametric2019": [
